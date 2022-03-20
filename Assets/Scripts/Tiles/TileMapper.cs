@@ -23,7 +23,7 @@ public class TileMapper : MonoBehaviour
     {
         var tiles = new Tile[_dimensions.x * _dimensions.y];
         int i = 0;
-        var tileData = _tileCollection[ETileEdge.Grass, ETileEdge.Grass, ETileEdge.Grass, ETileEdge.Grass];
+        var tileData = _tileCollection["Grass", "Grass", "Grass", "Grass", "Grass"];
         for (int x = 0; x < _dimensions.x; x++)
         {
             for (int y = 0; y < _dimensions.x; y++)

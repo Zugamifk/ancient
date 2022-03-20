@@ -5,10 +5,17 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class TileSprites : ScriptableObject
 {
+    public enum ETileEdge
+    {
+        Grass,
+        Road
+    }
+
     [System.Serializable]
     public class TileData
     {
         public Sprite sprite;
+        public ETileEdge type;
         public ETileEdge left;
         public ETileEdge right;
         public ETileEdge top;

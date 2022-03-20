@@ -5,26 +5,25 @@ using UnityEngine.Tilemaps;
 
 public class TileCollection
 {
-    Dictionary<(int, int, int, int), TileData> _edgeTypeToTileData = new Dictionary<(int, int, int, int), TileData>();
+    Dictionary<(string, string, string, string, string), TileData> _edgeTypeToTileData = new Dictionary<(string, string, string, string, string), TileData>();
 
-    public TileData this[ETileEdge left, ETileEdge right, ETileEdge top, ETileEdge bottom] => 
-        _edgeTypeToTileData[((int)left, (int)right, (int)top, (int)bottom)];
+    public TileData this[string type, string left, string right, string top, string bottom] => 
+        _edgeTypeToTileData[(type, left, right, top, bottom)];
 
     public TileCollection(TileSprites sprites)
     {
         foreach(var td in sprites.GroundTiles)
         {
-            var key = ((int)td.left, (int)td.right, (int)td.top, (int)td.bottom);
+            var type = td.type.ToString();
+            var left = td.left.ToString();
+            var right = td.right.ToString();
+            var top = td.top.ToString();
+            var bottom = td.bottom.ToString();
+            var key = (type, left, right, top, bottom);
             TileData tileData;
             if(!_edgeTypeToTileData.TryGetValue(key, out tileData))
             {
-                tileData = new TileData()
-                {
-                    Left = td.left,
-                    Right = td.right,
-                    Top = td.top,
-                    Bottom = td.bottom
-                };
+                tileData = new TileData(type, left, right, top, bottom);
                 _edgeTypeToTileData.Add(key, tileData);
             }
 
