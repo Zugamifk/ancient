@@ -14,22 +14,122 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundTiles:
   - sprite: {fileID: 6682738439518977790, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 0
     left: 0
     right: 0
     top: 0
     bottom: 0
   - sprite: {fileID: -562605217060080129, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 0
     left: 0
     right: 0
     top: 0
     bottom: 0
   - sprite: {fileID: -4970410492042351176, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 0
     left: 0
     right: 0
     top: 0
     bottom: 0
   - sprite: {fileID: -5930158604282628446, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 0
     left: 0
     right: 0
     top: 0
+    bottom: 0
+  - sprite: {fileID: -1986604703071005312, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+  - sprite: {fileID: -4233739483619845583, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 1
+    right: 0
+    top: 0
+    bottom: 0
+  - sprite: {fileID: -6551456632857933372, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 0
+    right: 0
+    top: 0
+    bottom: 1
+  - sprite: {fileID: 4717279005209572468, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 0
+    right: 1
+    top: 0
+    bottom: 0
+  - sprite: {fileID: -232304020389510235, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 0
+    right: 0
+    top: 1
+    bottom: 0
+  - sprite: {fileID: -2542073858232844238, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 1
+    right: 1
+    top: 0
+    bottom: 0
+  - sprite: {fileID: 4362130248060910229, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 0
+    right: 0
+    top: 1
+    bottom: 1
+  - sprite: {fileID: 5331757720867617967, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 1
+    right: 0
+    top: 1
+    bottom: 0
+  - sprite: {fileID: 5743168839956448968, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 0
+    right: 1
+    top: 1
+    bottom: 0
+  - sprite: {fileID: 1940044384358670937, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 0
+    right: 1
+    top: 0
+    bottom: 1
+  - sprite: {fileID: 7903714108508714464, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 1
+    right: 0
+    top: 0
+    bottom: 1
+  - sprite: {fileID: 3912554482014063563, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 1
+    right: 1
+    top: 1
+    bottom: 1
+  - sprite: {fileID: -5970157769536964832, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 0
+    right: 1
+    top: 1
+    bottom: 1
+  - sprite: {fileID: 289909530908896649, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 1
+    right: 1
+    top: 0
+    bottom: 1
+  - sprite: {fileID: -942494204440328609, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 1
+    right: 0
+    top: 1
+    bottom: 1
+  - sprite: {fileID: 1603184614873367213, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    type: 1
+    left: 1
+    right: 1
+    top: 1
     bottom: 0

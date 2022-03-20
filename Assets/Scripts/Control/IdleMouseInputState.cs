@@ -14,6 +14,12 @@ public class IdleMouseInputState : MouseInputState
             {
                 return Services.Find<DragController>().StartDragging(draggable);
             }
+
+            var map = mouseTarget.GetComponent<Map>();
+            if(map!=null)
+            {
+                return map.StartMapping();
+            }
         }
         return this;
     }

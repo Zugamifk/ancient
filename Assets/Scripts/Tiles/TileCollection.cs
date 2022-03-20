@@ -7,8 +7,23 @@ public class TileCollection
 {
     Dictionary<(string, string, string, string, string), TileData> _edgeTypeToTileData = new Dictionary<(string, string, string, string, string), TileData>();
 
-    public TileData this[string type, string left, string right, string top, string bottom] => 
-        _edgeTypeToTileData[(type, left, right, top, bottom)];
+    public TileData this[string type, string left, string right, string top, string bottom] => this[(type, left, right, top, bottom)];
+
+    public TileData this[(string, string, string, string, string) key]
+    {
+        get
+        {
+            TileData tileData;
+            if (_edgeTypeToTileData.TryGetValue(key, out tileData))
+            {
+                return tileData;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
 
     public TileCollection(TileSprites sprites)
     {

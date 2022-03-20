@@ -10,9 +10,12 @@ public class TileMapper : MonoBehaviour
     [SerializeField]
     Tilemap _tilemap;
     [SerializeField]
-    Vector2Int _dimensions;
+    BoundsInt _dimensions;
 
     TileCollection _tileCollection;
+
+    TileData _default;
+    Dictionary<(int, int), TileData> _tiles = new Dictionary<(int, int), TileData>();
 
     private void Awake()
     {
@@ -21,17 +24,75 @@ public class TileMapper : MonoBehaviour
 
     private void Start()
     {
-        var tiles = new Tile[_dimensions.x * _dimensions.y];
-        int i = 0;
-        var tileData = _tileCollection["Grass", "Grass", "Grass", "Grass", "Grass"];
-        for (int x = 0; x < _dimensions.x; x++)
+        InitializeTiles();
+        BuildTilemap();
+    }
+
+    void InitializeTiles()
+    {
+        _default = _tileCollection[Tiles.Grass, Tiles.Grass, Tiles.Grass, Tiles.Grass, Tiles.Grass];
+        for (int x = _dimensions.xMin; x < _dimensions.xMax; x++)
         {
-            for (int y = 0; y < _dimensions.x; y++)
+            for (int y = _dimensions.yMin; y < _dimensions.yMax; y++)
             {
+                _tiles[(x, y)] = _default;
+            }
+        }
+    }
+
+    void BuildTilemap()
+    {
+        var tiles = new Tile[_dimensions.size.x * _dimensions.size.y];
+        int i = 0;
+        for (int x = _dimensions.xMin; x < _dimensions.xMax; x++)
+        {
+            for (int y = _dimensions.yMin; y < _dimensions.yMax; y++)
+            {
+                var tileData = _tiles[(x, y)];
                 tiles[i++] = tileData.GetRandomTile();
             }
         }
-        _tilemap.SetTilesBlock(new BoundsInt(-_dimensions.x/2, -_dimensions.y/2, 0, _dimensions.x, _dimensions.y, 1), tiles);
+        _tilemap.SetTilesBlock(_dimensions, tiles);
     }
 
+    TileData GetTile(int x, int y)
+    {
+        TileData tileData;
+        if (!_tiles.TryGetValue((x, y), out tileData))
+        {
+            tileData = _default;
+        }
+        return tileData;
+    }
+
+    public void SetTile(int x, int y, string type)
+    {
+        var key = (type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
+        var tile = _tileCollection[key];
+        if(tile == null)
+        {
+            throw new System.InvalidOperationException("No TileData for key "+key);
+        }
+
+        if (tile == _tiles[(x, y)]) return;
+
+        _tiles[(x, y)] = tile;
+        _tilemap.SetTile(new Vector3Int(x, y, 0), tile.GetRandomTile());
+
+        UpdateTile(x - 1, y);
+        UpdateTile(x + 1, y);
+        UpdateTile(x, y - 1);
+        UpdateTile(x, y + 1);
+    }
+
+    void UpdateTile(int x, int y)
+    {
+        var tile = _tiles[(x, y)];
+        var newTile = _tileCollection[tile.Type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type];
+        if (newTile != null && newTile != tile)
+        {
+            _tiles[(x, y)] = newTile;
+            _tilemap.SetTile(new Vector3Int(x, y, 0), newTile.GetRandomTile());
+        }
+    }
 }

@@ -625,6 +625,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1645037282}
   - component: {fileID: 1645037283}
+  - component: {fileID: 1645037285}
+  - component: {fileID: 1645037284}
+  - component: {fileID: 1645037286}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -661,7 +664,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tileSprites: {fileID: 11400000, guid: 3951724d69187484fb54a9f3eb6a2043, type: 2}
   _tilemap: {fileID: 891285401}
-  _dimensions: {x: 25, y: 25}
+  _dimensions:
+    m_Position: {x: -25, y: -25, z: 0}
+    m_Size: {x: 50, y: 50, z: 1}
+--- !u!65 &1645037284
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645037281}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 25, y: 25, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1645037285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645037281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f336b916adb79df4b978e54a6ff160f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tilemap: {fileID: 891285401}
+--- !u!114 &1645037286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645037281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4cf139997856342bdd5553eedd002d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1653402931
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,7 +722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1653402933
 Transform:
   m_ObjectHideFlags: 0
