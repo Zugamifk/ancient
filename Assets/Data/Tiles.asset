@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea31438944c7e94e81805a584b8bf9b, type: 3}
+  m_Name: Tiles
+  m_EditorClassIdentifier: 
+  GroundTiles:
+  - sprite: {fileID: 6682738439518977790, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+  - sprite: {fileID: -562605217060080129, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+  - sprite: {fileID: -4970410492042351176, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+  - sprite: {fileID: -5930158604282628446, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
