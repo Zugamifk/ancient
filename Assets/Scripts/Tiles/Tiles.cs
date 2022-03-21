@@ -4,6 +4,12 @@ using UnityEngine;
 
 public static class Tiles
 {
+    // ground
     public static string Grass => TileSprites.ETileEdge.Grass.ToString();
     public static string Road => TileSprites.ETileEdge.Road.ToString();
+
+    public static class Buildings
+    {
+        public const string Base = "Base";
+    }
 }

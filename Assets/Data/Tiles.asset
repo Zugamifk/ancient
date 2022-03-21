@@ -133,3 +133,32 @@ MonoBehaviour:
     right: 1
     top: 1
     bottom: 0
+  Buildings:
+  - name: Base
+    level: 1
+    dimensions: {x: 2, y: 2}
+    tiles:
+    - sprite: {fileID: -8078966772632430244, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+      type: 0
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+    - sprite: {fileID: -3985759516408998331, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+      type: 0
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+    - sprite: {fileID: -7011020414044352858, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+      type: 0
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+    - sprite: {fileID: -5075879681021990956, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+      type: 0
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0

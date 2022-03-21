@@ -30,7 +30,7 @@ public class TileMapper : MonoBehaviour
 
     void InitializeTiles()
     {
-        _default = _tileCollection[Tiles.Grass, Tiles.Grass, Tiles.Grass, Tiles.Grass, Tiles.Grass];
+        _default = _tileCollection.GetTileData(Tiles.Grass, Tiles.Grass, Tiles.Grass, Tiles.Grass, Tiles.Grass);
         for (int x = _dimensions.xMin; x < _dimensions.xMax; x++)
         {
             for (int y = _dimensions.yMin; y < _dimensions.yMax; y++)
@@ -53,6 +53,8 @@ public class TileMapper : MonoBehaviour
             }
         }
         _tilemap.SetTilesBlock(_dimensions, tiles);
+
+        PlaceBuilding(0, 0, Tiles.Buildings.Base);
     }
 
     TileData GetTile(int x, int y)
@@ -68,7 +70,7 @@ public class TileMapper : MonoBehaviour
     public void SetTile(int x, int y, string type)
     {
         var key = (type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
-        var tile = _tileCollection[key];
+        var tile = _tileCollection.GetTileData(key);
         if(tile == null)
         {
             throw new System.InvalidOperationException("No TileData for key "+key);
@@ -88,11 +90,19 @@ public class TileMapper : MonoBehaviour
     void UpdateTile(int x, int y)
     {
         var tile = _tiles[(x, y)];
-        var newTile = _tileCollection[tile.Type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type];
+        var newTile = _tileCollection.GetTileData(tile.Type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
         if (newTile != null && newTile != tile)
         {
             _tiles[(x, y)] = newTile;
             _tilemap.SetTile(new Vector3Int(x, y, 0), newTile.GetRandomTile());
         }
+    }
+
+    void PlaceBuilding(int x, int y, string name)
+    {
+        var bd = _tileCollection.GetBuildingData(name);
+        var x0 = -bd.Dimensions.x / 2;
+        var y0 = -bd.Dimensions.y / 2;
+        _tilemap.SetTilesBlock(new BoundsInt(x-x0, y-y0, 1, bd.Dimensions.x, bd.Dimensions.y, 1), bd.Tiles);
     }
 }
