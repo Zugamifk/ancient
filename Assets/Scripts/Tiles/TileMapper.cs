@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,6 +56,8 @@ public class TileMapper : MonoBehaviour
         _tilemap.SetTilesBlock(_dimensions, tiles);
 
         PlaceBuilding(0, 0, Tiles.Buildings.Base);
+        PlaceBuilding(5, 2, Tiles.Buildings.Mystery);
+        PlaceBuilding(3, -3, Tiles.Buildings.Tower);
     }
 
     TileData GetTile(int x, int y)
@@ -101,8 +104,14 @@ public class TileMapper : MonoBehaviour
     void PlaceBuilding(int x, int y, string name)
     {
         var bd = _tileCollection.GetBuildingData(name);
-        var x0 = -bd.Dimensions.x / 2;
-        var y0 = -bd.Dimensions.y / 2;
+        var x0 = bd.Dimensions.x / 2;
+        var y0 = bd.Dimensions.y / 2;
         _tilemap.SetTilesBlock(new BoundsInt(x-x0, y-y0, 1, bd.Dimensions.x, bd.Dimensions.y, 1), bd.Tiles);
+    }
+
+    void ConnectRoads(Vector2Int pointA, Vector2Int pointB)
+    {
+        int xs = Math.Sign(pointB.x - pointA.x);
+        int ys = Math.Sign(pointB.y - pointA.y);
     }
 }

@@ -138,6 +138,18 @@ MonoBehaviour:
     level: 1
     dimensions: {x: 2, y: 2}
     tiles:
+    - sprite: {fileID: -7011020414044352858, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+      type: 0
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+    - sprite: {fileID: -5075879681021990956, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+      type: 0
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
     - sprite: {fileID: -8078966772632430244, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
       type: 0
       left: 0
@@ -150,13 +162,45 @@ MonoBehaviour:
       right: 0
       top: 0
       bottom: 0
-    - sprite: {fileID: -7011020414044352858, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+  - name: Mystery
+    level: 1
+    dimensions: {x: 2, y: 2}
+    tiles:
+    - sprite: {fileID: -218114231, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
       type: 0
       left: 0
       right: 0
       top: 0
       bottom: 0
-    - sprite: {fileID: -5075879681021990956, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+    - sprite: {fileID: -1096416643, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+      type: 0
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+    - sprite: {fileID: -1228259379, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+      type: 0
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+    - sprite: {fileID: 606241216, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+      type: 0
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+  - name: Tower
+    level: 1
+    dimensions: {x: 1, y: 2}
+    tiles:
+    - sprite: {fileID: -1962439361, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+      type: 0
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+    - sprite: {fileID: -301214502, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
       type: 0
       left: 0
       right: 0
