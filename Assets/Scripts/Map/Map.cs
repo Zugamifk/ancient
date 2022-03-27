@@ -12,19 +12,30 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     TileMapper _tilemapper;
 
-    private void Start()
-    {
-        _tilemapper = GetComponent<TileMapper>();
-    }
-
-    public MouseInputState GetInputState()
-    {
-        return new MapMouseInput(this, _cameraController);
-    }
 
     public void SetTile(Vector3 position, string type)
     {
         var cell = _tilemap.WorldToCell(position);
         _tilemapper.SetTile(cell.x, cell.y, type);
     }
+
+    private void Start()
+    {
+        _tilemapper = GetComponent<TileMapper>();
+        GenerateMap();
+    }
+
+    void GenerateMap()
+    {
+        _tilemapper.PlaceBuilding(0, 0, Tiles.Buildings.Base);
+        _tilemapper.PlaceBuilding(5, 2, Tiles.Buildings.Mystery);
+        _tilemapper.PlaceBuilding(3, -3, Tiles.Buildings.Tower);
+    }
+
+    MouseInputState IMouseInputHandler.GetInputState()
+    {
+        return new MapMouseInput(this, _cameraController);
+    }
+
+    
 }

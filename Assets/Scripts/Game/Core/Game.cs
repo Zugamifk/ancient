@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingCollection : ScriptableObject
+public class Game : MonoBehaviour
 {
-    public Building[] Buildings;
+    [SerializeField]
+    Map _map;
 }
