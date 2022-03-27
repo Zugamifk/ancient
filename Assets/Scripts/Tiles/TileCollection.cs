@@ -58,6 +58,7 @@ public class TileCollection
 
             var tile = ScriptableObject.CreateInstance<Tile>();
             tile.sprite = td.sprite;
+            tile.colliderType = Tile.ColliderType.None;
             tileData.Tiles.Add(tile);
         }
 
@@ -73,6 +74,7 @@ public class TileCollection
             {
                 var tile = ScriptableObject.CreateInstance<Tile>();
                 tile.sprite = bd.tiles[i].sprite;
+                tile.colliderType = Tile.ColliderType.Sprite;
                 building.Tiles[i] = tile;
             }
             _nameToBuildingData.Add(building.Name, building);

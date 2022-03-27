@@ -58,6 +58,8 @@ public class TileMapper : MonoBehaviour
         PlaceBuilding(0, 0, Tiles.Buildings.Base);
         PlaceBuilding(5, 2, Tiles.Buildings.Mystery);
         PlaceBuilding(3, -3, Tiles.Buildings.Tower);
+
+        ConnectRoads(new Vector2Int(0, 0), new Vector2Int(5, 5));
     }
 
     TileData GetTile(int x, int y)
@@ -74,9 +76,9 @@ public class TileMapper : MonoBehaviour
     {
         var key = (type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
         var tile = _tileCollection.GetTileData(key);
-        if(tile == null)
+        if (tile == null)
         {
-            throw new System.InvalidOperationException("No TileData for key "+key);
+            throw new System.InvalidOperationException("No TileData for key " + key);
         }
 
         if (tile == _tiles[(x, y)]) return;
@@ -106,12 +108,21 @@ public class TileMapper : MonoBehaviour
         var bd = _tileCollection.GetBuildingData(name);
         var x0 = bd.Dimensions.x / 2;
         var y0 = bd.Dimensions.y / 2;
-        _tilemap.SetTilesBlock(new BoundsInt(x-x0, y-y0, 1, bd.Dimensions.x, bd.Dimensions.y, 1), bd.Tiles);
+        _tilemap.SetTilesBlock(new BoundsInt(x - x0, y - y0, 1, bd.Dimensions.x, bd.Dimensions.y, 1), bd.Tiles);
     }
 
     void ConnectRoads(Vector2Int pointA, Vector2Int pointB)
     {
         int xs = Math.Sign(pointB.x - pointA.x);
         int ys = Math.Sign(pointB.y - pointA.y);
+        for (int x = pointA.x; x != pointB.x; x += xs)
+        {
+            SetTile(x, pointA.y, Tiles.Road);
+        }
+
+        for (int y = pointA.y; y != pointB.y; y += ys)
+        {
+            SetTile(pointB.x, y, Tiles.Road);
+        }
     }
 }
