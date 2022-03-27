@@ -5,16 +5,17 @@ using UnityEngine.Tilemaps;
 
 public class MapMouseInput : MouseInputState
 {
-    Tilemap _tilemap;
-    public MapMouseInput(Tilemap tilemap)
+    Map _map;
+    public MapMouseInput(Map map, CameraController cameraController)
+        : base(cameraController)
     {
-        _tilemap = tilemap;
+        _map = map;
     }
 
     public override MouseInputState MouseUp()
     {
         UpdateTile();
-        return new IdleMouseInputState();
+        return new IdleMouseInputState(_context);
     }
 
     public override MouseInputState Drag()
@@ -25,8 +26,7 @@ public class MapMouseInput : MouseInputState
 
     void UpdateTile()
     {
-        var pos = Services.Find<CameraController>().GetMouseWorldPosition();
-        var cell = _tilemap.WorldToCell(pos);
-        Services.Find<TileMapper>().SetTile(cell.x, cell.y, Tiles.Road);
+        var pos = _context.CameraController.GetMouseWorldPosition();
+        _map.SetTile(pos, Tiles.Road);
     }
 }

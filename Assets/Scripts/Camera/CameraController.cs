@@ -21,16 +21,12 @@ public class CameraController : MonoBehaviour
         return GetWorldPosition(Input.mousePosition);
     }
 
-    public MouseListener GetMouseTarget(Vector2 position)
+    public GameObject RayCast(Vector2 position)
     {
         RaycastHit hit;
         if (Physics.Raycast(_camera.ScreenPointToRay(position), out hit))
         {
-            var listener = hit.collider.GetComponent<MouseListener>();
-            if(listener != null)
-            {
-                return listener;
-            }
+            return hit.transform.gameObject;
         }
 
         return null;
