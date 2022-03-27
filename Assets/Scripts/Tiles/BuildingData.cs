@@ -8,4 +8,5 @@ public class BuildingData
     public string Name;
     public Tile[] Tiles;
     public Vector2Int Dimensions;
+    public Vector2Int EntrancePosition;
 }
