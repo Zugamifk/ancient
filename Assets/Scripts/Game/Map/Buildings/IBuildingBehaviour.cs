@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingCollection : ScriptableObject
+public interface IBuildingBehaviour
 {
-    public Building[] Buildings;
+    public string Name { get; }
 }

@@ -134,7 +134,7 @@ MonoBehaviour:
     top: 1
     bottom: 0
   Buildings:
-  - name: Base
+  - name: Manor
     level: 1
     dimensions: {x: 2, y: 2}
     tiles:
@@ -162,7 +162,7 @@ MonoBehaviour:
       right: 0
       top: 0
       bottom: 0
-  - name: Mystery
+  - name: House
     level: 1
     dimensions: {x: 2, y: 2}
     tiles:

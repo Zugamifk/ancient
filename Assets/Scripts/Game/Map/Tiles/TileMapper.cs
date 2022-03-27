@@ -18,32 +18,38 @@ public class TileMapper : MonoBehaviour
     TileData _default;
     Dictionary<(int, int), TileData> _tiles = new Dictionary<(int, int), TileData>();
 
-    public void SetTile(int x, int y, string type)
+    public void SetTile(Vector3 position, string type)
     {
-        var key = (type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
-        var tile = _tileCollection.GetTileData(key);
-        if (tile == null)
-        {
-            throw new System.InvalidOperationException("No TileData for key " + key);
-        }
-
-        if (tile == _tiles[(x, y)]) return;
-
-        _tiles[(x, y)] = tile;
-        _tilemap.SetTile(new Vector3Int(x, y, 0), tile.GetRandomTile());
-
-        UpdateTile(x - 1, y);
-        UpdateTile(x + 1, y);
-        UpdateTile(x, y - 1);
-        UpdateTile(x, y + 1);
+        var cell = _tilemap.WorldToCell(position);
+        int x = cell.x, y = cell.y;
+        SetTile(x, y, type);
     }
 
-    public void PlaceBuilding(int x, int y, string name)
+    public void PlaceBuilding(Vector3 position, string name)
     {
+        var cell = _tilemap.WorldToCell(position);
+        int x = cell.x, y = cell.y;
         var bd = _tileCollection.GetBuildingData(name);
         var x0 = bd.Dimensions.x / 2;
         var y0 = bd.Dimensions.y / 2;
         _tilemap.SetTilesBlock(new BoundsInt(x - x0, y - y0, 1, bd.Dimensions.x, bd.Dimensions.y, 1), bd.Tiles);
+    }
+
+    public void CreateRoad(Vector3 start, Vector3 end)
+    {
+        var pointA = _tilemap.WorldToCell(start);
+        var pointB = _tilemap.WorldToCell(end);
+        int xs = Math.Sign(pointB.x - pointA.x);
+        int ys = Math.Sign(pointB.y - pointA.y);
+        for (int x = pointA.x; x != pointB.x; x += xs)
+        {
+            SetTile(x, pointA.y, Tiles.Road);
+        }
+
+        for (int y = pointA.y; y != pointB.y + ys; y += ys)
+        {
+            SetTile(pointB.x, y, Tiles.Road);
+        }
     }
 
     private void Awake()
@@ -99,6 +105,26 @@ public class TileMapper : MonoBehaviour
         return tileData;
     }
 
+    void SetTile(int x, int y, string type)
+    {
+        var key = (type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
+        var tile = _tileCollection.GetTileData(key);
+        if (tile == null)
+        {
+            throw new System.InvalidOperationException("No TileData for key " + key);
+        }
+
+        if (tile == _tiles[(x, y)]) return;
+
+        _tiles[(x, y)] = tile;
+        _tilemap.SetTile(new Vector3Int(x, y, 0), tile.GetRandomTile());
+
+        UpdateTile(x - 1, y);
+        UpdateTile(x + 1, y);
+        UpdateTile(x, y - 1);
+        UpdateTile(x, y + 1);
+    }
+
     void UpdateTile(int x, int y)
     {
         var tile = _tiles[(x, y)];
@@ -107,21 +133,6 @@ public class TileMapper : MonoBehaviour
         {
             _tiles[(x, y)] = newTile;
             _tilemap.SetTile(new Vector3Int(x, y, 0), newTile.GetRandomTile());
-        }
-    }
-
-    void ConnectRoads(Vector2Int pointA, Vector2Int pointB)
-    {
-        int xs = Math.Sign(pointB.x - pointA.x);
-        int ys = Math.Sign(pointB.y - pointA.y);
-        for (int x = pointA.x; x != pointB.x; x += xs)
-        {
-            SetTile(x, pointA.y, Tiles.Road);
-        }
-
-        for (int y = pointA.y; y != pointB.y; y += ys)
-        {
-            SetTile(pointB.x, y, Tiles.Road);
         }
     }
 }

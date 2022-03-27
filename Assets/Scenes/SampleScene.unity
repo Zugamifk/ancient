@@ -764,7 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraController: {fileID: 519420030}
-  _tilemap: {fileID: 891285401}
+  _buildingCollection: {fileID: 11400000, guid: b7253795462aa34478876c987e71c37a, type: 2}
 --- !u!1 &1653402931
 GameObject:
   m_ObjectHideFlags: 0

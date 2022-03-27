@@ -10,8 +10,8 @@ public static class Tiles
 
     public static class Buildings
     {
-        public const string Base = "Base";
-        public const string Mystery = "Mystery";
+        public const string Manor = "Manor";
+        public const string House = "House";
         public const string Tower = "Tower";
     }
 }
