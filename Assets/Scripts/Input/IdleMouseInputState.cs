@@ -10,7 +10,7 @@ public class IdleMouseInputState : MouseInputState
         if (mouseTarget != null)
         {
             // desk draggables
-            var draggable = mouseTarget.GetComponent<Draggable>();
+            var draggable = mouseTarget.GetComponent<DraggableGameObject>();
             if (draggable != null)
             {
                 return new DragInputState(this, draggable);

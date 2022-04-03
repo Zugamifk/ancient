@@ -37,97 +37,97 @@ MonoBehaviour:
     right: 0
     top: 0
     bottom: 0
-  - sprite: {fileID: -1986604703071005312, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: 216033101, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 0
     right: 0
     top: 0
     bottom: 0
-  - sprite: {fileID: -4233739483619845583, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: 752667322, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 1
     right: 0
     top: 0
     bottom: 0
-  - sprite: {fileID: -6551456632857933372, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: 1407058974, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 0
     right: 0
     top: 0
     bottom: 1
-  - sprite: {fileID: 4717279005209572468, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: -782995653, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 0
     right: 1
     top: 0
     bottom: 0
-  - sprite: {fileID: -232304020389510235, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: -1713470881, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 0
-    right: 0
-    top: 1
-    bottom: 0
-  - sprite: {fileID: -2542073858232844238, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
-    type: 1
-    left: 1
-    right: 1
-    top: 0
-    bottom: 0
-  - sprite: {fileID: 4362130248060910229, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
-    type: 1
-    left: 0
-    right: 0
-    top: 1
-    bottom: 1
-  - sprite: {fileID: 5331757720867617967, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
-    type: 1
-    left: 1
     right: 0
     top: 1
     bottom: 0
-  - sprite: {fileID: 5743168839956448968, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: -1634682015, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
+    type: 1
+    left: 1
+    right: 1
+    top: 0
+    bottom: 0
+  - sprite: {fileID: -1536616857, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
+    type: 1
+    left: 0
+    right: 0
+    top: 1
+    bottom: 1
+  - sprite: {fileID: 398321183, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
+    type: 1
+    left: 1
+    right: 0
+    top: 1
+    bottom: 0
+  - sprite: {fileID: -1248287432, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 0
     right: 1
     top: 1
     bottom: 0
-  - sprite: {fileID: 1940044384358670937, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: 1015842418, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 0
     right: 1
     top: 0
     bottom: 1
-  - sprite: {fileID: 7903714108508714464, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: -1313323752, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 1
     right: 0
     top: 0
     bottom: 1
-  - sprite: {fileID: 3912554482014063563, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: 1287476966, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 1
     right: 1
     top: 1
     bottom: 1
-  - sprite: {fileID: -5970157769536964832, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: 1897927759, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 0
     right: 1
     top: 1
     bottom: 1
-  - sprite: {fileID: 289909530908896649, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: -365973538, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 1
     right: 1
     top: 0
     bottom: 1
-  - sprite: {fileID: -942494204440328609, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: -1449871804, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 1
     right: 0
     top: 1
     bottom: 1
-  - sprite: {fileID: 1603184614873367213, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: 1432204544, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 1
     left: 1
     right: 1
