@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu()]
 public class TileSprites : ScriptableObject
 {
     public enum ETileEdge
@@ -22,15 +21,5 @@ public class TileSprites : ScriptableObject
         public ETileEdge bottom;
     }
 
-    [System.Serializable]
-    public class BuildingData
-    {
-        public string name;
-        public int level;
-        public Vector2Int dimensions;
-        public TileData[] tiles;
-    }
-
     public TileData[] GroundTiles;
-    public BuildingData[] Buildings;
 }

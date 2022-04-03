@@ -9,7 +9,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
     BuildingCollection _buildingCollection;
 
     TileMapper _tilemapper;
-    List<Building> _buildings = new List<Building>();
+    Dictionary<string, Building> _buildings = new Dictionary<string, Building>();
 
     public void SetTile(Vector3 position, string type)
     {
@@ -19,24 +19,34 @@ public class Map : MonoBehaviour, IMouseInputHandler
     private void Start()
     {
         _tilemapper = GetComponent<TileMapper>();
-        GenerateMap();
     }
 
-    void GenerateMap()
+    public void UpdateFromModel(IMapModel model)
     {
-        var hq = AddBuilding(Vector3.zero, Names.Buildings.Manor);
-        var house = AddBuilding(new Vector2(5,2), Names.Buildings.House);
-        ConnectBuildings(hq, house);
+        foreach(var b in model.Buildings)
+        {
+            Building building;
+            if(!_buildings.TryGetValue(b.Name, out building))
+            {
+                building = SpawnBuilding(b.Name);
+            }
+
+            PositionBuilding(building, b.Position);
+        }
     }
 
-    Building AddBuilding(Vector3 position, string name)
+    Building SpawnBuilding(string name)
     {
-        _tilemapper.PlaceBuilding(position, name);
         var prefab = Instantiate(_buildingCollection.NameToBuilding[name]);
-        prefab.transform.position = position;
         var building = prefab.GetComponent<Building>();
-        _buildings.Add(building);
+        _buildings.Add(name, building);
         return building;
+    }
+
+    void PositionBuilding(Building building, Vector2Int gridPosition)
+    {
+        var position = new Vector3(gridPosition.x, gridPosition.y, 0);
+        building.transform.position = position;
     }
 
     void ConnectBuildings(Building start, Building end)

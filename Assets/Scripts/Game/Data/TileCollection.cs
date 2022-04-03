@@ -6,7 +6,6 @@ using UnityEngine.Tilemaps;
 public class TileCollection
 {
     Dictionary<(string, string, string, string, string), TileData> _edgeTypeToTileData = new Dictionary<(string, string, string, string, string), TileData>();
-    Dictionary<string, BuildingData> _nameToBuildingData = new Dictionary<string, BuildingData>();
 
     public TileData GetTileData(string type, string left, string right, string top, string bottom)
     {
@@ -19,19 +18,6 @@ public class TileCollection
         if (_edgeTypeToTileData.TryGetValue(key, out tileData))
         {
             return tileData;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public BuildingData GetBuildingData(string name)
-    {
-        BuildingData buildingData;
-        if (_nameToBuildingData.TryGetValue(name, out buildingData))
-        {
-            return buildingData;
         }
         else
         {
@@ -60,24 +46,6 @@ public class TileCollection
             tile.sprite = td.sprite;
             tile.colliderType = Tile.ColliderType.None;
             tileData.Tiles.Add(tile);
-        }
-
-        foreach (var bd in sprites.Buildings)
-        {
-            var building = new BuildingData()
-            {
-                Name = bd.name,
-                Dimensions = bd.dimensions
-            };
-            building.Tiles = new Tile[bd.dimensions.x * bd.dimensions.y];
-            for (int i = 0; i < building.Tiles.Length; i++)
-            {
-                var tile = ScriptableObject.CreateInstance<Tile>();
-                tile.sprite = bd.tiles[i].sprite;
-                tile.colliderType = Tile.ColliderType.Sprite;
-                building.Tiles[i] = tile;
-            }
-            _nameToBuildingData.Add(building.Name, building);
         }
     }
 }

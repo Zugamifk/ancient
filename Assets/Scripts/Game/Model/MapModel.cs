@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapModel
+public class MapModel : IMapModel
 {
     public CityGraph Graph = new CityGraph();
-    public List<BuildingModel> buildings = new List<BuildingModel>();
+    public List<BuildingModel> Buildings = new List<BuildingModel>();
+
+    IReadOnlyList<IBuildingModel> IMapModel.Buildings => Buildings;
 }

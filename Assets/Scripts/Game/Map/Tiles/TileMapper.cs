@@ -25,16 +25,6 @@ public class TileMapper : MonoBehaviour
         SetTile(x, y, type);
     }
 
-    public void PlaceBuilding(Vector3 position, string name)
-    {
-        var cell = _tilemap.WorldToCell(position);
-        int x = cell.x, y = cell.y;
-        var bd = _tileCollection.GetBuildingData(name);
-        var x0 = bd.Dimensions.x / 2;
-        var y0 = bd.Dimensions.y / 2;
-        _tilemap.SetTilesBlock(new BoundsInt(x - x0, y - y0, 1, bd.Dimensions.x, bd.Dimensions.y, 1), bd.Tiles);
-    }
-
     public void CreateRoad(Vector3 start, Vector3 end)
     {
         var pointA = _tilemap.WorldToCell(start);
