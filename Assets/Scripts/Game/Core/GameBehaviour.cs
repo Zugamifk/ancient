@@ -13,4 +13,12 @@ public class GameBehaviour : MonoBehaviour
     {
         _controller = new GameController();
     }
+
+    void DemoInit()
+    {
+        //_controller.AddBuilding(tiles)
+        //var hq = AddBuilding(Vector3.zero, Tiles.Buildings.Manor);
+        //var house = AddBuilding(new Vector2(5, 2), Tiles.Buildings.House);
+        //ConnectBuildings(hq, house);
+    }
 }

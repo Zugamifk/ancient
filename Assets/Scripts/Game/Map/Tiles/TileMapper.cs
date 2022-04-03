@@ -43,12 +43,12 @@ public class TileMapper : MonoBehaviour
         int ys = Math.Sign(pointB.y - pointA.y);
         for (int x = pointA.x; x != pointB.x; x += xs)
         {
-            SetTile(x, pointA.y, Tiles.Road);
+            SetTile(x, pointA.y, Names.Tiles.Road);
         }
 
         for (int y = pointA.y; y != pointB.y + ys; y += ys)
         {
-            SetTile(pointB.x, y, Tiles.Road);
+            SetTile(pointB.x, y, Names.Tiles.Road);
         }
     }
 
@@ -64,7 +64,7 @@ public class TileMapper : MonoBehaviour
 
     void InitializeTiles()
     {
-        _default = _tileCollection.GetTileData(Tiles.Grass, Tiles.Grass, Tiles.Grass, Tiles.Grass, Tiles.Grass);
+        _default = _tileCollection.GetTileData(Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass);
         FillWithDefaultTile();
         BuildTilemap();
     }

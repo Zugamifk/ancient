@@ -27,6 +27,6 @@ public class MapMouseInput : MouseInputState
     void UpdateTile()
     {
         var pos = _context.CameraController.GetMouseWorldPosition();
-        _map.SetTile(pos, Tiles.Road);
+        _map.SetTile(pos, Names.Tiles.Road);
     }
 }

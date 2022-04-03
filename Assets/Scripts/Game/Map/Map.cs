@@ -6,8 +6,6 @@ using UnityEngine.Tilemaps;
 public class Map : MonoBehaviour, IMouseInputHandler
 {
     [SerializeField]
-    CameraController _cameraController;
-    [SerializeField]
     BuildingCollection _buildingCollection;
 
     TileMapper _tilemapper;
@@ -26,10 +24,9 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     void GenerateMap()
     {
-        var hq = AddBuilding(Vector3.zero, Tiles.Buildings.Manor);
-        var house = AddBuilding(new Vector2(5,2), Tiles.Buildings.House);
+        var hq = AddBuilding(Vector3.zero, Names.Buildings.Manor);
+        var house = AddBuilding(new Vector2(5,2), Names.Buildings.House);
         ConnectBuildings(hq, house);
-        //_tilemapper.PlaceBuilding(3, -3, Tiles.Buildings.Tower);
     }
 
     Building AddBuilding(Vector3 position, string name)
@@ -37,8 +34,9 @@ public class Map : MonoBehaviour, IMouseInputHandler
         _tilemapper.PlaceBuilding(position, name);
         var prefab = Instantiate(_buildingCollection.NameToBuilding[name]);
         prefab.transform.position = position;
-        _buildings.Add(prefab);
-        return prefab;
+        var building = prefab.GetComponent<Building>();
+        _buildings.Add(building);
+        return building;
     }
 
     void ConnectBuildings(Building start, Building end)

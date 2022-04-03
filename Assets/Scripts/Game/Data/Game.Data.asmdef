@@ -1,9 +1,7 @@
 {
-    "name": "Game.Map.Buildings",
+    "name": "Game.Data",
     "rootNamespace": "",
-    "references": [
-        "GUID:255f57cc76ea4ce4a8e074224a65831f"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
