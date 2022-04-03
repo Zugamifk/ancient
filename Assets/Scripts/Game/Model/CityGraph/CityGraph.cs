@@ -13,12 +13,12 @@ public class CityGraph
 
     public void Connect(ICityGraphNode start, ICityGraphNode end, bool direcitonal = false)
     {
-        if( start == end)
+        if (start == end)
         {
             throw new System.ArgumentException("Start and end can not be the same!");
         }
 
-        if(!_nodes.ContainsKey(start))
+        if (!_nodes.ContainsKey(start))
         {
             AddNode(start);
         }
@@ -34,4 +34,5 @@ public class CityGraph
 
             _nodes[end].Add(start);
         }
+    }
 }

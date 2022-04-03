@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class MapModel
 {
-    public CityGraph Graph;
-
-    public MapModel()
-    {
-        Graph = new CityGraph();
-    }
+    public CityGraph Graph = new CityGraph();
+    public List<BuildingModel> buildings = new List<BuildingModel>();
 }
