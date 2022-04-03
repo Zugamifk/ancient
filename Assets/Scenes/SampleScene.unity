@@ -1048,7 +1048,7 @@ GameObject:
   - component: {fileID: 1645037282}
   - component: {fileID: 1645037283}
   - component: {fileID: 1645037285}
-  - component: {fileID: 1645037284}
+  - component: {fileID: 1645037286}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -1064,7 +1064,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645037281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.03}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1089,19 +1089,6 @@ MonoBehaviour:
   _dimensions:
     m_Position: {x: -25, y: -25, z: 0}
     m_Size: {x: 50, y: 50, z: 1}
---- !u!65 &1645037284
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645037281}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 25, y: 25, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1645037285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,6 +1103,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameraController: {fileID: 519420030}
   _buildingCollection: {fileID: 11400000, guid: b7253795462aa34478876c987e71c37a, type: 2}
+--- !u!65 &1645037286
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645037281}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 25, y: 25, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1653402931
 GameObject:
   m_ObjectHideFlags: 0

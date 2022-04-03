@@ -23,8 +23,9 @@ public class CameraController : MonoBehaviour
 
     public GameObject RayCast(Vector2 position)
     {
+        var ray = _camera.ScreenPointToRay(position);
         RaycastHit hit;
-        if (Physics.Raycast(_camera.ScreenPointToRay(position), out hit))
+        if (Physics.Raycast(ray, out hit))
         {
             return hit.transform.gameObject;
         }

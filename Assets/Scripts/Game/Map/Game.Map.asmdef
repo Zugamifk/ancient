@@ -1,0 +1,19 @@
+{
+    "name": "Game.Map",
+    "rootNamespace": "",
+    "references": [
+        "GUID:255f57cc76ea4ce4a8e074224a65831f",
+        "GUID:89a5e96a87dbd914a948be09bfb9d758",
+        "GUID:695fcf5eeae3d7d49af60407131d1348",
+        "GUID:643821be094bdd0488dc6d7f34a1372f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

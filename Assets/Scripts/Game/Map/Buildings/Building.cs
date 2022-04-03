@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour, IMouseInputHandler
+public class Building : MonoBehaviour, ISelectable
 {
-    class InputState : MouseInputState
-    {
-        public InputState(InputStateContext context) : base(context) { }
-    }
-
     [SerializeField]
     Transform _Entrance;
 
@@ -20,7 +15,7 @@ public class Building : MonoBehaviour, IMouseInputHandler
         _building = GetComponent<IBuildingBehaviour>();
     }
 
-    public MouseInputState GetInputState(MouseInputState state)
+    public MouseInputState Select(MouseInputState current)
     {
         throw new System.NotImplementedException();
     }
