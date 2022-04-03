@@ -6,8 +6,8 @@ using UnityEngine.Tilemaps;
 public class MapMouseInput : MouseInputState
 {
     Map _map;
-    public MapMouseInput(Map map, CameraController cameraController)
-        : base(cameraController)
+    public MapMouseInput(MouseInputState state, Map map)
+        : base(state)
     {
         _map = map;
     }
@@ -15,7 +15,7 @@ public class MapMouseInput : MouseInputState
     public override MouseInputState MouseUp()
     {
         UpdateTile();
-        return new IdleMouseInputState(_context);
+        return new IdleMouseInputState(this);
     }
 
     public override MouseInputState Drag()

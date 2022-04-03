@@ -13,25 +13,25 @@ MonoBehaviour:
   m_Name: Tiles
   m_EditorClassIdentifier: 
   GroundTiles:
-  - sprite: {fileID: 6682738439518977790, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: 704591087, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 0
     left: 0
     right: 0
     top: 0
     bottom: 0
-  - sprite: {fileID: -562605217060080129, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: -878854985, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 0
     left: 0
     right: 0
     top: 0
     bottom: 0
-  - sprite: {fileID: -4970410492042351176, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: 1157657543, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 0
     left: 0
     right: 0
     top: 0
     bottom: 0
-  - sprite: {fileID: -5930158604282628446, guid: 31fa3a50aeb0235408d09167d2bc58dc, type: 3}
+  - sprite: {fileID: 356600299, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
     type: 0
     left: 0
     right: 0
@@ -136,27 +136,9 @@ MonoBehaviour:
   Buildings:
   - name: Manor
     level: 1
-    dimensions: {x: 2, y: 2}
+    dimensions: {x: 1, y: 1}
     tiles:
-    - sprite: {fileID: -7011020414044352858, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
-      type: 0
-      left: 0
-      right: 0
-      top: 0
-      bottom: 0
-    - sprite: {fileID: -5075879681021990956, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
-      type: 0
-      left: 0
-      right: 0
-      top: 0
-      bottom: 0
-    - sprite: {fileID: -8078966772632430244, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
-      type: 0
-      left: 0
-      right: 0
-      top: 0
-      bottom: 0
-    - sprite: {fileID: -3985759516408998331, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+    - sprite: {fileID: 1787657403, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
       type: 0
       left: 0
       right: 0
@@ -164,27 +146,9 @@ MonoBehaviour:
       bottom: 0
   - name: House
     level: 1
-    dimensions: {x: 2, y: 2}
+    dimensions: {x: 1, y: 1}
     tiles:
-    - sprite: {fileID: -218114231, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
-      type: 0
-      left: 0
-      right: 0
-      top: 0
-      bottom: 0
-    - sprite: {fileID: -1096416643, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
-      type: 0
-      left: 0
-      right: 0
-      top: 0
-      bottom: 0
-    - sprite: {fileID: -1228259379, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
-      type: 0
-      left: 0
-      right: 0
-      top: 0
-      bottom: 0
-    - sprite: {fileID: 606241216, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+    - sprite: {fileID: -633794388, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
       type: 0
       left: 0
       right: 0
@@ -194,13 +158,13 @@ MonoBehaviour:
     level: 1
     dimensions: {x: 1, y: 2}
     tiles:
-    - sprite: {fileID: -1962439361, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+    - sprite: {fileID: 1401130154, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
       type: 0
       left: 0
       right: 0
       top: 0
       bottom: 0
-    - sprite: {fileID: -301214502, guid: 522fd9ad80a3b5648a9f78da2006e673, type: 3}
+    - sprite: {fileID: -855302409, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
       type: 0
       left: 0
       right: 0

@@ -8,23 +8,27 @@ class MouseController
 
     public MouseController(CameraController cameraController)
     {
-        _currentState = new IdleMouseInputState(cameraController);
+        var context = new InputStateContext()
+        {
+            CameraController = cameraController
+        };
+        _currentState = new IdleMouseInputState(context);
     }
 
 
     public void Update()
     {
-        if (UnityEngine.Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             _currentState = _currentState.MouseDown();
         }
 
-        if (UnityEngine.Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             _currentState = _currentState.Drag();
         }
 
-        if (UnityEngine.Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             _currentState = _currentState.MouseUp();
         }

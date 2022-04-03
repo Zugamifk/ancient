@@ -6,18 +6,16 @@ internal class DragInputState : MouseInputState
 {
     Vector3 _lastDragPos;
     Draggable _draggable;
-    CameraController _cameraController;
 
-    public DragInputState(Draggable target, CameraController cameraController)
-        : base(cameraController)
+    public DragInputState(MouseInputState state, Draggable target)
+        : base(state)
     {
-        _cameraController = cameraController;
-        _lastDragPos = _cameraController.GetMouseWorldPosition();
+        _lastDragPos = _context.CameraController.GetMouseWorldPosition();
         _draggable = target;
     }
     public override MouseInputState Drag()
     {
-        var mousePos = _cameraController.GetMouseWorldPosition();
+        var mousePos = _context.CameraController.GetMouseWorldPosition();
         _draggable.transform.Translate(mousePos - _lastDragPos);
         _lastDragPos = mousePos;
         return this;
@@ -25,6 +23,6 @@ internal class DragInputState : MouseInputState
 
     public override MouseInputState MouseUp()
     {
-        return new IdleMouseInputState(_cameraController);
+        return new IdleMouseInputState(this);
     }
 }

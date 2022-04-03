@@ -46,8 +46,8 @@ public class Map : MonoBehaviour, IMouseInputHandler
         _tilemapper.CreateRoad(start.EntrancePosition, end.EntrancePosition);
     }
 
-    MouseInputState IMouseInputHandler.GetInputState()
+    MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)
     {
-        return new MapMouseInput(this, _cameraController);
+        return new MapMouseInput(state, this);
     }
 }

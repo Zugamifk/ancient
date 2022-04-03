@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IMouseInputHandler
 {
-    public MouseInputState GetInputState();
+    public MouseInputState GetInputState(MouseInputState current);
 }

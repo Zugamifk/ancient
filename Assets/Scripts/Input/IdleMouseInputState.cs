@@ -12,21 +12,21 @@ public class IdleMouseInputState : MouseInputState
             var draggable = mouseTarget.GetComponent<Draggable>();
             if (draggable != null)
             {
-                return new DragInputState(draggable, _context.CameraController);
+                return new DragInputState(this, draggable);
             }
 
             var map = mouseTarget.GetComponent<IMouseInputHandler>();
             if (map != null)
             {
-                return map.GetInputState();
+                return map.GetInputState(this);
             }
         }
         return this;
     }
 
 
-    public IdleMouseInputState(CameraController cameraController)
-        : base(cameraController)
+    public IdleMouseInputState(MouseInputState inputState)
+        : base(inputState)
     {
     }
 

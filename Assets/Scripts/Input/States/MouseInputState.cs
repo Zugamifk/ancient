@@ -11,9 +11,7 @@ public class MouseInputState
         _context = context;
     }
 
-    protected MouseInputState(CameraController cameraController)
-        : this(new InputStateContext() { CameraController = cameraController })
-    { }
+    public MouseInputState(MouseInputState state) : this(state._context) { }
 
     public virtual MouseInputState Drag()
     {
