@@ -20,6 +20,7 @@ public class CityGraph : ICityGraph
     static EdgeComparer _edgeComparer = new EdgeComparer();
     Dictionary<ICityGraphNode, List<ICityGraphNode>> _nodes = new Dictionary<ICityGraphNode, List<ICityGraphNode>>();
 
+    public IEnumerable<ICityGraphNode> Vertices => _nodes.Keys;
     public IEnumerable<(ICityGraphNode, ICityGraphNode)> EdgePairs => _nodes.SelectMany(kv => kv.Value.Select(v => (kv.Key, v))).Distinct(_edgeComparer);
 
     public void AddNode(ICityGraphNode node)

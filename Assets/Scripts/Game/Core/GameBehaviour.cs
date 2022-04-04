@@ -30,4 +30,8 @@ public class GameBehaviour : MonoBehaviour
 
         _map.FullRebuild(_controller.Model);
     }
+
+#if UNITY_EDITOR
+    public ICityGraph CityGraph => _controller?.Model.Map.CityGraph;
+#endif
 }
