@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,9 +8,12 @@ public class Map : MonoBehaviour, IMouseInputHandler
 {
     [SerializeField]
     BuildingCollection _buildingCollection;
+    [SerializeField]
+    AgentCollection _agentCollection;
 
     TileMapper _tilemapper;
     Dictionary<string, Building> _buildings = new Dictionary<string, Building>();
+    Dictionary<string, Agent> _agents = new Dictionary<string, Agent>();
 
     public void SetTile(Vector3 position, string type)
     {
@@ -31,6 +35,12 @@ public class Map : MonoBehaviour, IMouseInputHandler
         {
             Building building = GetBuildingFromModel(b);
             PositionBuilding(building, b.Position);
+        }
+
+        foreach (var a in model.Agents)
+        {
+            Agent agent = GetAgentFromModel(a);
+            // more spawn agent stuff
         }
 
         _tilemapper.Clear();
@@ -82,6 +92,24 @@ public class Map : MonoBehaviour, IMouseInputHandler
     void ConnectBuildings(Building start, Building end)
     {
         _tilemapper.CreateRoad(start.EntrancePosition, end.EntrancePosition);
+    }
+
+    Agent GetAgentFromModel(IAgentModel model)
+    {
+        Agent agent;
+        if (!_agents.TryGetValue(model.Name, out agent))
+        {
+            agent = SpawnAgent(model.Name);
+        }
+        return agent;
+    }
+
+    Agent SpawnAgent(string name)
+    {
+        var prefab = Instantiate(_agentCollection.Agents.First(a=>a.name == name));
+        var agent = prefab.GetComponent<Agent>();
+        _agents.Add(name, agent);
+        return agent;
     }
 
     MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)

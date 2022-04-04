@@ -95,8 +95,9 @@ GameObject:
   - component: {fileID: 8650461778046856752}
   - component: {fileID: 487709412953508906}
   - component: {fileID: 6146431104086523512}
+  - component: {fileID: 634970723579300116}
   m_Layer: 0
-  m_Name: Investigator
+  m_Name: TestAgent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,3 +156,16 @@ MonoBehaviour:
   StartIndex: 0
   FrameCount: 0
   AnimationClip: {fileID: -1674421376430887311, guid: b770340771cdc8a43b9a4670a58bff21, type: 2}
+--- !u!114 &634970723579300116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101757231194167884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd31123272b5976448df9a45be80587a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: TestAgent

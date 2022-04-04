@@ -32,4 +32,13 @@ public class GameController
         var end = _model.MapModel.Buildings.First(b => b.Name == endName);
         _model.MapModel.Graph.Connect(start, end);
     }
+
+    public void AddAgent(string name)
+    {
+        var agent = new AgentModel()
+        {
+            Name = name
+        };
+        _model.Agents.Add(agent);
+    }
 }

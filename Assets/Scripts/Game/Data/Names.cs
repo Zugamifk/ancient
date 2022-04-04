@@ -17,4 +17,6 @@ public static class Names
         public const string House = "House";
         public const string Tower = "Tower";
     }
+
+    public const string TestAgent = "TestAgent";
 }

@@ -26,6 +26,7 @@ public class GameBehaviour : MonoBehaviour
         _controller.AddBuilding(Names.Buildings.Manor, Vector2Int.zero);
         _controller.AddBuilding(Names.Buildings.House, new Vector2Int(5, 2));
         _controller.BuildRoad(Names.Buildings.Manor, Names.Buildings.House);
+        _controller.AddAgent(Names.TestAgent);
 
         _map.FullRebuild(_controller.Model);
     }
