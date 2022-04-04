@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameController
@@ -23,5 +24,12 @@ public class GameController
         };
         _model.MapModel.Buildings.Add(building);
         _model.MapModel.Graph.AddNode(building);
+    }
+
+    public void BuildRoad(string startName, string endName)
+    {
+        var start = _model.MapModel.Buildings.First(b => b.Name == startName);
+        var end = _model.MapModel.Buildings.First(b => b.Name == endName);
+        _model.MapModel.Graph.Connect(start, end);
     }
 }

@@ -16,7 +16,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
         _tilemapper.SetTile(position, type);
     }
 
-    private void Start()
+    private void Awake()
     {
         _tilemapper = GetComponent<TileMapper>();
     }
@@ -31,6 +31,14 @@ public class Map : MonoBehaviour, IMouseInputHandler
         {
             Building building = GetBuildingFromModel(b);
             PositionBuilding(building, b.Position);
+        }
+
+        _tilemapper.Clear();
+        foreach(var edge in model.Map.CityGraph.EdgePairs)
+        {
+            var start = GetBuildingFromModel((IBuildingModel)edge.Item1);
+            var end = GetBuildingFromModel((IBuildingModel)edge.Item2);
+            ConnectBuildings(start, end);
         }
     }
 

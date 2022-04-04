@@ -1,17 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class CityGraph
+public class CityGraph : ICityGraph
 {
+    class EdgeComparer : IEqualityComparer<(ICityGraphNode, ICityGraphNode)>
+    {
+        public bool Equals((ICityGraphNode, ICityGraphNode) x, (ICityGraphNode, ICityGraphNode) y)
+        {
+            return GetHashCode(x) == GetHashCode(y);
+        }
+
+        public int GetHashCode((ICityGraphNode, ICityGraphNode) obj)
+        {
+            return obj.Item1.GetHashCode() ^ obj.Item2.GetHashCode();
+        }
+    }
+    static EdgeComparer _edgeComparer = new EdgeComparer();
     Dictionary<ICityGraphNode, List<ICityGraphNode>> _nodes = new Dictionary<ICityGraphNode, List<ICityGraphNode>>();
+
+    public IEnumerable<(ICityGraphNode, ICityGraphNode)> EdgePairs => _nodes.SelectMany(kv => kv.Value.Select(v => (kv.Key, v))).Distinct(_edgeComparer);
 
     public void AddNode(ICityGraphNode node)
     {
         _nodes[node] = new List<ICityGraphNode>();
     }
 
-    public void Connect(ICityGraphNode start, ICityGraphNode end, bool direcitonal = false)
+    public void Connect(ICityGraphNode start, ICityGraphNode end)
     {
         if (start == end)
         {
@@ -22,17 +38,12 @@ public class CityGraph
         {
             AddNode(start);
         }
-
         _nodes[start].Add(end);
 
-        if (!direcitonal)
+        if (!_nodes.ContainsKey(end))
         {
-            if (!_nodes.ContainsKey(end))
-            {
-                AddNode(end);
-            }
-
-            _nodes[end].Add(start);
+            AddNode(end);
         }
+        _nodes[end].Add(start);
     }
 }

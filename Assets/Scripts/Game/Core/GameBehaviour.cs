@@ -25,7 +25,7 @@ public class GameBehaviour : MonoBehaviour
     {
         _controller.AddBuilding(Names.Buildings.Manor, Vector2Int.zero);
         _controller.AddBuilding(Names.Buildings.House, new Vector2Int(5, 2));
-        //ConnectBuildings(hq, house);
+        _controller.BuildRoad(Names.Buildings.Manor, Names.Buildings.House);
 
         _map.FullRebuild(_controller.Model);
     }

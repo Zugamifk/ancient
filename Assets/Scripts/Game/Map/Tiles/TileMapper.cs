@@ -18,6 +18,11 @@ public class TileMapper : MonoBehaviour
     TileData _default;
     Dictionary<(int, int), TileData> _tiles = new Dictionary<(int, int), TileData>();
 
+    public void Clear()
+    {
+        InitializeTiles();
+    }
+
     public void SetTile(Vector3 position, string type)
     {
         var cell = _tilemap.WorldToCell(position);
@@ -45,11 +50,6 @@ public class TileMapper : MonoBehaviour
     private void Awake()
     {
         _tileCollection = new TileCollection(_tileSprites);
-    }
-
-    private void Start()
-    {
-        InitializeTiles();
     }
 
     void InitializeTiles()
