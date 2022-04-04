@@ -21,18 +21,40 @@ public class Map : MonoBehaviour, IMouseInputHandler
         _tilemapper = GetComponent<TileMapper>();
     }
 
-    public void UpdateFromModel(IMapModel model)
+    /// <summary>
+    /// Fully build map 
+    /// </summary>
+    /// <param name="model"></param>
+    public void FullRebuild(IGameModel model)
     {
-        foreach(var b in model.Buildings)
+        foreach(var b in model.Map.Buildings)
         {
-            Building building;
-            if(!_buildings.TryGetValue(b.Name, out building))
-            {
-                building = SpawnBuilding(b.Name);
-            }
-
+            Building building = GetBuildingFromModel(b);
             PositionBuilding(building, b.Position);
         }
+    }
+
+    /// <summary>
+    /// Update with new model data for per-frame updates
+    /// </summary>
+    /// <param name="model"></param>
+    public void FrameUpdate(IGameModel model)
+    {
+        foreach (var b in model.Map.Buildings)
+        {
+            var building = GetBuildingFromModel(b);
+            building.FrameUpdate(model);
+        }
+    }
+
+    Building GetBuildingFromModel(IBuildingModel model)
+    {
+        Building building;
+        if (!_buildings.TryGetValue(model.Name, out building))
+        {
+            building = SpawnBuilding(model.Name);
+        }
+        return building;
     }
 
     Building SpawnBuilding(string name)

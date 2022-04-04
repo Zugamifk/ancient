@@ -5,4 +5,8 @@ using UnityEngine;
 public class HouseBuildingBehaviour : MonoBehaviour, IBuildingBehaviour
 {
     public string Name => "House";
+
+    public void FrameUpdate(IGameModel model)
+    {
+    }
 }

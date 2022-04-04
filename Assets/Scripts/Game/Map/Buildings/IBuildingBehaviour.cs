@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IBuildingBehaviour
 {
-    public string Name { get; }
+    string Name { get; }
+
+    void FrameUpdate(IGameModel model);
 }

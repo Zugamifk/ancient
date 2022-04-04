@@ -15,6 +15,14 @@ public class Building : MonoBehaviour, ISelectable
         _building = GetComponent<IBuildingBehaviour>();
     }
 
+    public void FrameUpdate(IGameModel model)
+    {
+        if (_building != null)
+        {
+            _building.FrameUpdate(model);
+        }
+    }
+
     public MouseInputState Select(MouseInputState current)
     {
         throw new System.NotImplementedException();
