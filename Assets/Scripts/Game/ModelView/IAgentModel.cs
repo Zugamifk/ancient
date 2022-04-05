@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IAgentModel
 {
     string Name { get; }
+    Vector2 WorldPosition { get; }
+
 }

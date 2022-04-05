@@ -66,6 +66,12 @@ public class Map : MonoBehaviour, IMouseInputHandler
             var building = GetBuildingFromModel(b);
             building.FrameUpdate(model);
         }
+
+        foreach(var a in model.Agents)
+        {
+            var agent = GetAgentFromModel(a);
+            agent.FrameUpdate(a);
+        }
     }
 
     Building GetBuildingFromModel(IBuildingModel model)

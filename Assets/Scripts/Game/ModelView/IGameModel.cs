@@ -6,5 +6,5 @@ public interface IGameModel
 {
     public IMapModel Map { get; }
     public ITimeModel Time { get; }
-    public IReadOnlyList<IAgentModel> Agents { get; }
+    public IEnumerable<IAgentModel> Agents { get; }
 }

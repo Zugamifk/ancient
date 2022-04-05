@@ -29,7 +29,7 @@ public class GameBehaviour : MonoBehaviour
     private void Start()
     {
         _map.SetPrefabCollections(_prefabCollections);
-        _controller = new GameController();
+        _controller = new GameController(_agentCollection);
         DemoInit();
     }
 
@@ -45,6 +45,7 @@ public class GameBehaviour : MonoBehaviour
         _controller.AddBuilding(Names.Buildings.House, new Vector2Int(5, 2));
         _controller.BuildRoad(Names.Buildings.Manor, Names.Buildings.House);
         _controller.AddAgent(Names.TestAgent);
+        _controller.SetAgentPath(Names.TestAgent, Names.Buildings.Manor, Names.Buildings.House);
 
         _map.FullRebuild(_controller.Model);
     }

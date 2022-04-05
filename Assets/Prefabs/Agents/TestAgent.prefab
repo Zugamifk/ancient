@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   Texture: {fileID: 2800000, guid: 994efda12f81cba4faac0039a8ad9be3, type: 3}
   Dimensions: {x: 16, y: 32}
   StartIndex: 0
-  FrameCount: 0
+  FrameCount: 1
   AnimationClip: {fileID: -1674421376430887311, guid: b770340771cdc8a43b9a4670a58bff21, type: 2}
 --- !u!114 &634970723579300116
 MonoBehaviour:

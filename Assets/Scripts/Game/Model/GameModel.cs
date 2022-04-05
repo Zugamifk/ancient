@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameModel : IGameModel
 {
     public MapModel MapModel = new MapModel();
     public TimeModel TimeModel = new TimeModel();
-    public List<AgentModel> Agents = new List<AgentModel>();
+    public Dictionary<string, AgentModel> Agents = new Dictionary<string, AgentModel>();
 
     #region IGameModel
     IMapModel IGameModel.Map => MapModel;
     ITimeModel IGameModel.Time => TimeModel;
-    IReadOnlyList<IAgentModel> IGameModel.Agents => Agents;
+    IEnumerable<IAgentModel> IGameModel.Agents => Agents.Values.Cast<IAgentModel>();
     #endregion
 
 }

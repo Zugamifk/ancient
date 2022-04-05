@@ -11,5 +11,6 @@ public class AgentModel : IAgentModel
 
     #region IAgentModel
     string IAgentModel.Name => Name;
+    Vector2 IAgentModel.WorldPosition => WorldPosition;
     #endregion
 }
