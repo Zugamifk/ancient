@@ -6,17 +6,21 @@ using UnityEngine.Tilemaps;
 
 public class TileMapper : MonoBehaviour
 {
-    [SerializeField]
-    TileSprites _tileSprites;
+
     [SerializeField]
     Tilemap _tilemap;
     [SerializeField]
     BoundsInt _dimensions;
 
-    TileCollection _tileCollection;
+    PrefabCollectionSet _prefabCollections;
 
-    TileData _default;
-    Dictionary<(int, int), TileData> _tiles = new Dictionary<(int, int), TileData>();
+    ITileData _default;
+    Dictionary<(int, int), ITileData> _tiles = new Dictionary<(int, int), ITileData>();
+
+    public void SetPrefabCollections(PrefabCollectionSet prefabCollections)
+    {
+        _prefabCollections = prefabCollections;
+    }
 
     public void Clear()
     {
@@ -47,14 +51,9 @@ public class TileMapper : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        _tileCollection = new TileCollection(_tileSprites);
-    }
-
     void InitializeTiles()
     {
-        _default = _tileCollection.GetTileData(Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass);
+        _default = _prefabCollections.TileCollection.GetTileData(Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass);
         FillWithDefaultTile();
         BuildTilemap();
     }
@@ -85,9 +84,9 @@ public class TileMapper : MonoBehaviour
         _tilemap.SetTilesBlock(_dimensions, tiles);
     }
 
-    TileData GetTile(int x, int y)
+    ITileData GetTile(int x, int y)
     {
-        TileData tileData;
+        ITileData tileData;
         if (!_tiles.TryGetValue((x, y), out tileData))
         {
             tileData = _default;
@@ -97,11 +96,10 @@ public class TileMapper : MonoBehaviour
 
     void SetTile(int x, int y, string type)
     {
-        var key = (type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
-        var tile = _tileCollection.GetTileData(key);
+        var tile = _prefabCollections.TileCollection.GetTileData(type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
         if (tile == null)
         {
-            throw new System.InvalidOperationException("No TileData for key " + key);
+            throw new InvalidOperationException("No TileData for key " + (type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type));
         }
 
         if (tile == _tiles[(x, y)]) return;
@@ -118,7 +116,7 @@ public class TileMapper : MonoBehaviour
     void UpdateTile(int x, int y)
     {
         var tile = _tiles[(x, y)];
-        var newTile = _tileCollection.GetTileData(tile.Type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
+        var newTile = _prefabCollections.TileCollection.GetTileData(tile.Type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
         if (newTile != null && newTile != tile)
         {
             _tiles[(x, y)] = newTile;

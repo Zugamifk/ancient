@@ -1,7 +1,9 @@
 {
     "name": "Game.Data",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:9e64caff9ed1c5c439d5aeaae1693757"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

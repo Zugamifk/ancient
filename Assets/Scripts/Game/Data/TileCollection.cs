@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileCollection
+public class TileCollection : ITileCollection
 {
     Dictionary<(string, string, string, string, string), TileData> _edgeTypeToTileData = new Dictionary<(string, string, string, string, string), TileData>();
 
-    public TileData GetTileData(string type, string left, string right, string top, string bottom)
+    public ITileData GetTileData(string type, string left, string right, string top, string bottom)
     {
         return GetTileData((type, left, right, top, bottom));
     }

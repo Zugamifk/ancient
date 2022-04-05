@@ -301,6 +301,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132055120}
   m_CullTransparentMesh: 1
+--- !u!1 &141046252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 141046253}
+  - component: {fileID: 141046254}
+  m_Layer: 0
+  m_Name: City Graph
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &141046253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141046252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1160421874}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &141046254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141046252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277cf5c5d821b8d4495a63247136bc12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &221974452
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +960,38 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &1160421873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160421874}
+  m_Layer: 0
+  m_Name: Debug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1160421874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160421873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1599362, y: 0.03506628, z: -0.00468328}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 141046253}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1253277734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,6 +1097,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5870c5e90d7d9ac4abbce1457f5c3bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buildingCollection: {fileID: 11400000, guid: b7253795462aa34478876c987e71c37a, type: 2}
+  _agentCollection: {fileID: 11400000, guid: 4ec40115982d6334da4d53430ac828bf, type: 2}
+  _tileSprites: {fileID: 11400000, guid: 3951724d69187484fb54a9f3eb6a2043, type: 2}
   _map: {fileID: 1645037285}
 --- !u!4 &1415220726
 Transform:
@@ -1084,7 +1163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62737162b5aafa748a233297352bd6ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tileSprites: {fileID: 11400000, guid: 3951724d69187484fb54a9f3eb6a2043, type: 2}
   _tilemap: {fileID: 891285401}
   _dimensions:
     m_Position: {x: -25, y: -25, z: 0}
@@ -1101,8 +1179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f336b916adb79df4b978e54a6ff160f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingCollection: {fileID: 11400000, guid: b7253795462aa34478876c987e71c37a, type: 2}
-  _agentCollection: {fileID: 11400000, guid: 4ec40115982d6334da4d53430ac828bf, type: 2}
 --- !u!65 &1645037286
 BoxCollider:
   m_ObjectHideFlags: 0

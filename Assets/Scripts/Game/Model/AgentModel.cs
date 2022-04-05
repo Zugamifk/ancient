@@ -7,6 +7,7 @@ public class AgentModel : IAgentModel
     public string Name;
     public Vector2 WorldPosition;
     public CityPath Path;
+    public float MoveSpeed;
 
     #region IAgentModel
     string IAgentModel.Name => Name;

@@ -6,14 +6,17 @@ using UnityEngine.Tilemaps;
 
 public class Map : MonoBehaviour, IMouseInputHandler
 {
-    [SerializeField]
-    BuildingCollection _buildingCollection;
-    [SerializeField]
-    AgentCollection _agentCollection;
+    PrefabCollectionSet _prefabCollections;
 
     TileMapper _tilemapper;
     Dictionary<string, Building> _buildings = new Dictionary<string, Building>();
     Dictionary<string, Agent> _agents = new Dictionary<string, Agent>();
+
+    public void SetPrefabCollections(PrefabCollectionSet prefabCollections)
+    {
+        _prefabCollections = prefabCollections;
+        _tilemapper.SetPrefabCollections(prefabCollections);
+    }
 
     public void SetTile(Vector3 position, string type)
     {
@@ -77,7 +80,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     Building SpawnBuilding(string name)
     {
-        var prefab = Instantiate(_buildingCollection.NameToBuilding[name]);
+        var prefab = Instantiate(_prefabCollections.BuildingCollection.NameToBuilding[name]);
         var building = prefab.GetComponent<Building>();
         _buildings.Add(name, building);
         return building;
@@ -106,7 +109,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     Agent SpawnAgent(string name)
     {
-        var prefab = Instantiate(_agentCollection.Agents.First(a=>a.name == name));
+        var prefab = Instantiate(_prefabCollections.AgentCollection.GetPrefab(name));
         var agent = prefab.GetComponent<Agent>();
         _agents.Add(name, agent);
         return agent;

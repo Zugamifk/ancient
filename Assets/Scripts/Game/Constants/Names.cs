@@ -7,8 +7,8 @@ public static class Names
     public static class Tiles
     {
         // ground
-        public static string Grass => TileSprites.ETileEdge.Grass.ToString();
-        public static string Road => TileSprites.ETileEdge.Road.ToString();
+        public static string Grass => "Grass";
+        public static string Road => "Road";
     }
 
     public static class Buildings
