@@ -7,15 +7,17 @@ public class GameController
 {
     TimeController _timeController = new TimeController();
     AgentController _agentController = new AgentController();
+    NarrativeController _narrativeController;
 
     AgentCollection _agentCollection;
 
     GameModel _model = new GameModel();
     public IGameModel Model => _model;
 
-    public GameController(AgentCollection agentCollection)
+    public GameController(AgentCollection agentCollection, NarrativeCollection narrativeCollection)
     {
         _agentCollection = agentCollection;
+        _narrativeController = new NarrativeController(narrativeCollection);
     }
 
     public void Frameupdate(float deltaTime)
@@ -25,6 +27,11 @@ public class GameController
         {
             _agentController.FrameUpdate(a, deltaTime);
         }
+    }
+
+    public void StartNarrative(string name, Queue<GameEvent> eventQueue)
+    {
+        _narrativeController.StartNarrative(name, eventQueue);
     }
 
     public void AddBuilding(string name, Vector2Int position)
