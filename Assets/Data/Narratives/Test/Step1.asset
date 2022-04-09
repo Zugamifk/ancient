@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e3f39f73d6dcc43ac26bdb116414a4, type: 3}
   m_Name: Step1
   m_EditorClassIdentifier: 
-  Name: Test
+  Name: Step1
+  Next: Step2
   Character: TestAgent
-  Start: Manor
-  End: House
+  Position: House

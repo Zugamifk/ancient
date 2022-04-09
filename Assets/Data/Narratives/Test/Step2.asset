@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841019aa5af0c0c409d74859a2656104, type: 3}
-  m_Name: Test
+  m_Script: {fileID: 11500000, guid: 78c2968813fce7744912699b35fbd699, type: 3}
+  m_Name: Step2
   m_EditorClassIdentifier: 
-  Name: Test
-  StartStep: Step1
-  Steps:
-  - {fileID: 11400000, guid: 6485b6c9ba6f093488fe36bfc7aa177d, type: 2}
-  - {fileID: 11400000, guid: 94f84e51f3b70a044b3587437a74ba2a, type: 2}
+  Name: Step2
+  Next: 
+  Character: TestAgent
+  Destination: Manor

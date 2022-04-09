@@ -16,7 +16,7 @@ public class GameBehaviour : MonoBehaviour
     Map _map;
 
     Queue<GameEvent> _eventQueue = new Queue<GameEvent>();
-    GameDirector _director;
+    Director _director;
     GameController _controller;
     PrefabCollectionSet _prefabCollections;
 
@@ -33,21 +33,16 @@ public class GameBehaviour : MonoBehaviour
     private void Start()
     {
         _map.SetPrefabCollections(_prefabCollections);
-        _controller = new GameController(_agentCollection, _narrativeCollection);
-        _director = new GameDirector(_controller);
+        _controller = new GameController(_agentCollection);
+        _director = new Director(_narrativeCollection);
         DemoInit();
     }
 
     private void Update()
     {
-        while(_eventQueue.Count>0)
-        {
-            var gameEvent = _eventQueue.Dequeue();
-            gameEvent.Execute(_director);
-        }
-
         _controller.Frameupdate(Time.deltaTime);
         _map.FrameUpdate(_controller.Model);
+        _director.FrameUpdate(_controller.Model);
     }
 
     void DemoInit()
@@ -55,10 +50,8 @@ public class GameBehaviour : MonoBehaviour
         _controller.AddBuilding(Names.Buildings.Manor, Vector2Int.zero);
         _controller.AddBuilding(Names.Buildings.House, new Vector2Int(5, 2));
         _controller.BuildRoad(Names.Buildings.Manor, Names.Buildings.House);
-        //_controller.AddAgent(Names.TestAgent);
-        //_controller.SetAgentPath(Names.TestAgent, Names.Buildings.Manor, Names.Buildings.House);
 
-        _controller.StartNarrative("Test", _eventQueue);
+        _director.StartNarrative("Test");
 
         _map.FullRebuild(_controller.Model);
     }

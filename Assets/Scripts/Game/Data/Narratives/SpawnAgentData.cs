@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterWalkData : NarrativeStepData
+public class SpawnAgentData : LinearStepData
 {
     public string Character;
-    public string Start;
-    public string End;
+    public string Position;
 }
