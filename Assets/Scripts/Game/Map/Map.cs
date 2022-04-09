@@ -47,10 +47,10 @@ public class Map : MonoBehaviour, IMouseInputHandler
         }
 
         _tilemapper.Clear();
-        foreach(var edge in model.Map.CityGraph.EdgePairs)
+        foreach(var edge in model.Map.CityGraph.Edges)
         {
-            var start = GetBuildingFromModel((IBuildingModel)edge.Item1);
-            var end = GetBuildingFromModel((IBuildingModel)edge.Item2);
+            var start = GetBuildingFromModel((IBuildingModel)edge.PointA);
+            var end = GetBuildingFromModel((IBuildingModel)edge.PointB);
             ConnectBuildings(start, end);
         }
     }

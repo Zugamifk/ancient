@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CityGraphDrawer : MonoBehaviour
 {
+    readonly Vector2 POSITION_OFFSET = new Vector2(.5f, .5f);
     ICityGraph _graph;
 
     private IEnumerator Start()
@@ -22,12 +23,12 @@ public class CityGraphDrawer : MonoBehaviour
         Gizmos.color = Color.green;
         foreach (var v in _graph.Vertices)
         {
-            Gizmos.DrawWireSphere((Vector2)v.Position, 0.5f);
+            Gizmos.DrawWireSphere(v.Position + POSITION_OFFSET, 0.5f);
         }
 
-        foreach (var p in _graph.EdgePairs)
+        foreach (var p in _graph.Edges)
         {
-            Gizmos.DrawLine((Vector2)p.Item1.Position, (Vector2)p.Item2.Position);
+            Gizmos.DrawLine(p.PointA.Position + POSITION_OFFSET, p.PointA.Position + POSITION_OFFSET);
         }
     }
 }
