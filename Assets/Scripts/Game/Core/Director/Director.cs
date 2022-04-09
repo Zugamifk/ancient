@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Director
 {
+    GameController _controller;
     NarrativeCollection _collection;
     List<Narrative> _activeNarratives = new List<Narrative>();
 
-    public Director(NarrativeCollection collection)
+    public Director(NarrativeCollection collection, GameController controller)
     {
         _collection = collection;
+        _controller = controller;
     }
 
     public void FrameUpdate(IGameModel model)
@@ -28,12 +30,12 @@ public class Director
 
     public void SpawnAgent(string name, string position)
     {
-        //_controller.AddAgent(name);
+        _controller.AddAgent(name);
     }
 
     public void WalkToPosition(string name, string position)
     {
-        //_controller.SetAgentPath(name, Names.Buildings.Manor, position);
+        _controller.SetAgentPath(name, Names.Buildings.Manor, position);
     }
 
     Narrative BuildNarrative(string name)

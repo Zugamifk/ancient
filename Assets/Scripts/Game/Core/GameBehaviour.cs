@@ -15,7 +15,6 @@ public class GameBehaviour : MonoBehaviour
     [SerializeField]
     Map _map;
 
-    Queue<GameEvent> _eventQueue = new Queue<GameEvent>();
     Director _director;
     GameController _controller;
     PrefabCollectionSet _prefabCollections;
@@ -34,7 +33,7 @@ public class GameBehaviour : MonoBehaviour
     {
         _map.SetPrefabCollections(_prefabCollections);
         _controller = new GameController(_agentCollection);
-        _director = new Director(_narrativeCollection);
+        _director = new Director(_narrativeCollection, _controller);
         DemoInit();
     }
 

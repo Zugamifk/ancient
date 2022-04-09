@@ -8,26 +8,47 @@ public class Narrative
 
     NarrativeGraph _graph;
     GameEvent _currentEvent;
+    GameEvent _nextEvent;
 
     public Narrative(NarrativeData data)
     {
+        _graph = new NarrativeGraph();
+
         foreach (var stepData in data.Steps)
         {
             var step = GetGameEvent(stepData);
             _graph.Nodes.Add(stepData.Name, step);
         }
 
-        _currentEvent = _graph.Nodes[data.StartStep];
+        SetNextEvent(data.StartStep);
     }
 
     public void FrameUpdate(Director director, IGameModel model)
     {
-        _currentEvent.Execute(director, model, SetCurrentEvent);
+        if(_nextEvent!= _currentEvent)
+        {
+            _currentEvent = _nextEvent;
+            if (_currentEvent != null)
+            {
+                _currentEvent.OnStarted(director, model);
+            }
+        }
+
+        if (_currentEvent != null)
+        {
+            _currentEvent.Execute(director, model, SetNextEvent);
+        }
     }
 
-    void SetCurrentEvent(string next)
+    void SetNextEvent(string next)
     {
-        _currentEvent = _graph.Nodes[next];
+        if (!string.IsNullOrEmpty(next))
+        {
+            _nextEvent = _graph.Nodes[next];
+        } else
+        {
+            _nextEvent = null;
+        }
     }
 
     GameEvent GetGameEvent(NarrativeStepData stepData)
@@ -36,6 +57,8 @@ public class Narrative
         {
             case SpawnAgentData data:
                 return InstantiateGameEvent<SpawnAgentEvent, SpawnAgentData>(data);
+            case MoveAgentData data:
+                return InstantiateGameEvent<MoveAgentEvent, MoveAgentData>(data);
             default:
                 break;
         }

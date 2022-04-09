@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Step2
   Next: 
   Character: TestAgent
-  Destination: Manor
+  Destination: House
