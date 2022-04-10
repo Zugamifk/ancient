@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd0d51dddd72e042a95c7025a1a63bc, type: 3}
-  m_Name: Tiles
+  m_Script: {fileID: 11500000, guid: f17a1e3054c807440a5e21ae1e09f23c, type: 3}
+  m_Name: RoadRRRG
   m_EditorClassIdentifier: 
-  Tiles:
-  - {fileID: 11400000, guid: 1cd8c7326d7763240bdd81251363467c, type: 2}
-  - {fileID: 11400000, guid: a507afe34cea8294098e0df2d594934f, type: 2}
+  Sprites:
+  - {fileID: 1432204544, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
+  Left: Road
+  Top: Road
+  Right: Road
+  Bottom: Grass

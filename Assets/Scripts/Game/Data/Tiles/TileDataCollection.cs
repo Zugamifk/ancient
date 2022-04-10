@@ -23,18 +23,25 @@ public class TileDataCollection : ScriptableObject, ITileBuilder
 
     List<Tile> BuildNewTileList((string, string, string, string, string) key)
     {
-        var list = new List<Tile>();
-        var (type, left, top, right, bottom) = key;
-        var typeData = Tiles.First(t => t.Type == type);
-        var tileData = typeData.GetTileData(left, top, right, bottom);
-        foreach(var sprite in tileData.Sprites)
+        try
         {
-            var tile = CreateInstance<Tile>();
-            tile.sprite = sprite;
-            tile.colliderType = Tile.ColliderType.None;
-            list.Add(tile);
+            var list = new List<Tile>();
+            var (type, left, top, right, bottom) = key;
+            var typeData = Tiles.First(t => t.Type == type);
+            var tileData = typeData.GetTileData(left, top, right, bottom);
+            foreach (var sprite in tileData.Sprites)
+            {
+                var tile = CreateInstance<Tile>();
+                tile.sprite = sprite;
+                tile.colliderType = Tile.ColliderType.None;
+                list.Add(tile);
+            }
+            _tileCache.Add(key, list);
+            return list;
+        } catch
+        {
+            Debug.LogError($"Failed to get a tile list for " + key);
+            throw;
         }
-        _tileCache.Add(key, list);
-        return list;
     }
 }
