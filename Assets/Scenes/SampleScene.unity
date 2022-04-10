@@ -1101,6 +1101,7 @@ MonoBehaviour:
   _agentCollection: {fileID: 11400000, guid: 4ec40115982d6334da4d53430ac828bf, type: 2}
   _narrativeCollection: {fileID: 11400000, guid: b47a70c5bf6877147896cd045e08a19e, type: 2}
   _tileDataCollection: {fileID: 11400000, guid: 3951724d69187484fb54a9f3eb6a2043, type: 2}
+  _mapData: {fileID: 11400000, guid: 0788297b3894afc4db132ac2cb073a28, type: 2}
   _map: {fileID: 1645037285}
 --- !u!4 &1415220726
 Transform:
@@ -1165,9 +1166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilemap: {fileID: 891285401}
-  _dimensions:
-    m_Position: {x: -25, y: -25, z: 0}
-    m_Size: {x: 50, y: 50, z: 1}
 --- !u!114 &1645037285
 MonoBehaviour:
   m_ObjectHideFlags: 0

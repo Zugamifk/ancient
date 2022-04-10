@@ -28,6 +28,11 @@ public class GameController
         }
     }
 
+    public void InitializeMap(MapData data)
+    {
+        _mapController.InitializeModel(_model.MapModel, data.Dimensions, data.DefaultTile);
+    }
+
     public void AddBuilding(string name, Vector2Int position)
     {
         _mapController.AddBuilding(_model.MapModel, name, position);

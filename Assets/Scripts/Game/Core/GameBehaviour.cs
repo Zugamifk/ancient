@@ -13,6 +13,8 @@ public class GameBehaviour : MonoBehaviour
     [SerializeField]
     TileDataCollection _tileDataCollection;
     [SerializeField]
+    MapData _mapData;
+    [SerializeField]
     Map _map;
 
     Director _director;
@@ -46,6 +48,7 @@ public class GameBehaviour : MonoBehaviour
 
     void DemoInit()
     {
+        _controller.InitializeMap(_mapData);
         _controller.AddBuilding(Names.Buildings.Manor, Vector2Int.zero);
         _controller.AddBuilding(Names.Buildings.House, new Vector2Int(5, 2));
         _controller.BuildRoad(Names.Buildings.Manor, Names.Buildings.House);

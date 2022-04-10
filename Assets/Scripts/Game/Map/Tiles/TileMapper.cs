@@ -6,11 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class TileMapper : MonoBehaviour
 {
-
     [SerializeField]
     Tilemap _tilemap;
-    [SerializeField]
-    BoundsInt _dimensions;
 
     readonly string _defaultTileType = Names.Tiles.Grass;
     PrefabCollectionSet _prefabCollections;
@@ -20,11 +17,6 @@ public class TileMapper : MonoBehaviour
         _prefabCollections = prefabCollections;
     }
 
-    public void Clear()
-    {
-        InitializeTiles();
-    }
-
     public void SetTile(Vector3 position, string type)
     {
         //var cell = _tilemap.WorldToCell(position);
@@ -32,34 +24,15 @@ public class TileMapper : MonoBehaviour
         //SetTile(x, y, type);
     }
 
-
-    void InitializeTiles()
-    {
-        FillWithDefaultTile();
-    }
-
-    void FillWithDefaultTile()
-    {
-        var tiles = new Tile[_dimensions.size.x * _dimensions.size.y];
-        int i = 0;
-        for (int x = _dimensions.xMin; x < _dimensions.xMax; x++)
-        {
-            for (int y = _dimensions.yMin; y < _dimensions.yMax; y++)
-            {
-                tiles[i++] = _prefabCollections.TileBuilder.GetTile(_defaultTileType, _defaultTileType, _defaultTileType, _defaultTileType, _defaultTileType);
-            }
-        }
-        _tilemap.SetTilesBlock(_dimensions, tiles);
-    }
-
     public void BuildTilemap(IMapModel model)
     {
         var grid = model.Grid;
-        var tiles = new Tile[_dimensions.size.x * _dimensions.size.y];
+        var dimensions = grid.Dimensions;
+        var tiles = new Tile[dimensions.size.x * dimensions.size.y];
         int i = 0;
-        for (int x = _dimensions.xMin; x < _dimensions.xMax; x++)
+        for (int y = dimensions.yMin; y < dimensions.yMax; y++)
         {
-            for (int y = _dimensions.yMin; y < _dimensions.yMax; y++)
+            for (int x = dimensions.xMin; x < dimensions.xMax; x++)
             {
                 var type = GetTileType(grid, x, y);
                 var left = GetTileType(grid, x - 1, y);
@@ -70,12 +43,13 @@ public class TileMapper : MonoBehaviour
                 tiles[i++] = tile;
             }
         }
-        _tilemap.SetTilesBlock(_dimensions, tiles);
+        _tilemap.SetTilesBlock(dimensions, tiles);
     }
 
     string GetTileType(IMapGridModel grid, int x, int y)
     {
-        if (x < 0 || x >= _dimensions.xMax || y < 0 || y > _dimensions.yMax)
+        var dimensions = grid.Dimensions;
+        if (x < dimensions.xMin || x >= dimensions.xMax || y < dimensions.yMin || y >= dimensions.yMax)
         {
             return _defaultTileType;
         }

@@ -17,7 +17,7 @@ MonoBehaviour:
   - {fileID: -878854985, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
   - {fileID: 1157657543, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
   - {fileID: 356600299, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
-  Left: Grass
-  Top: Grass
-  Right: Grass
-  Bottom: Grass
+  Left: '*'
+  Top: '*'
+  Right: '*'
+  Bottom: '*'

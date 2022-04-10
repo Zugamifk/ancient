@@ -6,6 +6,19 @@ using UnityEngine;
 
 public class MapController
 {
+    public void InitializeModel(MapModel model, BoundsInt dimensions, string tileType)
+    {
+        int i = 0;
+        for (int x = dimensions.xMin; x < dimensions.xMax; x++)
+        {
+            for (int y = dimensions.yMin; y < dimensions.yMax; y++)
+            {
+                model.Grid.Map[new Vector2Int(x, y)] = new MapTileModel() { Type = tileType };
+            }
+        }
+        model.Grid.Dimenions = dimensions;
+    }
+
     public void AddBuilding(MapModel model, string name, Vector2Int position)
     {
         var building = new BuildingModel()

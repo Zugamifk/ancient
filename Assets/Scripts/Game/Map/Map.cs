@@ -46,7 +46,6 @@ public class Map : MonoBehaviour, IMouseInputHandler
             // more spawn agent stuff
         }
 
-        _tilemapper.Clear();
         _tilemapper.BuildTilemap(model.Map);
     }
 
