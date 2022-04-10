@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingCollection : ScriptableObject
+public class BuildingCollection : ScriptableObject, IPrefabCollection
 {
-    public GameObject[] Buildings;
+    public BuildingData[] Buildings;
 
-    public Dictionary<string, GameObject> NameToBuilding = new Dictionary<string, GameObject>();
+    Dictionary<string, BuildingData> _nameToBuilding = new Dictionary<string, BuildingData>();
+
+    public GameObject GetPrefab(string name) => _nameToBuilding[name].ViewPrefab;
 
     private void OnEnable()
     {
@@ -14,7 +16,7 @@ public class BuildingCollection : ScriptableObject
         {
             if (b != null)
             {
-                NameToBuilding.Add(b.name, b);
+                _nameToBuilding.Add(b.name, b);
             } else
             {
                 throw new System.InvalidOperationException("Null in BuildingCollection!");

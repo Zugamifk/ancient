@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PrefabCollectionSet
 {
-    public BuildingCollection BuildingCollection;
+    public IPrefabCollection BuildingCollection;
     public IPrefabCollection AgentCollection;
     public ITileBuilder TileBuilder;
 }

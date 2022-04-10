@@ -86,7 +86,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     Building SpawnBuilding(string name)
     {
-        var prefab = Instantiate(_prefabCollections.BuildingCollection.NameToBuilding[name]);
+        var prefab = Instantiate(_prefabCollections.BuildingCollection.GetPrefab(name));
         var building = prefab.GetComponent<Building>();
         _buildings.Add(name, building);
         return building;
