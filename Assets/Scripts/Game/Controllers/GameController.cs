@@ -7,6 +7,7 @@ public class GameController
 {
     TimeController _timeController = new TimeController();
     AgentController _agentController = new AgentController();
+    MapController _mapController = new MapController();
 
     AgentCollection _agentCollection;
 
@@ -29,20 +30,12 @@ public class GameController
 
     public void AddBuilding(string name, Vector2Int position)
     {
-        var building = new BuildingModel()
-        {
-            Name = name,
-            Position = position
-        };
-        _model.MapModel.Buildings.Add(building);
-        _model.MapModel.Graph.AddNode(building);
+        _mapController.AddBuilding(_model.MapModel, name, position);
     }
 
     public void BuildRoad(string startName, string endName)
     {
-        var start = _model.MapModel.Buildings.First(b => b.Name == startName);
-        var end = _model.MapModel.Buildings.First(b => b.Name == endName);
-        _model.MapModel.Graph.Connect(start, end);
+        _mapController.BuildRoad(_model.MapModel, startName, endName);
     }
 
     public void AddAgent(string name)

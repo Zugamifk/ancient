@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MapController
@@ -19,10 +21,24 @@ public class MapController
         
     }
 
-    //public void BuildRoad(string startName, string endName)
-    //{
-    //    var start = _model.MapModel.Buildings.First(b => b.Name == startName);
-    //    var end = _model.MapModel.Buildings.First(b => b.Name == endName);
-    //    _model.MapModel.Graph.Connect(start, end);
-    //}
+    public void BuildRoad(MapModel model, string startName, string endName)
+    {
+        var start = model.Buildings.First(b => b.Name == startName);
+        var end = model.Buildings.First(b => b.Name == endName);
+        model.Graph.Connect(start, end);
+
+        var pointA = Vector2Int.FloorToInt(start.Position);
+        var pointB = Vector2Int.FloorToInt(end.Position);
+        int xs = Math.Sign(pointB.x - pointA.x);
+        int ys = Math.Sign(pointB.y - pointA.y);
+        for (int x = pointA.x; x != pointB.x; x += xs)
+        {
+            model.Grid.Map[new Vector2Int(x, pointA.y)] = new MapTileModel() { Type = Names.Tiles.Road };
+        }
+
+        for (int y = pointA.y; y != pointB.y + ys; y += ys)
+        {
+            model.Grid.Map[new Vector2Int(pointB.x, y)] = new MapTileModel() { Type = Names.Tiles.Road };
+        }
+    }
 }

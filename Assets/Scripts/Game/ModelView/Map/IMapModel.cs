@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IMapModel
 {
-    public ICityGraph CityGraph { get; }
-    public IReadOnlyList<IBuildingModel> Buildings { get; }
+    ICityGraph CityGraph { get; }
+    IReadOnlyList<IBuildingModel> Buildings { get; }
+    IMapGridModel Grid { get; }
 }

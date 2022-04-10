@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapTileModel
+public class MapTileModel : IMapTileModel
 {
     public string Type;
     public int MoveCost;
+
+    #region IMapTileModel
+    string IMapTileModel.Type => Type;
+    #endregion
 }

@@ -12,8 +12,8 @@ public class TileMapper : MonoBehaviour
     [SerializeField]
     BoundsInt _dimensions;
 
+    readonly string _defaultTileType = Names.Tiles.Grass;
     PrefabCollectionSet _prefabCollections;
-
 
     public void SetPrefabCollections(PrefabCollectionSet prefabCollections)
     {
@@ -32,22 +32,6 @@ public class TileMapper : MonoBehaviour
         //SetTile(x, y, type);
     }
 
-    //public void CreateRoad(Vector3 start, Vector3 end)
-    //{
-    //    var pointA = _tilemap.WorldToCell(start);
-    //    var pointB = _tilemap.WorldToCell(end);
-    //    int xs = Math.Sign(pointB.x - pointA.x);
-    //    int ys = Math.Sign(pointB.y - pointA.y);
-    //    for (int x = pointA.x; x != pointB.x; x += xs)
-    //    {
-    //        SetTile(x, pointA.y, Names.Tiles.Road);
-    //    }
-
-    //    for (int y = pointA.y; y != pointB.y + ys; y += ys)
-    //    {
-    //        SetTile(pointB.x, y, Names.Tiles.Road);
-    //    }
-    //}
 
     void InitializeTiles()
     {
@@ -62,28 +46,44 @@ public class TileMapper : MonoBehaviour
         {
             for (int y = _dimensions.yMin; y < _dimensions.yMax; y++)
             {
-                tiles[i++] = _prefabCollections.TileBuilder.GetTile(Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass, Names.Tiles.Grass);
+                tiles[i++] = _prefabCollections.TileBuilder.GetTile(_defaultTileType, _defaultTileType, _defaultTileType, _defaultTileType, _defaultTileType);
             }
         }
         _tilemap.SetTilesBlock(_dimensions, tiles);
     }
 
-    //void BuildTilemap(IMapModel model)
-    //{
-    //    var tiles = new Tile[_dimensions.size.x * _dimensions.size.y];
-    //    int i = 0;
-    //    for (int x = _dimensions.xMin; x < _dimensions.xMax; x++)
-    //    {
-    //        for (int y = _dimensions.yMin; y < _dimensions.yMax; y++)
-    //        {
-    //            var tileData = _tiles[(x, y)];
-    //            tiles[i++] = tileData.GetRandomTile();
-    //        }
-    //    }
-    //    _tilemap.SetTilesBlock(_dimensions, tiles);
-    //}
+    public void BuildTilemap(IMapModel model)
+    {
+        var grid = model.Grid;
+        var tiles = new Tile[_dimensions.size.x * _dimensions.size.y];
+        int i = 0;
+        for (int x = _dimensions.xMin; x < _dimensions.xMax; x++)
+        {
+            for (int y = _dimensions.yMin; y < _dimensions.yMax; y++)
+            {
+                var type = GetTileType(grid, x, y);
+                var left = GetTileType(grid, x - 1, y);
+                var top = GetTileType(grid, x, y + 1);
+                var right = GetTileType(grid, x + 1, y);
+                var bottom = GetTileType(grid, x, y - 1);
+                var tile = _prefabCollections.TileBuilder.GetTile(type, left, top, right, bottom);
+                tiles[i++] = tile;
+            }
+        }
+        _tilemap.SetTilesBlock(_dimensions, tiles);
+    }
 
-   
+    string GetTileType(IMapGridModel grid, int x, int y)
+    {
+        if (x < 0 || x >= _dimensions.xMax || y < 0 || y > _dimensions.yMax)
+        {
+            return _defaultTileType;
+        }
+        else
+        {
+            return grid.GetTile(x, y).Type;
+        }
+    }
 
     //void SetTile(int x, int y, string type)
     //{

@@ -6,9 +6,11 @@ public class MapModel : IMapModel
 {
     public CityGraph Graph = new CityGraph();
     public List<BuildingModel> Buildings = new List<BuildingModel>();
+    public MapGridModel Grid = new MapGridModel();
 
     #region IMapModel
     ICityGraph IMapModel.CityGraph => Graph;
     IReadOnlyList<IBuildingModel> IMapModel.Buildings => Buildings;
+    IMapGridModel IMapModel.Grid => Grid;
     #endregion
 }

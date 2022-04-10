@@ -47,12 +47,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
         }
 
         _tilemapper.Clear();
-        foreach(var edge in model.Map.CityGraph.Edges)
-        {
-            var start = GetBuildingFromModel((IBuildingModel)edge.PointA);
-            var end = GetBuildingFromModel((IBuildingModel)edge.PointB);
-            ConnectBuildings(start, end);
-        }
+        _tilemapper.BuildTilemap(model.Map);
     }
 
     /// <summary>
@@ -96,11 +91,6 @@ public class Map : MonoBehaviour, IMouseInputHandler
     {
         var position = new Vector3(gridPosition.x, gridPosition.y, 0);
         building.transform.position = position;
-    }
-
-    void ConnectBuildings(Building start, Building end)
-    {
-        //_tilemapper.CreateRoad(start.EntrancePosition, end.EntrancePosition);
     }
 
     Agent GetAgentFromModel(IAgentModel model)
