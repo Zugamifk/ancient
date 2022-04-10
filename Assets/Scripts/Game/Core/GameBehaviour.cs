@@ -34,7 +34,7 @@ public class GameBehaviour : MonoBehaviour
     private void Start()
     {
         _map.SetPrefabCollections(_prefabCollections);
-        _controller = new GameController(_agentCollection);
+        _controller = new GameController(_agentCollection, _tileDataCollection, _mapData);
         _director = new Director(_narrativeCollection, _controller);
         DemoInit();
     }
@@ -48,7 +48,6 @@ public class GameBehaviour : MonoBehaviour
 
     void DemoInit()
     {
-        _controller.InitializeMap(_mapData);
         _controller.AddBuilding(Names.Buildings.Manor, Vector2Int.zero);
         _controller.AddBuilding(Names.Buildings.House, new Vector2Int(5, 2));
         _controller.BuildRoad(Names.Buildings.Manor, Names.Buildings.House);

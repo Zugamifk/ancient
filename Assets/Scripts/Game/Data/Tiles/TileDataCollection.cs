@@ -8,6 +8,7 @@ public class TileDataCollection : ScriptableObject, ITileBuilder
 {
     public TileTypeData[] Tiles;
 
+    Dictionary<string, TileTypeData> _typeToTypeData = new Dictionary<string, TileTypeData>();
     Dictionary<(string, string, string, string, string), List<Tile>> _tileCache = new Dictionary<(string, string, string, string, string), List<Tile>>();
 
     void OnEnable()
@@ -15,6 +16,7 @@ public class TileDataCollection : ScriptableObject, ITileBuilder
         foreach (var typeData in Tiles)
         {
             var type = typeData.Type;
+            _typeToTypeData[type] = typeData; 
             foreach (var tileData in typeData.Tiles)
             {
                 var list = BuildNewTileList(tileData);
@@ -22,6 +24,8 @@ public class TileDataCollection : ScriptableObject, ITileBuilder
             }
         }
     }
+
+    public TileTypeData GetTypeData(string name) => _typeToTypeData[name];
 
     public Tile GetTile(string type, string left, string top, string right, string bottom)
     {

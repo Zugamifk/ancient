@@ -7,16 +7,18 @@ public class GameController
 {
     TimeController _timeController = new TimeController();
     AgentController _agentController = new AgentController();
-    MapController _mapController = new MapController();
+    MapController _mapController;
 
     AgentCollection _agentCollection;
 
     GameModel _model = new GameModel();
     public IGameModel Model => _model;
 
-    public GameController(AgentCollection agentCollection)
+    public GameController(AgentCollection agentCollection, TileDataCollection tileCollection, MapData mapData)
     {
         _agentCollection = agentCollection;
+        _mapController = new MapController(tileCollection, mapData);
+        _mapController.InitializeModel(_model.MapModel);
     }
 
     public void Frameupdate(float deltaTime)
@@ -26,11 +28,6 @@ public class GameController
         {
             _agentController.FrameUpdate(a, deltaTime);
         }
-    }
-
-    public void InitializeMap(MapData data)
-    {
-        _mapController.InitializeModel(_model.MapModel, data.Dimensions, data.DefaultTile);
     }
 
     public void AddBuilding(string name, Vector2Int position)
@@ -58,8 +55,8 @@ public class GameController
     {
         var startPoint = _model.MapModel.Buildings.First(b => b.Name == start);
         var endPoint = _model.MapModel.Buildings.First(b => b.Name == end);
-        var path = new CityPath() { Start = startPoint, End = endPoint };
+        var path = _mapController.GetPath(startPoint.Position, endPoint.Position, _model.MapModel.Grid);
         var agent = _model.Agents[name];
-        agent.Path = path;
+        agent.CityPath = path;
     }
 }

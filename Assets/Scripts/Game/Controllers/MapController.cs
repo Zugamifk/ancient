@@ -6,14 +6,23 @@ using UnityEngine;
 
 public class MapController
 {
-    public void InitializeModel(MapModel model, BoundsInt dimensions, string tileType)
+    TileDataCollection _tileCollection;
+    MapData _mapData;
+
+    public MapController(TileDataCollection tileCollection, MapData mapData)
     {
-        int i = 0;
+        _tileCollection = tileCollection;
+        _mapData = mapData;
+    }
+
+    public void InitializeModel(MapModel model)
+    {
+        var dimensions = _mapData.Dimensions;
         for (int x = dimensions.xMin; x < dimensions.xMax; x++)
         {
             for (int y = dimensions.yMin; y < dimensions.yMax; y++)
             {
-                model.Grid.Map[new Vector2Int(x, y)] = new MapTileModel() { Type = tileType };
+                model.Grid.Map[new Vector2Int(x, y)] = GetTileModel(_mapData.DefaultTile);
             }
         }
         model.Grid.Dimenions = dimensions;
@@ -44,14 +53,114 @@ public class MapController
         var pointB = Vector2Int.FloorToInt(end.Position);
         int xs = Math.Sign(pointB.x - pointA.x);
         int ys = Math.Sign(pointB.y - pointA.y);
+        var roadtile = GetTileModel(Names.Tiles.Road);
         for (int x = pointA.x; x != pointB.x; x += xs)
         {
-            model.Grid.Map[new Vector2Int(x, pointA.y)] = new MapTileModel() { Type = Names.Tiles.Road };
+            model.Grid.Map[new Vector2Int(x, pointA.y)] = roadtile;
         }
 
         for (int y = pointA.y; y != pointB.y + ys; y += ys)
         {
-            model.Grid.Map[new Vector2Int(pointB.x, y)] = new MapTileModel() { Type = Names.Tiles.Road };
+            model.Grid.Map[new Vector2Int(pointB.x, y)] = roadtile;
         }
+    }
+
+    public CityPath GetPath(Vector2Int start, Vector2Int end, MapGridModel grid)
+    {
+        int EstimateDistance(Vector2Int point)
+        {
+            return Mathf.Abs(end.x - point.x) + Mathf.Abs(end.y - point.y);
+        }
+
+        List<Vector2Int> openSet = new List<Vector2Int>();
+        openSet.Add(start);
+
+        Dictionary<Vector2Int, Vector2Int> cameFrom = new Dictionary<Vector2Int, Vector2Int>();
+
+        Dictionary<Vector2Int, int> gScore = new Dictionary<Vector2Int, int>();
+        gScore[start] = 0;
+
+        int GetGScore(Vector2Int p)
+        {
+            int score;
+            if (!gScore.TryGetValue(p, out score))
+            {
+                score = int.MaxValue;
+                gScore[p] = score;
+            }
+            return score;
+        }
+
+        Dictionary<Vector2Int, int> fScore = new Dictionary<Vector2Int, int>();
+        fScore[start] = EstimateDistance(start);
+
+        int GetFScore(Vector2Int p)
+        {
+            int score;
+            if (!fScore.TryGetValue(p, out score))
+            {
+                score = int.MaxValue;
+                fScore[p] = score;
+            }
+            return score;
+        }
+
+        CityPath ReconstructPath()
+        {
+            var path = new CityPath();
+            var current = end;
+            while(current!=start)
+            {
+                path.Path.Add(current);
+                current = cameFrom[current];
+            }
+            path.Path.Reverse();
+            return path;
+        }
+
+        IEnumerable<Vector2Int> GetNeighbours(Vector2Int position)
+        {
+            yield return new Vector2Int(position.x - 1, position.y);
+            yield return new Vector2Int(position.x, position.y+1);
+            yield return new Vector2Int(position.x + 1, position.y);
+            yield return new Vector2Int(position.x, position.y-1);
+        }
+
+        while (openSet.Count > 0)
+        {
+            var current = openSet.Aggregate((a, b) => GetFScore(a) > GetFScore(b) ? b : a);
+            if(current == end)
+            {
+                return ReconstructPath();
+            }
+
+            openSet.Remove(current);
+            foreach(var n in GetNeighbours(current))
+            {
+                var g = GetGScore(current) + grid.Map[n].MoveCost;
+                if(g < GetGScore(n))
+                {
+                    cameFrom[n] = current;
+                    gScore[n] = g;
+                    fScore[n] = g + EstimateDistance(n);
+                    if(!openSet.Contains(n))
+                    {
+                        openSet.Add(n);
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    MapTileModel GetTileModel(string type)
+    {
+        var tileData = _tileCollection.GetTypeData(type);
+        return new MapTileModel()
+        {
+            Type = type,
+            MoveCost = tileData.MoveCost
+        };
     }
 }

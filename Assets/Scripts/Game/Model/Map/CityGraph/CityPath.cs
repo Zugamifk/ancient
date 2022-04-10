@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class CityPath
 {
-    public ICityGraphNode Start;
-    public ICityGraphNode End;
+    public List<Vector2Int> Path = new List<Vector2Int>();
 }
