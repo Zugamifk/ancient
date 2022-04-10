@@ -28,7 +28,7 @@ public class CityGraphDrawer : MonoBehaviour
 
         foreach (var p in _graph.Edges)
         {
-            Gizmos.DrawLine(p.PointA.Position + POSITION_OFFSET, p.PointA.Position + POSITION_OFFSET);
+            Gizmos.DrawLine(p.PointA.Position + POSITION_OFFSET, p.PointB.Position + POSITION_OFFSET);
         }
     }
 }
