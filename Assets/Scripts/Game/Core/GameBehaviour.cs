@@ -11,7 +11,7 @@ public class GameBehaviour : MonoBehaviour
     [SerializeField]
     NarrativeCollection _narrativeCollection;
     [SerializeField]
-    TileSprites _tileSprites;
+    TileDataCollection _tileDataCollection;
     [SerializeField]
     Map _map;
 
@@ -25,7 +25,7 @@ public class GameBehaviour : MonoBehaviour
         {
             BuildingCollection = _buildingCollection,
             AgentCollection = _agentCollection,
-            TileCollection = new TileCollection(_tileSprites)
+            TileBuilder = _tileDataCollection
         };
     }
 

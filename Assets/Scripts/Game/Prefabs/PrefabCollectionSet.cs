@@ -6,5 +6,6 @@ public class PrefabCollectionSet
 {
     public BuildingCollection BuildingCollection;
     public IPrefabCollection AgentCollection;
-    public ITileCollection TileCollection;
+    //public ITileCollection TileCollection;
+    public ITileBuilder TileBuilder;
 }

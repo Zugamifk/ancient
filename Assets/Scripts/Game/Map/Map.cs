@@ -100,7 +100,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     void ConnectBuildings(Building start, Building end)
     {
-        _tilemapper.CreateRoad(start.EntrancePosition, end.EntrancePosition);
+        //_tilemapper.CreateRoad(start.EntrancePosition, end.EntrancePosition);
     }
 
     Agent GetAgentFromModel(IAgentModel model)
