@@ -40,22 +40,23 @@ public class GameController
         _mapController.BuildRoad(_model.MapModel, startName, endName);
     }
 
-    public void AddAgent(string name)
+    public void AddAgent(string name, Vector2 position)
     {
         var data = _agentCollection.GetAgent(name);
         var agent = new AgentModel()
         {
             Name = name,
-            MoveSpeed = data.MoveSpeed
+            MoveSpeed = data.MoveSpeed,
+            WorldPosition = position
         };
         _model.Agents.Add(name, agent);
     }
 
-    public void SetAgentPath(string name, string start, string end)
+    public void WalkToPosition(string name, Vector2 destination)
     {
-        var startPoint = _model.MapModel.Buildings.First(b => b.Name == start);
-        var endPoint = _model.MapModel.Buildings.First(b => b.Name == end);
-        var path = _mapController.GetPath(startPoint.Position, endPoint.Position, _model.MapModel.Grid);
+        var startPoint = _model.Agents[name].WorldPosition;
+        var endPoint = destination;
+        var path = _mapController.GetPath(Vector2Int.FloorToInt(startPoint),Vector2Int.FloorToInt(endPoint), _model.MapModel.Grid);
         var agent = _model.Agents[name];
         agent.CityPath = path;
     }

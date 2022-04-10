@@ -43,7 +43,7 @@ public class GameBehaviour : MonoBehaviour
     {
         _controller.Frameupdate(Time.deltaTime);
         _map.FrameUpdate(_controller.Model);
-        _director.FrameUpdate(_controller.Model);
+        _director.FrameUpdate();
     }
 
     void DemoInit()

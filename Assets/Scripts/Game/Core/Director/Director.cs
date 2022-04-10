@@ -14,11 +14,11 @@ public class Director
         _controller = controller;
     }
 
-    public void FrameUpdate(IGameModel model)
+    public void FrameUpdate()
     {
         foreach(var n in _activeNarratives)
         {
-            n.FrameUpdate(this, model);
+            n.FrameUpdate(this, _controller.Model);
         }
     }
 
@@ -30,16 +30,34 @@ public class Director
 
     public void SpawnAgent(string name, string position)
     {
-        _controller.AddAgent(name);
+        var spawnPosition = ParsePosition(position);
+        _controller.AddAgent(name, spawnPosition);
     }
 
     public void WalkToPosition(string name, string position)
     {
-        _controller.SetAgentPath(name, Names.Buildings.Manor, position);
+        var destination = ParsePosition(position);
+        _controller.WalkToPosition(name, destination);
     }
 
     Narrative BuildNarrative(string name)
     {
         return new Narrative(_collection.GetNarrative(name));
+    }
+
+    Vector2 ParsePosition(string position)
+    {
+        Vector2 spawnPosition;
+        if (position.Contains(","))
+        {
+            var split = position.Split(",");
+            spawnPosition = new Vector2Int(int.Parse(split[0].Trim()), int.Parse(split[0].Trim()));
+        }
+        else
+        {
+            var b = _controller.Model.Map.GetBuilding(position);
+            spawnPosition = b.Position;
+        }
+        return spawnPosition;
     }
 }

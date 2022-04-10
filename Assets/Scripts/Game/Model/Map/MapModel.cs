@@ -12,5 +12,6 @@ public class MapModel : IMapModel
     ICityGraph IMapModel.CityGraph => Graph;
     IReadOnlyList<IBuildingModel> IMapModel.Buildings => Buildings;
     IMapGridModel IMapModel.Grid => Grid;
+    IBuildingModel IMapModel.GetBuilding(string name) => Buildings.Find(b => b.Name == name);
     #endregion
 }
