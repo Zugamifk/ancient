@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd0d51dddd72e042a95c7025a1a63bc, type: 3}
-  m_Name: Tiles
+  m_Script: {fileID: 11500000, guid: 39cb54fecb249ec4481ad687c5d79b6a, type: 3}
+  m_Name: Grass
   m_EditorClassIdentifier: 
+  Type: Grass
+  MoveCost: 100
   Tiles:
-  - {fileID: 11400000, guid: 1cd8c7326d7763240bdd81251363467c, type: 2}
+  - {fileID: 11400000, guid: 88f93e8b47350de41a0b831918b318cc, type: 2}

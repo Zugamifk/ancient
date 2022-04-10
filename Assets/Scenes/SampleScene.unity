@@ -1100,7 +1100,7 @@ MonoBehaviour:
   _buildingCollection: {fileID: 11400000, guid: b7253795462aa34478876c987e71c37a, type: 2}
   _agentCollection: {fileID: 11400000, guid: 4ec40115982d6334da4d53430ac828bf, type: 2}
   _narrativeCollection: {fileID: 11400000, guid: b47a70c5bf6877147896cd045e08a19e, type: 2}
-  _tileSprites: {fileID: 11400000, guid: 3951724d69187484fb54a9f3eb6a2043, type: 2}
+  _tileDataCollection: {fileID: 11400000, guid: 3951724d69187484fb54a9f3eb6a2043, type: 2}
   _map: {fileID: 1645037285}
 --- !u!4 &1415220726
 Transform:
