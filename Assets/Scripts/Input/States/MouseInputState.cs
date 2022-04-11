@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseInputState
+public abstract class MouseInputState
 {
     protected InputStateContext _context;
 
@@ -13,18 +13,5 @@ public class MouseInputState
 
     public MouseInputState(MouseInputState state) : this(state._context) { }
 
-    public virtual MouseInputState Drag()
-    {
-        return this;
-    }
-
-    public virtual MouseInputState MouseDown()
-    {
-        return this;
-    }
-
-    public virtual MouseInputState MouseUp()
-    {
-        return this;
-    }
+    public abstract MouseInputState UpdateState();
 }

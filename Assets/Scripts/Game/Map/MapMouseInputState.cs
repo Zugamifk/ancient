@@ -12,16 +12,16 @@ public class MapMouseInput : MouseInputState
         _map = map;
     }
 
-    public override MouseInputState MouseUp()
+    public override MouseInputState UpdateState()
     {
         UpdateTile();
-        return new IdleMouseInputState(this);
-    }
-
-    public override MouseInputState Drag()
-    {
-        UpdateTile();
-        return this;
+        if (Input.GetMouseButtonUp(0))
+        {
+            return new IdleMouseInputState(this);
+        } else
+        {
+            return this;
+        }
     }
 
     void UpdateTile()

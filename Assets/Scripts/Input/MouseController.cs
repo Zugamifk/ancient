@@ -18,19 +18,6 @@ class MouseController
 
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            _currentState = _currentState.MouseDown();
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            _currentState = _currentState.Drag();
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            _currentState = _currentState.MouseUp();
-        }
+        _currentState = _currentState.UpdateState();
     }
 }

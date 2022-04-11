@@ -13,16 +13,18 @@ internal class DragInputState : MouseInputState
         _lastDragPos = _context.CameraController.GetMouseWorldPosition();
         _draggable = target;
     }
-    public override MouseInputState Drag()
-    {
-        var mousePos = _context.CameraController.GetMouseWorldPosition();
-        _draggable.transform.Translate(mousePos - _lastDragPos);
-        _lastDragPos = mousePos;
-        return this;
-    }
 
-    public override MouseInputState MouseUp()
+    public override MouseInputState UpdateState()
     {
-        return new IdleMouseInputState(this);
+        if (Input.GetMouseButton(0))
+        {
+            var mousePos = _context.CameraController.GetMouseWorldPosition();
+            _draggable.transform.Translate(mousePos - _lastDragPos);
+            _lastDragPos = mousePos;
+            return this;
+        } else
+        {
+            return new IdleMouseInputState(this);
+        }
     }
 }

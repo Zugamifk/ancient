@@ -4,41 +4,41 @@ using UnityEngine;
 
 public class IdleMouseInputState : MouseInputState
 {
-    public override MouseInputState MouseDown()
+    public override MouseInputState UpdateState()
     {
-        var mouseTarget = _context.CameraController.RayCast(Input.mousePosition);
-        if (mouseTarget != null)
+        if (Input.GetMouseButtonDown(0))
         {
-            // desk draggables
-            var draggable = mouseTarget.GetComponent<DraggableGameObject>();
-            if (draggable != null)
+            var mouseTarget = _context.CameraController.RayCast(Input.mousePosition);
+            if (mouseTarget != null)
             {
-                return new DragInputState(this, draggable);
-            }
+                // desk draggables
+                var draggable = mouseTarget.GetComponent<DraggableGameObject>();
+                if (draggable != null)
+                {
+                    return new DragInputState(this, draggable);
+                }
 
-            // most generic handler
-            var map = mouseTarget.GetComponent<IMouseInputHandler>();
-            if (map != null)
-            {
-                return map.GetInputState(this);
-            }
-        }
-        return this;
-    }
-
-
-    public override MouseInputState MouseUp()
-    {
-        var mouseTarget = _context.CameraController.RayCast(Input.mousePosition);
-        if(mouseTarget!=null)
-        {
-            var selectable = mouseTarget.GetComponent<ISelectable>();
-            if (selectable != null)
-            {
-                return selectable.Select(this);
+                // most generic handler
+                var map = mouseTarget.GetComponent<IMouseInputHandler>();
+                if (map != null)
+                {
+                    return map.GetInputState(this);
+                }
             }
         }
 
+        if (Input.GetMouseButtonUp(0))
+        {
+            var mouseTarget = _context.CameraController.RayCast(Input.mousePosition);
+            if (mouseTarget != null)
+            {
+                var selectable = mouseTarget.GetComponent<ISelectable>();
+                if (selectable != null)
+                {
+                    return selectable.Select(this);
+                }
+            }
+        }
         return this;
     }
 
