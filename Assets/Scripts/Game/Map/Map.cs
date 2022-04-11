@@ -6,6 +6,9 @@ using UnityEngine.Tilemaps;
 
 public class Map : MonoBehaviour, IMouseInputHandler
 {
+    [SerializeField]
+    Transform _spawnedObjectsRoot;
+
     PrefabCollectionSet _prefabCollections;
 
     TileMapper _tilemapper;
@@ -88,6 +91,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
     Building SpawnBuilding(string name)
     {
         var prefab = Instantiate(_prefabCollections.BuildingCollection.GetPrefab(name));
+        SetSpawnedParent(prefab.transform);
         var building = prefab.GetComponent<Building>();
         _buildings.Add(name, building);
         return building;
@@ -112,9 +116,25 @@ public class Map : MonoBehaviour, IMouseInputHandler
     Agent SpawnAgent(string name)
     {
         var prefab = Instantiate(_prefabCollections.AgentCollection.GetPrefab(name));
+        SetSpawnedParent(prefab.transform);
         var agent = prefab.GetComponent<Agent>();
         _agents.Add(name, agent);
         return agent;
+    }
+
+    void SetSpawnedParent(Transform child)
+    {
+        child.SetParent(_spawnedObjectsRoot);
+        SetLayer(child, _spawnedObjectsRoot.gameObject.layer);
+    }
+
+    void SetLayer(Transform tf, int layer)
+    {
+        tf.gameObject.layer = layer;
+        foreach(Transform child in tf)
+        {
+            SetLayer(child, layer);
+        }
     }
 
     MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)
