@@ -17,11 +17,19 @@ public class TileMapper : MonoBehaviour
         _prefabCollections = prefabCollections;
     }
 
-    public void SetTile(Vector3 position, string type)
+    public void SetTile(int x, int y, string type, IMapModel model)
     {
-        //var cell = _tilemap.WorldToCell(position);
-        //int x = cell.x, y = cell.y;
-        //SetTile(x, y, type);
+        var tiles = new Tile[9];
+        int t = 0;
+        for (int j = y - 1; j <= y + 1; j++)
+        {
+            for (int i = x - 1; i <= x + 1; i++)
+            {
+                tiles[t++] = BuildTile(i, j, model.Grid);
+            }
+        }
+        var bounds = new BoundsInt(x - 1, y - 1, 0, 3, 3, 1);
+        _tilemap.SetTilesBlock(bounds, tiles);
     }
 
     public void BuildTilemap(IMapModel model)
@@ -34,13 +42,7 @@ public class TileMapper : MonoBehaviour
         {
             for (int x = dimensions.xMin; x < dimensions.xMax; x++)
             {
-                var type = GetTileType(grid, x, y);
-                var left = GetTileType(grid, x - 1, y);
-                var top = GetTileType(grid, x, y + 1);
-                var right = GetTileType(grid, x + 1, y);
-                var bottom = GetTileType(grid, x, y - 1);
-                var tile = _prefabCollections.TileBuilder.GetTile(type, left, top, right, bottom);
-                tiles[i++] = tile;
+                tiles[i++] = BuildTile(x, y, model.Grid);
             }
         }
         _tilemap.SetTilesBlock(dimensions, tiles);
@@ -59,33 +61,13 @@ public class TileMapper : MonoBehaviour
         }
     }
 
-    //void SetTile(int x, int y, string type)
-    //{
-    //    var tile = _prefabCollections.TileCollection.GetTileData(type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
-    //    if (tile == null)
-    //    {
-    //        throw new InvalidOperationException("No TileData for key " + (type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type));
-    //    }
-
-    //    if (tile == _tiles[(x, y)]) return;
-
-    //    _tiles[(x, y)] = tile;
-    //    _tilemap.SetTile(new Vector3Int(x, y, 0), tile.GetRandomTile());
-
-    //    UpdateTile(x - 1, y);
-    //    UpdateTile(x + 1, y);
-    //    UpdateTile(x, y - 1);
-    //    UpdateTile(x, y + 1);
-    //}
-
-    //void UpdateTile(int x, int y)
-    //{
-    //    var tile = _tiles[(x, y)];
-    //    var newTile = _prefabCollections.TileCollection.GetTileData(tile.Type, GetTile(x - 1, y).Type, GetTile(x + 1, y).Type, GetTile(x, y + 1).Type, GetTile(x, y - 1).Type);
-    //    if (newTile != null && newTile != tile)
-    //    {
-    //        _tiles[(x, y)] = newTile;
-    //        _tilemap.SetTile(new Vector3Int(x, y, 0), newTile.GetRandomTile());
-    //    }
-    //}
+    Tile BuildTile(int x, int y, IMapGridModel grid)
+    {
+        var type = GetTileType(grid, x, y);
+        var left = GetTileType(grid, x - 1, y);
+        var top = GetTileType(grid, x, y + 1);
+        var right = GetTileType(grid, x + 1, y);
+        var bottom = GetTileType(grid, x, y - 1);
+        return _prefabCollections.TileBuilder.GetTile(type, left, top, right, bottom);
+    }
 }

@@ -40,6 +40,11 @@ public class GameController
         _mapController.BuildRoad(_model.MapModel, startName, endName);
     }
 
+    public void SetTile(int x, int y, string type)
+    {
+        _mapController.SetTile(_model.MapModel, x, y, type);
+    }
+
     public void AddAgent(string name, Vector2 position)
     {
         var data = _agentCollection.GetAgent(name);

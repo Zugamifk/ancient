@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RoadGGRR
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: 752667322, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
+  - {fileID: 1015842418, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
   Left: Grass
   Top: Grass
   Right: Road

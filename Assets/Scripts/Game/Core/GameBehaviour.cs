@@ -18,6 +18,7 @@ public class GameBehaviour : MonoBehaviour
     Map _map;
 
     Director _director;
+    CheatController _cheatController;
     GameController _controller;
     PrefabCollectionSet _prefabCollections;
 
@@ -33,9 +34,16 @@ public class GameBehaviour : MonoBehaviour
 
     private void Start()
     {
-        _map.SetPrefabCollections(_prefabCollections);
+        // Create main controllers
         _controller = new GameController(_agentCollection, _tileDataCollection, _mapData);
         _director = new Director(_narrativeCollection, _controller);
+        _cheatController = new CheatController(_director, _controller.Model);
+
+        // Init scene objects
+        _map.SetPrefabCollections(_prefabCollections);
+        _map.SetCheatController(_cheatController);
+
+        // Start game
         DemoInit();
     }
 

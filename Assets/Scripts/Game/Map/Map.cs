@@ -11,6 +11,12 @@ public class Map : MonoBehaviour, IMouseInputHandler
     TileMapper _tilemapper;
     Dictionary<string, Building> _buildings = new Dictionary<string, Building>();
     Dictionary<string, Agent> _agents = new Dictionary<string, Agent>();
+    ICheatController _cheatController;
+
+    public void SetCheatController(ICheatController controller)
+    {
+        _cheatController = controller;
+    }
 
     public void SetPrefabCollections(PrefabCollectionSet prefabCollections)
     {
@@ -20,7 +26,8 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     public void SetTile(Vector3 position, string type)
     {
-        _tilemapper.SetTile(position, type);
+        _cheatController.SetTile(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y), type);
+        _tilemapper.SetTile(Mathf.FloorToInt(position.x),Mathf.FloorToInt(position.y), type, _cheatController.GameModel.Map);
     }
 
     private void Awake()

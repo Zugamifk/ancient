@@ -36,11 +36,6 @@ public class MapController
             Position = position
         };
         model.Buildings.Add(building);
-        //var entrance = new IntersectionGraphNode()
-        //{
-        //    Position = building.Position + 
-        //}
-        
     }
 
     public void BuildRoad(MapModel model, string startName, string endName)
@@ -63,6 +58,12 @@ public class MapController
         {
             model.Grid.Map[new Vector2Int(pointB.x, y)] = roadtile;
         }
+    }
+
+    public void SetTile(MapModel model, int x, int y, string type)
+    {
+        var tile = GetTileModel(type);
+        model.Grid.Map[new Vector2Int(x, y)] = tile;
     }
 
     public CityPath GetPath(Vector2Int start, Vector2Int end, MapGridModel grid)

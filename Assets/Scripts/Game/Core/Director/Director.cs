@@ -14,14 +14,17 @@ public class Director
         _controller = controller;
     }
 
+    #region Life cycle
     public void FrameUpdate()
     {
-        foreach(var n in _activeNarratives)
+        foreach (var n in _activeNarratives)
         {
             n.FrameUpdate(this, _controller.Model);
         }
     }
+    #endregion
 
+    #region Commands
     public void StartNarrative(string name)
     {
         var narrative = BuildNarrative(name);
@@ -40,6 +43,13 @@ public class Director
         _controller.WalkToPosition(name, destination);
     }
 
+    public void SetTile(int x, int y, string name)
+    {
+        _controller.SetTile(x, y, name);
+    }
+    #endregion
+
+    #region Helpers
     Narrative BuildNarrative(string name)
     {
         return new Narrative(_collection.GetNarrative(name));
@@ -60,4 +70,5 @@ public class Director
         }
         return spawnPosition;
     }
+    #endregion
 }
