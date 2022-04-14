@@ -8,37 +8,55 @@ public class IdleMouseInputState : MouseInputState
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var mouseTarget = _context.CameraController.RayCast(Input.mousePosition);
-            if (mouseTarget != null)
+            RaycastHit hit;
+            if(_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layers.Desk), out hit))
             {
-                // desk draggables
-                var draggable = mouseTarget.GetComponent<DraggableGameObject>();
-                if (draggable != null)
+                var target = hit.collider.gameObject;
+                var renderTex = target.GetComponent<RenderTextureRaycaster>();
+                if (renderTex != null)
                 {
-                    return new DragInputState(this, draggable);
-                }
-
-                // most generic handler
-                var map = mouseTarget.GetComponent<IMouseInputHandler>();
-                if (map != null)
-                {
-                    return map.GetInputState(this);
+                    return RaycastMap(renderTex, hit.textureCoord);
                 }
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    var mouseTarget = _context.CameraController.RayCast(Input.mousePosition);
+        //    if (mouseTarget != null)
+        //    {
+        //        var selectable = mouseTarget.GetComponent<ISelectable>();
+        //        if (selectable != null)
+        //        {
+        //            return selectable.Select(this);
+        //        }
+        //    }
+        //}
+        return this;
+    }
+
+    MouseInputState RaycastMap(RenderTextureRaycaster raycaster, Vector2 position)
+    {
+        RaycastHit hit;
+        if (raycaster.Raycast(position, out hit))
         {
-            var mouseTarget = _context.CameraController.RayCast(Input.mousePosition);
-            if (mouseTarget != null)
+            var target = hit.collider.gameObject;
+
+            // desk draggables
+            var draggable = target.GetComponent<DraggableGameObject>();
+            if (draggable != null)
             {
-                var selectable = mouseTarget.GetComponent<ISelectable>();
-                if (selectable != null)
-                {
-                    return selectable.Select(this);
-                }
+                return new DragInputState(this, draggable);
+            }
+
+            // most generic handler
+            var input = target.GetComponent<IMouseInputHandler>();
+            if (input != null)
+            {
+                return input.GetInputState(this);
             }
         }
+
         return this;
     }
 

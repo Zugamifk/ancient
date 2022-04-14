@@ -14,7 +14,20 @@ public class MapMouseInput : MouseInputState
 
     public override MouseInputState UpdateState()
     {
-        UpdateTile();
+        RaycastHit hit;
+        if (_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layers.Desk), out hit))
+        {
+            var target = hit.collider.gameObject;
+            var renderTex = target.GetComponent<RenderTextureRaycaster>();
+            if (renderTex != null)
+            {
+                if (renderTex.Raycast(hit.textureCoord, out hit))
+                {
+                    _map.SetTile(hit.point, Names.Tiles.Road);
+                }
+            }
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
             return new IdleMouseInputState(this);
@@ -22,11 +35,5 @@ public class MapMouseInput : MouseInputState
         {
             return this;
         }
-    }
-
-    void UpdateTile()
-    {
-        var pos = _context.CameraController.GetMouseWorldPosition();
-        _map.SetTile(pos, Names.Tiles.Road);
     }
 }

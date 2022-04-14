@@ -21,15 +21,9 @@ public class CameraController : MonoBehaviour
         return GetWorldPosition(Input.mousePosition);
     }
 
-    public GameObject RayCast(Vector2 position)
+    public bool RayCast(Vector2 position, int layermask, out RaycastHit hit)
     {
         var ray = _camera.ScreenPointToRay(position);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            return hit.transform.gameObject;
-        }
-
-        return null;
+        return Physics.Raycast(ray, out hit, float.MaxValue, layermask);
     }
 }

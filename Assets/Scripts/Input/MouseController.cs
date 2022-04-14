@@ -6,11 +6,12 @@ class MouseController
 {
     MouseInputState _currentState;
 
-    public MouseController(CameraController cameraController)
+    public MouseController(CameraController deskCameraController, CameraController mapCameraController)
     {
         var context = new InputStateContext()
         {
-            CameraController = cameraController
+            DeskCameraController = deskCameraController,
+            MapCameraController = mapCameraController
         };
         _currentState = new IdleMouseInputState(context);
     }

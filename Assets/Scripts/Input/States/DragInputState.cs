@@ -10,7 +10,7 @@ internal class DragInputState : MouseInputState
     public DragInputState(MouseInputState state, DraggableGameObject target)
         : base(state)
     {
-        _lastDragPos = _context.CameraController.GetMouseWorldPosition();
+        _lastDragPos = _context.DeskCameraController.GetMouseWorldPosition();
         _draggable = target;
     }
 
@@ -18,7 +18,7 @@ internal class DragInputState : MouseInputState
     {
         if (Input.GetMouseButton(0))
         {
-            var mousePos = _context.CameraController.GetMouseWorldPosition();
+            var mousePos = _context.DeskCameraController.GetMouseWorldPosition();
             _draggable.transform.Translate(mousePos - _lastDragPos);
             _lastDragPos = mousePos;
             return this;

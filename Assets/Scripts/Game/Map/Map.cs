@@ -29,8 +29,9 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     public void SetTile(Vector3 position, string type)
     {
-        _cheatController.SetTile(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y), type);
-        _tilemapper.SetTile(Mathf.FloorToInt(position.x),Mathf.FloorToInt(position.y), type, _cheatController.GameModel.Map);
+        var tile = _tilemapper.GetTileFromPosition(position);
+        _cheatController.SetTile(tile.x, tile.y, type);
+        _tilemapper.SetTile(tile.x, tile.y, type, _cheatController.GameModel.Map);
     }
 
     private void Awake()

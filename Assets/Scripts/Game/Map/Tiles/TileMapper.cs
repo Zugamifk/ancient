@@ -48,6 +48,11 @@ public class TileMapper : MonoBehaviour
         _tilemap.SetTilesBlock(dimensions, tiles);
     }
 
+    public Vector3Int GetTileFromPosition(Vector3 position)
+    {
+        return _tilemap.WorldToCell(position);
+    }
+
     string GetTileType(IMapGridModel grid, int x, int y)
     {
         var dimensions = grid.Dimensions;
