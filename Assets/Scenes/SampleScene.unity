@@ -807,7 +807,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.35
+  orthographic size: 2.95
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1074,7 +1074,6 @@ GameObject:
   - component: {fileID: 891285399}
   - component: {fileID: 891285401}
   - component: {fileID: 891285400}
-  - component: {fileID: 891285402}
   m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
@@ -1184,22 +1183,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!19719996 &891285402
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891285398}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0.00001
 --- !u!1 &1087749690
 GameObject:
   m_ObjectHideFlags: 0
