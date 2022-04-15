@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:e="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <Box style="border-width: 1px; border-color: rgba(255,255,255,255); margin: 2px; height: 128px; flex-direction: Row;">
+        <Box style="margin: 5px; width: 64px">
+            <Image name="Sprite" />
+            <Label name="SpriteCount" style="align-self: Center;"/>
+            <VisualElement name="SelectSpriteButtons" style="flex-direction: Row;">
+                <Button name="SelectLeftSprite" text="\u2190" />
+                <Button name="SelectRightSprite" text="\u2192" />
+            </VisualElement>
+        </Box>
+        <VisualElement style="flex-grow: 1;">
+            <e:ObjectField name="TileDataAsset" label="Asset" />
+        </VisualElement>
+    </Box>
+</UXML>

@@ -20,7 +20,7 @@ public class TileDataCollection : ScriptableObject, ITileBuilder
             foreach (var tileData in typeData.Tiles)
             {
                 var list = BuildNewTileList(tileData);
-                _tileCache.Add((type, tileData.Left, tileData.Top, tileData.Right, tileData.Bottom), list);
+                _tileCache.Add((type, tileData.North, tileData.East, tileData.South, tileData.West), list);
             }
         }
     }

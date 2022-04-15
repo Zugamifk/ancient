@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17a1e3054c807440a5e21ae1e09f23c, type: 3}
+  m_Name: RoadRRRG
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 1432204544, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
+  Left: Road
+  Top: Road
+  Right: Road
+  Bottom: Grass

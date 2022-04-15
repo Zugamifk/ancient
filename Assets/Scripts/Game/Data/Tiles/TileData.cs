@@ -5,8 +5,8 @@ using UnityEngine;
 public class TileData : ScriptableObject
 {
     public Sprite[] Sprites;
-    public string Left;
-    public string Top;
-    public string Right;
-    public string Bottom;
+    public string North;
+    public string East;
+    public string South;
+    public string West;
 }
