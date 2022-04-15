@@ -26,4 +26,9 @@ public class CameraController : MonoBehaviour
         var ray = _camera.ScreenPointToRay(position);
         return Physics.Raycast(ray, out hit, float.MaxValue, layermask);
     }
+
+    public void PanTo(Vector2 position)
+    {
+        transform.localPosition = position;
+    }
 }
