@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileData : ScriptableObject
 {
-    public Sprite[] Sprites;
+    public List<Sprite> Sprites = new List<Sprite>();
     public string North;
     public string East;
     public string South;

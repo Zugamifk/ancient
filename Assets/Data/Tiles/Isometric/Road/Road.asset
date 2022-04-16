@@ -14,4 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: Road
   MoveCost: 1
-  Tiles: []
+  Tiles:
+  - {fileID: 11400000, guid: 896ee6ef3f7c7434289f741b81075e17, type: 2}
+  - {fileID: 11400000, guid: 2a1bcd8c212554a4f8dc514e4525cab4, type: 2}
+  - {fileID: 11400000, guid: 017c84641872d2a439a6fef39ba6de8d, type: 2}
+  - {fileID: 11400000, guid: 214deca8bb9a6fd479d627be0fbea4de, type: 2}
+  - {fileID: 11400000, guid: 6397d6b62fece1c45846a1728bf41dfe, type: 2}
+  - {fileID: 11400000, guid: 10e4d45022f1a8c4aae0c1e60c7709b3, type: 2}
+  - {fileID: 11400000, guid: ece08d3bc6b8bc347971964347ff0dd2, type: 2}
+  - {fileID: 11400000, guid: b2ef64c27ac7bf046baa3b40cf75e369, type: 2}
+  - {fileID: 11400000, guid: 99563e098e9a0554fb71613e6346df88, type: 2}
+  - {fileID: 11400000, guid: 09c2db972c571514ea1f4547017ff7cb, type: 2}
+  - {fileID: 11400000, guid: 44269f52f9f094b4da44b4c87d087876, type: 2}
+  - {fileID: 11400000, guid: 58fd818d0ae54e248b6b3fbfad5a0172, type: 2}
+  - {fileID: 11400000, guid: 1ad965b8bf51348458135ec0240fa627, type: 2}
+  - {fileID: 11400000, guid: 34c60f70d1d4bf641b42ad86b84acdad, type: 2}
+  - {fileID: 11400000, guid: 21a3d74b889822f4aa15f8650c05a81e, type: 2}
+  - {fileID: 11400000, guid: 2fe57755b375cbf47b542f2bd6ae3712, type: 2}

@@ -12,13 +12,14 @@
                 <DropdownField name="NorthEdge" />
                 <DropdownField name="EastEdge" />
             </VisualElement>
-            <VisualElement style="margin: 5px; width: 64px">
-                <Image name="Sprite" />
+            <VisualElement style="margin: 5px; width: 80px">
+                <Image name="Sprite" style="height: 32px;"/>
                 <Label name="SpriteCount" style="align-self: Center;"/>
                 <VisualElement name="SelectSpriteButtons" style="flex-direction: Row;">
                     <Button name="SelectLeftSprite" text="\u2190" />
                     <Button name="SelectRightSprite" text="\u2192" />
                 </VisualElement>
+                <e:ObjectField name="NewSpriteField" />
             </VisualElement>
             <VisualElement>
                 <DropdownField name="WestEdge" />

@@ -6,7 +6,7 @@ public class TileTypeData : ScriptableObject
 {
     public string Type;
     public int MoveCost;
-    public TileData[] Tiles;
+    public List<TileData> Tiles = new List<TileData>();
 
     Dictionary<(string, string, string, string), TileData> _bordersToData = new Dictionary<(string, string, string, string), TileData>();
 

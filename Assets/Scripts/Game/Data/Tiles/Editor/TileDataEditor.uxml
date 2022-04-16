@@ -7,4 +7,5 @@
 >
     <e:Toolbar name="TypeTabs" />
     <ListView name="TileList" style="selection-type: None; --unity-item-height: 128;"/>
+    <Button name="AddTile" text="Add Tile" /> 
 </UXML>

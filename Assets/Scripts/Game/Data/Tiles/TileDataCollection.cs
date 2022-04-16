@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class TileDataCollection : ScriptableObject, ITileBuilder
 {
-    public TileTypeData[] Tiles;
+    public List<TileTypeData> Tiles = new List<TileTypeData>();
 
     Dictionary<string, TileTypeData> _typeToTypeData = new Dictionary<string, TileTypeData>();
     Dictionary<(string, string, string, string, string), List<Tile>> _tileCache = new Dictionary<(string, string, string, string, string), List<Tile>>();
@@ -22,10 +22,11 @@ public class TileDataCollection : ScriptableObject, ITileBuilder
                 var list = BuildNewTileList(tileData);
                 _tileCache.Add((type, tileData.North, tileData.East, tileData.South, tileData.West), list);
             }
-        }
+        } 
     }
 
     public TileTypeData GetTypeData(string name) => _typeToTypeData[name];
+    public TileTypeData GetTypeDataEditor(string name) => Tiles.FirstOrDefault(t => t.name == name);
 
     public Tile GetTile(string type, string left, string top, string right, string bottom)
     {
@@ -71,32 +72,32 @@ public class TileDataCollection : ScriptableObject, ITileBuilder
         yield return (type, left, top, right, bottom);
         yield return (type, left, top, right, "*");
         yield return (type, left, top, "*", bottom);
-        yield return (type, left, top, "*", "*");
+        yield return (type, "*", top, right, bottom);
         yield return (type, left, "*", right, bottom);
+        yield return (type, left, top, "*", "*");
         yield return (type, left, "*", right, "*");
         yield return (type, left, "*", "*", bottom);
-        yield return (type, left, "*", "*", "*");
-        yield return (type, "*", top, right, bottom);
         yield return (type, "*", top, right, "*");
         yield return (type, "*", top, "*", bottom);
-        yield return (type, "*", top, "*", "*");
         yield return (type, "*", "*", right, bottom);
+        yield return (type, left, "*", "*", "*");
+        yield return (type, "*", top, "*", "*");
         yield return (type, "*", "*", right, "*");
         yield return (type, "*", "*", "*", bottom);
         yield return (type, "*", "*", "*", "*");
         yield return ("*", left, top, right, bottom);
         yield return ("*", left, top, right, "*");
         yield return ("*", left, top, "*", bottom);
-        yield return ("*", left, top, "*", "*");
         yield return ("*", left, "*", right, bottom);
+        yield return ("*", "*", top, right, bottom);
+        yield return ("*", "*", "*", right, bottom);
+        yield return ("*", left, top, "*", "*");
         yield return ("*", left, "*", right, "*");
         yield return ("*", left, "*", "*", bottom);
-        yield return ("*", left, "*", "*", "*");
-        yield return ("*", "*", top, right, bottom);
         yield return ("*", "*", top, right, "*");
         yield return ("*", "*", top, "*", bottom);
+        yield return ("*", left, "*", "*", "*");
         yield return ("*", "*", top, "*", "*");
-        yield return ("*", "*", "*", right, bottom);
         yield return ("*", "*", "*", right, "*");
         yield return ("*", "*", "*", "*", bottom);
         yield return ("*", "*", "*", "*", "*");

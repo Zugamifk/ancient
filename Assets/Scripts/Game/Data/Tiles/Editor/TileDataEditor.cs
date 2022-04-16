@@ -13,6 +13,7 @@ public class TileDataEditor : Editor
 {
     class ListElementCallbacks
     {
+        public EventCallback<ChangeEvent<UnityEngine.Object>> addSprite;
         public EventCallback<ChangeEvent<string>> onSelectNorthEdge;
         public EventCallback<ChangeEvent<string>> onSelectEastEdge;
         public EventCallback<ChangeEvent<string>> onSelectSouthEdge;
@@ -27,6 +28,7 @@ public class TileDataEditor : Editor
     Dictionary<string, Button> _toolbarButtons = new Dictionary<string, Button>();
     ListView _list;
     List<string> _tileEdgeTypeOptions = new List<string>();
+    TileTypeData _currentType;
 
     public override VisualElement CreateInspectorGUI()
     {
@@ -41,6 +43,9 @@ public class TileDataEditor : Editor
 
         _list = tree.Q<ListView>("TileList");
         ConfigureList();
+
+        var newTilebutton = tree.Q<Button>("AddTile");
+        newTilebutton.clicked += CreateNewTileData;
 
         SelectType(_toolbarButtons.First().Key);
         return tree;
@@ -63,7 +68,7 @@ public class TileDataEditor : Editor
     {
         int ChangeSprite(int index, TileData data, Image image, Label spriteCount)
         {
-            var n = data.Sprites.Length;
+            var n = data.Sprites.Count;
             index = (index + n) % n;
             image.sprite = data.Sprites[index];
             spriteCount.text = $"{index + 1}/{n}";
@@ -82,8 +87,15 @@ public class TileDataEditor : Editor
             var data = (TileData)_list.itemsSource[index];
             var image = element.Q<Image>("Sprite");
             var spriteCount = element.Q<Label>("SpriteCount");
-            var multipleSprites = data.Sprites.Length > 1; ;
-            ChangeSprite(0, data, image, spriteCount);
+            var multipleSprites = data.Sprites != null && data.Sprites.Count > 1; ;
+            var callbacks = (ListElementCallbacks)element.userData;
+            if (data.Sprites == null || data.Sprites.Count == 0)
+            {
+                image.image = EditorGUIUtility.IconContent("CrossIcon").image;
+            } else
+            {
+                ChangeSprite(0, data, image, spriteCount);
+            }
             element.Q("SelectSpriteButtons").visible = multipleSprites;
             if (multipleSprites)
             {
@@ -93,8 +105,21 @@ public class TileDataEditor : Editor
                 var right = element.Q<Button>("SelectRightSprite");
                 right.clicked += () => selectedIndex = ChangeSprite(selectedIndex + 1, data, image, spriteCount);
             }
+            var newSpriteField = element.Q<ObjectField>("NewSpriteField");
+            newSpriteField.UnregisterValueChangedCallback(callbacks.addSprite);
+            callbacks.addSprite = ce =>
+            {
+                if (ce.newValue != null)
+                {
+                    Sprite sprite = (Sprite)ce.newValue;
+                    data.Sprites.Add(sprite);
+                    EditorUtility.SetDirty(data);
+                    newSpriteField.SetValueWithoutNotify(null);
+                    BuildTypePanel();
+                }
+            };
+            newSpriteField.RegisterValueChangedCallback(callbacks.addSprite);
 
-            var callbacks = (ListElementCallbacks)element.userData;
             var north = element.Q<DropdownField>("NorthEdge");
             north.value = string.IsNullOrEmpty(data.North) ? EDGE_WILDCARD : data.North;
             SetUpdateCallback(ref callbacks.onSelectNorthEdge, v => data.North = v, north);
@@ -118,6 +143,10 @@ public class TileDataEditor : Editor
             var element = elementTemplate.Instantiate();
             var asset = element.Q<ObjectField>("TileDataAsset");
             asset.objectType = typeof(TileData);
+            asset.RegisterValueChangedCallback(ce =>
+            {
+                UpdateAssets();
+            });
             var north = element.Q<DropdownField>("NorthEdge");
             north.choices = _tileEdgeTypeOptions;
             var east = element.Q<DropdownField>("EastEdge");
@@ -126,6 +155,8 @@ public class TileDataEditor : Editor
             south.choices = _tileEdgeTypeOptions;
             var west = element.Q<DropdownField>("WestEdge");
             west.choices = _tileEdgeTypeOptions;
+            var newSpriteField = element.Q<ObjectField>("NewSpriteField");
+            newSpriteField.objectType = typeof(Sprite);
             element.userData = new ListElementCallbacks();
             return element;
         };
@@ -144,13 +175,18 @@ public class TileDataEditor : Editor
     void ShowTypeData(string type)
     {
         var collection = target as TileDataCollection;
-        var data = collection.GetTypeData(type);
+        var data = collection.GetTypeDataEditor(type);
         if (data == null)
         {
             data = CreateNewTypeData(type);
         }
+        _currentType = data;
+        BuildTypePanel();
+    }
 
-        _list.itemsSource = data.Tiles;
+    void BuildTypePanel()
+    {
+        _list.itemsSource = _currentType.Tiles;
         _list.Rebuild();
     }
 
@@ -172,12 +208,84 @@ public class TileDataEditor : Editor
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 
+        var asset = AssetDatabase.LoadAssetAtPath<TileTypeData>(typeDataAssetPath);
+        var collection = target as TileDataCollection;
+        collection.Tiles.Add(asset);
+        EditorUtility.SetDirty(collection);
+
         return typeData;
+    }
+
+    void CreateNewTileData()
+    {
+        var rootPath = GetTargetPath();
+        var typeDataPath = Path.Combine(rootPath, _currentType.Type);
+        var tileData = ScriptableObject.CreateInstance<TileData>();
+        tileData.North = EDGE_WILDCARD;
+        tileData.East = EDGE_WILDCARD;
+        tileData.South = EDGE_WILDCARD;
+        tileData.West = EDGE_WILDCARD;
+
+        var tileDataAssetPath = Path.Combine(typeDataPath, _currentType.Type + $"Data{_currentType.Tiles.Count}.asset");
+        AssetDatabase.CreateAsset(tileData, tileDataAssetPath);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+
+        var asset = AssetDatabase.LoadAssetAtPath<TileData>(tileDataAssetPath);
+        _currentType.Tiles.Add(asset);
+        EditorUtility.SetDirty(_currentType);
+       
+        BuildTypePanel();
     }
 
     string GetTargetPath()
     {
         var assetPath = AssetDatabase.GetAssetPath(target); ;
         return Path.GetDirectoryName(assetPath);
+    }
+
+    void UpdateAssets()
+    {
+        var collection = target as TileDataCollection;
+        foreach (var typeConfig in _config.TypeConfigs)
+        {
+            var rootPath = GetTargetPath();
+            var data = collection.GetTypeDataEditor(typeConfig.Name);
+            if(data == null)
+            {
+                data = CreateNewTypeData(typeConfig.Name);
+            }
+
+            UpdateTypeData(data);
+        }
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
+
+    void UpdateTypeData(TileTypeData data)
+    {
+        data.Tiles.RemoveAll(t => t == null);
+        int i = 0;
+        foreach(var tile in data.Tiles)
+        {
+            var path = AssetDatabase.GetAssetPath(tile);
+            AssetDatabase.RenameAsset(path, $"{data.Type}Data{i++}.asset");
+            UpdateTileData(tile);
+        }
+        var assets = AssetDatabase.LoadAllAssetsAtPath(Path.GetDirectoryName(AssetDatabase.GetAssetPath(data)));
+        foreach(var a in assets)
+        {
+            if (a is TileData && !data.Tiles.Contains(a))
+            {
+                AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(a));
+            }
+        }
+        EditorUtility.SetDirty(data);
+    }
+
+    void UpdateTileData(TileData data)
+    {
+        EditorUtility.SetDirty(data);
     }
 }
