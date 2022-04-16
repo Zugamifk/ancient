@@ -6,10 +6,19 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System.Linq;
 using System.IO;
+using System;
 
 [CustomEditor(typeof(TileDataCollection))]
 public class TileDataEditor : Editor
 {
+    class ListElementCallbacks
+    {
+        public EventCallback<ChangeEvent<string>> onSelectNorthEdge;
+        public EventCallback<ChangeEvent<string>> onSelectEastEdge;
+        public EventCallback<ChangeEvent<string>> onSelectSouthEdge;
+        public EventCallback<ChangeEvent<string>> onSelectWestEdge;
+    }
+    const string EDGE_WILDCARD = "*";
     const string LIST_ELEMENT_UXML_PATH = "Assets/Scripts/Game/Data/Tiles/Editor/TileDataListElement.uxml";
     const string MAIN_UXML_PATH = "Assets/Scripts/Game/Data/Tiles/Editor/TileDataEditor.uxml";
     const string TILEDATA_EDITOR_CONFIG_PATH = "Assets/Scripts/Game/Data/Tiles/Editor/TileDataEditorConfig.asset";
@@ -17,10 +26,14 @@ public class TileDataEditor : Editor
     TileDataEditorConfig _config;
     Dictionary<string, Button> _toolbarButtons = new Dictionary<string, Button>();
     ListView _list;
+    List<string> _tileEdgeTypeOptions = new List<string>();
 
     public override VisualElement CreateInspectorGUI()
     {
         _config = AssetDatabase.LoadAssetAtPath<TileDataEditorConfig>(TILEDATA_EDITOR_CONFIG_PATH);
+        _tileEdgeTypeOptions.Clear();
+        _tileEdgeTypeOptions.Add(EDGE_WILDCARD);
+        _tileEdgeTypeOptions.AddRange(_config.TypeConfigs.Select(t => t.Name));
         _toolbarButtons.Clear();
 
         var tree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(MAIN_UXML_PATH).Instantiate();
@@ -53,8 +66,15 @@ public class TileDataEditor : Editor
             var n = data.Sprites.Length;
             index = (index + n) % n;
             image.sprite = data.Sprites[index];
-            spriteCount.text = $"{index+1}/{n}";
+            spriteCount.text = $"{index + 1}/{n}";
             return index;
+        }
+
+        void SetUpdateCallback(ref EventCallback<ChangeEvent<string>> changeEvent, Action<string> setValue, DropdownField field)
+        {
+            field.UnregisterValueChangedCallback(changeEvent);
+            changeEvent = ce => setValue(ce.newValue);
+            field.RegisterValueChangedCallback(changeEvent);
         }
 
         _list.bindItem = (element, index) =>
@@ -74,6 +94,20 @@ public class TileDataEditor : Editor
                 right.clicked += () => selectedIndex = ChangeSprite(selectedIndex + 1, data, image, spriteCount);
             }
 
+            var callbacks = (ListElementCallbacks)element.userData;
+            var north = element.Q<DropdownField>("NorthEdge");
+            north.value = string.IsNullOrEmpty(data.North) ? EDGE_WILDCARD : data.North;
+            SetUpdateCallback(ref callbacks.onSelectNorthEdge, v => data.North = v, north);
+            var east = element.Q<DropdownField>("EastEdge");
+            east.value = string.IsNullOrEmpty(data.East) ? EDGE_WILDCARD : data.East;
+            SetUpdateCallback(ref callbacks.onSelectEastEdge, v => data.East = v, east);
+            var south = element.Q<DropdownField>("SouthEdge");
+            south.value = string.IsNullOrEmpty(data.South) ? EDGE_WILDCARD : data.South;
+            SetUpdateCallback(ref callbacks.onSelectSouthEdge, v => data.South = v, south);
+            var west = element.Q<DropdownField>("WestEdge");
+            west.value = string.IsNullOrEmpty(data.West) ? EDGE_WILDCARD : data.West;
+            SetUpdateCallback(ref callbacks.onSelectWestEdge, v => data.West = v, west);
+
             var asset = element.Q<ObjectField>("TileDataAsset");
             asset.SetValueWithoutNotify(data);
         };
@@ -84,6 +118,15 @@ public class TileDataEditor : Editor
             var element = elementTemplate.Instantiate();
             var asset = element.Q<ObjectField>("TileDataAsset");
             asset.objectType = typeof(TileData);
+            var north = element.Q<DropdownField>("NorthEdge");
+            north.choices = _tileEdgeTypeOptions;
+            var east = element.Q<DropdownField>("EastEdge");
+            east.choices = _tileEdgeTypeOptions;
+            var south = element.Q<DropdownField>("SouthEdge");
+            south.choices = _tileEdgeTypeOptions;
+            var west = element.Q<DropdownField>("WestEdge");
+            west.choices = _tileEdgeTypeOptions;
+            element.userData = new ListElementCallbacks();
             return element;
         };
     }
