@@ -53,6 +53,11 @@ public class TileMapper : MonoBehaviour
         return _tilemap.WorldToCell(position);
     }
 
+    public Vector3 GetWorldCenterOftile(Vector3Int position)
+    {
+        return _tilemap.CellToWorld(position);
+    }
+
     string GetTileType(IMapGridModel grid, int x, int y)
     {
         var dimensions = grid.Dimensions;

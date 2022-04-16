@@ -100,8 +100,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     void PositionBuilding(Building building, Vector2Int gridPosition)
     {
-        var position = new Vector3(gridPosition.x, gridPosition.y, 0);
-        building.transform.position = position;
+        building.transform.position = _tilemapper.GetWorldCenterOftile((Vector3Int)gridPosition);
     }
 
     Agent GetAgentFromModel(IAgentModel model)
