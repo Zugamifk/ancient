@@ -10,7 +10,7 @@
         <VisualElement style="flex-direction: Row; align-self: Center;">
             <VisualElement >
                 <DropdownField name="NorthEdge" />
-                <DropdownField name="EastEdge" />
+                <DropdownField name="WestEdge" />
             </VisualElement>
             <VisualElement style="margin: 5px; width: 80px">
                 <Image name="Sprite" style="height: 32px;"/>
@@ -22,7 +22,7 @@
                 <e:ObjectField name="NewSpriteField" />
             </VisualElement>
             <VisualElement>
-                <DropdownField name="WestEdge" />
+                <DropdownField name="EastEdge" />
                 <DropdownField name="SouthEdge" />
             </VisualElement>
         </VisualElement>

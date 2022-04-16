@@ -14,7 +14,7 @@ public class TileTypeData : ScriptableObject
     {
         foreach(var data in Tiles)
         {
-            _bordersToData[(data.North, data.East, data.South, data.West)] = data;
+            _bordersToData[(data.West, data.North, data.East, data.South)] = data;
         }
     }
 
