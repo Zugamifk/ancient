@@ -6,7 +6,7 @@ public class NarrativeCollection : ScriptableObject
 {
     public NarrativeData[] Narratives;
 
-    public Dictionary<string, NarrativeData> _nameToData = new Dictionary<string, NarrativeData>();
+    Dictionary<string, NarrativeData> _nameToData = new Dictionary<string, NarrativeData>();
 
     private void OnEnable()
     {

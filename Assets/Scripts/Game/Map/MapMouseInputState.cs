@@ -31,7 +31,7 @@ public class MapMouseInput : MouseInputState
                 var renderTex = target.GetComponent<RenderTextureRaycaster>();
                 if (renderTex != null)
                 {
-                    if (renderTex.Raycast(hit.textureCoord, out hit))
+                    if (renderTex.RayCast(hit.textureCoord, out hit))
                     {
                         if(leftButtonDown) { 
                             _map.SetTile(hit.point, Names.Tiles.Road);

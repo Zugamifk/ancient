@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4993b611ef9f4a540abc075bdfd87569
+guid: c8c2e82a7de8140438a8f3f27d22b522
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
-  spriteBorder: {x: 10, y: 101, z: 13, w: 8}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Map_0
+      name: Papers_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 101
-        width: 234
-        height: 147
+        x: 0
+        y: 767
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,8 +130,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f98282f245bc4384e86ae1bf5ae1b479
-      internalID: 1235130676
+      spriteID: 69c82dad5ca215a419f92d9889fe4a91
+      internalID: -1792555090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Papers_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08c321cae28de4441aecfe1c2b2c5209
+      internalID: 2053261113
       vertices: []
       indices: 
       edges: []
@@ -140,14 +161,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Map_0: 1235130676
+      Papers_1: 2053261113
+      Papers_0: -1792555090
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

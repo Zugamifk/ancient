@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class CheatController : ICheatController
 {
-    Director _director;
+    GameController _gameController;
 
     public IGameModel GameModel { get; }
 
-    public CheatController(Director director, IGameModel model)
+    public CheatController(GameController controller, IGameModel model)
     {
-        _director = director;
+        _gameController = controller;
         GameModel = model;
     }
 
     public void SetTile(int x, int y, string type)
     {
-        _director.SetTile(x, y, type);
+        _gameController.SetTile(x, y, type);
     }
 }

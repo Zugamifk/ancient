@@ -16,6 +16,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
     Dictionary<string, Agent> _agents = new Dictionary<string, Agent>();
     ICheatController _cheatController;
 
+    // todo: put cheatcontroller in gamemodel and queue commands then send on frameupdate()
     public void SetCheatController(ICheatController controller)
     {
         _cheatController = controller;
