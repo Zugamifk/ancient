@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07458078792d7074abcaa84d46cf5de5, type: 3}
-  m_Name: Step3
+  m_Script: {fileID: 11500000, guid: 6bf5fbf6cf13dde42b5060b23a9014d5, type: 3}
+  m_Name: TestNarratives
   m_EditorClassIdentifier: 
-  Name: Step3
-  Next: 
-  Item: Letter
+  Narratives:
+  - {fileID: 11400000, guid: 967eb9e6185151948887fa93e3836a5b, type: 2}
+  - {fileID: 11400000, guid: cb215497de8bbfd40bacd1702b66c126, type: 2}

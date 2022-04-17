@@ -8,4 +8,5 @@ public interface INarrativeEventHandler
     void SpawnAgent(string character, string position);
     void WalkToPosition(string character, string destination, EventHandler<Vector2Int> reachPathEnd);
     void SpawnDeskItem(string name);
+    void ReceievePackage(string name);
 }

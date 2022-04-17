@@ -96,6 +96,11 @@ public class GameController : INarrativeEventHandler, IGameInitializer, ICheatCo
         _deskController.AddItem(name, _model.Desk);
     }
 
+    void INarrativeEventHandler.ReceievePackage(string name)
+    {
+
+    }
+
     Vector2 ParsePosition(string position)
     {
         Vector2 spawnPosition;

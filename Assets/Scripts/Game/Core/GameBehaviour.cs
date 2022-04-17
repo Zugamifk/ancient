@@ -23,6 +23,9 @@ public class GameBehaviour : MonoBehaviour
     Map _map;
     [SerializeField]
     Desk _desk;
+    [Header("Test")]
+    [SerializeField]
+    string _testNarrative;
 
     GameController _controller;
     PrefabCollectionSet _prefabCollections;
@@ -64,7 +67,11 @@ public class GameBehaviour : MonoBehaviour
         init.AddBuilding(Names.Buildings.Manor, Vector2Int.zero);
         init.AddBuilding(Names.Buildings.House, new Vector2Int(5, 2));
         init.BuildRoad(Names.Buildings.Manor, Names.Buildings.House);
-        init.StartNarrative("Test");
+
+        if (!string.IsNullOrEmpty(_testNarrative))
+        {
+            init.StartNarrative(_testNarrative);
+        }
 
         _map.FullRebuild(_controller.Model);
     }

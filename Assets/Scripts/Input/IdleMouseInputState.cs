@@ -9,7 +9,9 @@ public class IdleMouseInputState : MouseInputState
 
     public override MouseInputState UpdateState()
     {
-        if(Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
+        bool leftMouseButtonUp = Input.GetMouseButtonUp(0);
+        bool rightMouseButtonUp = Input.GetMouseButtonUp(1);
+        if (leftMouseButtonUp || rightMouseButtonUp)
         {
             _dragStartPos = null;
 
@@ -19,10 +21,10 @@ public class IdleMouseInputState : MouseInputState
                 var target = hit.collider.gameObject;
 
                 // selectable
-                var selectable = target.GetComponent<ISelectable>();
+                var selectable = target.GetComponent<Clickable>();
                 if (selectable != null)
                 {
-                    return selectable.Select(this);
+                    selectable.Select(leftMouseButtonUp ? 0 : 1);
                 }
             }
         }
@@ -46,7 +48,7 @@ public class IdleMouseInputState : MouseInputState
                 var target = hit.collider.gameObject;
 
                 // desk draggables
-                var draggable = target.GetComponent<DraggableGameObject>();
+                var draggable = target.GetComponent<Draggable>();
                 if (draggable != null)
                 {
                     Debug.Log(draggable);

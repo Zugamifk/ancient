@@ -5,9 +5,9 @@ using UnityEngine;
 internal class DragInputState : MouseInputState
 {
     Vector3 _lastDragPos;
-    DraggableGameObject _draggable;
+    Draggable _draggable;
 
-    public DragInputState(MouseInputState state, DraggableGameObject target)
+    public DragInputState(MouseInputState state, Draggable target)
         : base(state)
     {
         _lastDragPos = _context.DeskCameraController.GetMouseWorldPosition();

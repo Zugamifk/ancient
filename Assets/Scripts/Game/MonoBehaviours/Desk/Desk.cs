@@ -29,6 +29,11 @@ public class Desk : MonoBehaviour
         if (!_items.TryGetValue(model.Name, out go))
         {
             go = SpawnItem(model.Name);
+            var clickable = go.GetComponent<Clickable>();
+            if (clickable!=null)
+            {
+                clickable.Clicked += (_, button) => model.ClickItem(button);
+            }
         }
         return go;
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour, ISelectable
+public class Building : MonoBehaviour
 {
     [SerializeField]
     Transform _Entrance;
@@ -21,10 +21,5 @@ public class Building : MonoBehaviour, ISelectable
         {
             _building.FrameUpdate(model);
         }
-    }
-
-    public MouseInputState Select(MouseInputState current)
-    {
-        throw new System.NotImplementedException();
     }
 }

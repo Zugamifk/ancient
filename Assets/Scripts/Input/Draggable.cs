@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ISelectable
+public class Draggable : MonoBehaviour
 {
-    MouseInputState Select(MouseInputState current);
+
 }

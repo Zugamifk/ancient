@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bf5fbf6cf13dde42b5060b23a9014d5, type: 3}
-  m_Name: Narratives
+  m_Script: {fileID: 11500000, guid: f5dfab37c62028742986bff9d6c3a741, type: 3}
+  m_Name: Envelope
   m_EditorClassIdentifier: 
-  Narratives:
-  - {fileID: 11400000, guid: 967eb9e6185151948887fa93e3836a5b, type: 2}
+  Name: Envelope
+  Prefab: {fileID: 7022535038171986975, guid: 7a46e030498e802438c7c9f3fdc16d6e, type: 3}
+  Contents:
+  - Letter

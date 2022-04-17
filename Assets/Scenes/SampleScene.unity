@@ -1388,6 +1388,7 @@ MonoBehaviour:
   _deskItemCollection: {fileID: 11400000, guid: 6ac59d2980d53fa4794d2b52d4b11527, type: 2}
   _map: {fileID: 1645037285}
   _desk: {fileID: 1517378200}
+  _testNarrative: ReceiveLetter
 --- !u!4 &1415220726
 Transform:
   m_ObjectHideFlags: 0
