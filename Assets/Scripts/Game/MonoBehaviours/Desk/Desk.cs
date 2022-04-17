@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Desk : MonoBehaviour
@@ -17,6 +18,20 @@ public class Desk : MonoBehaviour
 
     public void FrameUpdate(IGameModel model)
     {
+        List<string> toRemove = new List<string>();
+        foreach (var kv in _items)
+        {
+            if(!model.Desk.Items.Any(item=>item.Name == kv.Key))
+            {
+                Destroy(kv.Value);
+                toRemove.Add(kv.Key);
+            }
+        }
+        foreach(var item in toRemove)
+        {
+            _items.Remove(item);
+        }
+
         foreach (var item in model.Desk.Items)
         {
             var go = GetItemFromModel(item);

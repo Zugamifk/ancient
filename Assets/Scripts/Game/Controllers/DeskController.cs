@@ -23,7 +23,6 @@ public class DeskController
         if(data is PackageItemData package)
         {
             itemModel.ClickedItem += (_, button) => {
-                Debug.Log("Opening " + name);
                 RemoveItem(name, deskModel);
                 foreach (var item in package.Contents)
                 {

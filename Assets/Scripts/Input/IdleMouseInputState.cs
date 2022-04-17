@@ -51,7 +51,6 @@ public class IdleMouseInputState : MouseInputState
                 var draggable = target.GetComponent<Draggable>();
                 if (draggable != null)
                 {
-                    Debug.Log(draggable);
                     return new DragInputState(this, draggable);
                 }
 
