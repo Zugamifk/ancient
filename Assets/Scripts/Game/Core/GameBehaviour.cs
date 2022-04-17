@@ -17,7 +17,6 @@ public class GameBehaviour : MonoBehaviour
     [SerializeField]
     Map _map;
 
-    CheatController _cheatController;
     GameController _controller;
     PrefabCollectionSet _prefabCollections;
 
@@ -35,11 +34,10 @@ public class GameBehaviour : MonoBehaviour
     {
         // Create main controllers
         _controller = new GameController(_agentCollection, _tileDataCollection, _mapData, _narrativeCollection);
-        _cheatController = new CheatController(_controller, _controller.Model);
 
         // Init scene objects
         _map.SetPrefabCollections(_prefabCollections);
-        _map.SetCheatController(_cheatController);
+        _map.SetCheatController(_controller);
 
         // Start game
         DemoInit();
@@ -53,11 +51,11 @@ public class GameBehaviour : MonoBehaviour
 
     void DemoInit()
     {
-        _controller.AddBuilding(Names.Buildings.Manor, Vector2Int.zero);
-        _controller.AddBuilding(Names.Buildings.House, new Vector2Int(5, 2));
-        _controller.BuildRoad(Names.Buildings.Manor, Names.Buildings.House);
-
-        _controller.StartNarrative("Test");
+        var init = _controller as IGameInitializer;
+        init.AddBuilding(Names.Buildings.Manor, Vector2Int.zero);
+        init.AddBuilding(Names.Buildings.House, new Vector2Int(5, 2));
+        init.BuildRoad(Names.Buildings.Manor, Names.Buildings.House);
+        init.StartNarrative("Test");
 
         _map.FullRebuild(_controller.Model);
     }

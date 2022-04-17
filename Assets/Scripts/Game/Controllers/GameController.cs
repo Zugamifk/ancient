@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GameController : INarrativeEventHandler
+public class GameController : INarrativeEventHandler, IGameInitializer, ICheatController
 {
     TimeController _timeController = new TimeController();
     AgentController _agentController = new AgentController();
@@ -37,26 +37,31 @@ public class GameController : INarrativeEventHandler
         }
     }
 
-    #region Public Interface
-    public void StartNarrative(string name)
+    #region IGameInitializer
+    void IGameInitializer.StartNarrative(string name)
     {
         _narrativeController.StartNarrative(name, _model);
     }
-    public void AddBuilding(string name, Vector2Int position)
+    void IGameInitializer.AddBuilding(string name, Vector2Int position)
     {
         _mapController.AddBuilding(_model.MapModel, name, position);
     }
 
-    public void BuildRoad(string startName, string endName)
+    void IGameInitializer.BuildRoad(string startName, string endName)
     {
         _mapController.BuildRoad(_model.MapModel, startName, endName);
     }
+    #endregion
 
-    public void SetTile(int x, int y, string type)
+    #region ICheatController
+    IGameModel ICheatController.GameModel => _model;
+    void ICheatController.SetTile(int x, int y, string type)
     {
         _mapController.SetTile(_model.MapModel, x, y, type);
     }
+    #endregion
 
+    #region INarrativeEventHandler
     void INarrativeEventHandler.SpawnAgent(string name, string position)
     {
         var spawnPosition = ParsePosition(position);
@@ -95,7 +100,5 @@ public class GameController : INarrativeEventHandler
         }
         return spawnPosition;
     }
-
-    
     #endregion
 }
