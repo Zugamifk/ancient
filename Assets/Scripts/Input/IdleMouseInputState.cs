@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class IdleMouseInputState : MouseInputState
 {
+    const float DRAG_THRESHOLD=5;
+    Vector3? _dragStartPos;
+
     public override MouseInputState UpdateState()
     {
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
         {
+            _dragStartPos = null;
+
             RaycastHit hit;
             if (_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layers.Desk), out hit))
             {
@@ -24,11 +29,22 @@ public class IdleMouseInputState : MouseInputState
 
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
+            _dragStartPos = Input.mousePosition;
+        }
+
+        if(Input.GetMouseButton(0) || Input.GetMouseButton(1))
+        {
+            var drag = (Input.mousePosition - _dragStartPos.Value).magnitude;
+            if (drag < DRAG_THRESHOLD)
+            {
+                return this;
+            }
+
             RaycastHit hit;
-            if(_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layers.Desk), out hit))
+            if (_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layers.Desk), out hit))
             {
                 var target = hit.collider.gameObject;
-                
+
                 // desk draggables
                 var draggable = target.GetComponent<DraggableGameObject>();
                 if (draggable != null)
