@@ -37,7 +37,6 @@ public class GameBehaviour : MonoBehaviour
 
         // Init scene objects
         _map.SetPrefabCollections(_prefabCollections);
-        _map.SetCheatController(_controller);
 
         // Start game
         DemoInit();

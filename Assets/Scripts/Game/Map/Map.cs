@@ -14,13 +14,8 @@ public class Map : MonoBehaviour, IMouseInputHandler
     TileMapper _tilemapper;
     Dictionary<string, Building> _buildings = new Dictionary<string, Building>();
     Dictionary<string, Agent> _agents = new Dictionary<string, Agent>();
-    ICheatController _cheatController;
 
-    // todo: put cheatcontroller in gamemodel and queue commands then send on frameupdate()
-    public void SetCheatController(ICheatController controller)
-    {
-        _cheatController = controller;
-    }
+    Queue<(int, int, string)> _cheatSetTileQueue = new Queue<(int, int, string)>();
 
     public void SetPrefabCollections(PrefabCollectionSet prefabCollections)
     {
@@ -31,8 +26,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
     public void SetTile(Vector3 position, string type)
     {
         var tile = _tilemapper.GetTileFromPosition(position);
-        _cheatController.SetTile(tile.x, tile.y, type);
-        _tilemapper.SetTile(tile.x, tile.y, type, _cheatController.GameModel.Map);
+        _cheatSetTileQueue.Enqueue((tile.x, tile.y, type));
     }
 
     private void Awake()
@@ -77,6 +71,13 @@ public class Map : MonoBehaviour, IMouseInputHandler
         {
             var agent = GetAgentFromModel(a);
             agent.FrameUpdate(a);
+        }
+
+        while (_cheatSetTileQueue.Count > 0)
+        {
+            var (x,y,type) = _cheatSetTileQueue.Dequeue();
+            model.Cheats.SetTile(x, y, type);
+            _tilemapper.SetTile(x, y, model.Cheats.GameModel.Map);
         }
     }
 

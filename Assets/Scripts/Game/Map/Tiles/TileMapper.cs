@@ -17,7 +17,7 @@ public class TileMapper : MonoBehaviour
         _prefabCollections = prefabCollections;
     }
 
-    public void SetTile(int x, int y, string type, IMapModel model)
+    public void SetTile(int x, int y, IMapModel model)
     {
         var tiles = new Tile[9];
         int t = 0;

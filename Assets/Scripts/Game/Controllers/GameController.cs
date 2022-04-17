@@ -21,6 +21,8 @@ public class GameController : INarrativeEventHandler, IGameInitializer, ICheatCo
         _mapController = new MapController(tileCollection, mapData);
         _mapController.InitializeModel(_model.MapModel);
         _narrativeController = new NarrativeController(narrativeCollection, this);
+
+        _model.Cheats = this;
     }
 
     public void Frameupdate(float deltaTime)
