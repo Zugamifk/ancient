@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,7 +78,7 @@ public class GameController : INarrativeEventHandler, IGameInitializer, ICheatCo
         _model.Agents.Add(name, agent);
     }
 
-    void INarrativeEventHandler.WalkToPosition(string name, string destination)
+    void INarrativeEventHandler.WalkToPosition(string name, string destination, EventHandler<Vector2Int> reachedPathEnd)
     {
         var destinationPosition = ParsePosition(destination);
         var startPoint = _model.Agents[name].WorldPosition;
@@ -85,6 +86,7 @@ public class GameController : INarrativeEventHandler, IGameInitializer, ICheatCo
         var path = _mapController.GetPath(Vector2Int.FloorToInt(startPoint), Vector2Int.FloorToInt(endPoint), _model.MapModel.Grid);
         var agent = _model.Agents[name];
         agent.CityPath = path;
+        agent.ReachedPathEnd += reachedPathEnd;
     }
 
     Vector2 ParsePosition(string position)

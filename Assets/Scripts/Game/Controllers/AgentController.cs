@@ -26,6 +26,13 @@ public class AgentController
                     distance -= distanceToEnd;
                 }
             }
+
+            if(model.AtPathEnd)
+            {
+                model.OnReachedPathEnd();
+                model.CityPath = null;
+                model.CurrentPathIndex = 0;
+            }
         }
     }
 }

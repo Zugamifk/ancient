@@ -18,6 +18,7 @@ class NarrativeController
     {
         var narrative = BuildNarrative(name);
         model.Narratives.Add(name, narrative);
+        narrative.CurrentState.EnterState(model);
     }
 
    public void FrameUpdate(NarrativeModel narrative, GameModel model)
@@ -27,14 +28,17 @@ class NarrativeController
         var next = narrative.CurrentState.UpdateState(model);
         if (string.IsNullOrEmpty(next))
         {
+            narrative.CurrentState.ExitState(model);
             narrative.CurrentState = null;
         } else if (next!=narrative.CurrentState.Name) 
         {
             var data = _collection.GetNarrative(narrative.Name);
             var stateData = data.Steps.First(s => s.Name == next);
+            narrative.CurrentState.ExitState(model);
             narrative.CurrentState = BuildNarrativeState(stateData);
+            narrative.CurrentState.EnterState(model);
         }
-   }
+    }
 
     NarrativeModel BuildNarrative(string name)
     {
