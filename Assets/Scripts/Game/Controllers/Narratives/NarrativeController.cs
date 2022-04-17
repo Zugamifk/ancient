@@ -29,7 +29,7 @@ class NarrativeController
         {
             narrative.CurrentState = null;
         } else if (next!=narrative.CurrentState.Name) 
-        { 
+        {
             var data = _collection.GetNarrative(narrative.Name);
             var stateData = data.Steps.First(s => s.Name == next);
             narrative.CurrentState = BuildNarrativeState(stateData);
@@ -55,7 +55,9 @@ class NarrativeController
             case SpawnAgentData data:
                 return InstantiateGameEvent<SpawnAgentState, SpawnAgentData>(data);
             case MoveAgentData data:
-                return InstantiateGameEvent<MoveAgentEvent, MoveAgentData>(data);
+                return InstantiateGameEvent<MoveAgentState, MoveAgentData>(data);
+            case ReceiveItemData data:
+                return InstantiateGameEvent<ReceiveItemState, ReceiveItemData>(data);
             default:
                 break;
         }
