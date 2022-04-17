@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07458078792d7074abcaa84d46cf5de5, type: 3}
-  m_Name: Step3
+  m_Script: {fileID: 11500000, guid: ca997bb2615aea346918b3150ad29a12, type: 3}
+  m_Name: Letter
   m_EditorClassIdentifier: 
-  Name: Step3
-  Next: 
-  Item: Letter
+  Name: Letter
+  Prefab: {fileID: 7022535038171986975, guid: 7a46e030498e802438c7c9f3fdc16d6e, type: 3}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReceiveItemData : LinearStepData
+public interface IDeskModel 
 {
-    public string Item;
+    public IEnumerable<IDeskItemModel> Items { get; }
 }

@@ -6,7 +6,7 @@ public class ReceiveItemState : NarrativeState<ReceiveItemData>
 {
     public override string UpdateState(IGameModel model)
     {
-        Debug.Log("Item Recieved!");
+        EventHandler.SpawnDeskItem(Data.Item);
         return Data.Next;
     }
 }

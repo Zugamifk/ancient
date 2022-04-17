@@ -10,18 +10,20 @@ public class GameController : INarrativeEventHandler, IGameInitializer, ICheatCo
     AgentController _agentController = new AgentController();
     MapController _mapController;
     NarrativeController _narrativeController;
+    DeskController _deskController;
 
     AgentCollection _agentCollection;
 
     GameModel _model = new GameModel();
     public IGameModel Model => _model;
 
-    public GameController(AgentCollection agentCollection, TileDataCollection tileCollection, MapData mapData, NarrativeCollection narrativeCollection)
+    public GameController(AgentCollection agentCollection, TileDataCollection tileCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection)
     {
         _agentCollection = agentCollection;
         _mapController = new MapController(tileCollection, mapData);
         _mapController.InitializeModel(_model.MapModel);
         _narrativeController = new NarrativeController(narrativeCollection, this);
+        _deskController = new DeskController(deskItemCollection);
 
         _model.Cheats = this;
     }
@@ -87,6 +89,11 @@ public class GameController : INarrativeEventHandler, IGameInitializer, ICheatCo
         var agent = _model.Agents[name];
         agent.CityPath = path;
         agent.ReachedPathEnd += reachedPathEnd;
+    }
+
+    void INarrativeEventHandler.SpawnDeskItem(string name)
+    {
+        _deskController.AddItem(name, _model.Desk);
     }
 
     Vector2 ParsePosition(string position)

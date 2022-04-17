@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameBehaviour : MonoBehaviour
 {
+    [Header("Data")]
     [SerializeField]
     BuildingCollection _buildingCollection;
     [SerializeField]
@@ -15,7 +16,13 @@ public class GameBehaviour : MonoBehaviour
     [SerializeField]
     MapData _mapData;
     [SerializeField]
+    DeskItemCollection _deskItemCollection;
+
+    [Header("Behaviours")]
+    [SerializeField]
     Map _map;
+    [SerializeField]
+    Desk _desk;
 
     GameController _controller;
     PrefabCollectionSet _prefabCollections;
@@ -26,6 +33,7 @@ public class GameBehaviour : MonoBehaviour
         {
             BuildingCollection = _buildingCollection,
             AgentCollection = _agentCollection,
+            DeskItemCollection = _deskItemCollection,
             TileBuilder = _tileDataCollection
         };
     }
@@ -33,10 +41,11 @@ public class GameBehaviour : MonoBehaviour
     private void Start()
     {
         // Create main controllers
-        _controller = new GameController(_agentCollection, _tileDataCollection, _mapData, _narrativeCollection);
+        _controller = new GameController(_agentCollection, _tileDataCollection, _mapData, _narrativeCollection, _deskItemCollection);
 
         // Init scene objects
         _map.SetPrefabCollections(_prefabCollections);
+        _desk.SetPrefabCollections(_prefabCollections);
 
         // Start game
         DemoInit();
@@ -46,6 +55,7 @@ public class GameBehaviour : MonoBehaviour
     {
         _controller.Frameupdate(Time.deltaTime);
         _map.FrameUpdate(_controller.Model);
+        _desk.FrameUpdate(_controller.Model);
     }
 
     void DemoInit()
