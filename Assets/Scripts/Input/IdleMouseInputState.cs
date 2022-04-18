@@ -4,28 +4,36 @@ using UnityEngine;
 
 public class IdleMouseInputState : MouseInputState
 {
-    const float DRAG_THRESHOLD=5;
+    const float DRAG_THRESHOLD = 5;
     Vector3? _dragStartPos;
 
     public override MouseInputState UpdateState()
     {
+        RaycastHit hit;
+        if (!_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layers.Desk), out hit))
+        {
+            return this;
+        }
+
+        var target = hit.collider.gameObject;
+
+        var renderTex = target.GetComponent<RenderTextureRaycaster>();
+        if (renderTex != null)
+        {
+            return RayCastMap(renderTex, hit.textureCoord);
+        }
+
         bool leftMouseButtonUp = Input.GetMouseButtonUp(0);
         bool rightMouseButtonUp = Input.GetMouseButtonUp(1);
         if (leftMouseButtonUp || rightMouseButtonUp)
         {
             _dragStartPos = null;
 
-            RaycastHit hit;
-            if (_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layers.Desk), out hit))
+            // selectable
+            var clickable = target.GetComponent<Clickable>();
+            if (clickable != null)
             {
-                var target = hit.collider.gameObject;
-
-                // selectable
-                var selectable = target.GetComponent<Clickable>();
-                if (selectable != null)
-                {
-                    selectable.Select(leftMouseButtonUp ? 0 : 1);
-                }
+                clickable.Select(leftMouseButtonUp ? 0 : 1);
             }
         }
 
@@ -34,31 +42,14 @@ public class IdleMouseInputState : MouseInputState
             _dragStartPos = Input.mousePosition;
         }
 
-        if(Input.GetMouseButton(0) || Input.GetMouseButton(1))
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
+            // desk draggables
+            var draggable = target.GetComponent<Draggable>();
             var drag = (Input.mousePosition - _dragStartPos.Value).magnitude;
-            if (drag < DRAG_THRESHOLD)
+            if (draggable != null && drag >= DRAG_THRESHOLD)
             {
-                return this;
-            }
-
-            RaycastHit hit;
-            if (_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layers.Desk), out hit))
-            {
-                var target = hit.collider.gameObject;
-
-                // desk draggables
-                var draggable = target.GetComponent<Draggable>();
-                if (draggable != null)
-                {
-                    return new DragInputState(this, draggable);
-                }
-
-                var renderTex = target.GetComponent<RenderTextureRaycaster>();
-                if (renderTex != null)
-                {
-                    return RayCastMap(renderTex, hit.textureCoord);
-                }
+                return new DragInputState(this, draggable);
             }
         }
 
@@ -68,16 +59,30 @@ public class IdleMouseInputState : MouseInputState
     MouseInputState RayCastMap(RenderTextureRaycaster raycaster, Vector2 position)
     {
         RaycastHit hit;
-        if (raycaster.RayCast(position, out hit))
+        if (!raycaster.RayCast(position, out hit))
         {
-            var target = hit.collider.gameObject;
+            return this;
+        }
+        
+        var target = hit.collider.gameObject;
+        bool leftMouseButtonUp = Input.GetMouseButtonUp(0);
+        bool rightMouseButtonUp = Input.GetMouseButtonUp(1);
 
-            // most generic handler
-            var input = target.GetComponent<IMouseInputHandler>();
-            if (input != null)
+        if (leftMouseButtonUp || rightMouseButtonUp)
+        {
+            // selectable
+            var clickable = target.GetComponent<Clickable>();
+            if (clickable != null)
             {
-                return input.GetInputState(this);
+                clickable.Select(leftMouseButtonUp ? 0 : 1);
             }
+        }
+
+        // most generic handler
+        var input = target.GetComponent<IMouseInputHandler>();
+        if (input != null)
+        {
+            return input.GetInputState(this);
         }
 
         return this;

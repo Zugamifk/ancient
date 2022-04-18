@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 329921403675462314}
+  - component: {fileID: 5353749168607688292}
   - component: {fileID: 7181186058273390971}
+  - component: {fileID: 8201167801175475907}
   m_Layer: 0
   m_Name: View
   m_TagString: Untagged
@@ -32,6 +34,20 @@ Transform:
   m_Father: {fileID: 3227864440446316002}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5353749168607688292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52004717419775439}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fb7adb304bae142b7d2339b5c104a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
+  outlineSize: 1
 --- !u!212 &7181186058273390971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52,7 +68,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 038d6fe64eea89447a446773a069609b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,6 +100,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8201167801175475907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52004717419775439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1f772ece9d1014faf7e8afa84ed19b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3227864440446316006
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +123,7 @@ GameObject:
   - component: {fileID: 3227864440446316002}
   - component: {fileID: 3227864440446316000}
   - component: {fileID: 5019545154134279699}
+  - component: {fileID: 4534254553233559997}
   - component: {fileID: 3128134623156708967}
   m_Layer: 0
   m_Name: House
@@ -132,7 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc6f5fe11f9eb148872f9438ccbf492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Entrance: {fileID: 3227864440568188579}
+  _highlighter: {fileID: 8201167801175475907}
+  _entrance: {fileID: 3227864440568188579}
 --- !u!114 &5019545154134279699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +173,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bd9a2697c39415498a696be343af1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4534254553233559997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227864440446316006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c00cdc64c846c240ac38093ad3bc28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &3128134623156708967
