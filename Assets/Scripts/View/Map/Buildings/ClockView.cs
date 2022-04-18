@@ -21,11 +21,12 @@ public class ClockView : MonoBehaviour
     {
         var minute = model.Minute;
         var hour = model.Hour;
-        
         if(_continuous)
         {
-            _hourHand.transform.localRotation = Quaternion.AngleAxis(360 * hour / 12, Vector3.forward);
-            _minuteHand.transform.localRotation = Quaternion.AngleAxis(6 * minute, Vector3.forward);
+            float hourAngle = minute / (12*60f);
+            _hourHand.transform.localRotation = Quaternion.AngleAxis(360f * hourAngle, Vector3.forward);
+            float minuteAngle = minute / 60f;
+            _minuteHand.transform.localRotation = Quaternion.AngleAxis(360f * minuteAngle, Vector3.forward);
         } else
         {
             hour %= 12;

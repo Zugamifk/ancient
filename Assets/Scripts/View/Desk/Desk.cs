@@ -66,6 +66,7 @@ public class Desk : MonoBehaviour, IUpdateable
     {
         child.SetParent(_inboxSpawn);
         SetLayer(child, _inboxSpawn.gameObject.layer);
+        child.transform.localPosition = Vector3.zero;
     }
 
     void SetLayer(Transform tf, int layer)
