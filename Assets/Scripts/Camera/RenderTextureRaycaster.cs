@@ -11,6 +11,6 @@ public class RenderTextureRaycaster : MonoBehaviour
     {
         // convert the hit texture coordinates into camera coordinates
         Ray portalRay = _camera.ScreenPointToRay(new Vector2(texCoord.x * _camera.pixelWidth, texCoord.y * _camera.pixelHeight));
-        return Physics.Raycast(portalRay, out hit, float.MaxValue, 1 << LayerMask.NameToLayer(Layers.Map));
+        return Physics.Raycast(portalRay, out hit, float.MaxValue, 1 << LayerMask.NameToLayer(Layer.Map));
     }
 }

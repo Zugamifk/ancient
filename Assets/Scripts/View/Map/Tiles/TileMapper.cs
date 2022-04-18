@@ -9,7 +9,7 @@ public class TileMapper : MonoBehaviour
     [SerializeField]
     Tilemap _tilemap;
 
-    readonly string _defaultTileType = Names.Tiles.Grass;
+    readonly string _defaultTileType = Name.Tile.Grass;
     PrefabCollectionSet _prefabCollections;
 
     public void SetPrefabCollections(PrefabCollectionSet prefabCollections)

@@ -48,7 +48,7 @@ public class MapController
         var pointB = Vector2Int.FloorToInt(end.Position);
         int xs = Math.Sign(pointB.x - pointA.x);
         int ys = Math.Sign(pointB.y - pointA.y);
-        var roadtile = GetTileModel(Names.Tiles.Road);
+        var roadtile = GetTileModel(Name.Tile.Road);
         for (int x = pointA.x; x != pointB.x; x += xs)
         {
             model.Grid.Map[new Vector2Int(x, pointA.y)] = roadtile;

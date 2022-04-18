@@ -25,7 +25,7 @@ public class MapMouseInput : MouseInputState
         if (leftButtonDown || rightButtonDown)
         {
             RaycastHit hit;
-            if (_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layers.Desk), out hit))
+            if (_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layer.Desk), out hit))
             {
                 var target = hit.collider.gameObject;
                 var renderTex = target.GetComponent<RenderTextureRaycaster>();
@@ -34,7 +34,7 @@ public class MapMouseInput : MouseInputState
                     if (renderTex.RayCast(hit.textureCoord, out hit))
                     {
                         if(leftButtonDown) { 
-                            _map.SetTile(hit.point, Names.Tiles.Road);
+                            _map.SetTile(hit.point, Name.Tile.Road);
                         } else
                         {
                             if (_dragging) { 

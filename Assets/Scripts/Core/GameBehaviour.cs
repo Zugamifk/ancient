@@ -64,9 +64,9 @@ public class GameBehaviour : MonoBehaviour
     void DemoInit()
     {
         var init = _controller as IGameInitializer;
-        init.AddBuilding(Names.Buildings.Manor, Vector2Int.zero);
-        init.AddBuilding(Names.Buildings.House, new Vector2Int(5, 2));
-        init.BuildRoad(Names.Buildings.Manor, Names.Buildings.House);
+        init.AddBuilding(Name.Building.Manor, Vector2Int.zero);
+        init.AddBuilding(Name.Building.House, new Vector2Int(5, 2));
+        init.BuildRoad(Name.Building.Manor, Name.Building.House);
 
         if (!string.IsNullOrEmpty(_testNarrative))
         {

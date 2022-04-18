@@ -10,4 +10,5 @@ public class TimeModel : ITimeModel
 
     public float TotalRealSeconds;
     public int Hour => Mathf.FloorToInt(TotalRealSeconds * TIME_MULTIPLIER) /(SECOND_PER_MINUTE*MINUTES_PER_HOUR);
+
 }

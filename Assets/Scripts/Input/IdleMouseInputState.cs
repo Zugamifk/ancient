@@ -10,7 +10,7 @@ public class IdleMouseInputState : MouseInputState
     public override MouseInputState UpdateState()
     {
         RaycastHit hit;
-        if (!_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layers.Desk), out hit))
+        if (!_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layer.Desk), out hit))
         {
             return this;
         }
