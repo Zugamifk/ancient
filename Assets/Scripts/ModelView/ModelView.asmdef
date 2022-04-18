@@ -1,9 +1,7 @@
 {
-    "name": "Game.Model",
+    "name": "ModelView",
     "rootNamespace": "",
-    "references": [
-        "GUID:69560c3be3d56564da3ecb875d90f45b"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
