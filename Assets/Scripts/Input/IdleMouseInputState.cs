@@ -42,7 +42,7 @@ public class IdleMouseInputState : MouseInputState
             _dragStartPos = Input.mousePosition;
         }
 
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+        if (_dragStartPos.HasValue && ( Input.GetMouseButton(0) || Input.GetMouseButton(1)))
         {
             // desk draggables
             var draggable = target.GetComponent<Draggable>();
