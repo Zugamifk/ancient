@@ -21,7 +21,7 @@ class NarrativeController
         narrative.CurrentState.EnterState(model);
     }
 
-   public void FrameUpdate(NarrativeModel narrative, GameModel model)
+   public void Update(NarrativeModel narrative, GameModel model)
    {
         if (narrative.CurrentState == null) return;
 

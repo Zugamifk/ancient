@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GameController : INarrativeEventHandler, IGameInitializer, ICheatController
+public class GameController : INarrativeEventHandler, IGameInitializer
 {
+    UnityLifecycleController _lifecycleController;
     TimeController _timeController = new TimeController();
     AgentController _agentController = new AgentController();
     MapController _mapController;
@@ -17,28 +18,37 @@ public class GameController : INarrativeEventHandler, IGameInitializer, ICheatCo
     GameModel _model = new GameModel();
     public IGameModel Model => _model;
 
-    public GameController(AgentCollection agentCollection, TileDataCollection tileCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection)
+    public GameController(UnityLifecycleController lifeCycleController, AgentCollection agentCollection, TileDataCollection tileCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection)
     {
+        _lifecycleController = lifeCycleController;
+        _lifecycleController.OnUpdate += Update;
+
         _agentCollection = agentCollection;
         _mapController = new MapController(tileCollection, mapData);
         _mapController.InitializeModel(_model.MapModel);
         _narrativeController = new NarrativeController(narrativeCollection, this);
         _deskController = new DeskController(deskItemCollection);
 
-        _model.Cheats = this;
+        _model.Cheats = new CheatController()
+        {
+            Model = _model,
+            MapController = _mapController
+        };
     }
 
-    public void Frameupdate(float deltaTime)
+    void Update()
     {
-        _timeController.UpdateTimeModel(_model.TimeModel, deltaTime);
+        var deltaTime = Time.deltaTime;
+
+        _timeController.Update(_model.TimeModel, deltaTime);
         foreach (var a in _model.Agents.Values)
         {
-            _agentController.FrameUpdate(a, deltaTime);
+            _agentController.Update(a, deltaTime);
         }
 
-        foreach(var n in _model.Narratives.Values)
+        foreach (var n in _model.Narratives.Values)
         {
-            _narrativeController.FrameUpdate(n, _model);
+            _narrativeController.Update(n, _model);
         }
     }
 
@@ -55,14 +65,6 @@ public class GameController : INarrativeEventHandler, IGameInitializer, ICheatCo
     void IGameInitializer.BuildRoad(string startName, string endName)
     {
         _mapController.BuildRoad(_model.MapModel, startName, endName);
-    }
-    #endregion
-
-    #region ICheatController
-    IGameModel ICheatController.GameModel => _model;
-    void ICheatController.SetTile(int x, int y, string type)
-    {
-        _mapController.SetTile(_model.MapModel, x, y, type);
     }
     #endregion
 

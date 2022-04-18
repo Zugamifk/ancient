@@ -11,7 +11,7 @@ public class CityGraphDrawer : MonoBehaviour
     {
         while (_graph == null)
         {
-            _graph = FindObjectOfType<GameBehaviour>().CityGraph;
+            //_graph = FindObjectOfType<UnityLifecycleController>().CityGraph;
             yield return null;
         }
     }

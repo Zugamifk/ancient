@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AgentController
 {
-    public void FrameUpdate(AgentModel model, float deltaTime)
+    public void Update(AgentModel model, float deltaTime)
     {
         var path = model.CityPath;
         if (path != null)

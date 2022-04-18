@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeController
 {
-    public void UpdateTimeModel(TimeModel model, float deltaTime)
+    public void Update(TimeModel model, float deltaTime)
     {
         model.TotalRealSeconds += deltaTime;
     }
