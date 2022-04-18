@@ -9,7 +9,7 @@ public class ManorBuildingBehaviour : MonoBehaviour, IBuildingBehaviour
 
     public string Name => "Manor";
 
-    public void FrameUpdate(IGameModel model)
+    public void UpdateModel(IGameModel model)
     {
         _clock.UpdateClock(model.Time.Hour % 12);
     }

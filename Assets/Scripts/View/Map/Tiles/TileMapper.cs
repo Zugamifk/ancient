@@ -8,14 +8,10 @@ public class TileMapper : MonoBehaviour
 {
     [SerializeField]
     Tilemap _tilemap;
+    [SerializeField]
+    TileDataCollection _tileDataCollection;
 
     readonly string _defaultTileType = Name.Tile.Grass;
-    PrefabCollectionSet _prefabCollections;
-
-    public void SetPrefabCollections(PrefabCollectionSet prefabCollections)
-    {
-        _prefabCollections = prefabCollections;
-    }
 
     public void SetTile(int x, int y, IMapModel model)
     {
@@ -78,6 +74,6 @@ public class TileMapper : MonoBehaviour
         var top = GetTileType(grid, x, y + 1);
         var right = GetTileType(grid, x + 1, y);
         var bottom = GetTileType(grid, x, y - 1);
-        return _prefabCollections.TileBuilder.GetTile(type, left, top, right, bottom);
+        return _tileDataCollection.GetTile(type, left, top, right, bottom);
     }
 }

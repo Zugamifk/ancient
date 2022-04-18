@@ -20,9 +20,9 @@ public class TileDataEditor : Editor
         public EventCallback<ChangeEvent<string>> onSelectWestEdge;
     }
     const string EDGE_WILDCARD = "*";
-    const string LIST_ELEMENT_UXML_PATH = "Assets/Scripts/Data/Tiles/Editor/TileDataListElement.uxml";
-    const string MAIN_UXML_PATH = "Assets/Scripts/Data/Tiles/Editor/TileDataEditor.uxml";
-    const string TILEDATA_EDITOR_CONFIG_PATH = "Assets/Scripts/Data/Tiles/Editor/TileDataEditorConfig.asset";
+    const string LIST_ELEMENT_UXML_PATH = "Assets/Scripts/Data/Tile/Editor/TileDataListElement.uxml";
+    const string MAIN_UXML_PATH = "Assets/Scripts/Data/Tile/Editor/TileDataEditor.uxml";
+    const string TILEDATA_EDITOR_CONFIG_PATH = "Assets/Scripts/Data/Tile/Editor/TileDataEditorConfig.asset";
 
     TileDataEditorConfig _config;
     Dictionary<string, Button> _toolbarButtons = new Dictionary<string, Button>();
@@ -120,18 +120,26 @@ public class TileDataEditor : Editor
             };
             newSpriteField.RegisterValueChangedCallback(callbacks.addSprite);
 
+            Action<string> SetEdgeValue(Action<string> setter)
+            {
+                return value =>
+                {
+                    setter(value);
+                    EditorUtility.SetDirty(data);
+                };
+            }
             var north = element.Q<DropdownField>("NorthEdge");
             north.value = string.IsNullOrEmpty(data.North) ? EDGE_WILDCARD : data.North;
-            SetUpdateCallback(ref callbacks.onSelectNorthEdge, v => data.North = v, north);
+            SetUpdateCallback(ref callbacks.onSelectNorthEdge, SetEdgeValue(v => data.North = v), north);
             var east = element.Q<DropdownField>("EastEdge");
             east.value = string.IsNullOrEmpty(data.East) ? EDGE_WILDCARD : data.East;
-            SetUpdateCallback(ref callbacks.onSelectEastEdge, v => data.East = v, east);
+            SetUpdateCallback(ref callbacks.onSelectEastEdge, SetEdgeValue(v => data.East = v), east);
             var south = element.Q<DropdownField>("SouthEdge");
             south.value = string.IsNullOrEmpty(data.South) ? EDGE_WILDCARD : data.South;
-            SetUpdateCallback(ref callbacks.onSelectSouthEdge, v => data.South = v, south);
+            SetUpdateCallback(ref callbacks.onSelectSouthEdge, SetEdgeValue(v => data.South = v), south);
             var west = element.Q<DropdownField>("WestEdge");
             west.value = string.IsNullOrEmpty(data.West) ? EDGE_WILDCARD : data.West;
-            SetUpdateCallback(ref callbacks.onSelectWestEdge, v => data.West = v, west);
+            SetUpdateCallback(ref callbacks.onSelectWestEdge, SetEdgeValue(v => data.West = v), west);
 
             var asset = element.Q<ObjectField>("TileDataAsset");
             asset.SetValueWithoutNotify(data);

@@ -18,11 +18,11 @@ public class Building : MonoBehaviour
         GetComponent<Clickable>().Clicked += (_, _) => _highlighter.Highlight(!_highlighter.IsHighlighted);
     }
 
-    public void FrameUpdate(IGameModel model)
+    public void UpdateModel(IGameModel model)
     {
         if (_building != null)
         {
-            _building.FrameUpdate(model);
+            _building.UpdateModel(model);
         }
     }
 }

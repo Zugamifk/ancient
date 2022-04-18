@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeskItemCollection : ScriptableObject, IPrefabCollection
+public class DeskItemCollection : ScriptableObject
 {
     [SerializeField]
     DeskItemData[] _items;
@@ -22,7 +22,7 @@ public class DeskItemCollection : ScriptableObject, IPrefabCollection
         }
     }
 
-    GameObject IPrefabCollection.GetPrefab(string name)
+    public GameObject GetPrefab(string name)
     {
         return _nameToDeskItemData[name].Prefab;
     }

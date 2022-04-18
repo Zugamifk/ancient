@@ -15,6 +15,8 @@ public class Boot : MonoBehaviour
     DeskItemCollection _deskItemCollection;
     [SerializeField]
     UnityLifecycleController _lifecycleController;
+    [SerializeField]
+    UpdateableGameObjectRegistry _updateableRegistry;
 
     [Header("Test")]
     [SerializeField]
@@ -23,7 +25,7 @@ public class Boot : MonoBehaviour
     private void Start()
     {
         // Create main controllers
-        var controller = new GameController(_lifecycleController, _agentCollection, _tileDataCollection, _mapData, _narrativeCollection, _deskItemCollection);
+        var controller = new GameController(_lifecycleController, _updateableRegistry, _agentCollection, _tileDataCollection, _mapData, _narrativeCollection, _deskItemCollection);
 
         // Start game
         DemoInit(controller);

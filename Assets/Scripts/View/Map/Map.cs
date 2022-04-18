@@ -4,24 +4,21 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Map : MonoBehaviour, IMouseInputHandler
+public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
 {
     [SerializeField]
+    AgentCollection _agentCollection;
+    [SerializeField]
+    BuildingCollection _buildingCollection;
+    [SerializeField]
     Transform _spawnedObjectsRoot;
-
-    PrefabCollectionSet _prefabCollections;
 
     TileMapper _tilemapper;
     Dictionary<string, Building> _buildings = new Dictionary<string, Building>();
     Dictionary<string, Agent> _agents = new Dictionary<string, Agent>();
 
     Queue<(int, int, string)> _cheatSetTileQueue = new Queue<(int, int, string)>();
-
-    public void SetPrefabCollections(PrefabCollectionSet prefabCollections)
-    {
-        _prefabCollections = prefabCollections;
-        _tilemapper.SetPrefabCollections(prefabCollections);
-    }
+    bool _isBuilt=false;
 
     public void SetTile(Vector3 position, string type)
     {
@@ -53,24 +50,31 @@ public class Map : MonoBehaviour, IMouseInputHandler
         }
 
         _tilemapper.BuildTilemap(model.Map);
+
+        _isBuilt = true;
     }
 
     /// <summary>
     /// Update with new model data for per-frame updates
     /// </summary>
     /// <param name="model"></param>
-    public void FrameUpdate(IGameModel model)
+    public void UpdateModel(IGameModel model)
     {
+        if(!_isBuilt)
+        {
+            FullRebuild(model);
+        }
+
         foreach (var b in model.Map.Buildings)
         {
             var building = GetBuildingFromModel(b);
-            building.FrameUpdate(model);
+            building.UpdateModel(model);
         }
 
         foreach(var a in model.Agents)
         {
             var agent = GetAgentFromModel(a);
-            agent.FrameUpdate(a);
+            agent.UpdateModel(a);
         }
 
         while (_cheatSetTileQueue.Count > 0)
@@ -93,7 +97,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     Building SpawnBuilding(string name)
     {
-        var prefab = Instantiate(_prefabCollections.BuildingCollection.GetPrefab(name));
+        var prefab = Instantiate(_buildingCollection.GetPrefab(name));
         SetSpawnedParent(prefab.transform);
         var building = prefab.GetComponent<Building>();
         _buildings.Add(name, building);
@@ -117,7 +121,7 @@ public class Map : MonoBehaviour, IMouseInputHandler
 
     Agent SpawnAgent(string name)
     {
-        var prefab = Instantiate(_prefabCollections.AgentCollection.GetPrefab(name));
+        var prefab = Instantiate(_agentCollection.GetAgent(name).MapPrefab);
         SetSpawnedParent(prefab.transform);
         var agent = prefab.GetComponent<Agent>();
         _agents.Add(name, agent);

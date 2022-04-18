@@ -6,7 +6,7 @@ public class HouseBuildingBehaviour : MonoBehaviour, IBuildingBehaviour
 {
     public string Name => "House";
 
-    public void FrameUpdate(IGameModel model)
+    public void UpdateModel(IGameModel model)
     {
     }
 }

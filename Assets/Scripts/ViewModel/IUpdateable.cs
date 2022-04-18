@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPrefabCollection
+public interface IUpdateable
 {
-    GameObject GetPrefab(string name);
+    void UpdateModel(IGameModel model);
 }

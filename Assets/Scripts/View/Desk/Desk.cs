@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Desk : MonoBehaviour
+public class Desk : MonoBehaviour, IUpdateable
 {
+    [SerializeField]
+    DeskItemCollection _deskItemCollection;
     [SerializeField]
     Transform _inboxSpawn;
 
     Dictionary<string, GameObject> _items = new Dictionary<string, GameObject>();
-    PrefabCollectionSet _prefabCollections;
 
-    public void SetPrefabCollections(PrefabCollectionSet prefabCollections)
-    {
-        _prefabCollections = prefabCollections;
-    }
-
-    public void FrameUpdate(IGameModel model)
+    public void UpdateModel(IGameModel model)
     {
         List<string> toRemove = new List<string>();
         foreach (var kv in _items)
@@ -55,7 +51,7 @@ public class Desk : MonoBehaviour
 
     GameObject SpawnItem(string name)
     {
-        var prefab = Instantiate(_prefabCollections.DeskItemCollection.GetPrefab(name));
+        var prefab = Instantiate(_deskItemCollection.GetPrefab(name));
         SetSpawnedParent(prefab.transform);
         _items.Add(name, prefab);
         return prefab;

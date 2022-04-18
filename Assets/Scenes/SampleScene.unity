@@ -1360,7 +1360,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1415220726}
-  - component: {fileID: 1415220725}
+  - component: {fileID: 1415220728}
+  - component: {fileID: 1415220727}
+  - component: {fileID: 1415220729}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1368,27 +1370,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1415220725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415220724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5870c5e90d7d9ac4abbce1457f5c3bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _buildingCollection: {fileID: 11400000, guid: b7253795462aa34478876c987e71c37a, type: 2}
-  _agentCollection: {fileID: 11400000, guid: 4ec40115982d6334da4d53430ac828bf, type: 2}
-  _narrativeCollection: {fileID: 11400000, guid: b47a70c5bf6877147896cd045e08a19e, type: 2}
-  _tileDataCollection: {fileID: 11400000, guid: 0bffc068adc793844891b9f72cbbb086, type: 2}
-  _mapData: {fileID: 11400000, guid: 0788297b3894afc4db132ac2cb073a28, type: 2}
-  _deskItemCollection: {fileID: 11400000, guid: 6ac59d2980d53fa4794d2b52d4b11527, type: 2}
-  _map: {fileID: 1645037285}
-  _desk: {fileID: 1517378200}
-  _testNarrative: ReceiveLetter
 --- !u!4 &1415220726
 Transform:
   m_ObjectHideFlags: 0
@@ -1407,6 +1388,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1415220727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415220724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c93cf6850b7ee4a9f082134208d832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1415220728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415220724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba649bda0395b947bddea76eb7da5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agentCollection: {fileID: 11400000, guid: 4ec40115982d6334da4d53430ac828bf, type: 2}
+  _narrativeCollection: {fileID: 11400000, guid: b47a70c5bf6877147896cd045e08a19e, type: 2}
+  _tileDataCollection: {fileID: 11400000, guid: 0bffc068adc793844891b9f72cbbb086, type: 2}
+  _mapData: {fileID: 11400000, guid: 0788297b3894afc4db132ac2cb073a28, type: 2}
+  _deskItemCollection: {fileID: 11400000, guid: 6ac59d2980d53fa4794d2b52d4b11527, type: 2}
+  _lifecycleController: {fileID: 1415220727}
+  _updateableRegistry: {fileID: 1415220729}
+  _testNarrative: SpawnAndMoveAgent
+--- !u!114 &1415220729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415220724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec17c15a9d4a9a546a5ee40fa8e792f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateableReferences:
+  - {fileID: 1645037281}
+  - {fileID: 1517378198}
 --- !u!1 &1418984176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,6 +1511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 867dcf26e3a89d74a9c7398598d37720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deskItemCollection: {fileID: 11400000, guid: 6ac59d2980d53fa4794d2b52d4b11527, type: 2}
   _inboxSpawn: {fileID: 430524229}
 --- !u!1 &1581665921
 GameObject:
@@ -1704,6 +1733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilemap: {fileID: 891285401}
+  _tileDataCollection: {fileID: 11400000, guid: 0bffc068adc793844891b9f72cbbb086, type: 2}
 --- !u!114 &1645037285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1716,6 +1746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f336b916adb79df4b978e54a6ff160f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _agentCollection: {fileID: 11400000, guid: 4ec40115982d6334da4d53430ac828bf, type: 2}
+  _buildingCollection: {fileID: 11400000, guid: b7253795462aa34478876c987e71c37a, type: 2}
   _spawnedObjectsRoot: {fileID: 1688259637}
 --- !u!65 &1645037286
 BoxCollider:
@@ -1899,15 +1931,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8b00b21f35cd4fd4598db56bb074f4b6, type: 3}
+  m_Sprite: {fileID: -12042867, guid: 8b00b21f35cd4fd4598db56bb074f4b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8, y: 8}
+  m_Size: {x: 16, y: 7.96875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1779713219

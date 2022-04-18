@@ -10,7 +10,7 @@ public class Agent : MonoBehaviour
     Transform _view;
 
 
-    public void FrameUpdate(IAgentModel model)
+    public void UpdateModel(IAgentModel model)
     {
         var dir = model.WorldPosition - (Vector2)transform.position;
         _view.transform.localRotation = Quaternion.Euler(0, dir.x < 0 ? 180 : 0, 0);

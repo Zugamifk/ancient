@@ -6,5 +6,5 @@ public interface IBuildingBehaviour
 {
     string Name { get; }
 
-    void FrameUpdate(IGameModel model);
+    void UpdateModel(IGameModel model);
 }

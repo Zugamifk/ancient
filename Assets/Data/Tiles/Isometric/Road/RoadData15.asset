@@ -15,6 +15,6 @@ MonoBehaviour:
   Sprites:
   - {fileID: -321697834, guid: 34fe8527416b927409178c8acb4d2186, type: 3}
   North: Road
-  East: Road
+  East: '*'
   South: Road
-  West: '*'
+  West: Road

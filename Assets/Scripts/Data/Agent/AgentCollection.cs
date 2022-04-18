@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentCollection : ScriptableObject, IPrefabCollection
+public class AgentCollection : ScriptableObject
 {
     [SerializeField]
     AgentData[] _agents;
@@ -23,8 +23,4 @@ public class AgentCollection : ScriptableObject, IPrefabCollection
         }
     }
 
-    GameObject IPrefabCollection.GetPrefab(string name)
-    {
-        return _nameToAgentData[name].MapPrefab;
-    }
 }

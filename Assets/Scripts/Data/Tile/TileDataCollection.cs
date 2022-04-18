@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileDataCollection : ScriptableObject, ITileBuilder
+public class TileDataCollection : ScriptableObject
 {
     public List<TileTypeData> Tiles = new List<TileTypeData>();
 

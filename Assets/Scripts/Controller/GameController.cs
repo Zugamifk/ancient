@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameController : INarrativeEventHandler, IGameInitializer
 {
     UnityLifecycleController _lifecycleController;
+    UpdateableGameObjectRegistry _updateableGameObjectRegistry;
     TimeController _timeController = new TimeController();
     AgentController _agentController = new AgentController();
     MapController _mapController;
@@ -18,10 +19,11 @@ public class GameController : INarrativeEventHandler, IGameInitializer
     GameModel _model = new GameModel();
     public IGameModel Model => _model;
 
-    public GameController(UnityLifecycleController lifeCycleController, AgentCollection agentCollection, TileDataCollection tileCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection)
+    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, AgentCollection agentCollection, TileDataCollection tileCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection)
     {
         _lifecycleController = lifeCycleController;
         _lifecycleController.OnUpdate += Update;
+        _updateableGameObjectRegistry = updateableRegistry;
 
         _agentCollection = agentCollection;
         _mapController = new MapController(tileCollection, mapData);
@@ -49,6 +51,11 @@ public class GameController : INarrativeEventHandler, IGameInitializer
         foreach (var n in _model.Narratives.Values)
         {
             _narrativeController.Update(n, _model);
+        }
+
+        foreach (var updateable in _updateableGameObjectRegistry.Updateables)
+        {
+            updateable.UpdateModel(_model);
         }
     }
 
