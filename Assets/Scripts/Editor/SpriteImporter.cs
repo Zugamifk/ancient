@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 public class SpriteImporter : AssetPostprocessor
 {
-    void OnPreprocessTexture(Texture2D texture)
+    void OnPreprocessTexture()
     {
         var importer = assetImporter as TextureImporter;
 

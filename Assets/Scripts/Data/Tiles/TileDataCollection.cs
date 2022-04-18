@@ -16,13 +16,13 @@ public class TileDataCollection : ScriptableObject, ITileBuilder
         foreach (var typeData in Tiles)
         {
             var type = typeData.Type;
-            _typeToTypeData[type] = typeData; 
+            _typeToTypeData[type] = typeData;
             foreach (var tileData in typeData.Tiles)
             {
                 var list = BuildNewTileList(tileData);
-                _tileCache.Add((type, tileData.West, tileData.North, tileData.East, tileData.South), list);
+                _tileCache[(type, tileData.West, tileData.North, tileData.East, tileData.South)] = list;
             }
-        } 
+        }
     }
 
     public TileTypeData GetTypeData(string name) => _typeToTypeData[name];
