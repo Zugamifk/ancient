@@ -157,6 +157,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Papers_2
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 897
+        width: 117
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcff0e85c564c5b4c9c4ebff756be3ca
+      internalID: 2044518814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -169,6 +190,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Papers_1: 2053261113
+      Papers_2: 2044518814
       Papers_0: -1792555090
   spritePackingTag: 
   pSDRemoveMatte: 0
