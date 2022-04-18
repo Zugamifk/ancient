@@ -11,6 +11,6 @@ public class ManorBuildingBehaviour : MonoBehaviour, IBuildingBehaviour
 
     public void UpdateModel(IGameModel model)
     {
-        _clock.UpdateClock(model.Time.Hour % 12);
+        _clock.UpdateClock(model.Time);
     }
 }

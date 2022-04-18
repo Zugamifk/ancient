@@ -9,11 +9,14 @@ public class Desk : MonoBehaviour, IUpdateable
     DeskItemCollection _deskItemCollection;
     [SerializeField]
     Transform _inboxSpawn;
+    [SerializeField]
+    ClockView _clock;
 
     Dictionary<string, GameObject> _items = new Dictionary<string, GameObject>();
 
     public void UpdateModel(IGameModel model)
     {
+        // 
         List<string> toRemove = new List<string>();
         foreach (var kv in _items)
         {
@@ -32,6 +35,8 @@ public class Desk : MonoBehaviour, IUpdateable
         {
             var go = GetItemFromModel(item);
         }
+
+        _clock.UpdateClock(model.Time);
     }
 
     GameObject GetItemFromModel(IDeskItemModel model)
