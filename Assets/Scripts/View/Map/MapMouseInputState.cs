@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class MapMouseInput : MouseInputState
 {
-    bool _dragging;
     Vector3 _startPosition;
     Vector3 _startDragPosition;
     Map _map;
@@ -14,8 +13,8 @@ public class MapMouseInput : MouseInputState
         : base(state)
     {
         _map = map;
-        _startPosition = _context.MapCameraController.transform.position;
-        _startDragPosition = _context.MapCameraController.GetMouseWorldPosition();
+        _startPosition = _context.MapCameraController.transform.localPosition;
+        _startDragPosition = Input.mousePosition;
     }
 
     public override MouseInputState UpdateState()
@@ -33,33 +32,18 @@ public class MapMouseInput : MouseInputState
                 {
                     if (renderTex.RayCast(hit.textureCoord, out hit))
                     {
-                        if(leftButtonDown) { 
-                            _map.SetTile(hit.point, Name.Tile.Road);
-                        } else
+                        if (leftButtonDown)
                         {
-                            if (_dragging) { 
-                                var dp = hit.point;
-                                var diff = dp - _startDragPosition;
-                                var newPos = _startPosition - diff;
-                                _context.MapCameraController.PanTo(newPos);
-                            }else
-                            {
-                                _startDragPosition = hit.point;
-                                _dragging = true;
-                            }
+                            _map.SetTile(hit.point, Name.Tile.Road);
+                        }
+                        else
+                        {
+                            var diff = _context.MapCameraController.GetWorldPosition(Input.mousePosition) - _context.MapCameraController.GetWorldPosition(_startDragPosition);
+                            _context.MapCameraController.PanTo(_startPosition - diff);
                         }
                     }
                 }
             }
-            return this;
-        }
-        else if (Input.GetMouseButton(1))
-        {
-            //var dp = _context.MapCameraController.GetMouseWorldPosition();
-            //var diff = dp - _startDragPosition;
-            //var newPos = _startPosition - diff;
-            //Debug.DrawLine()
-            //_context.MapCameraController.PanTo(newPos);
             return this;
         }
         else
