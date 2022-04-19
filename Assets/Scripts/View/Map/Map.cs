@@ -32,29 +32,6 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
     }
 
     /// <summary>
-    /// Fully build map 
-    /// </summary>
-    /// <param name="model"></param>
-    public void FullRebuild(IGameModel model)
-    {
-        foreach(var b in model.Map.Buildings)
-        {
-            Building building = GetBuildingFromModel(b);
-            PositionBuilding(building, b.Position);
-        }
-
-        foreach (var a in model.Agents)
-        {
-            Agent agent = GetAgentFromModel(a);
-            // more spawn agent stuff
-        }
-
-        _tilemapper.BuildTilemap(model.Map);
-
-        _isBuilt = true;
-    }
-
-    /// <summary>
     /// Update with new model data for per-frame updates
     /// </summary>
     /// <param name="model"></param>
@@ -73,8 +50,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
 
         foreach(var a in model.Agents)
         {
-            var agent = GetAgentFromModel(a);
-            agent.UpdateModel(a);
+            UpdateAgent(a);
         }
 
         while (_cheatSetTileQueue.Count > 0)
@@ -83,6 +59,32 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
             model.Cheats.SetTile(x, y, type);
             _tilemapper.SetTile(x, y, model.Cheats.GameModel.Map);
         }
+    }
+
+    void UpdateAgent(IAgentModel model)
+    {
+        var agent = GetAgentFromModel(model);
+        var position = _tilemapper.ModelToWorld(model.WorldPosition);
+        agent.SetPosition(position);
+    }
+
+    void FullRebuild(IGameModel model)
+    {
+        foreach (var b in model.Map.Buildings)
+        {
+            Building building = GetBuildingFromModel(b);
+            PositionBuilding(building, b.Position);
+        }
+
+        foreach (var a in model.Agents)
+        {
+            Agent agent = GetAgentFromModel(a);
+            // more spawn agent stuff
+        }
+
+        _tilemapper.BuildTilemap(model.Map);
+
+        _isBuilt = true;
     }
 
     Building GetBuildingFromModel(IBuildingModel model)

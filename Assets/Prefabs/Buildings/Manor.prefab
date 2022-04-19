@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690496343188701289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 1, z: 0}
+  m_LocalPosition: {x: -0.021, y: 0.682, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -158,6 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5547f5054e3e1c54ab4a3fda3a00c273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _continuous: 0
+  _hourHand: {fileID: 0}
+  _minuteHand: {fileID: 0}
   _clockSpriteRenderer: {fileID: 4193181076117076884}
   _clockFaces:
   - {fileID: -666873803, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
@@ -337,7 +340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3227864440568188576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.42, y: -0.26, z: 0}
+  m_LocalPosition: {x: 0.003, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

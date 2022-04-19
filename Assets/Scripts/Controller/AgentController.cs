@@ -4,34 +4,34 @@ using UnityEngine;
 
 public class AgentController
 {
-    public void Update(AgentModel model, float deltaTime)
+    public void Update(AgentModel agent, GameModel model)
     {
-        var path = model.CityPath;
+        var path = agent.CityPath;
         if (path != null)
         {
-            var distance = model.MoveSpeed * deltaTime;
-            while (distance > 0 && !model.AtPathEnd)
+            var distance = agent.MoveSpeed * model.TimeModel.LastDeltaTime;
+            while (distance > 0 && !agent.AtPathEnd)
             {
-                var end = (Vector2)path.Path[model.CurrentPathIndex];
-                var dir = (end - model.WorldPosition);
+                var end = (Vector2)path.Path[agent.CurrentPathIndex];
+                var dir = (end - agent.WorldPosition);
                 var distanceToEnd = dir.magnitude;
                 if (distance < distanceToEnd)
                 {
-                    model.WorldPosition += dir.normalized * distance;
+                    agent.WorldPosition += dir.normalized * distance;
                     break;
                 } else
                 {
-                    model.WorldPosition = end;
-                    model.CurrentPathIndex++;
+                    agent.WorldPosition = end;
+                    agent.CurrentPathIndex++;
                     distance -= distanceToEnd;
                 }
             }
 
-            if(model.AtPathEnd)
+            if(agent.AtPathEnd)
             {
-                model.OnReachedPathEnd();
-                model.CityPath = null;
-                model.CurrentPathIndex = 0;
+                agent.OnReachedPathEnd();
+                agent.CityPath = null;
+                agent.CurrentPathIndex = 0;
             }
         }
     }

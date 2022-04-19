@@ -9,11 +9,11 @@ public class Agent : MonoBehaviour
     [SerializeField]
     Transform _view;
 
-
-    public void UpdateModel(IAgentModel model)
+    public void SetPosition(Vector3 position)
     {
-        var dir = model.WorldPosition - (Vector2)transform.position;
+        var currentPosition = transform.position;
+        var dir = position - currentPosition;
         _view.transform.localRotation = Quaternion.Euler(0, dir.x < 0 ? 180 : 0, 0);
-        transform.position = model.WorldPosition;
+        transform.position = position;
     }
 }

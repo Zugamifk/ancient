@@ -45,7 +45,7 @@ public class GameController : INarrativeEventHandler, IGameInitializer
         _timeController.Update(_model.TimeModel, deltaTime);
         foreach (var a in _model.Agents.Values)
         {
-            _agentController.Update(a, deltaTime);
+            _agentController.Update(a, _model);
         }
 
         foreach (var n in _model.Narratives.Values)

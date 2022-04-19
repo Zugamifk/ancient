@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Grass
   m_EditorClassIdentifier: 
   Type: Grass
-  MoveCost: 1
+  MoveCost: 5
   Tiles:
   - {fileID: 11400000, guid: 49b3883d7dc85e9438d67614f1162e67, type: 2}
