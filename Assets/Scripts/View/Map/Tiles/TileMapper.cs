@@ -51,12 +51,12 @@ public class TileMapper : MonoBehaviour
 
     public Vector3 GetWorldCenterOftile(Vector3Int position)
     {
-        return _tilemap.CellToWorld(position);
+        return _tilemap.CellToLocalInterpolated(position+_tilemap.GetLayoutCellCenter());
     }
 
     public Vector3 ModelToWorld(Vector3 local)
     {
-        return _tilemap.CellToLocalInterpolated(local) ;
+        return _tilemap.CellToLocalInterpolated(local+ _tilemap.GetLayoutCellCenter());
     }
 
     string GetTileType(IMapGridModel grid, int x, int y)
