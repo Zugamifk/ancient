@@ -12,6 +12,7 @@ public class GameController : INarrativeEventHandler, IGameInitializer
     AgentController _agentController = new AgentController();
     MapController _mapController;
     NarrativeController _narrativeController;
+    BookController _bookController = new BookController();
     DeskController _deskController;
 
     AgentCollection _agentCollection;
@@ -31,6 +32,7 @@ public class GameController : INarrativeEventHandler, IGameInitializer
         _narrativeController = new NarrativeController(narrativeCollection, this);
         _deskController = new DeskController(deskItemCollection);
 
+        _model.WorkBook = _bookController.CreateBookModel();
         _model.Cheats = new CheatController()
         {
             Model = _model,

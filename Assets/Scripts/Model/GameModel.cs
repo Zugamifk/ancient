@@ -10,6 +10,8 @@ public class GameModel : IGameModel
     public Dictionary<string, AgentModel> Agents = new Dictionary<string, AgentModel>();
     public Dictionary<string, NarrativeModel> Narratives = new Dictionary<string, NarrativeModel>();
     public DeskModel Desk = new DeskModel();
+    public BookModel WorkBook = new BookModel();
+
     public ICheatController Cheats;
 
     #region IGameModel
@@ -17,6 +19,7 @@ public class GameModel : IGameModel
     ITimeModel IGameModel.Time => TimeModel;
     IEnumerable<IAgentModel> IGameModel.Agents => Agents.Values.Cast<IAgentModel>();
     IDeskModel IGameModel.Desk => Desk;
+    IBookModel IGameModel.WorkBook => WorkBook;
     ICheatController IGameModel.Cheats => Cheats;
     #endregion
 

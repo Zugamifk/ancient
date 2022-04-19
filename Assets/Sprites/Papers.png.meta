@@ -166,7 +166,7 @@ TextureImporter:
         width: 117
         height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -174,6 +174,69 @@ TextureImporter:
       bones: []
       spriteID: dcff0e85c564c5b4c9c4ebff756be3ca
       internalID: 2044518814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Papers_3
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 767
+        width: 374
+        height: 254
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97de58b9cf1cd1d4b8cea2187aaa87da
+      internalID: -1037697647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Papers_4
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 999
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc5f4337df146674ba517c7e3e736c7e
+      internalID: 1614925184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Papers_5
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 973
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a8bf88cab772546970c2567c101982
+      internalID: -1953393609
       vertices: []
       indices: 
       edges: []
@@ -189,8 +252,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Papers_3: -1037697647
       Papers_1: 2053261113
       Papers_2: 2044518814
+      Papers_5: -1953393609
+      Papers_4: 1614925184
       Papers_0: -1792555090
   spritePackingTag: 
   pSDRemoveMatte: 0

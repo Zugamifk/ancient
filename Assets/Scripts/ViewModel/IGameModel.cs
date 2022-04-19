@@ -8,5 +8,6 @@ public interface IGameModel
     public ITimeModel Time { get; }
     public IEnumerable<IAgentModel> Agents { get; }
     public IDeskModel Desk { get; }
+    public IBookModel WorkBook { get; }
     public ICheatController Cheats { get; }
 }
