@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Manor
   m_EditorClassIdentifier: 
   Name: Manor
-  EntraceOffset: {x: 0, y: -1}
+  EntranceOffset: {x: 0, y: -1}
   Dimensions: {x: 1, y: 1}
   ViewPrefab: {fileID: 3227864440446316006, guid: b129396716f46214296be4c6af3c7d4f, type: 3}

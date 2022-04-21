@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class MapController
 {
+    BuildingCollection _buildingCollection;
     TileDataCollection _tileCollection;
     MapData _mapData;
 
-    public MapController(TileDataCollection tileCollection, MapData mapData)
+    public MapController(TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData)
     {
+        _buildingCollection = buildingCollection;
         _tileCollection = tileCollection;
         _mapData = mapData;
     }
@@ -30,10 +32,12 @@ public class MapController
 
     public void AddBuilding(MapModel model, string name, Vector2Int position)
     {
+        var data = _buildingCollection[name];
         var building = new BuildingModel()
         {
             Name = name,
-            Position = position
+            Position = position,
+            EntrancePosition = position + data.EntranceOffset
         };
         model.Buildings.Add(building);
     }
@@ -44,8 +48,8 @@ public class MapController
         var end = model.Buildings.First(b => b.Name == endName);
         model.Graph.Connect(start, end);
 
-        var pointA = Vector2Int.FloorToInt(start.Position);
-        var pointB = Vector2Int.FloorToInt(end.Position);
+        var pointA = Vector2Int.FloorToInt(start.EntrancePosition);
+        var pointB = Vector2Int.FloorToInt(end.EntrancePosition);
         int xs = Math.Sign(pointB.x - pointA.x);
         int ys = Math.Sign(pointB.y - pointA.y);
         var roadtile = GetTileModel(Name.Tile.Road);

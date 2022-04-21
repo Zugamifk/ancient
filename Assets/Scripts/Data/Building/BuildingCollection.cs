@@ -9,6 +9,7 @@ public class BuildingCollection : ScriptableObject
     Dictionary<string, BuildingData> _nameToBuilding = new Dictionary<string, BuildingData>();
 
     public GameObject GetPrefab(string name) => _nameToBuilding[name].ViewPrefab;
+    public BuildingData this[string name] => _nameToBuilding[name];
 
     private void OnEnable()
     {

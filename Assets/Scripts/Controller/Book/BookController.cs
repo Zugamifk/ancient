@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class BookController
 {
-    public BookModel CreateBookModel()
+    
+}
+
+public abstract class BookController<TData> : BookController 
+    where TData : BookData 
+{
+    public virtual BookModel CreateModel(TData data)
     {
         var book = new BookModel();
         book.IndexChanged += (_, pageIndex) => book.Index = pageIndex;

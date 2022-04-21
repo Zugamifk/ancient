@@ -6,4 +6,5 @@ public class BuildingModel : ICityGraphNode, IBuildingModel
 {
     public string Name { get; set; }
     public Vector2Int Position { get; set; }
+    public Vector2Int EntrancePosition { get; set; }
 }

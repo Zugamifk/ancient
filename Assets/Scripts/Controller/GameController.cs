@@ -12,27 +12,29 @@ public class GameController : INarrativeEventHandler, IGameInitializer
     AgentController _agentController = new AgentController();
     MapController _mapController;
     NarrativeController _narrativeController;
-    BookController _bookController = new BookController();
+    TextBookController _bookController = new TextBookController();
     DeskController _deskController;
 
     AgentCollection _agentCollection;
+    BookCollection _bookCollection;
 
     GameModel _model = new GameModel();
     public IGameModel Model => _model;
 
-    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, AgentCollection agentCollection, TileDataCollection tileCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection)
+    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, AgentCollection agentCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection, BookCollection bookCollection)
     {
         _lifecycleController = lifeCycleController;
         _lifecycleController.OnUpdate += Update;
         _updateableGameObjectRegistry = updateableRegistry;
 
         _agentCollection = agentCollection;
-        _mapController = new MapController(tileCollection, mapData);
+        _mapController = new MapController(tileCollection, buildingCollection, mapData);
         _mapController.InitializeModel(_model.MapModel);
         _narrativeController = new NarrativeController(narrativeCollection, this);
         _deskController = new DeskController(deskItemCollection);
+        _bookCollection = bookCollection;
 
-        _model.WorkBook = _bookController.CreateBookModel();
+        _model.WorkBook = _bookController.CreateModel((TextBookData)_bookCollection.GetBook("test"));
         _model.Cheats = new CheatController()
         {
             Model = _model,

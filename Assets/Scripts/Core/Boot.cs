@@ -10,9 +10,13 @@ public class Boot : MonoBehaviour
     [SerializeField]
     TileDataCollection _tileDataCollection;
     [SerializeField]
+    BuildingCollection _buildingCollection;
+    [SerializeField]
     MapData _mapData;
     [SerializeField]
     DeskItemCollection _deskItemCollection;
+    [SerializeField]
+    BookCollection _bookCollection;
     [SerializeField]
     UnityLifecycleController _lifecycleController;
     [SerializeField]
@@ -25,7 +29,7 @@ public class Boot : MonoBehaviour
     private void Start()
     {
         // Create main controllers
-        var controller = new GameController(_lifecycleController, _updateableRegistry, _agentCollection, _tileDataCollection, _mapData, _narrativeCollection, _deskItemCollection);
+        var controller = new GameController(_lifecycleController, _updateableRegistry, _agentCollection, _tileDataCollection, _buildingCollection, _mapData, _narrativeCollection, _deskItemCollection, _bookCollection);
 
         // Start game
         DemoInit(controller);
