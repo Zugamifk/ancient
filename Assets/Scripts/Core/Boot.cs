@@ -29,7 +29,16 @@ public class Boot : MonoBehaviour
     private void Start()
     {
         // Create main controllers
-        var controller = new GameController(_lifecycleController, _updateableRegistry, _agentCollection, _tileDataCollection, _buildingCollection, _mapData, _narrativeCollection, _deskItemCollection, _bookCollection);
+        var controller = new GameController(
+            _lifecycleController, 
+            _updateableRegistry, 
+            _agentCollection, 
+            _tileDataCollection, 
+            _buildingCollection, 
+            _mapData, 
+            _narrativeCollection, 
+            _deskItemCollection, 
+            _bookCollection);
 
         // Start game
         DemoInit(controller);
