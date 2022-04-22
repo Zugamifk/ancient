@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BookModel : IBookModel
 {
-    public List<PageModel> Pages = new List<PageModel>();
+    public List<IPageModel> Pages = new List<IPageModel>();
 
     public int NumPages => 5;
 
@@ -20,5 +20,6 @@ public class BookModel : IBookModel
 
     #region IBookModel
     int IBookModel.Index => Index;
+    List<IPageModel> IBookModel.Pages => Pages;
     #endregion
 }

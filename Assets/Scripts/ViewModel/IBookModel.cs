@@ -9,4 +9,6 @@ public interface IBookModel
     int Index { get; }
     event EventHandler<int> IndexChanged;
     void OnIndexChanged(int index);
+
+    List<IPageModel> Pages { get; }
 }
