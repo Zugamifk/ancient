@@ -4,22 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GameController : INarrativeEventHandler, IGameInitializer
+public class GameController : IGameInitializer, ICommandService
 {
     UnityLifecycleController _lifecycleController;
     UpdateableGameObjectRegistry _updateableGameObjectRegistry;
     TimeController _timeController = new TimeController();
     AgentController _agentController = new AgentController();
-    MapController _mapController;
+    public MapController MapController { get; }
     NarrativeController _narrativeController;
     TextBookController _bookController = new TextBookController();
-    DeskController _deskController;
+    public DeskController DeskController { get; }
 
-    AgentCollection _agentCollection;
+    public readonly AgentCollection AgentCollection;
     BookCollection _bookCollection;
 
-    GameModel _model = new GameModel();
-    public IGameModel Model => _model;
+    public readonly GameModel Model = new GameModel();
+
+    Queue<ICommand> _commandQueue = new Queue<ICommand>();
 
     public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, AgentCollection agentCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection, BookCollection bookCollection)
     {
@@ -27,94 +28,73 @@ public class GameController : INarrativeEventHandler, IGameInitializer
         _lifecycleController.OnUpdate += Update;
         _updateableGameObjectRegistry = updateableRegistry;
 
-        _agentCollection = agentCollection;
-        _mapController = new MapController(tileCollection, buildingCollection, mapData);
-        _mapController.InitializeModel(_model.MapModel);
+        AgentCollection = agentCollection;
+        MapController = new MapController(tileCollection, buildingCollection, mapData);
+        MapController.InitializeModel(Model.MapModel);
         _narrativeController = new NarrativeController(narrativeCollection, this);
-        _deskController = new DeskController(deskItemCollection);
+        DeskController = new DeskController(deskItemCollection);
         _bookCollection = bookCollection;
 
-        _model.WorkBook = _bookController.CreateModel((TextBookData)_bookCollection.GetBook("test"));
-        _model.Cheats = new CheatController()
+        Model.WorkBook = _bookController.CreateModel((TextBookData)_bookCollection.GetBook("test"));
+        Model.Cheats = new CheatController()
         {
-            Model = _model,
-            MapController = _mapController
+            Model = Model,
+            MapController = MapController
         };
     }
 
     void Update()
     {
-        var deltaTime = Time.deltaTime;
-
-        _timeController.Update(_model.TimeModel, deltaTime);
-        foreach (var a in _model.Agents.Values)
+        while (_commandQueue.Count > 0)
         {
-            _agentController.Update(a, _model);
+            _commandQueue.Dequeue().Execute(this);
         }
 
-        foreach (var n in _model.Narratives.Values)
+        var deltaTime = Time.deltaTime;
+
+        _timeController.Update(Model.TimeModel, deltaTime);
+        foreach (var a in Model.Agents.Values)
         {
-            _narrativeController.Update(n, _model);
+            _agentController.Update(a, Model);
+        }
+
+        foreach (var n in Model.Narratives.Values)
+        {
+            _narrativeController.Update(n, Model);
         }
 
         foreach (var updateable in _updateableGameObjectRegistry.Updateables)
         {
-            updateable.UpdateModel(_model);
+            updateable.UpdateModel(Model);
         }
     }
 
     #region IGameInitializer
     void IGameInitializer.StartNarrative(string name)
     {
-        _narrativeController.StartNarrative(name, _model);
+        _narrativeController.StartNarrative(name, Model);
     }
     void IGameInitializer.AddBuilding(string name, Vector2Int position)
     {
-        _mapController.AddBuilding(_model.MapModel, name, position);
+        MapController.AddBuilding(Model.MapModel, name, position);
     }
 
     void IGameInitializer.BuildRoad(string startName, string endName)
     {
-        _mapController.BuildRoad(_model.MapModel, startName, endName);
+        MapController.BuildRoad(Model.MapModel, startName, endName);
     }
     #endregion
 
-    #region INarrativeEventHandler
-    void INarrativeEventHandler.SpawnAgent(string name, string position)
+    #region ICommandService
+
+    void ICommandService.DoCommand(ICommand command)
     {
-        var spawnPosition = ParsePosition(position);
-        var data = _agentCollection.GetAgent(name);
-        var agent = new AgentModel()
-        {
-            Name = name,
-            MoveSpeed = data.MoveSpeed,
-            WorldPosition = spawnPosition
-        };
-        _model.Agents.Add(name, agent);
+        _commandQueue.Enqueue(command);
     }
+    #endregion
 
-    void INarrativeEventHandler.WalkToPosition(string name, string destination, EventHandler<Vector2Int> reachedPathEnd)
-    {
-        var destinationPosition = ParsePosition(destination);
-        var startPoint = _model.Agents[name].WorldPosition;
-        var endPoint = destinationPosition;
-        var path = _mapController.GetPath(Vector2Int.FloorToInt(startPoint), Vector2Int.FloorToInt(endPoint), _model.MapModel.Grid);
-        var agent = _model.Agents[name];
-        agent.CityPath = path;
-        agent.ReachedPathEnd += reachedPathEnd;
-    }
-
-    void INarrativeEventHandler.SpawnDeskItem(string name)
-    {
-        _deskController.AddItem(name, _model.Desk);
-    }
-
-    void INarrativeEventHandler.ReceievePackage(string name)
-    {
-
-    }
-
-    Vector2 ParsePosition(string position)
+    #region Helpers
+    public Vector2 ParsePosition(string position)
     {
         Vector2 spawnPosition;
         if (position.Contains(","))
@@ -124,7 +104,7 @@ public class GameController : INarrativeEventHandler, IGameInitializer
         }
         else
         {
-            var b = Model.Map.GetBuilding(position);
+            var b = Model.MapModel.GetBuilding(position);
             spawnPosition = b.Position;
         }
         return spawnPosition;

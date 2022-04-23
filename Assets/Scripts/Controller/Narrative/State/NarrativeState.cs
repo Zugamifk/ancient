@@ -14,5 +14,5 @@ public abstract class NarrativeState<T> : NarrativeState where T: NarrativeStepD
 {
     public sealed override string Name => Data.Name;
     public T Data;
-    public INarrativeEventHandler EventHandler;
+    public ICommandService Commands;
 }

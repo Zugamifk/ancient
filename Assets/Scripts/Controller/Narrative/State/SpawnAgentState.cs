@@ -6,7 +6,7 @@ public class SpawnAgentState : NarrativeState<SpawnAgentData>
 {
     public override string UpdateState(IGameModel model)
     {
-        EventHandler.SpawnAgent(Data.Character, Data.Position);
+        Commands.DoCommand(new SpawnAgentCommand(Data.Character, Data.Position));
         return Data.Next;
     }
 }

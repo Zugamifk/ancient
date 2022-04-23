@@ -8,7 +8,7 @@ public class MoveAgentState : NarrativeState<MoveAgentData>
 
     public override void EnterState(IGameModel model)
     {
-        EventHandler.WalkToPosition(Data.Character, Data.Destination, ReachedPathEnd);
+        Commands.DoCommand(new MoveAgentCommand(Data.Character, Data.Destination, ReachedPathEnd));
     }
 
     public override string UpdateState(IGameModel model)

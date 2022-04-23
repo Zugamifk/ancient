@@ -6,12 +6,12 @@ using UnityEngine;
 class NarrativeController
 {
     NarrativeCollection _collection;
-    INarrativeEventHandler _eventHandler;
+    ICommandService _commands;
 
-    public NarrativeController(NarrativeCollection collection, INarrativeEventHandler eventHandler)
+    public NarrativeController(NarrativeCollection collection, ICommandService commands)
     {
         _collection = collection;
-        _eventHandler = eventHandler;
+        _commands = commands;
     }
 
     public void StartNarrative(string name, GameModel model)
@@ -73,9 +73,9 @@ class NarrativeController
         where TEventType : NarrativeState<TDataType>, new()
         where TDataType : NarrativeStepData
     {
-        return new TEventType() { 
+        return new TEventType() {
             Data = data,
-            EventHandler = _eventHandler
+            Commands = _commands
         };
     }
 }
