@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public interface IBuildingModel
 {
-    public string Name { get; }
-    public Vector2Int Position { get; }
+    string Name { get; }
+    Vector2Int Position { get; }
+    event EventHandler<int> Clicked;
+    void OnClicked(int button);
 }

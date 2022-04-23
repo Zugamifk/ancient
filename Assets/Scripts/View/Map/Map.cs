@@ -45,7 +45,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
         foreach (var b in model.Map.Buildings)
         {
             var building = GetBuildingFromModel(b);
-            building.UpdateModel(model);
+            building.UpdateModel(b, model);
         }
 
         foreach(var a in model.Agents)

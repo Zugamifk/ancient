@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WorkBook : MonoBehaviour
 {
     [SerializeField]
-    Text _leftPage;
+    TextMeshPro _leftPage;
     [SerializeField]
-    Text _rightPage;
+    TextMeshPro _rightPage;
     [SerializeField]
     Button _turnLeftbutton;
     [SerializeField]
     Button _turnRightbutton;
 
+    string _currentBook;
     int _currentPage = 0;
 
     private void Awake()
@@ -24,23 +26,36 @@ public class WorkBook : MonoBehaviour
 
     public void UpdateModel(IBookModel book, IGameModel model)
     {
-        if (_currentPage != book.Index)
+        if (_currentBook != book.Name)
         {
-            _leftPage.text = book.Pages[0].Text;
-
+            _currentBook = book.Name;
+            _currentPage = book.Index;
+            UpdatePages(book);
+        } else if (_currentPage != book.Index)
+        {
             book.OnIndexChanged(_currentPage);
-            _turnLeftbutton.interactable = _currentPage > 0;
-            _turnRightbutton.interactable = _currentPage < book.NumPages - 1;
+            UpdatePages(book);
         }
+    }
+
+    void UpdatePages(IBookModel book)
+    {
+        _leftPage.text = book.Pages[0].Text;
+        _leftPage.pageToDisplay = _currentPage;
+        _rightPage.text = book.Pages[0].Text;
+        _rightPage.pageToDisplay = _currentPage + 1;
+
+        _turnLeftbutton.interactable = _currentPage > 0;
+        _turnRightbutton.interactable = _currentPage < book.NumPages - 1;
     }
 
     void Clicked_TurnLeftButton()
     {
-        _currentPage--;
+        _currentPage-=2;
     }
 
     void Clicked_TurnRightButton()
     {
-        _currentPage++;
+        _currentPage+=2;
     }
 }

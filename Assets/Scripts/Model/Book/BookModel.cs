@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class BookModel : IBookModel
 {
-    public List<IPageModel> Pages = new List<IPageModel>();
+    public string Name { get; set; }
+    public List<IPageModel> Pages { get; } = new List<IPageModel>();
 
     public int NumPages => 5;
 
-    public int Index;
+    public int Index { get; set; }
 
     public event EventHandler<int> IndexChanged;
 
@@ -17,9 +18,4 @@ public class BookModel : IBookModel
     {
         IndexChanged?.Invoke(this, index);
     }
-
-    #region IBookModel
-    int IBookModel.Index => Index;
-    List<IPageModel> IBookModel.Pages => Pages;
-    #endregion
 }

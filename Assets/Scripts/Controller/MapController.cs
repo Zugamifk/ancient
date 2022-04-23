@@ -37,8 +37,9 @@ public class MapController
         {
             Name = name,
             Position = position,
-            EntrancePosition = position + data.EntranceOffset
+            EntrancePosition = position + data.EntranceOffset,
         };
+        building.Clicked += (_, _) => Debug.Log("Clicked " + name);
         model.Buildings.Add(building);
     }
 
