@@ -6,12 +6,14 @@ using UnityEngine;
 
 public class MapController
 {
+    ICommandService _commands;
     BuildingCollection _buildingCollection;
     TileDataCollection _tileCollection;
     MapData _mapData;
 
-    public MapController(TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData)
+    public MapController(ICommandService commands, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData)
     {
+        _commands = commands;
         _buildingCollection = buildingCollection;
         _tileCollection = tileCollection;
         _mapData = mapData;
@@ -39,8 +41,14 @@ public class MapController
             Position = position,
             EntrancePosition = position + data.EntranceOffset,
         };
-        building.Clicked += (_, _) => Debug.Log("Clicked " + name);
+        building.Clicked += ClickedBuilding;
         model.Buildings.Add(building);
+    }
+
+    void ClickedBuilding(object sender, int button)
+    {
+        var building = (IBuildingModel)sender;
+        _commands.DoCommand(new MoveAgentCommand("TestAgent", building.Name));
     }
 
     public void BuildRoad(MapModel model, string startName, string endName)

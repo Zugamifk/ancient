@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This is a hack!!!! Find a better way!!!
 public class UpdateableGameObjectRegistry : MonoBehaviour
 {
     [SerializeField]

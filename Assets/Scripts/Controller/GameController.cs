@@ -29,7 +29,7 @@ public class GameController : IGameInitializer, ICommandService
         _updateableGameObjectRegistry = updateableRegistry;
 
         AgentCollection = agentCollection;
-        MapController = new MapController(tileCollection, buildingCollection, mapData);
+        MapController = new MapController(this, tileCollection, buildingCollection, mapData);
         MapController.InitializeModel(Model.MapModel);
         _narrativeController = new NarrativeController(narrativeCollection, this);
         DeskController = new DeskController(deskItemCollection);
