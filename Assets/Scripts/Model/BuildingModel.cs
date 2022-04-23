@@ -10,6 +10,7 @@ public class BuildingModel : ICityGraphNode, IBuildingModel
     public Vector2Int EntrancePosition { get; set; }
 
     public event EventHandler<int> Clicked;
+    public HashSet<string> Agents = new HashSet<string>();
 
     public void OnClicked(int button)
     {

@@ -8,6 +8,7 @@ public class AgentModel : IAgentModel
 {
     public string Name;
     public Vector2 WorldPosition;
+    public string EnteredLocation;
     public CityPath CityPath;
     /// <summary>
     /// The index of the path node we are current moving towards
@@ -18,6 +19,7 @@ public class AgentModel : IAgentModel
     public event EventHandler<Vector2Int> ReachedPathEnd;
 
     public bool AtPathEnd => CityPath.Path == null || CurrentPathIndex >= CityPath.Path.Count;
+    public bool IsVisibleOnMap => string.IsNullOrEmpty(EnteredLocation);
 
     public void OnReachedPathEnd()
     {

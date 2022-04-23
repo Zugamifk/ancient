@@ -71,7 +71,7 @@ public class GameController : ICommandService
 
     #region ICommandService
 
-    void ICommandService.DoCommand(ICommand command)
+    public void DoCommand(ICommand command)
     {
         _commandQueue.Enqueue(command);
     }

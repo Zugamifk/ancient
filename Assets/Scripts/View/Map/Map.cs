@@ -66,6 +66,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
         var agent = GetAgentFromModel(model);
         var position = _tilemapper.ModelToWorld(model.WorldPosition);
         agent.SetPosition(position);
+        agent.gameObject.SetActive(model.IsVisibleOnMap);
     }
 
     void FullRebuild(IGameModel model)
