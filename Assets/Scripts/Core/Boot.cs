@@ -47,14 +47,14 @@ public class Boot : MonoBehaviour
     // move to demo script
     void DemoInit(GameController controller)
     {
-        var init = controller as IGameInitializer;
-        init.AddBuilding(Name.Building.Manor, Vector2Int.zero);
-        init.AddBuilding(Name.Building.House, new Vector2Int(5, 2));
-        init.BuildRoad(Name.Building.Manor, Name.Building.House);
+        var cmd = controller as ICommandService;
+        cmd.DoCommand(new SpawnBuildingCommand(Name.Building.Manor, Vector2Int.zero));
+        cmd.DoCommand(new SpawnBuildingCommand(Name.Building.House, new Vector2Int(5, 2)));
+        cmd.DoCommand(new BuildRoadCommand(Name.Building.Manor, Name.Building.House));
 
         if (!string.IsNullOrEmpty(_testNarrative))
         {
-            init.StartNarrative(_testNarrative);
+            cmd.DoCommand(new StartNarrativeCommand(_testNarrative));
         }
     }
 }

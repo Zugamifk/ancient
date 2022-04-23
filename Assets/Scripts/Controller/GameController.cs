@@ -4,21 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GameController : IGameInitializer, ICommandService
+public class GameController : ICommandService
 {
     UnityLifecycleController _lifecycleController;
     UpdateableGameObjectRegistry _updateableGameObjectRegistry;
     TimeController _timeController = new TimeController();
     AgentController _agentController = new AgentController();
     public MapController MapController { get; }
-    NarrativeController _narrativeController;
+    internal NarrativeController NarrativeController { get; }
     TextBookController _bookController = new TextBookController();
     public DeskController DeskController { get; }
 
-    public readonly AgentCollection AgentCollection;
+    public AgentCollection AgentCollection { get; }
     BookCollection _bookCollection;
 
-    public readonly GameModel Model = new GameModel();
+    public GameModel Model { get; } = new GameModel();
 
     Queue<ICommand> _commandQueue = new Queue<ICommand>();
 
@@ -31,7 +31,7 @@ public class GameController : IGameInitializer, ICommandService
         AgentCollection = agentCollection;
         MapController = new MapController(this, tileCollection, buildingCollection, mapData);
         MapController.InitializeModel(Model.MapModel);
-        _narrativeController = new NarrativeController(narrativeCollection, this);
+        NarrativeController = new NarrativeController(narrativeCollection, this);
         DeskController = new DeskController(deskItemCollection);
         _bookCollection = bookCollection;
 
@@ -60,7 +60,7 @@ public class GameController : IGameInitializer, ICommandService
 
         foreach (var n in Model.Narratives.Values)
         {
-            _narrativeController.Update(n, Model);
+            NarrativeController.Update(n, Model);
         }
 
         foreach (var updateable in _updateableGameObjectRegistry.Updateables)
@@ -68,22 +68,6 @@ public class GameController : IGameInitializer, ICommandService
             updateable.UpdateModel(Model);
         }
     }
-
-    #region IGameInitializer
-    void IGameInitializer.StartNarrative(string name)
-    {
-        _narrativeController.StartNarrative(name, Model);
-    }
-    void IGameInitializer.AddBuilding(string name, Vector2Int position)
-    {
-        MapController.AddBuilding(Model.MapModel, name, position);
-    }
-
-    void IGameInitializer.BuildRoad(string startName, string endName)
-    {
-        MapController.BuildRoad(Model.MapModel, startName, endName);
-    }
-    #endregion
 
     #region ICommandService
 
