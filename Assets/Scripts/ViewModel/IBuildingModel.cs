@@ -7,6 +7,7 @@ public interface IBuildingModel
 {
     string Name { get; }
     Vector2Int Position { get; }
+    Vector2Int EntrancePosition { get; }
     event EventHandler<int> Clicked;
     void OnClicked(int button);
 }

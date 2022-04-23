@@ -89,7 +89,7 @@ public class GameController : ICommandService
         else
         {
             var b = Model.MapModel.GetBuilding(position);
-            spawnPosition = b.Position;
+            spawnPosition = b.EntrancePosition;
         }
         return spawnPosition;
     }
