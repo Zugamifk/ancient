@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   Name: test
+  Profile: {fileID: 11400000, guid: 4b3d1ec1b4f7eea4e911201a4dc0e89b, type: 2}
   Text: "\rLorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ex massa,
     maximus in ex id, feugiat posuere sapien. Donec eros nibh, imperdiet ut pulvinar
     viverra, pretium nec purus. Duis aliquet dapibus arcu. Maecenas pellentesque
