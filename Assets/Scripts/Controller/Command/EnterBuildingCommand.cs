@@ -8,7 +8,7 @@ public class EnterBuildingCommand : ICommand
     string _agentName;
 
     BuildingModel _building;
-    AgentModel _agent;
+    CharacterModel _agent;
 
     public EnterBuildingCommand(string agentName, string buildingName)
     {
@@ -20,7 +20,7 @@ public class EnterBuildingCommand : ICommand
     {
         _building = controller.Model.MapModel.GetBuilding(_buildingName);
         var destinationPosition = _building.Position;
-        _agent = controller.Model.Agents[_agentName];
+        _agent = controller.Model.Characters[_agentName];
         var path = controller.MapController.GetPath(Vector2Int.FloorToInt(_agent.WorldPosition), Vector2Int.FloorToInt(destinationPosition), controller.Model.MapModel.Grid);
         _agent.CityPath = path;
         _agent.ReachedPathEnd += Enterbuilding;

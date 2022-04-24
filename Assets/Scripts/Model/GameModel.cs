@@ -7,7 +7,7 @@ public class GameModel : IGameModel
 {
     public MapModel MapModel = new MapModel();
     public TimeModel TimeModel = new TimeModel();
-    public Dictionary<string, AgentModel> Agents = new Dictionary<string, AgentModel>();
+    public Dictionary<string, CharacterModel> Characters = new Dictionary<string, CharacterModel>();
     public Dictionary<string, NarrativeModel> Narratives = new Dictionary<string, NarrativeModel>();
     public DeskModel Desk = new DeskModel();
     public BookModel WorkBook = new BookModel();
@@ -17,7 +17,7 @@ public class GameModel : IGameModel
     #region IGameModel
     IMapModel IGameModel.Map => MapModel;
     ITimeModel IGameModel.Time => TimeModel;
-    IEnumerable<IAgentModel> IGameModel.Agents => Agents.Values.Cast<IAgentModel>();
+    IEnumerable<ICharacterModel> IGameModel.Characters => Characters.Values.Cast<ICharacterModel>();
     IDeskModel IGameModel.Desk => Desk;
     IBookModel IGameModel.WorkBook => WorkBook;
     ICheatController IGameModel.Cheats => Cheats;

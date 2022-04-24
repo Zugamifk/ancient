@@ -48,7 +48,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
             building.UpdateModel(b, model);
         }
 
-        foreach(var a in model.Agents)
+        foreach(var a in model.Characters)
         {
             UpdateAgent(a);
         }
@@ -61,7 +61,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
         }
     }
 
-    void UpdateAgent(IAgentModel model)
+    void UpdateAgent(ICharacterModel model)
     {
         var agent = GetAgentFromModel(model);
         var position = _tilemapper.ModelToWorld(model.WorldPosition);
@@ -77,7 +77,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
             PositionBuilding(building, b.Position);
         }
 
-        foreach (var a in model.Agents)
+        foreach (var a in model.Characters)
         {
             Agent agent = GetAgentFromModel(a);
             // more spawn agent stuff
@@ -112,7 +112,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
         building.transform.position = _tilemapper.GetWorldCenterOftile((Vector3Int)gridPosition);
     }
 
-    Agent GetAgentFromModel(IAgentModel model)
+    Agent GetAgentFromModel(ICharacterModel model)
     {
         Agent agent;
         if (!_agents.TryGetValue(model.Name, out agent))

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAgentState : NarrativeState<MoveAgentData>
+public class MoveCharacterState : NarrativeState<MoveCharacterData>
 {
     bool _reachedEnd = false;
 
     public override void EnterState(IGameModel model)
     {
-        Commands.DoCommand(new MoveAgentCommand(Data.Character, Data.Destination, ReachedPathEnd));
+        Commands.DoCommand(new MoveCharacterCommand(Data.Character, Data.Destination, ReachedPathEnd));
     }
 
     public override string UpdateState(IGameModel model)

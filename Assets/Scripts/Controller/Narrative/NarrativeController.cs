@@ -56,10 +56,10 @@ class NarrativeController
     {
         switch (stepData)
         {
-            case SpawnAgentData data:
-                return InstantiateGameEvent<SpawnAgentState, SpawnAgentData>(data);
-            case MoveAgentData data:
-                return InstantiateGameEvent<MoveAgentState, MoveAgentData>(data);
+            case SpawnCharacterData data:
+                return InstantiateGameEvent<SpawnCharacterState, SpawnCharacterData>(data);
+            case MoveCharacterData data:
+                return InstantiateGameEvent<MoveCharacterState, MoveCharacterData>(data);
             case ReceiveItemData data:
                 return InstantiateGameEvent<ReceiveItemState, ReceiveItemData>(data);
             default:

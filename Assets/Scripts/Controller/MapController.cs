@@ -48,7 +48,7 @@ public class MapController
     void ClickedBuilding(object sender, int button)
     {
         var building = (IBuildingModel)sender;
-        _commands.DoCommand(new MoveAgentCommand("TestAgent", building.Name));
+        _commands.DoCommand(new MoveCharacterCommand("Test", building.Name));
     }
 
     public void BuildRoad(MapModel model, string startName, string endName)

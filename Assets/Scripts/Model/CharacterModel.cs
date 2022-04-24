@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AgentModel : IAgentModel
+public class CharacterModel : ICharacterModel
 {
     public string Name;
     public Vector2 WorldPosition;
@@ -27,8 +27,8 @@ public class AgentModel : IAgentModel
         ReachedPathEnd = null;
     }
 
-    #region IAgentModel
-    string IAgentModel.Name => Name;
-    Vector2 IAgentModel.WorldPosition => WorldPosition;
+    #region ICharacterModel
+    string ICharacterModel.Name => Name;
+    Vector2 ICharacterModel.WorldPosition => WorldPosition;
     #endregion
 }

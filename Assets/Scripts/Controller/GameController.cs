@@ -9,26 +9,26 @@ public class GameController : ICommandService
     UnityLifecycleController _lifecycleController;
     UpdateableGameObjectRegistry _updateableGameObjectRegistry;
     TimeController _timeController = new TimeController();
-    AgentController _agentController = new AgentController();
+    CharacterController _characterController = new CharacterController();
     public MapController MapController { get; }
     internal NarrativeController NarrativeController { get; }
     TextBookController _bookController = new TextBookController();
     public DeskController DeskController { get; }
 
-    public CharacterCollection AgentCollection { get; }
+    public CharacterCollection CharacterCollection { get; }
     BookCollection _bookCollection;
 
     public GameModel Model { get; } = new GameModel();
 
     Queue<ICommand> _commandQueue = new Queue<ICommand>();
 
-    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, CharacterCollection agentCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection, BookCollection bookCollection)
+    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, CharacterCollection characterCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection, BookCollection bookCollection)
     {
         _lifecycleController = lifeCycleController;
         _lifecycleController.OnUpdate += Update;
         _updateableGameObjectRegistry = updateableRegistry;
 
-        AgentCollection = agentCollection;
+        CharacterCollection = characterCollection;
         MapController = new MapController(this, tileCollection, buildingCollection, mapData);
         MapController.InitializeModel(Model.MapModel);
         NarrativeController = new NarrativeController(narrativeCollection, this);
@@ -53,9 +53,9 @@ public class GameController : ICommandService
         var deltaTime = Time.deltaTime;
 
         _timeController.Update(Model.TimeModel, deltaTime);
-        foreach (var a in Model.Agents.Values)
+        foreach (var a in Model.Characters.Values)
         {
-            _agentController.Update(a, Model);
+            _characterController.Update(a, Model);
         }
 
         foreach (var n in Model.Narratives.Values)
