@@ -40,8 +40,5 @@ public class Portrait : MonoBehaviour
         var tf = image.GetComponent<RectTransform>();
         tf.pivot = sprite.pivot / sprite.rect.size;
         tf.sizeDelta = sprite.rect.size / sprite.pixelsPerUnit;
-        //var size = tf.sizeDelta * image.pixelsPerUnit;
-        //var spritePivot = sprite.pivot;
-        //tf.pivot = sprite.pivot / image.
     }
 }
