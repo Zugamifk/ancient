@@ -50,8 +50,8 @@ public class WorkBook : MonoBehaviour
             SetPage(book.Pages[_currentPage + 1], _rightPage);
         }
 
-        _turnLeftbutton.interactable = _currentPage > 0;
-        _turnRightbutton.interactable = _currentPage < book.NumPages - 1;
+        _turnLeftbutton.gameObject.SetActive(_currentPage > 0);
+        _turnRightbutton.gameObject.SetActive(_currentPage < book.NumPages - 2);
     }
 
     void SetPage(IPageModel pageModel, RectTransform pageRoot)
