@@ -58,20 +58,29 @@ public class WorkBook : MonoBehaviour
         {
             case ITextPageModel tp:
                 {
-                    var page = Instantiate(_textPage);
-                    page.SetPage(tp);
+                    var page = SetPage(tp, _textPage, pageRoot);
                     page.PageIndex = _currentPage;
-                    var tf = page.GetComponent<RectTransform>();
-                    tf.SetParent(pageRoot);
-                    tf.sizeDelta = Vector2.zero;
-                    tf.anchorMin = Vector2.zero;
-                    tf.anchorMax = Vector2.one;
-                    tf.anchoredPosition = Vector2.zero;
-                    page.gameObject.SetActive(true);
                 } break;
             default:
                 break;
         }
+    }
+
+    TPage SetPage<TModel, TPage>(TModel model, TPage prefab, RectTransform parent) 
+        where TModel : IPageModel
+        where TPage : Page<TModel> 
+    {
+        var page = Instantiate(prefab);
+        page.SetPage(model);
+        
+        var tf = page.GetComponent<RectTransform>();
+        tf.SetParent(parent);
+        tf.sizeDelta = Vector2.zero;
+        tf.anchorMin = Vector2.zero;
+        tf.anchorMax = Vector2.one;
+        tf.anchoredPosition = Vector2.zero;
+        page.gameObject.SetActive(true);
+        return page;
     }
 
     void Clicked_TurnLeftButton()
