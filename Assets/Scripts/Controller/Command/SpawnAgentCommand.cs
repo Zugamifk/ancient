@@ -15,7 +15,7 @@ public class SpawnAgentCommand : ICommand
     public void Execute(GameController controller)
     {
         var spawnPosition = controller.ParsePosition(_position);
-        var data = controller.AgentCollection.GetAgent(_name);
+        var data = controller.AgentCollection.GetData(_name);
         var agent = new AgentModel()
         {
             Name = _name,

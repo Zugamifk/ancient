@@ -15,14 +15,14 @@ public class GameController : ICommandService
     TextBookController _bookController = new TextBookController();
     public DeskController DeskController { get; }
 
-    public AgentCollection AgentCollection { get; }
+    public CharacterCollection AgentCollection { get; }
     BookCollection _bookCollection;
 
     public GameModel Model { get; } = new GameModel();
 
     Queue<ICommand> _commandQueue = new Queue<ICommand>();
 
-    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, AgentCollection agentCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection, BookCollection bookCollection)
+    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, CharacterCollection agentCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection, BookCollection bookCollection)
     {
         _lifecycleController = lifeCycleController;
         _lifecycleController.OnUpdate += Update;

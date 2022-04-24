@@ -1649,6 +1649,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 73835777}
     m_Modifications:
+    - target: {fileID: 3952553130345792425, guid: 8c772fea29a66824fb982fe42fbe8c37, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010796864790854802, guid: 8c772fea29a66824fb982fe42fbe8c37, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5414030173377238552, guid: 8c772fea29a66824fb982fe42fbe8c37, type: 3}
       propertyPath: m_Name
       value: NotePad
@@ -1697,6 +1705,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6490337000728623326, guid: 8c772fea29a66824fb982fe42fbe8c37, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c772fea29a66824fb982fe42fbe8c37, type: 3}
 --- !u!1001 &5326797162238613828

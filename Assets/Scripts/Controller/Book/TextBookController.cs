@@ -7,7 +7,7 @@ public class TextBookController : BookController<TextBookData>
     public override BookModel CreateModel(TextBookData data)
     {
         var book = base.CreateModel(data);
-        book.Pages.Add(new CharacterProfilePageModel() { Name = data.Profile.Name, Portrait = data.Profile.Portrait });
+        book.Pages.Add(new CharacterProfilePageModel() { Name = data.Profile.Name });
         book.Pages.Add(new TextPageModel() { Text = data.Text });
         return book;
     }

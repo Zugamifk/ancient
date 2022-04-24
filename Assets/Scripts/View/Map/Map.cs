@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
 {
     [SerializeField]
-    AgentCollection _agentCollection;
+    CharacterCollection _agentCollection;
     [SerializeField]
     BuildingCollection _buildingCollection;
     [SerializeField]
@@ -124,7 +124,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
 
     Agent SpawnAgent(string name)
     {
-        var prefab = Instantiate(_agentCollection.GetAgent(name).MapPrefab);
+        var prefab = Instantiate(_agentCollection.GetData(name).MapPrefab);
         SetSpawnedParent(prefab.transform);
         var agent = prefab.GetComponent<Agent>();
         _agents.Add(name, agent);

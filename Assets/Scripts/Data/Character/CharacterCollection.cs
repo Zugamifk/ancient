@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentCollection : ScriptableObject
+public class CharacterCollection : ScriptableObject
 {
     [SerializeField]
-    AgentData[] _agents;
+    CharacterData[] _agents;
 
-    Dictionary<string, AgentData> _nameToAgentData = new Dictionary<string, AgentData>();
+    Dictionary<string, CharacterData> _nameToAgentData = new Dictionary<string, CharacterData>();
 
-    public AgentData GetAgent(string name)
+    public CharacterData GetData(string name)
     {
         return _nameToAgentData[name];
     }

@@ -4,7 +4,7 @@ public class Boot : MonoBehaviour
 {
     [Header("Data")]
     [SerializeField]
-    AgentCollection _agentCollection;
+    CharacterCollection _agentCollection;
     [SerializeField]
     NarrativeCollection _narrativeCollection;
     [SerializeField]

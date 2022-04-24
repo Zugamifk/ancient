@@ -18,5 +18,5 @@ public static class Name
         public const string Tower = "Tower";
     }
 
-    public const string TestAgent = "TestAgent";
+    public const string TestAgent = "Test";
 }
