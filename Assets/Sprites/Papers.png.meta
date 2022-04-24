@@ -250,7 +250,7 @@ TextureImporter:
         width: 68
         height: 87
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -258,6 +258,48 @@ TextureImporter:
       bones: []
       spriteID: 9aa8b155930291f4aa25c17d1bac584f
       internalID: 1305322543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Papers_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 256
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db4ed74181bdaf4b97459af72486989
+      internalID: 1789747331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Papers_8
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 831
+        width: 143
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86e245e1a7b9a0240871a15b806bba58
+      internalID: 1199956874
       vertices: []
       indices: 
       edges: []
@@ -276,8 +318,10 @@ TextureImporter:
       Papers_3: -1037697647
       Papers_1: 2053261113
       Papers_2: 2044518814
+      Papers_7: 1789747331
       Papers_5: -1953393609
       Papers_6: 1305322543
+      Papers_8: 1199956874
       Papers_4: 1614925184
       Papers_0: -1792555090
   spritePackingTag: 
