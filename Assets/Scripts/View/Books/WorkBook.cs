@@ -9,6 +9,8 @@ public class WorkBook : MonoBehaviour
     [SerializeField]
     TextPage _textPage;
     [SerializeField]
+    CharacterProfilePage _characterPage;
+    [SerializeField]
     RectTransform _leftPage;
     [SerializeField]
     RectTransform _rightPage;
@@ -60,6 +62,10 @@ public class WorkBook : MonoBehaviour
                 {
                     var page = SetPage(tp, _textPage, pageRoot);
                     page.PageIndex = _currentPage;
+                } break;
+            case ICharacterProfilePageModel cp:
+                {
+                    var page = SetPage(cp, _characterPage, pageRoot);
                 } break;
             default:
                 break;

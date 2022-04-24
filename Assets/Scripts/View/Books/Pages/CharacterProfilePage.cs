@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterProfilePage : MonoBehaviour
+public class CharacterProfilePage : Page<ICharacterProfilePageModel>
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void SetPage(ICharacterProfilePageModel model)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        throw new System.NotImplementedException();
     }
 }
