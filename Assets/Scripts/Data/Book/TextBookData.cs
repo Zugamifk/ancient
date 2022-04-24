@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TextBookData : BookData
 {
-    public CharacterProfilePageData Profile;
+    public CharacterData Profile;
     [TextArea]
     public string Text;
 }

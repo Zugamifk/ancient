@@ -469,6 +469,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ecfaa4ce1c29c449fedd465cddf77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _textPage: {fileID: 1592151892391576286, guid: 486f5f30e2f1cb84ebf74f15e58c59c2, type: 3}
+  _characterPage: {fileID: 4582587268298538165, guid: e7e04ccd5b2ccf5468505c2bb4676141, type: 3}
+  _leftPage: {fileID: 161004532284893339}
+  _rightPage: {fileID: 161004532046729878}
   _turnLeftbutton: {fileID: 161004532154068603}
   _turnRightbutton: {fileID: 161004530900835225}
 --- !u!1 &161004532563908465
