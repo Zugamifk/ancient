@@ -7,9 +7,11 @@ using TMPro;
 public class WorkBook : MonoBehaviour
 {
     [SerializeField]
-    TextMeshPro _leftPage;
+    TextPage _textPage;
     [SerializeField]
-    TextMeshPro _rightPage;
+    RectTransform _leftPage;
+    [SerializeField]
+    RectTransform _rightPage;
     [SerializeField]
     Button _turnLeftbutton;
     [SerializeField]
@@ -40,13 +42,36 @@ public class WorkBook : MonoBehaviour
 
     void UpdatePages(IBookModel book)
     {
-        _leftPage.text = book.Pages[0].Text;
-        _leftPage.pageToDisplay = _currentPage;
-        _rightPage.text = book.Pages[0].Text;
-        _rightPage.pageToDisplay = _currentPage + 1;
+        SetPage(book.Pages[_currentPage], _leftPage);
+        if (_currentPage+1 < book.NumPages)
+        {
+            SetPage(book.Pages[_currentPage + 1], _rightPage);
+        }
 
         _turnLeftbutton.interactable = _currentPage > 0;
         _turnRightbutton.interactable = _currentPage < book.NumPages - 1;
+    }
+
+    void SetPage(IPageModel pageModel, RectTransform pageRoot)
+    {
+        switch (pageModel)
+        {
+            case ITextPageModel tp:
+                {
+                    var page = Instantiate(_textPage);
+                    page.SetPage(tp);
+                    page.PageIndex = _currentPage;
+                    var tf = page.GetComponent<RectTransform>();
+                    tf.SetParent(pageRoot);
+                    tf.sizeDelta = Vector2.zero;
+                    tf.anchorMin = Vector2.zero;
+                    tf.anchorMax = Vector2.one;
+                    tf.anchoredPosition = Vector2.zero;
+                    page.gameObject.SetActive(true);
+                } break;
+            default:
+                break;
+        }
     }
 
     void Clicked_TurnLeftButton()

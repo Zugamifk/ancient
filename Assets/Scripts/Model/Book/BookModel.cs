@@ -8,7 +8,7 @@ public class BookModel : IBookModel
     public string Name { get; set; }
     public List<IPageModel> Pages { get; } = new List<IPageModel>();
 
-    public int NumPages => 5;
+    public int NumPages => Pages.Count;
 
     public int Index { get; set; }
 

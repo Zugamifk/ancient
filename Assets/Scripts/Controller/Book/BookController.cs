@@ -13,6 +13,7 @@ public abstract class BookController<TData> : BookController
     public virtual BookModel CreateModel(TData data)
     {
         var book = new BookModel();
+        book.Name = data.Name;
         book.IndexChanged += (_, pageIndex) => book.Index = pageIndex;
         return book;
     }

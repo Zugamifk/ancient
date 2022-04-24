@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPageModel
+public class TextPageModel : ITextPageModel
 {
-    public string Text { get; }
+    public string Text { get; set; }
 }
