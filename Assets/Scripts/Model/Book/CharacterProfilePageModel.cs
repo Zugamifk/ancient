@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class CharacterProfilePageModel : ICharacterProfilePageModel
 {
-    
+    public Sprite Portrait { get; set; }
 }

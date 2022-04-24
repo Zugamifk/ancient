@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class CharacterProfilePageData : ScriptableObject
 {
-    
+    public Sprite DefaultPortrait;
 }
