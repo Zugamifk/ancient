@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Letter
   m_EditorClassIdentifier: 
   Name: Letter
+  DeskSpawnLocation: Inbox

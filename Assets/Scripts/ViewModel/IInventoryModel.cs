@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IInventoryModel 
 {
-    public IEnumerable<IInventoryItemModel> Items { get; }
+    public IEnumerable<IItemModel> Items { get; }
 }

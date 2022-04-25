@@ -8,6 +8,6 @@ public class InventoryModel : IInventoryModel
 
 
     #region IInventoryModel
-    IEnumerable<IInventoryItemModel> IInventoryModel.Items => Items.Values;
+    IEnumerable<IItemModel> IInventoryModel.Items => Items.Values;
     #endregion
 }

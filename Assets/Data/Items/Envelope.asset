@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Envelope
   m_EditorClassIdentifier: 
   Name: Envelope
+  DeskSpawnLocation: Inbox
   Contents:
   - {fileID: 11400000, guid: d3b8cb73acc100240a3b5c150e2b886f, type: 2}

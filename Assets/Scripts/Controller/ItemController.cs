@@ -17,7 +17,8 @@ public class ItemController
         var data = _collection.GetData(name);
         var itemModel = new ItemModel()
         {
-            Name = data.Name
+            Name = data.Name,
+            DeskSpawnLocation = data.DeskSpawnLocation
         };
         inventoryModel.Items.Add(name, itemModel);
 

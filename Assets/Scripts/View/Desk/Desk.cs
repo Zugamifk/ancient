@@ -8,26 +8,31 @@ public class Desk : MonoBehaviour, IUpdateable
     [SerializeField]
     DeskItemPrefabs _prefabs;
     [SerializeField]
-    Transform _inboxSpawn;
-    [SerializeField]
-    ClockView _clock;
-    [SerializeField]
-    WorkBook _openedWorkBook;
+    DeskItemSpawn[] _spawns;
 
     Dictionary<string, DeskItem> _spawnedItems = new Dictionary<string, DeskItem>();
+    Dictionary<string, DeskItemSpawn> _spawnNameToSpawn = new Dictionary<string, DeskItemSpawn>();
+
+    void Awake()
+    {
+        foreach(var s in _spawns)
+        {
+            _spawnNameToSpawn[s.SpawnName] = s;
+        }
+    }
 
     public void UpdateFromModel(IGameModel model)
     {
         DestroyRemovedItems(model.Desk.Items);
         SpawnMissingItems(model.Desk.Items);
 
-        _clock.UpdateClock(model.Time);
-        if(_openedWorkBook.IsOpen) {
-            _openedWorkBook.UpdateModel(model.WorkBook, model);
-        }
+        //_clock.UpdateClock(model.Time);
+        //if(_openedWorkBook.IsOpen) {
+        //    _openedWorkBook.UpdateModel(model.WorkBook, model);
+        //}
     }
 
-    void DestroyRemovedItems(IEnumerable<IInventoryItemModel> existingItems)
+    void DestroyRemovedItems(IEnumerable<IItemModel> existingItems)
     {
         List<string> toRemove = new List<string>();
         foreach (var kv in _spawnedItems)
@@ -44,7 +49,7 @@ public class Desk : MonoBehaviour, IUpdateable
         }
     }
 
-    void SpawnMissingItems(IEnumerable<IInventoryItemModel> existingItems)
+    void SpawnMissingItems(IEnumerable<IItemModel> existingItems)
     {
         foreach (var item in existingItems)
         {
@@ -56,10 +61,12 @@ public class Desk : MonoBehaviour, IUpdateable
         }
     }
 
-    void SpawnDeskItem(IInventoryItemModel model)
+    void SpawnDeskItem(IItemModel model)
     {
         var item = Instantiate(_prefabs.GetDeskItem(model.Name));
-        SetSpawnedParent(item.transform);
+        var spawn = _spawnNameToSpawn[model.DeskSpawnLocation];
+        spawn.PositionItem(item);
+
         _spawnedItems.Add(model.Name, item);
         var clickable = item.GetComponent<Clickable>();
         if (clickable != null)
@@ -68,12 +75,6 @@ public class Desk : MonoBehaviour, IUpdateable
         }
     }
 
-    void SetSpawnedParent(Transform child)
-    {
-        child.SetParent(_inboxSpawn);
-        SetLayer(child, _inboxSpawn.gameObject.layer);
-        child.transform.localPosition = Vector3.zero;
-    }
 
     void SetLayer(Transform tf, int layer)
     {
