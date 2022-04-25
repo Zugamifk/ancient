@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Desk : MonoBehaviour, IUpdateable
+public class Desk : MonoBehaviour, IModelUpdateable
 {
     [SerializeField]
     DeskItemPrefabs _prefabs;
@@ -12,6 +12,7 @@ public class Desk : MonoBehaviour, IUpdateable
 
     Dictionary<string, DeskItem> _spawnedItems = new Dictionary<string, DeskItem>();
     Dictionary<string, DeskItemSpawn> _spawnNameToSpawn = new Dictionary<string, DeskItemSpawn>();
+    HashSet<IModelUpdateable> _spawnedUpdateables = new HashSet<IModelUpdateable>();
 
     void Awake()
     {
@@ -26,10 +27,11 @@ public class Desk : MonoBehaviour, IUpdateable
         DestroyRemovedItems(model.Desk.Items);
         SpawnMissingItems(model.Desk.Items);
 
-        //_clock.UpdateClock(model.Time);
-        //if(_openedWorkBook.IsOpen) {
-        //    _openedWorkBook.UpdateModel(model.WorkBook, model);
-        //}
+        _spawnedUpdateables.RemoveWhere(u => u == null);
+        foreach(var updateable in _spawnedUpdateables)
+        {
+            updateable.UpdateFromModel(model);
+        }
     }
 
     void DestroyRemovedItems(IEnumerable<IItemModel> existingItems)
@@ -73,8 +75,12 @@ public class Desk : MonoBehaviour, IUpdateable
         {
             clickable.Clicked += (_, button) => model.ClickItem(button);
         }
-    }
 
+        foreach(var u in item.GetComponentsInChildren<IModelUpdateable>())
+        {
+            _spawnedUpdateables.Add(u);
+        }
+    }
 
     void SetLayer(Transform tf, int layer)
     {

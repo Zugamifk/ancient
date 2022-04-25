@@ -8,14 +8,14 @@ public class UpdateableGameObjectRegistry : MonoBehaviour
     [SerializeField]
     List<GameObject> _updateableReferences = new List<GameObject>();
 
-    List<IUpdateable> _updateables = new List<IUpdateable>();
-    public IEnumerable<IUpdateable> Updateables => _updateables;
+    HashSet<IModelUpdateable> _updateables = new HashSet<IModelUpdateable>();
+    public IEnumerable<IModelUpdateable> Updateables => _updateables;
 
     private void Start()
     {
         foreach(var updateable in _updateableReferences)
         {
-            foreach(var component in updateable.GetComponents<IUpdateable>()) {
+            foreach(var component in updateable.GetComponents<IModelUpdateable>()) {
                 _updateables.Add(component);
             }
         }    

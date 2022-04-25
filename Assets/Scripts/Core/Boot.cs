@@ -51,6 +51,7 @@ public class Boot : MonoBehaviour
         cmd.DoCommand(new SpawnBuildingCommand(Name.Building.Manor, Vector2Int.zero));
         cmd.DoCommand(new SpawnBuildingCommand(Name.Building.House, new Vector2Int(5, 2)));
         cmd.DoCommand(new BuildRoadCommand(Name.Building.Manor, Name.Building.House));
+        cmd.DoCommand(new GetItemCommand("Clock"));
 
         if (!string.IsNullOrEmpty(_testNarrative))
         {

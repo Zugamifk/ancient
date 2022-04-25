@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
+public class Map : MonoBehaviour, IMouseInputHandler, IModelUpdateable
 {
     [SerializeField]
     CharacterCollection _agentCollection;

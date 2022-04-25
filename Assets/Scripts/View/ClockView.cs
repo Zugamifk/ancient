@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClockView : MonoBehaviour
+public class ClockView : MonoBehaviour, IModelUpdateable
 {
     [SerializeField]
     bool _continuous;
@@ -32,5 +32,10 @@ public class ClockView : MonoBehaviour
             hour %= 12;
             _clockSpriteRenderer.sprite = _clockFaces[hour];
         }
+    }
+
+    public void UpdateFromModel(IGameModel model)
+    {
+        UpdateClock(model.Time);
     }
 }
