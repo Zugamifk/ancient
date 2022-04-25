@@ -8,18 +8,18 @@ public class CharacterCollection : ScriptableObject
     [SerializeField]
     CharacterData[] _agents;
 
-    Dictionary<string, CharacterData> _nameToAgentData = new Dictionary<string, CharacterData>();
+    Dictionary<string, CharacterData> _nameToCharacterData = new Dictionary<string, CharacterData>();
 
     public CharacterData GetData(string name)
     {
-        return _nameToAgentData[name];
+        return _nameToCharacterData[name];
     }
 
     private void OnEnable()
     {
         foreach(var a in _agents)
         {
-            _nameToAgentData[a.Name] = a;
+            _nameToCharacterData[a.Name] = a;
         }
     }
 

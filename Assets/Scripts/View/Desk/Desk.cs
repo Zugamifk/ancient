@@ -6,62 +6,66 @@ using UnityEngine;
 public class Desk : MonoBehaviour, IUpdateable
 {
     [SerializeField]
-    DeskItemCollection _deskItemCollection;
+    DeskItemPrefabs _prefabs;
     [SerializeField]
     Transform _inboxSpawn;
     [SerializeField]
     ClockView _clock;
     [SerializeField]
-    WorkBook _workBook;
+    WorkBook _openedWorkBook;
 
-    Dictionary<string, GameObject> _items = new Dictionary<string, GameObject>();
+    Dictionary<string, DeskItem> _spawnedItems = new Dictionary<string, DeskItem>();
 
-    public void UpdateModel(IGameModel model)
+    public void UpdateFromModel(IGameModel model)
+    {
+        DestroyRemovedItems(model.Desk.Items);
+        SpawnMissingItems(model.Desk.Items);
+
+        _clock.UpdateClock(model.Time);
+        if(_openedWorkBook.IsOpen) {
+            _openedWorkBook.UpdateModel(model.WorkBook, model);
+        }
+    }
+
+    void DestroyRemovedItems(IEnumerable<IInventoryItemModel> existingItems)
     {
         List<string> toRemove = new List<string>();
-        foreach (var kv in _items)
+        foreach (var kv in _spawnedItems)
         {
-            if(!model.Desk.Items.Any(item=>item.Name == kv.Key))
+            if (!existingItems.Any(item => item.Name == kv.Key))
             {
-                Destroy(kv.Value);
+                Destroy(kv.Value.gameObject);
                 toRemove.Add(kv.Key);
             }
         }
-        foreach(var item in toRemove)
+        foreach (var item in toRemove)
         {
-            _items.Remove(item);
+            _spawnedItems.Remove(item);
         }
-
-        foreach (var item in model.Desk.Items)
-        {
-            var go = GetItemFromModel(item);
-        }
-
-        _clock.UpdateClock(model.Time);
-        _workBook.UpdateModel(model.WorkBook, model);
     }
 
-    GameObject GetItemFromModel(IDeskItemModel model)
+    void SpawnMissingItems(IEnumerable<IInventoryItemModel> existingItems)
     {
-        GameObject go;
-        if (!_items.TryGetValue(model.Name, out go))
+        foreach (var item in existingItems)
         {
-            go = SpawnItem(model.Name);
-            var clickable = go.GetComponent<Clickable>();
-            if (clickable!=null)
+            DeskItem deskItem;
+            if (!_spawnedItems.TryGetValue(item.Name, out deskItem))
             {
-                clickable.Clicked += (_, button) => model.ClickItem(button);
+                SpawnDeskItem(item);
             }
         }
-        return go;
     }
 
-    GameObject SpawnItem(string name)
+    void SpawnDeskItem(IInventoryItemModel model)
     {
-        var prefab = Instantiate(_deskItemCollection.GetPrefab(name));
-        SetSpawnedParent(prefab.transform);
-        _items.Add(name, prefab);
-        return prefab;
+        var item = Instantiate(_prefabs.GetDeskItem(model.Name));
+        SetSpawnedParent(item.transform);
+        _spawnedItems.Add(model.Name, item);
+        var clickable = item.GetComponent<Clickable>();
+        if (clickable != null)
+        {
+            clickable.Clicked += (_, button) => model.ClickItem(button);
+        }
     }
 
     void SetSpawnedParent(Transform child)

@@ -13,7 +13,7 @@ public class GameController : ICommandService
     public MapController MapController { get; }
     internal NarrativeController NarrativeController { get; }
     TextBookController _bookController = new TextBookController();
-    public DeskController DeskController { get; }
+    public ItemController ItemController { get; }
 
     public CharacterCollection CharacterCollection { get; }
     BookCollection _bookCollection;
@@ -22,7 +22,7 @@ public class GameController : ICommandService
 
     Queue<ICommand> _commandQueue = new Queue<ICommand>();
 
-    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, CharacterCollection characterCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, DeskItemCollection deskItemCollection, BookCollection bookCollection)
+    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, CharacterCollection characterCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, ItemCollection itemCollection, BookCollection bookCollection)
     {
         _lifecycleController = lifeCycleController;
         _lifecycleController.OnUpdate += Update;
@@ -32,7 +32,7 @@ public class GameController : ICommandService
         MapController = new MapController(this, tileCollection, buildingCollection, mapData);
         MapController.InitializeModel(Model.MapModel);
         NarrativeController = new NarrativeController(narrativeCollection, this);
-        DeskController = new DeskController(deskItemCollection);
+        ItemController = new ItemController(itemCollection);
         _bookCollection = bookCollection;
 
         Model.WorkBook = _bookController.CreateModel((TextBookData)_bookCollection.GetBook("test"));
@@ -65,7 +65,7 @@ public class GameController : ICommandService
 
         foreach (var updateable in _updateableGameObjectRegistry.Updateables)
         {
-            updateable.UpdateModel(Model);
+            updateable.UpdateFromModel(Model);
         }
     }
 

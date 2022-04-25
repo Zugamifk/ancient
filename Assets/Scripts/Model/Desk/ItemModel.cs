@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeskItemModel : IDeskItemModel
+public class ItemModel : IInventoryItemModel
 {
     public string Name { get; set; }
     public event EventHandler<int> ClickedItem;

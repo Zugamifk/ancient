@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeskItemData : ScriptableObject
+public class DeskItem : MonoBehaviour
 {
     public string Name;
-    public GameObject Prefab;
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDeskModel 
+public class PackageItemData : ItemData
 {
-    public IEnumerable<IDeskItemModel> Items { get; }
+    public ItemData[] Contents;
 }

@@ -178,6 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 545530334091634295}
   - component: {fileID: 5833579685006556519}
+  - component: {fileID: 569437783671575634}
   m_Layer: 0
   m_Name: Clock
   m_TagString: Untagged
@@ -218,6 +219,19 @@ MonoBehaviour:
   _minuteHand: {fileID: 3674249682133392838}
   _clockSpriteRenderer: {fileID: 0}
   _clockFaces: []
+--- !u!114 &569437783671575634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6097215077927043266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f94685a4434334082c422cebdd5840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Clock
 --- !u!1 &7363140143012895248
 GameObject:
   m_ObjectHideFlags: 0

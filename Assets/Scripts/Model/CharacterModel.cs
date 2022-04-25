@@ -6,10 +6,19 @@ using UnityEngine;
 
 public class CharacterModel : ICharacterModel
 {
-    public string Name;
-    public Vector2 WorldPosition;
+    // info
+    public string Name { get; set; }
+    public string DisplayName { get; set; }
+    public string DateOfBirth { get; set; }
+    public string Address { get; set; }
+    public string Biography { get; set; }
+
+
+    // live data
+    public Vector2 WorldPosition { get; set; }
     public string EnteredLocation;
     public CityPath CityPath;
+
     /// <summary>
     /// The index of the path node we are current moving towards
     /// </summary>
@@ -26,9 +35,4 @@ public class CharacterModel : ICharacterModel
         ReachedPathEnd?.Invoke(this, CityPath.Path.Last());
         ReachedPathEnd = null;
     }
-
-    #region ICharacterModel
-    string ICharacterModel.Name => Name;
-    Vector2 ICharacterModel.WorldPosition => WorldPosition;
-    #endregion
 }

@@ -35,7 +35,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IUpdateable
     /// Update with new model data for per-frame updates
     /// </summary>
     /// <param name="model"></param>
-    public void UpdateModel(IGameModel model)
+    public void UpdateFromModel(IGameModel model)
     {
         if(!_isBuilt)
         {

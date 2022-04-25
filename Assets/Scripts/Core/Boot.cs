@@ -14,7 +14,7 @@ public class Boot : MonoBehaviour
     [SerializeField]
     MapData _mapData;
     [SerializeField]
-    DeskItemCollection _deskItemCollection;
+    ItemCollection _deskItemCollection;
     [SerializeField]
     BookCollection _bookCollection;
     [SerializeField]

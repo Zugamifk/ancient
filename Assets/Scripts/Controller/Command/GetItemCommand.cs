@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnDeskItemCommand : ICommand
+public class GetItemCommand : ICommand
 {
     string _itemName;
 
-    public SpawnDeskItemCommand(string itemName)
+    public GetItemCommand(string itemName)
     {
         _itemName = itemName;
     }
 
     public void Execute(GameController controller)
     {
-        controller.DeskController.AddItem(_itemName, controller.Model.Desk);
+        controller.ItemController.AddItem(_itemName, controller.Model.Desk);
     }
 }

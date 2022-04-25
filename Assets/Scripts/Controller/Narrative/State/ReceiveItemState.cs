@@ -6,7 +6,7 @@ public class ReceiveItemState : NarrativeState<ReceiveItemData>
 {
     public override string UpdateState(IGameModel model)
     {
-        Commands.DoCommand(new SpawnDeskItemCommand(Data.Item));
+        Commands.DoCommand(new GetItemCommand(Data.Item));
         return Data.Next;
     }
 }

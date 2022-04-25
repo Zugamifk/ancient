@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5dfab37c62028742986bff9d6c3a741, type: 3}
-  m_Name: Envelope
+  m_Script: {fileID: 11500000, guid: a99bdd51d010b854497383f765cf28e8, type: 3}
+  m_Name: Letter
   m_EditorClassIdentifier: 
-  Name: Envelope
-  Prefab: {fileID: 7022535038171986975, guid: 7a46e030498e802438c7c9f3fdc16d6e, type: 3}
-  Contents:
-  - Letter
+  Name: Letter

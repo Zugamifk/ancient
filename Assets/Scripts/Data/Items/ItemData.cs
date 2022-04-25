@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IUpdateable
+public class ItemData : ScriptableObject
 {
-    void UpdateFromModel(IGameModel model);
+    public string Name;
 }
