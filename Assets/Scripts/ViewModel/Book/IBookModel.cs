@@ -11,6 +11,8 @@ public interface IBookModel
     event EventHandler<int> IndexChanged;
     void OnIndexChanged(int index);
     bool IsOpen { get; set; }
+    event EventHandler Closed;
+    void OnClosed();
 
     List<IPageModel> Pages { get; }
 }

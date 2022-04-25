@@ -271,7 +271,7 @@ TextureImporter:
         width: 256
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -292,7 +292,7 @@ TextureImporter:
         width: 143
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -300,6 +300,27 @@ TextureImporter:
       bones: []
       spriteID: 86e245e1a7b9a0240871a15b806bba58
       internalID: 1199956874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Papers_9
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 993
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc7c88806cf38964c97261de4aa683c3
+      internalID: 795628893
       vertices: []
       indices: 
       edges: []
@@ -319,6 +340,7 @@ TextureImporter:
       Papers_1: 2053261113
       Papers_2: 2044518814
       Papers_7: 1789747331
+      Papers_9: 795628893
       Papers_5: -1953393609
       Papers_6: 1305322543
       Papers_8: 1199956874

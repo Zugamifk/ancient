@@ -12,10 +12,17 @@ public class BookModel : ItemModel, IItemModel, IBookModel
     public int Index { get; set; }
 
     public event EventHandler<int> IndexChanged;
+    public event EventHandler Closed;
+
     public bool IsOpen { get; set; }
 
     public void OnIndexChanged(int index)
     {
         IndexChanged?.Invoke(this, index);
+    }
+
+    public void OnClosed()
+    {
+        Closed?.Invoke(this, null);
     }
 }
