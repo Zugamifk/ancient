@@ -4,4 +4,5 @@ using UnityEngine;
 
 public class BookData : ItemData
 {
+    public string OpenedName;
 }

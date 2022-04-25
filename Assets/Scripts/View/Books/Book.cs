@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Book : MonoBehaviour
+public class Book : MonoBehaviour, IModelUpdateable
 {
+    [SerializeField]
+    string _name;
     [SerializeField]
     TextPage _textPage;
     [SerializeField]
@@ -18,29 +20,26 @@ public class Book : MonoBehaviour
     [SerializeField]
     Button _turnRightbutton;
 
-    public bool IsOpen { get; protected set; }
-
     string _currentBook;
     int _currentPage = 0;
+
+    public string Name => _name;
 
     private void Awake()
     {
         _turnLeftbutton.onClick.AddListener(Clicked_TurnLeftButton);
         _turnRightbutton.onClick.AddListener(Clicked_TurnRightButton);
     }
-
-    public void Open()
+    public void UpdateFromModel(IGameModel model)
     {
-        IsOpen = true;
-    }
+        var book = model.Inventory.GetItem(Name) as IBookModel;
+        gameObject.SetActive(book.IsOpen);
 
-    public void Close()
-    {
-        IsOpen = false;
-    }
+        if (!book.IsOpen)
+        {
+            return;
+        }
 
-    public void UpdateModel(IBookModel book, IGameModel model)
-    {
         if (_currentBook != book.Name)
         {
             _currentBook = book.Name;

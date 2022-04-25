@@ -275,6 +275,7 @@ Transform:
   - {fileID: 1775461529}
   - {fileID: 1306861016}
   - {fileID: 430524229}
+  - {fileID: 563927683}
   m_Father: {fileID: 1517378199}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -594,6 +595,87 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!1001 &563927682
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 73835777}
+    m_Modifications:
+    - target: {fileID: 161004532389827634, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_Name
+      value: WorkbookOpened
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827634, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827644, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: _name
+      value: TestBook
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+--- !u!4 &563927683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+  m_PrefabInstance: {fileID: 563927682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &563927684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 161004532389827644, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+  m_PrefabInstance: {fileID: 563927682}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ecfaa4ce1c29c449fedd465cddf77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &814050897
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +1078,6 @@ MonoBehaviour:
   _buildingCollection: {fileID: 11400000, guid: b7253795462aa34478876c987e71c37a, type: 2}
   _mapData: {fileID: 11400000, guid: 0788297b3894afc4db132ac2cb073a28, type: 2}
   _deskItemCollection: {fileID: 11400000, guid: 6ac59d2980d53fa4794d2b52d4b11527, type: 2}
-  _bookCollection: {fileID: 11400000, guid: 035338954f179e042bde491d0579bcaf, type: 2}
   _lifecycleController: {fileID: 1415220727}
   _updateableRegistry: {fileID: 1415220729}
   _testNarrative: SpawnAndMoveAgent
@@ -1097,6 +1178,8 @@ MonoBehaviour:
   - {fileID: 1620077661}
   - {fileID: 1862516172}
   - {fileID: 27366270}
+  _books:
+  - {fileID: 563927684}
 --- !u!1 &1581665921
 GameObject:
   m_ObjectHideFlags: 0

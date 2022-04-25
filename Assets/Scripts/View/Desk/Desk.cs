@@ -9,16 +9,25 @@ public class Desk : MonoBehaviour, IModelUpdateable
     DeskItemPrefabs _prefabs;
     [SerializeField]
     DeskItemSpawn[] _spawns;
+    [SerializeField]
+    Book[] _books;
 
     Dictionary<string, DeskItem> _itemNameToDeskItem = new Dictionary<string, DeskItem>();
     Dictionary<string, DeskItemSpawn> _spawnNameToSpawn = new Dictionary<string, DeskItemSpawn>();
     HashSet<IModelUpdateable> _spawnedUpdateables = new HashSet<IModelUpdateable>();
+    Dictionary<string, Book> _openBookNameToBook = new Dictionary<string, Book>();
 
     void Awake()
     {
         foreach(var s in _spawns)
         {
             _spawnNameToSpawn[s.SpawnName] = s;
+        }
+
+        foreach(var b in _books)
+        {
+            _openBookNameToBook[b.Name] = b;
+            RegisterUpdateables(b.gameObject);
         }
     }
 
@@ -76,7 +85,12 @@ public class Desk : MonoBehaviour, IModelUpdateable
             clickable.Clicked += (_, button) => model.ClickItem(button);
         }
 
-        foreach(var u in item.GetComponentsInChildren<IModelUpdateable>())
+        RegisterUpdateables(item.gameObject);
+    }
+
+    void RegisterUpdateables(GameObject go)
+    {
+        foreach (var u in go.GetComponentsInChildren<IModelUpdateable>())
         {
             _spawnedUpdateables.Add(u);
         }
