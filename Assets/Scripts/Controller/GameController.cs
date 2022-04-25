@@ -16,13 +16,12 @@ public class GameController : ICommandService
     public ItemController ItemController { get; }
 
     public CharacterCollection CharacterCollection { get; }
-    BookCollection _bookCollection;
 
     public GameModel Model { get; } = new GameModel();
 
     Queue<ICommand> _commandQueue = new Queue<ICommand>();
 
-    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, CharacterCollection characterCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, ItemCollection itemCollection, BookCollection bookCollection)
+    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, CharacterCollection characterCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, ItemCollection itemCollection)
     {
         _lifecycleController = lifeCycleController;
         _lifecycleController.OnUpdate += Update;
@@ -33,9 +32,9 @@ public class GameController : ICommandService
         MapController.InitializeModel(Model.MapModel);
         NarrativeController = new NarrativeController(narrativeCollection, this);
         ItemController = new ItemController(itemCollection);
-        _bookCollection = bookCollection;
 
-        Model.WorkBook = _bookController.CreateModel((TextBookData)_bookCollection.GetBook("test"));
+        var book = itemCollection.GetData("TestBook") as TextBookData;
+        Model.WorkBook = _bookController.CreateModel(book);
         Model.Cheats = new CheatController()
         {
             Model = Model,

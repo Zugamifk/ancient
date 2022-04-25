@@ -16,8 +16,6 @@ public class Boot : MonoBehaviour
     [SerializeField]
     ItemCollection _deskItemCollection;
     [SerializeField]
-    BookCollection _bookCollection;
-    [SerializeField]
     UnityLifecycleController _lifecycleController;
     [SerializeField]
     UpdateableGameObjectRegistry _updateableRegistry;
@@ -37,8 +35,7 @@ public class Boot : MonoBehaviour
             _buildingCollection, 
             _mapData, 
             _narrativeCollection, 
-            _deskItemCollection, 
-            _bookCollection);
+            _deskItemCollection);
 
         // Start game
         DemoInit(controller);
@@ -52,6 +49,7 @@ public class Boot : MonoBehaviour
         cmd.DoCommand(new SpawnBuildingCommand(Name.Building.House, new Vector2Int(5, 2)));
         cmd.DoCommand(new BuildRoadCommand(Name.Building.Manor, Name.Building.House));
         cmd.DoCommand(new GetItemCommand("Clock"));
+        cmd.DoCommand(new GetItemCommand("TestBook"));
 
         if (!string.IsNullOrEmpty(_testNarrative))
         {

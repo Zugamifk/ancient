@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BookOpener : MonoBehaviour
+public class BookOpener : DeskItem
 {
     [SerializeField]
     Clickable _clickable;
@@ -16,6 +16,6 @@ public class BookOpener : MonoBehaviour
 
     void Clicked(object _, int button)
     {
-        _targetBook.Open();
+        _targetBook?.Open();
     }
 }
