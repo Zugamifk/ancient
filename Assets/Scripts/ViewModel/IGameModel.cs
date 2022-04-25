@@ -7,7 +7,6 @@ public interface IGameModel
     public IMapModel Map { get; }
     public ITimeModel Time { get; }
     public IEnumerable<ICharacterModel> Characters { get; }
-    public IInventoryModel Desk { get; }
-    public IBookModel WorkBook { get; }
+    public IInventoryModel Inventory { get; }
     public ICheatController Cheats { get; }
 }

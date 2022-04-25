@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IInventoryModel 
 {
     public IEnumerable<IItemModel> Items { get; }
+    public IItemModel GetItem(string name);
 }

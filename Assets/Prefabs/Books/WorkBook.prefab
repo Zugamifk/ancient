@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8961233497306818449}
-  - component: {fileID: 3748403246454373082}
+  - component: {fileID: 485334344472617338}
   m_Layer: 7
   m_Name: WorkBook
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3748403246454373082
+--- !u!114 &485334344472617338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8961233497306818448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f96832f33d2d3bf41a3c516e9cf125b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 183e6cab50d937b479937bc932bff157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: TestBook
-  _clickable: {fileID: 5325549260482228544}
-  _targetBook: {fileID: 0}
 --- !u!1 &8961233498452367534
 GameObject:
   m_ObjectHideFlags: 0

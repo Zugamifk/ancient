@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ItemController
 {
+    TextBookController _textbookController = new TextBookController();
+
     ItemCollection _collection;
 
     public ItemController(ItemCollection collection)
@@ -15,16 +17,27 @@ public class ItemController
     public void AddItem(string name, InventoryModel inventoryModel)
     {
         var data = _collection.GetData(name);
-        var itemModel = new ItemModel()
+        ItemModel model = null;
+        switch (data)
         {
-            Name = data.Name,
-            DeskSpawnLocation = data.DeskSpawnLocation
-        };
-        inventoryModel.Items.Add(name, itemModel);
+            case TextBookData textbookData:
+                var textbook = _textbookController.CreateModel(textbookData);
+                textbook.ClickedItem += (_, _) => textbook.IsOpen = true;
+                model = textbook;
+                break;
+            default:
+                model = new ItemModel();
+                break;
+        }
+
+        model.Name = data.Name;
+        model.DeskSpawnLocation = data.DeskSpawnLocation;
+
+        inventoryModel.Items.Add(name, model);
 
         if(data is PackageItemData package)
         {
-            itemModel.ClickedItem += (_, _) =>
+            model.ClickedItem += (_, _) =>
             {
                 OpenPackage(package, inventoryModel);
             };

@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BookModel : IBookModel
+public class BookModel : ItemModel, IItemModel, IBookModel
 {
-    public string Name { get; set; }
     public List<IPageModel> Pages { get; } = new List<IPageModel>();
 
     public int NumPages => Pages.Count;
@@ -13,6 +12,7 @@ public class BookModel : IBookModel
     public int Index { get; set; }
 
     public event EventHandler<int> IndexChanged;
+    public bool IsOpen { get; set; }
 
     public void OnIndexChanged(int index)
     {

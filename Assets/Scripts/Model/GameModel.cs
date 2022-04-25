@@ -10,7 +10,6 @@ public class GameModel : IGameModel
     public Dictionary<string, CharacterModel> Characters = new Dictionary<string, CharacterModel>();
     public Dictionary<string, NarrativeModel> Narratives = new Dictionary<string, NarrativeModel>();
     public InventoryModel Desk = new InventoryModel();
-    public BookModel WorkBook = new BookModel();
 
     public ICheatController Cheats;
 
@@ -18,8 +17,7 @@ public class GameModel : IGameModel
     IMapModel IGameModel.Map => MapModel;
     ITimeModel IGameModel.Time => TimeModel;
     IEnumerable<ICharacterModel> IGameModel.Characters => Characters.Values.Cast<ICharacterModel>();
-    IInventoryModel IGameModel.Desk => Desk;
-    IBookModel IGameModel.WorkBook => WorkBook;
+    IInventoryModel IGameModel.Inventory => Desk;
     ICheatController IGameModel.Cheats => Cheats;
     #endregion
 

@@ -12,7 +12,6 @@ public class GameController : ICommandService
     CharacterController _characterController = new CharacterController();
     public MapController MapController { get; }
     internal NarrativeController NarrativeController { get; }
-    TextBookController _bookController = new TextBookController();
     public ItemController ItemController { get; }
 
     public CharacterCollection CharacterCollection { get; }
@@ -33,8 +32,6 @@ public class GameController : ICommandService
         NarrativeController = new NarrativeController(narrativeCollection, this);
         ItemController = new ItemController(itemCollection);
 
-        var book = itemCollection.GetData("TestBook") as TextBookData;
-        Model.WorkBook = _bookController.CreateModel(book);
         Model.Cheats = new CheatController()
         {
             Model = Model,

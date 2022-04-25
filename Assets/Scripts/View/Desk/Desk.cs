@@ -10,7 +10,7 @@ public class Desk : MonoBehaviour, IModelUpdateable
     [SerializeField]
     DeskItemSpawn[] _spawns;
 
-    Dictionary<string, DeskItem> _spawnedItems = new Dictionary<string, DeskItem>();
+    Dictionary<string, DeskItem> _itemNameToDeskItem = new Dictionary<string, DeskItem>();
     Dictionary<string, DeskItemSpawn> _spawnNameToSpawn = new Dictionary<string, DeskItemSpawn>();
     HashSet<IModelUpdateable> _spawnedUpdateables = new HashSet<IModelUpdateable>();
 
@@ -24,8 +24,8 @@ public class Desk : MonoBehaviour, IModelUpdateable
 
     public void UpdateFromModel(IGameModel model)
     {
-        DestroyRemovedItems(model.Desk.Items);
-        SpawnMissingItems(model.Desk.Items);
+        DestroyRemovedItems(model.Inventory.Items);
+        SpawnMissingItems(model.Inventory.Items);
 
         _spawnedUpdateables.RemoveWhere(u => u == null);
         foreach(var updateable in _spawnedUpdateables)
@@ -37,7 +37,7 @@ public class Desk : MonoBehaviour, IModelUpdateable
     void DestroyRemovedItems(IEnumerable<IItemModel> existingItems)
     {
         List<string> toRemove = new List<string>();
-        foreach (var kv in _spawnedItems)
+        foreach (var kv in _itemNameToDeskItem)
         {
             if (!existingItems.Any(item => item.Name == kv.Key))
             {
@@ -47,7 +47,7 @@ public class Desk : MonoBehaviour, IModelUpdateable
         }
         foreach (var item in toRemove)
         {
-            _spawnedItems.Remove(item);
+            _itemNameToDeskItem.Remove(item);
         }
     }
 
@@ -56,7 +56,7 @@ public class Desk : MonoBehaviour, IModelUpdateable
         foreach (var item in existingItems)
         {
             DeskItem deskItem;
-            if (!_spawnedItems.TryGetValue(item.Name, out deskItem))
+            if (!_itemNameToDeskItem.TryGetValue(item.Name, out deskItem))
             {
                 SpawnDeskItem(item);
             }
@@ -69,8 +69,8 @@ public class Desk : MonoBehaviour, IModelUpdateable
         var spawn = _spawnNameToSpawn[model.DeskSpawnLocation];
         spawn.PositionItem(item);
 
-        _spawnedItems.Add(model.Name, item);
-        var clickable = item.GetComponent<Clickable>();
+        _itemNameToDeskItem.Add(model.Name, item);
+        var clickable = item.GetComponentInChildren<Clickable>();
         if (clickable != null)
         {
             clickable.Clicked += (_, button) => model.ClickItem(button);
