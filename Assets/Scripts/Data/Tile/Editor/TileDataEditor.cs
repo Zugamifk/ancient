@@ -22,7 +22,7 @@ public class TileDataEditor : Editor
     const string EDGE_WILDCARD = "*";
     const string LIST_ELEMENT_UXML_PATH = "Assets/Scripts/Data/Tile/Editor/TileDataListElement.uxml";
     const string MAIN_UXML_PATH = "Assets/Scripts/Data/Tile/Editor/TileDataEditor.uxml";
-    const string TILEDATA_EDITOR_CONFIG_PATH = "Assets/Scripts/Data/Tile/Editor/TileDataEditorConfig.asset";
+    const string TILEDATA_EDITOR_CONFIG_PATH = "Assets/Data/Tiles/TileDataEditorConfig.asset";
 
     TileDataEditorConfig _config;
     Dictionary<string, Button> _toolbarButtons = new Dictionary<string, Button>();

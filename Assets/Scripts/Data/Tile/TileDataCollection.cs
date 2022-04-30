@@ -36,7 +36,13 @@ public class TileDataCollection : ScriptableObject
         {
             tiles = GetWildCardList(key);
         }
-        return tiles[Random.Range(0, tiles.Count)];
+        if (tiles.Count > 0)
+        {
+            return tiles[Random.Range(0, tiles.Count)];
+        } else
+        {
+            return null;
+        }
     }
 
     List<Tile> GetWildCardList((string, string, string, string, string) key)

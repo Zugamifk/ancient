@@ -22,7 +22,7 @@ public class MoveCharacterCommand : ICommand
         var destinationPosition = controller.ParsePosition(_destination);
         var startPoint = controller.Model.Characters[_characterName].WorldPosition;
         var endPoint = destinationPosition;
-        var path = controller.MapController.GetPath(Vector2Int.FloorToInt(startPoint), Vector2Int.FloorToInt(endPoint), controller.Model.MapModel.Grid);
+        var path = controller.MapController.PathFinder.GetPath(Vector2Int.FloorToInt(startPoint), Vector2Int.FloorToInt(endPoint), controller.Model.MapModel.Grid);
         var agent = controller.Model.Characters[_characterName];
         agent.CityPath = path;
         if(_reachedPathEnd!=null) { 

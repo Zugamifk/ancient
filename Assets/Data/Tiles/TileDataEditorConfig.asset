@@ -19,3 +19,5 @@ MonoBehaviour:
     EdgeColor: {r: 0.529598, g: 0.7675598, b: 0.794, a: 1}
   - Name: Dirt
     EdgeColor: {r: 0.9245283, g: 0.64233166, b: 0.44918123, a: 1}
+  - Name: Building
+    EdgeColor: {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}

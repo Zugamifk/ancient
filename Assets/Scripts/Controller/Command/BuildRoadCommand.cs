@@ -15,6 +15,6 @@ public class BuildRoadCommand : ICommand
 
     public void Execute(GameController controller)
     {
-        controller.MapController.BuildRoad(controller.Model.MapModel, _startName, _endName);
+        controller.MapController.CityGenerator.BuildRoad(controller.Model.MapModel, _startName, _endName);
     }
 }

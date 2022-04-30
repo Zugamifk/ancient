@@ -9,6 +9,7 @@ public static class Name
         // ground
         public static string Grass => "Grass";
         public static string Road => "Road";
+        public static string Building => "Building";
     }
 
     public static class Building
