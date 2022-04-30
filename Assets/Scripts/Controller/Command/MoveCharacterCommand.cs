@@ -20,14 +20,14 @@ public class MoveCharacterCommand : ICommand
     public void Execute(GameController controller)
     {
         var destinationPosition = controller.ParsePosition(_destination);
-        var startPoint = controller.Model.Characters[_characterName].WorldPosition;
+        var startPoint = controller.Model.Characters[_characterName].Movement.WorldPosition;
         var endPoint = destinationPosition;
         var path = controller.MapController.PathFinder.GetPath(Vector2Int.FloorToInt(startPoint), Vector2Int.FloorToInt(endPoint), controller.Model.MapModel.Grid);
         var agent = controller.Model.Characters[_characterName];
-        agent.CityPath = path;
+        agent.Movement.CityPath = path;
         if(_reachedPathEnd!=null) { 
-            agent.ReachedPathEnd += _reachedPathEnd;
-            agent.ReachedPathEnd += (_, _) => controller.DoCommand(new EnterBuildingCommand(_characterName, _destination));
+            agent.Movement.ReachedPathEnd += _reachedPathEnd;
+            agent.Movement.ReachedPathEnd += (_, _) => controller.DoCommand(new EnterBuildingCommand(_characterName, _destination));
         }
     }
 }

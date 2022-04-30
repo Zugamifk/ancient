@@ -798,7 +798,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Isometric_6: -1203474319
       Isometric_14: -1222946591
       Isometric_12: -2012353787
       Isometric_25: -636086123
@@ -815,6 +814,7 @@ TextureImporter:
       Isometric_30: -1603863166
       Isometric_18: 1988162285
       Isometric_5: 1392883384
+      Isometric_26: -752110349
       Isometric_28: 1047009357
       Isometric_22: 1265782118
       Isometric_23: -1419878554
@@ -829,7 +829,7 @@ TextureImporter:
       Isometric_19: -321697834
       Isometric_31: -656329618
       Isometric_0: -1571409650
-      Isometric_26: -752110349
+      Isometric_6: -1203474319
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

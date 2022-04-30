@@ -18,9 +18,15 @@ public class SpawnCharacterCommand : ICommand
         var data = controller.CharacterCollection.GetData(_name);
         var agent = new CharacterModel()
         {
-            Name = _name,
-            MoveSpeed = data.MoveSpeed,
-            WorldPosition = spawnPosition
+            Profile = new ProfileModel()
+            {
+                Name = _name,
+            },
+            Movement = new MovementModel()
+            {
+                MoveSpeed = data.MoveSpeed,
+                WorldPosition = spawnPosition
+            }
         };
         controller.Model.Characters.Add(_name, agent);
     }

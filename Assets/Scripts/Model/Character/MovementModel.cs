@@ -4,16 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CharacterModel : ICharacterModel
+public class MovementModel
 {
-    // info
-    public string Name { get; set; }
-    public string DisplayName { get; set; }
-    public string DateOfBirth { get; set; }
-    public string Address { get; set; }
-    public string Biography { get; set; }
-
-
     // live data
     public Vector2 WorldPosition { get; set; }
     public string EnteredLocation;
