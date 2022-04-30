@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +6,24 @@ using UnityEngine;
 
 public class PathFinder
 {
+    public CityPath GetDirectPath(Vector2Int start, Vector2Int end, MapGridModel grid)
+    {
+        var path = new CityPath();
+        int xs = Math.Sign(start.x - end.x);
+        int ys = Math.Sign(start.y - end.y);
+        for (int x = end.x; x != start.x; x += xs)
+        {
+            path.Path.Add(new Vector2Int(x, end.y));
+        }
+
+        for (int y = end.y; y != start.y + ys; y += ys)
+        {
+            path.Path.Add(new Vector2Int(start.x, y));
+        }
+
+        return path;
+    }
+
     public CityPath GetPath(Vector2Int start, Vector2Int end, MapGridModel grid)
     {
         int EstimateDistance(Vector2Int point)
