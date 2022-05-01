@@ -6,4 +6,5 @@ public class SpawnCharacterData : LinearStepData
 {
     public string Character;
     public string Position;
+    public bool IsUnique;
 }

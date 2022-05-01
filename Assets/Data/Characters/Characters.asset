@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agents:
   - {fileID: 11400000, guid: 03326470a613a594a9b7f2346921e202, type: 2}
+  - {fileID: 11400000, guid: 040d00cc9174c5b448fd6e76f59a1a3b, type: 2}

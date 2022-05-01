@@ -5,29 +5,27 @@ using UnityEngine;
 
 public class MoveCharacterCommand : ICommand
 {
-    string _characterName;
+    string _characterId;
     string _destination;
     EventHandler<Vector2Int> _reachedPathEnd;
 
-
-    public MoveCharacterCommand(string name, string destination, EventHandler<Vector2Int> reachedPathend = null)
+    public MoveCharacterCommand(string id, string destination, EventHandler<Vector2Int> reachedPathend = null)
     {
-        _characterName = name;
+        _characterId = id;
         _destination = destination;
         _reachedPathEnd = reachedPathend;
     }
 
     public void Execute(GameController controller)
     {
-        var destinationPosition = controller.ParsePosition(_destination);
-        var startPoint = controller.Model.Characters[_characterName].Movement.WorldPosition;
-        var endPoint = destinationPosition;
+        var character = controller.Model.GetCharacterFromKey(_characterId);
+        var startPoint = character.Movement.WorldPosition;
+        var endPoint = controller.ParsePosition(_destination);
         var path = controller.MapController.PathFinder.GetPath(Vector2Int.FloorToInt(startPoint), Vector2Int.FloorToInt(endPoint), controller.Model.MapModel.Grid);
-        var agent = controller.Model.Characters[_characterName];
-        agent.Movement.CityPath = path;
-        if(_reachedPathEnd!=null) { 
-            agent.Movement.ReachedPathEnd += _reachedPathEnd;
-            agent.Movement.ReachedPathEnd += (_, _) => controller.DoCommand(new EnterBuildingCommand(_characterName, _destination));
+        character.Movement.CityPath = path;
+        if(_reachedPathEnd!=null) {
+            character.Movement.ReachedPathEnd += _reachedPathEnd;
+            character.Movement.ReachedPathEnd += (_, _) => controller.DoCommand(new EnterBuildingCommand(_characterId, _destination));
         }
     }
 }

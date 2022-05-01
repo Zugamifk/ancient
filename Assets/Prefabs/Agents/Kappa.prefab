@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6135485016354913146}
   - component: {fileID: 8759411764455609639}
   - component: {fileID: 2259073769945673174}
+  - component: {fileID: 1086772896305824550}
   m_Layer: 0
   m_Name: Kappa
   m_TagString: Untagged
@@ -155,3 +156,16 @@ MonoBehaviour:
   StartIndex: 0
   FrameCount: 0
   AnimationClip: {fileID: -3655836268336239821, guid: be07741fcdc5f974087aebb4586d5982, type: 2}
+--- !u!114 &1086772896305824550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9176610934338377405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd31123272b5976448df9a45be80587a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _view: {fileID: 6135485016354913146}

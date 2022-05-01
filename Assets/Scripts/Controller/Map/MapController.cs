@@ -39,13 +39,6 @@ public class MapController
     public void AddBuilding(MapModel model, string name, Vector2Int position)
     {
         var building = _cityGenerator.AddBuilding(model, name, position);
-        building.Clicked += ClickedBuilding;
-    }
-
-    void ClickedBuilding(object sender, int button)
-    {
-        var building = (IBuildingModel)sender;
-        _commands.DoCommand(new MoveCharacterCommand("Test", building.Name));
     }
 
     public void SetTile(MapModel model, int x, int y, string type)

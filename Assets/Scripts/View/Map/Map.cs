@@ -15,7 +15,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IModelUpdateable
 
     TileMapper _tilemapper;
     Dictionary<string, Building> _buildings = new Dictionary<string, Building>();
-    Dictionary<string, Agent> _agents = new Dictionary<string, Agent>();
+    Dictionary<string, Movement> _characters = new Dictionary<string, Movement>();
 
     Queue<(int, int, string)> _cheatSetTileQueue = new Queue<(int, int, string)>();
     bool _isBuilt=false;
@@ -63,7 +63,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IModelUpdateable
 
     void UpdateAgent(ICharacterModel model)
     {
-        var agent = GetAgentFromModel(model);
+        var agent = GetCharacterFromModel(model);
         var position = _tilemapper.ModelToWorld(model.WorldPosition);
         agent.SetPosition(position);
         agent.gameObject.SetActive(model.IsVisibleOnMap);
@@ -79,7 +79,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IModelUpdateable
 
         foreach (var a in model.Characters)
         {
-            Agent agent = GetAgentFromModel(a);
+            Movement agent = GetCharacterFromModel(a);
             // more spawn agent stuff
         }
 
@@ -112,23 +112,27 @@ public class Map : MonoBehaviour, IMouseInputHandler, IModelUpdateable
         building.transform.position = _tilemapper.GetWorldCenterOftile((Vector3Int)gridPosition);
     }
 
-    Agent GetAgentFromModel(ICharacterModel model)
+    Movement GetCharacterFromModel(ICharacterModel model)
     {
-        Agent agent;
-        if (!_agents.TryGetValue(model.Name, out agent))
+        Movement character;
+        if (!_characters.TryGetValue(model.Id, out character))
         {
-            agent = SpawnAgent(model.Name);
+            character = SpawnCharacter(model.Name);
+            _characters.Add(model.Id, character);
         }
-        return agent;
+        return character;
     }
 
-    Agent SpawnAgent(string name)
+    Movement SpawnCharacter(string name)
     {
         var prefab = Instantiate(_agentCollection.GetData(name).MapPrefab);
         SetSpawnedParent(prefab.transform);
-        var agent = prefab.GetComponent<Agent>();
-        _agents.Add(name, agent);
-        return agent;
+        var character = prefab.GetComponent<Movement>();
+        if(character == null)
+        {
+            throw new System.InvalidOperationException($"AgentComponent missing from prefab {name} {prefab}!");
+        }
+        return character;
     }
 
     void SetSpawnedParent(Transform child)

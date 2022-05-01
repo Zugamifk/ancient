@@ -4,9 +4,12 @@ using UnityEngine;
 
 public interface IGameModel
 {
-    public IMapModel Map { get; }
-    public ITimeModel Time { get; }
-    public IEnumerable<ICharacterModel> Characters { get; }
-    public IInventoryModel Inventory { get; }
-    public ICheatController Cheats { get; }
+    IMapModel Map { get; }
+    ITimeModel Time { get; }
+    IEnumerable<ICharacterModel> Characters { get; }
+    IInventoryModel Inventory { get; }
+    ICheatController Cheats { get; }
+
+    string GetIdFromName(string name);
+    ICharacterModel GetCharacterFromKey(string key);
 }

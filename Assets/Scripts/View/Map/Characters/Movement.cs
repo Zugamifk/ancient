@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Agent : MonoBehaviour
+public class Movement : MonoBehaviour
 {
-    [field: SerializeField]
-    public string Name { get; set; }
     [SerializeField]
     Transform _view;
 

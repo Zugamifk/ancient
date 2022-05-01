@@ -1,33 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnCharacterCommand : ICommand
 {
-    string _name;
-    string _positionName;
-    Vector2Int _position;
-    public SpawnCharacterCommand(string name, string position)
-    {
-        _name = name;
-        _positionName = position;
-    }
-
-    public SpawnCharacterCommand(string name, Vector2Int position)
-    {
-        _name = name;
-        _position = position;
-    }
-
+    public string Name;
+    public string PositionName;
+    public Vector2Int Position;
+    public Action<CharacterModel> OnSpawned;
+    public bool IsUnique;
     public void Execute(GameController controller)
     {
-        var spawnPosition = string.IsNullOrEmpty(_positionName) ? _position : controller.ParsePosition(_positionName);
-        var data = controller.CharacterCollection.GetData(_name);
-        var agent = new CharacterModel()
+        var spawnPosition = string.IsNullOrEmpty(PositionName) ? Position : controller.ParsePosition(PositionName);
+        var data = controller.CharacterCollection.GetData(Name);
+        var character = new CharacterModel()
         {
             Profile = new ProfileModel()
             {
-                Name = _name,
+                Name = Name,
             },
             Movement = new MovementModel()
             {
@@ -35,6 +26,16 @@ public class SpawnCharacterCommand : ICommand
                 WorldPosition = spawnPosition
             }
         };
-        controller.Model.Characters.Add(_name, agent);
+        
+        controller.Model.Characters.Add(character.Id, character);
+
+        Debug.Log($"Added id {Name} {character.Id}");
+        
+        if (IsUnique)
+        {
+            controller.Model.UniqueCharacterNameToId.Add(Name, character.Id);
+        }
+
+        OnSpawned?.Invoke(character);
     }
 }

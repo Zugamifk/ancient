@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CharacterModel : ICharacterModel, IIdentifiable
+public class CharacterModel : ICharacterModel
 {
     public string Id { get; } = Guid.NewGuid().ToString();
     public ProfileModel Profile;
