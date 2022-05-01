@@ -8,6 +8,7 @@ public class CharacterModel : ICharacterModel
 {
     public ProfileModel Profile;
     public MovementModel Movement;
+    public HealthModel Health;
 
     #region ICharacterModel
     string ICharacterModel.Name => Profile.Name;

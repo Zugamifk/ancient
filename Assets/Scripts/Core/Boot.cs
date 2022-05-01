@@ -19,6 +19,8 @@ public class Boot : MonoBehaviour
     UnityLifecycleController _lifecycleController;
     [SerializeField]
     UpdateableGameObjectRegistry _updateableRegistry;
+    [SerializeField]
+    TurretDefenseData _turretDefenseData;
 
     [Header("Test")]
     [SerializeField]
@@ -35,7 +37,8 @@ public class Boot : MonoBehaviour
             _buildingCollection, 
             _mapData, 
             _narrativeCollection, 
-            _deskItemCollection);
+            _deskItemCollection,
+            _turretDefenseData);
 
         // Start game
         DemoInit(controller);
@@ -56,5 +59,7 @@ public class Boot : MonoBehaviour
         {
             cmd.DoCommand(new StartNarrativeCommand(_testNarrative));
         }
+
+        cmd.DoCommand(new TurretDefenseStartWaveCommand());
     }
 }

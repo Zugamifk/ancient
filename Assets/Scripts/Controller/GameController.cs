@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class GameController : ICommandService
 {
+    // Controllers
     UnityLifecycleController _lifecycleController;
     UpdateableGameObjectRegistry _updateableGameObjectRegistry;
     TimeController _timeController = new TimeController();
@@ -13,14 +14,16 @@ public class GameController : ICommandService
     public MapController MapController { get; }
     internal NarrativeController NarrativeController { get; }
     public ItemController ItemController { get; }
-
     public CharacterCollection CharacterCollection { get; }
 
+    public TurretDefenseController TurretDefenseController { get; } 
+
+    //state
     public GameModel Model { get; } = new GameModel();
 
     Queue<ICommand> _commandQueue = new Queue<ICommand>();
 
-    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, CharacterCollection characterCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, ItemCollection itemCollection)
+    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, CharacterCollection characterCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, ItemCollection itemCollection, TurretDefenseData turretDefenseData)
     {
         _lifecycleController = lifeCycleController;
         _lifecycleController.OnUpdate += Update;
@@ -31,6 +34,8 @@ public class GameController : ICommandService
         MapController.InitializeModel(Model.MapModel);
         NarrativeController = new NarrativeController(narrativeCollection, this);
         ItemController = new ItemController(itemCollection);
+
+        TurretDefenseController = new TurretDefenseController(this, turretDefenseData);
 
         Model.Cheats = new CheatController()
         {
@@ -59,6 +64,8 @@ public class GameController : ICommandService
             NarrativeController.Update(n, Model);
         }
 
+        TurretDefenseController.Update(Model);
+
         foreach (var updateable in _updateableGameObjectRegistry.Updateables)
         {
             updateable.UpdateFromModel(Model);
@@ -66,7 +73,6 @@ public class GameController : ICommandService
     }
 
     #region ICommandService
-
     public void DoCommand(ICommand command)
     {
         _commandQueue.Enqueue(command);

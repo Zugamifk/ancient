@@ -11,4 +11,5 @@ public class CharacterData : ScriptableObject
     public string Address;
     public GameObject MapPrefab;
     public float MoveSpeed = 1;
+    public int MaxHealth;
 }
