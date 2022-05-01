@@ -26,5 +26,6 @@ public class MovementModel
     {
         ReachedPathEnd?.Invoke(this, CityPath.Path.Last());
         ReachedPathEnd = null;
+        CityPath = null;
     }
 }
