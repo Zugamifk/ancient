@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CharacterModel : ICharacterModel
+public class CharacterModel : ICharacterModel, IIdentifiable
 {
+    public string Id { get; } = Guid.NewGuid().ToString();
     public ProfileModel Profile;
     public MovementModel Movement;
     public HealthModel Health;
