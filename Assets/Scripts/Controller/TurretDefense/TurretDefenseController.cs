@@ -28,8 +28,8 @@ public class TurretDefenseController
                 });
             }
             var step = waveData.SpawnTime / waveData.Count;
-            var lastSpawnTime = tdModel.SpawnedCount * step;
-            var time = model.TimeModel.Time;
+            var lastSpawnTime = tdModel.StartTime + tdModel.SpawnedCount * step;
+            var time = model.TimeModel.RealTime;
             for(var t = lastSpawnTime; t < time && tdModel.SpawnedCount < waveData.Count; t += step)
             {
                 _commands.DoCommand(new SpawnCharacterCommand()
@@ -54,6 +54,7 @@ public class TurretDefenseController
 
     public void StartWave(TurretDefenseModel waveModel, GameModel gameModel)
     {
+        waveModel.StartTime = gameModel.TimeModel.RealTime;
         waveModel.SpawnedCount = 0;
         waveModel.CurrentWave++;
     }
