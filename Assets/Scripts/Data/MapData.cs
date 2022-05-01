@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class MapData : ScriptableObject
 {
-    public BoundsInt Dimensions;
+    public Vector2Int Dimensions;
     public string DefaultTile;
 }

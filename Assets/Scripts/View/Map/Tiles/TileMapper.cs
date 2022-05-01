@@ -31,8 +31,9 @@ public class TileMapper : MonoBehaviour
     public void BuildTilemap(IMapModel model)
     {
         var grid = model.Grid;
-        var dimensions = grid.Dimensions;
-        var tiles = new Tile[dimensions.size.x * dimensions.size.y];
+        var d = grid.Dimensions;
+        var dimensions = new BoundsInt(-d.x / 2, -d.y / 2, 0, d.x, d.y, 1);
+        var tiles = new Tile[d.x * d.y];
         int i = 0;
         for (int y = dimensions.yMin; y < dimensions.yMax; y++)
         {
@@ -62,7 +63,9 @@ public class TileMapper : MonoBehaviour
     string GetTileType(IMapGridModel grid, int x, int y)
     {
         var dimensions = grid.Dimensions;
-        if (x < dimensions.xMin || x >= dimensions.xMax || y < dimensions.yMin || y >= dimensions.yMax)
+        var w = dimensions.x / 2;
+        var h = dimensions.y / 2;
+        if (x < -w || x >= w || y < -h || y >= h)
         {
             return _defaultTileType;
         }

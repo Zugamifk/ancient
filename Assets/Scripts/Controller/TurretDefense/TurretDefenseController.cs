@@ -22,6 +22,10 @@ public class TurretDefenseController
             void SpawnedEnemy(CharacterModel enemy)
             {
                 tdModel.Enemies.Add(enemy);
+                _commands.DoCommand(new MoveCharacterCommand() { 
+                    CharacterId = enemy.Id,
+                    Destination = tdModel.EndPoint
+                });
             }
             var step = waveData.SpawnTime / waveData.Count;
             var lastSpawnTime = tdModel.SpawnedCount * step;
@@ -34,6 +38,7 @@ public class TurretDefenseController
                     Position = tdModel.SpawnPosition,
                     OnSpawned = SpawnedEnemy
                 });
+                
                 tdModel.SpawnedCount ++;
             }
         }

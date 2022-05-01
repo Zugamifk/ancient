@@ -8,7 +8,12 @@ public class MoveCharacterState : NarrativeState<MoveCharacterData>
 
     public override void EnterState(IGameModel model)
     {
-        Commands.DoCommand(new MoveCharacterCommand(Data.Character, Data.Destination, ReachedPathEnd));
+        Commands.DoCommand(new MoveCharacterCommand()
+        {
+            CharacterId = Data.Character,
+            DestinationName = Data.Destination,
+            ReachedPathEnd = ReachedPathEnd
+        });
     }
 
     public override string UpdateState(IGameModel model)

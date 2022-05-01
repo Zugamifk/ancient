@@ -26,9 +26,13 @@ public class MapController
     public void InitializeModel(MapModel model)
     {
         var dimensions = _mapData.Dimensions;
-        for (int x = dimensions.xMin; x < dimensions.xMax; x++)
+        var x0 = -dimensions.x / 2;
+        var xn = dimensions.x / 2;
+        var y0 = -dimensions.y / 2;
+        var yn = dimensions.y / 2;
+        for (int x = x0; x < xn; x++)
         {
-            for (int y = dimensions.yMin; y < dimensions.yMax; y++)
+            for (int y = y0; y < yn; y++)
             {
                 model.Grid.Map[new Vector2Int(x, y)] = GetTileModel(_mapData.DefaultTile);
             }

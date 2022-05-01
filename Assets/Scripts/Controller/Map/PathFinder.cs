@@ -86,7 +86,8 @@ public class PathFinder
             yield return new Vector2Int(position.x, position.y - 1);
         }
 
-        while (openSet.Count > 0)
+        int longRunCounter = 1000;  
+        while (openSet.Count > 0 && longRunCounter-- > 0)
         {
             var current = openSet.Aggregate((a, b) => GetFScore(a) > GetFScore(b) ? b : a);
             if (current == end)
@@ -97,7 +98,8 @@ public class PathFinder
             openSet.Remove(current);
             foreach (var n in GetNeighbours(current))
             {
-                var g = GetGScore(current) + grid.Map[n].MoveCost;
+                var moveCost = grid.Map.ContainsKey(n) ? grid.Map[n].MoveCost : 9999;
+                var g = GetGScore(current) + moveCost;
                 if (g < GetGScore(n))
                 {
                     cameFrom[n] = current;
@@ -109,6 +111,11 @@ public class PathFinder
                     }
                 }
             }
+        }
+
+        if (longRunCounter <= 0)
+        {
+            throw new InvalidOperationException($"Path find from {start} to {end} ran long!");
         }
 
         return null;

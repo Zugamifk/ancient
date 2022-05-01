@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IMapGridModel
 {
-    BoundsInt Dimensions { get; }
+    Vector2Int Dimensions { get; }
     IMapTileModel GetTile(int x, int y);
 }

@@ -28,8 +28,6 @@ public class SpawnCharacterCommand : ICommand
         };
         
         controller.Model.Characters.Add(character.Id, character);
-
-        Debug.Log($"Added id {Name} {character.Id}");
         
         if (IsUnique)
         {
