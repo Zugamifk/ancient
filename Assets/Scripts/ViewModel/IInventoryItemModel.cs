@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IItemModel
+public interface IItemModel : IIdentifiable
 {
     public string Name { get; }
     public string DeskSpawnLocation { get; }

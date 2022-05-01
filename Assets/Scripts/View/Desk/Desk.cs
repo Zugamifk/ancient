@@ -12,19 +12,20 @@ public class Desk : MonoBehaviour, IModelUpdateable
     [SerializeField]
     Book[] _books;
 
-    Dictionary<string, DeskItem> _itemNameToDeskItem = new Dictionary<string, DeskItem>();
+    ViewSpawner<IItemModel, DeskItem> _itemSpawner = new ViewSpawner<IItemModel, DeskItem>();
+    Dictionary<string, DeskItem> _idToDeskItem = new Dictionary<string, DeskItem>();
     Dictionary<string, DeskItemSpawn> _spawnNameToSpawn = new Dictionary<string, DeskItemSpawn>();
     HashSet<IModelUpdateable> _spawnedUpdateables = new HashSet<IModelUpdateable>();
     Dictionary<string, Book> _openBookNameToBook = new Dictionary<string, Book>();
 
     void Awake()
     {
-        foreach(var s in _spawns)
+        foreach (var s in _spawns)
         {
             _spawnNameToSpawn[s.SpawnName] = s;
         }
 
-        foreach(var b in _books)
+        foreach (var b in _books)
         {
             _openBookNameToBook[b.Name] = b;
             RegisterUpdateables(b.gameObject);
@@ -33,52 +34,26 @@ public class Desk : MonoBehaviour, IModelUpdateable
 
     public void UpdateFromModel(IGameModel model)
     {
-        DestroyRemovedItems(model.Inventory.Items);
-        SpawnMissingItems(model.Inventory.Items);
+        _itemSpawner.UpdateSpawns(
+            model.Inventory.Items,
+            _idToDeskItem,
+            i => _prefabs.GetDeskItem(i.Name),
+            transform,
+            OnSpawnDeskItem
+        );
 
         _spawnedUpdateables.RemoveWhere(u => u == null);
-        foreach(var updateable in _spawnedUpdateables)
+        foreach (var updateable in _spawnedUpdateables)
         {
             updateable.UpdateFromModel(model);
         }
     }
 
-    void DestroyRemovedItems(IEnumerable<IItemModel> existingItems)
+    void OnSpawnDeskItem(IItemModel model, DeskItem item)
     {
-        List<string> toRemove = new List<string>();
-        foreach (var kv in _itemNameToDeskItem)
-        {
-            if (!existingItems.Any(item => item.Name == kv.Key))
-            {
-                Destroy(kv.Value.gameObject);
-                toRemove.Add(kv.Key);
-            }
-        }
-        foreach (var item in toRemove)
-        {
-            _itemNameToDeskItem.Remove(item);
-        }
-    }
-
-    void SpawnMissingItems(IEnumerable<IItemModel> existingItems)
-    {
-        foreach (var item in existingItems)
-        {
-            DeskItem deskItem;
-            if (!_itemNameToDeskItem.TryGetValue(item.Name, out deskItem))
-            {
-                SpawnDeskItem(item);
-            }
-        }
-    }
-
-    void SpawnDeskItem(IItemModel model)
-    {
-        var item = Instantiate(_prefabs.GetDeskItem(model.Name));
         var spawn = _spawnNameToSpawn[model.DeskSpawnLocation];
         spawn.PositionItem(item);
 
-        _itemNameToDeskItem.Add(model.Name, item);
         var clickable = item.GetComponentInChildren<Clickable>();
         if (clickable != null)
         {
