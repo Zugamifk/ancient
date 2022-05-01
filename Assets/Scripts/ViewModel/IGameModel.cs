@@ -9,7 +9,4 @@ public interface IGameModel
     IEnumerable<ICharacterModel> Characters { get; }
     IInventoryModel Inventory { get; }
     ICheatController Cheats { get; }
-
-    string GetIdFromName(string name);
-    ICharacterModel GetCharacterFromKey(string key);
 }

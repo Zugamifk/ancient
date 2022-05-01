@@ -20,7 +20,7 @@ public class EnterBuildingCommand : ICommand
     {
         _building = controller.Model.MapModel.GetBuilding(_buildingName);
         var destinationPosition = _building.Position;
-        _character = controller.Model.GetCharacterFromKey(_characterName);
+        _character = controller.Model.Characters.GetItem(_characterName);
         var path = controller.MapController.PathFinder.GetDirectPath(Vector2Int.FloorToInt(_character.Movement.WorldPosition), Vector2Int.FloorToInt(destinationPosition), controller.Model.MapModel.Grid);
         _character.Movement.CityPath = path;
         _character.Movement.ReachedPathEnd += Enterbuilding;

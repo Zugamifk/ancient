@@ -14,11 +14,13 @@ public class Map : MonoBehaviour, IMouseInputHandler, IModelUpdateable
     Transform _spawnedObjectsRoot;
 
     TileMapper _tilemapper;
+    ViewSpawner<IBuildingModel, Building> _buildingViewSpawner = new ViewSpawner<IBuildingModel, Building>();
     Dictionary<string, Building> _buildings = new Dictionary<string, Building>();
+    ViewSpawner<ICharacterModel, Movement> _characterViewSpawner = new ViewSpawner<ICharacterModel, Movement>();
     Dictionary<string, Movement> _characters = new Dictionary<string, Movement>();
 
     Queue<(int, int, string)> _cheatSetTileQueue = new Queue<(int, int, string)>();
-    bool _isBuilt=false;
+    bool _isTilemapBuilt = false;
 
     public void SetTile(Vector3 position, string type)
     {
@@ -37,116 +39,58 @@ public class Map : MonoBehaviour, IMouseInputHandler, IModelUpdateable
     /// <param name="model"></param>
     public void UpdateFromModel(IGameModel model)
     {
-        if(!_isBuilt)
+        if (!_isTilemapBuilt)
         {
-            FullRebuild(model);
+            RebuildTilemap(model);
         }
 
-        foreach (var b in model.Map.Buildings)
-        {
-            var building = GetBuildingFromModel(b);
-            building.UpdateModel(b, model);
-        }
-
-        foreach(var a in model.Characters)
-        {
-            UpdateAgent(a);
-        }
+        UpdateBuildings(model);
+        UpdateCharacters(model);
 
         while (_cheatSetTileQueue.Count > 0)
         {
-            var (x,y,type) = _cheatSetTileQueue.Dequeue();
+            var (x, y, type) = _cheatSetTileQueue.Dequeue();
             model.Cheats.SetTile(x, y, type);
             _tilemapper.SetTile(x, y, model.Cheats.GameModel.Map);
         }
     }
 
-    void UpdateAgent(ICharacterModel model)
+    void RebuildTilemap(IGameModel model)
     {
-        var agent = GetCharacterFromModel(model);
-        var position = _tilemapper.ModelToWorld(model.WorldPosition);
-        agent.SetPosition(position);
-        agent.gameObject.SetActive(model.IsVisibleOnMap);
-    }
-
-    void FullRebuild(IGameModel model)
-    {
-        foreach (var b in model.Map.Buildings)
-        {
-            Building building = GetBuildingFromModel(b);
-            PositionBuilding(building, b.Position);
-        }
-
-        foreach (var a in model.Characters)
-        {
-            Movement agent = GetCharacterFromModel(a);
-            // more spawn agent stuff
-        }
-
         _tilemapper.BuildTilemap(model.Map);
 
-        _isBuilt = true;
+        _isTilemapBuilt = true;
     }
 
-    Building GetBuildingFromModel(IBuildingModel model)
+    void UpdateBuildings(IGameModel model)
     {
-        Building building;
-        if (!_buildings.TryGetValue(model.Name, out building))
+        _buildingViewSpawner.UpdateSpawns(
+            model.Map.Buildings,
+            _buildings,
+            b => _buildingCollection.GetPrefab(b.Name).GetComponent<Building>(),
+            _spawnedObjectsRoot,
+            (m, v) => v.transform.position = _tilemapper.GetWorldCenterOftile((Vector3Int)model.Map.GetBuilding(m.Id).Position));
+
+        foreach (var b in model.Map.Buildings)
         {
-            building = SpawnBuilding(model.Name);
+            _buildings[b.Id].UpdateModel(b, model);
         }
-        return building;
     }
 
-    Building SpawnBuilding(string name)
+    void UpdateCharacters(IGameModel model)
     {
-        var prefab = Instantiate(_buildingCollection.GetPrefab(name));
-        SetSpawnedParent(prefab.transform);
-        var building = prefab.GetComponent<Building>();
-        _buildings.Add(name, building);
-        return building;
-    }
+        _characterViewSpawner.UpdateSpawns(
+            model.Characters,
+            _characters,
+            m => _agentCollection.GetData(m.Name).MapPrefab.GetComponent<Movement>(),
+            _spawnedObjectsRoot);
 
-    void PositionBuilding(Building building, Vector2Int gridPosition)
-    {
-        building.transform.position = _tilemapper.GetWorldCenterOftile((Vector3Int)gridPosition);
-    }
-
-    Movement GetCharacterFromModel(ICharacterModel model)
-    {
-        Movement character;
-        if (!_characters.TryGetValue(model.Id, out character))
+        foreach (var c in model.Characters)
         {
-            character = SpawnCharacter(model.Name);
-            _characters.Add(model.Id, character);
-        }
-        return character;
-    }
-
-    Movement SpawnCharacter(string name)
-    {
-        var prefab = Instantiate(_agentCollection.GetData(name).MapPrefab);
-        SetSpawnedParent(prefab.transform);
-        var character = prefab.GetComponent<Movement>();
-        if(character == null)
-        {
-            throw new System.InvalidOperationException($"AgentComponent missing from prefab {name} {prefab}!");
-        }
-        return character;
-    }
-
-    void SetSpawnedParent(Transform child)
-    {
-        child.SetParent(_spawnedObjectsRoot);
-        SetLayer(child, _spawnedObjectsRoot.gameObject.layer);
-    }
-
-    void SetLayer(Transform tf, int layer)
-    {
-        tf.gameObject.layer = layer;
-        foreach(Transform child in tf)
-        {
-            SetLayer(child, layer);
+            var character = _characters[c.Id];
+            var position = _tilemapper.ModelToWorld(c.WorldPosition);
+            character.SetPosition(position);
+            character.gameObject.SetActive(c.IsVisibleOnMap);
         }
     }
 

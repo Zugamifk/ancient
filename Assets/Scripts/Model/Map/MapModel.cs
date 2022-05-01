@@ -5,13 +5,13 @@ using UnityEngine;
 public class MapModel : IMapModel
 {
     public CityGraph Graph = new CityGraph();
-    public List<BuildingModel> Buildings = new List<BuildingModel>();
+    public IdentifiableCollection<BuildingModel> Buildings = new IdentifiableCollection<BuildingModel>();
     public MapGridModel Grid = new MapGridModel();
-    public BuildingModel GetBuilding(string name) => Buildings.Find(b => b.Name == name);
+    public BuildingModel GetBuilding(string key) => Buildings.GetItem(key);
 
     #region IMapModel
     ICityGraph IMapModel.CityGraph => Graph;
-    IReadOnlyList<IBuildingModel> IMapModel.Buildings => Buildings;
+    IEnumerable<IBuildingModel> IMapModel.Buildings => Buildings.Items;
     IMapGridModel IMapModel.Grid => Grid;
     IBuildingModel IMapModel.GetBuilding(string name) => GetBuilding(name);
     #endregion

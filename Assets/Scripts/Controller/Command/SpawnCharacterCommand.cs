@@ -27,12 +27,7 @@ public class SpawnCharacterCommand : ICommand
             }
         };
         
-        controller.Model.Characters.Add(character.Id, character);
-        
-        if (IsUnique)
-        {
-            controller.Model.UniqueCharacterNameToId.Add(Name, character.Id);
-        }
+        controller.Model.Characters.AddItem(character, IsUnique ? Name : null);
 
         OnSpawned?.Invoke(character);
     }

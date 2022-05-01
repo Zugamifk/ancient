@@ -12,7 +12,7 @@ public class MoveCharacterCommand : ICommand
 
     public void Execute(GameController controller)
     {
-        var character = controller.Model.GetCharacterFromKey(CharacterId);
+        var character = controller.Model.Characters.GetItem(CharacterId);
         var startPoint = character.Movement.WorldPosition;
         var endPoint = string.IsNullOrEmpty(DestinationName) ? Destination : controller.ParsePosition(DestinationName);
         var path = controller.MapController.PathFinder.GetPath(Vector2Int.FloorToInt(startPoint), Vector2Int.FloorToInt(endPoint), controller.Model.MapModel.Grid);

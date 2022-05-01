@@ -38,8 +38,8 @@ public class CityGenerator
 
     public void BuildRoad(MapModel model, string startName, string endName)
     {
-        var start = model.Buildings.First(b => b.Name == startName);
-        var end = model.Buildings.First(b => b.Name == endName);
+        var start = model.Buildings.GetItem(startName);
+        var end = model.Buildings.GetItem(endName);
         model.Graph.Connect(start, end);
 
         var pointA = Vector2Int.FloorToInt(start.EntrancePosition);
@@ -66,7 +66,7 @@ public class CityGenerator
             Position = position,
             EntrancePosition = position + data.EntranceOffset,
         };
-        model.Buildings.Add(building);
+        model.Buildings.AddItem(building, name);
         model.Grid.Map[position] = GetTileModel(Name.Tile.Building);
         return building;
     }
