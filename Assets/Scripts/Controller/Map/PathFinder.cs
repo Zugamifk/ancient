@@ -86,7 +86,7 @@ public class PathFinder
             yield return new Vector2Int(position.x, position.y - 1);
         }
 
-        int longRunCounter = 1000;  
+        int longRunCounter = 10000;  
         while (openSet.Count > 0 && longRunCounter-- > 0)
         {
             var current = openSet.Aggregate((a, b) => GetFScore(a) > GetFScore(b) ? b : a);
