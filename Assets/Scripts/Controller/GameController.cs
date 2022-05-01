@@ -11,6 +11,7 @@ public class GameController : ICommandService
     UpdateableGameObjectRegistry _updateableGameObjectRegistry;
     TimeController _timeController = new TimeController();
     CharacterController _characterController = new CharacterController();
+    MovementController _movementController = new MovementController();
     public MapController MapController { get; }
     internal NarrativeController NarrativeController { get; }
     public ItemController ItemController { get; }
@@ -57,6 +58,11 @@ public class GameController : ICommandService
         foreach (var a in Model.Characters.Values)
         {
             _characterController.Update(a, Model);
+        }
+
+        foreach(var m in Model.MovementModels)
+        {
+            _movementController.Update(m, Model);
         }
 
         foreach (var n in Model.Narratives.Values)

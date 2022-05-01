@@ -2,18 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnCharacterCommand : ICommand
+public class TurretDefenseSpawnEnemyCommand : ICommand
 {
     string _name;
-    string _positionName;
     Vector2Int _position;
-    public SpawnCharacterCommand(string name, string position)
-    {
-        _name = name;
-        _positionName = position;
-    }
 
-    public SpawnCharacterCommand(string name, Vector2Int position)
+    public TurretDefenseSpawnEnemyCommand(string name, Vector2Int position)
     {
         _name = name;
         _position = position;
@@ -21,9 +15,8 @@ public class SpawnCharacterCommand : ICommand
 
     public void Execute(GameController controller)
     {
-        var spawnPosition = string.IsNullOrEmpty(_positionName) ? _position : controller.ParsePosition(_positionName);
         var data = controller.CharacterCollection.GetData(_name);
-        var agent = new CharacterModel()
+        var enemy = new CharacterModel()
         {
             Profile = new ProfileModel()
             {
@@ -32,9 +25,14 @@ public class SpawnCharacterCommand : ICommand
             Movement = new MovementModel()
             {
                 MoveSpeed = data.MoveSpeed,
-                WorldPosition = spawnPosition
+                WorldPosition = _position
+            },
+            Health = new HealthModel()
+            {
+                MaxHealth = data.MaxHealth,
+                CurrentHealth = data.MaxHealth
             }
         };
-        controller.Model.Characters.Add(_name, agent);
+        controller.Model.TurretDefenseModel.Enemies.Add(enemy);
     }
 }

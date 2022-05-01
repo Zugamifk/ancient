@@ -60,6 +60,7 @@ public class Boot : MonoBehaviour
             cmd.DoCommand(new StartNarrativeCommand(_testNarrative));
         }
 
+        cmd.DoCommand(new TurretDefenseStartGameCommand());
         cmd.DoCommand(new TurretDefenseStartWaveCommand());
     }
 }

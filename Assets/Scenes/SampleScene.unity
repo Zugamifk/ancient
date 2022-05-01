@@ -1105,6 +1105,7 @@ MonoBehaviour:
   _deskItemCollection: {fileID: 11400000, guid: 6ac59d2980d53fa4794d2b52d4b11527, type: 2}
   _lifecycleController: {fileID: 1415220727}
   _updateableRegistry: {fileID: 1415220729}
+  _turretDefenseData: {fileID: 11400000, guid: d27a825815c9edc46a37a6caaa184645, type: 2}
   _testNarrative: SpawnAndMoveAgent
 --- !u!114 &1415220729
 MonoBehaviour:

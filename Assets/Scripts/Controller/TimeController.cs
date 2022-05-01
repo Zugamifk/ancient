@@ -7,6 +7,6 @@ public class TimeController
     public void Update(TimeModel model, float deltaTime)
     {
         model.LastDeltaTime = deltaTime;
-        model.TotalRealSeconds += deltaTime;
+        model.RealTime += deltaTime;
     }
 }

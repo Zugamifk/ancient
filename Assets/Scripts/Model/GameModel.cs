@@ -10,6 +10,9 @@ public class GameModel : IGameModel
     public Dictionary<string, CharacterModel> Characters = new Dictionary<string, CharacterModel>();
     public Dictionary<string, NarrativeModel> Narratives = new Dictionary<string, NarrativeModel>();
     public InventoryModel Desk = new InventoryModel();
+    public TurretDefenseModel TurretDefenseModel = new TurretDefenseModel();
+
+    public IEnumerable<MovementModel> MovementModels => Characters.Values.Select(c => c.Movement).Concat(TurretDefenseModel.Enemies.Select(e => e.Movement));
 
     public ICheatController Cheats;
 
