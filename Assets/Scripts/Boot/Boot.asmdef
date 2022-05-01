@@ -1,5 +1,5 @@
 {
-    "name": "Core",
+    "name": "Boot",
     "rootNamespace": "",
     "references": [
         "GUID:135ba23f7a502a34e9dd38770d230700",
