@@ -13,4 +13,12 @@ MonoBehaviour:
   m_Name: DefaultCharacterProfile
   m_EditorClassIdentifier: 
   Name: Namey McNameface
-  Portrait: {fileID: 127559008, guid: d254866361c50bc4aa869aa339bf27ef, type: 3}
+  DisplayName: Namey McNameface
+  DateOfBirth: 06/06/1666
+  Biography: "XXXXXXXXXX XXXXXXXXXX XXXXXXXX\nThis character is useless but they
+    have all the data needed to test out a normal character\n\nUse this character
+    to test new features or just make broken things obvious\t"
+  Address: 123 Real St.
+  MapPrefab: {fileID: 101757231194167884, guid: c15fdf3d3bab33f4aa44421e4825ae9f, type: 3}
+  MoveSpeed: 1
+  MaxHealth: 10

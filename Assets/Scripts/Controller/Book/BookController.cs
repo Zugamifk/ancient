@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class BookController
 {
-    
+    public CharacterProfilePageModel CreateCharacterProfilePageModel(CharacterData data)
+    {
+        return new CharacterProfilePageModel()
+        {
+            Name = data.DisplayName,
+            DateOfBirth = data.DateOfBirth,
+            Address = data.Address,
+            Biography = data.Biography
+        };
+    }   
 }
 
 public abstract class BookController<TData> : BookController 

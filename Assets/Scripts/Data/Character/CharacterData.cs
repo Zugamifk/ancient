@@ -7,6 +7,7 @@ public class CharacterData : ScriptableObject
     public string Name;
     public string DisplayName;
     public string DateOfBirth;
+    [Multiline]
     public string Biography;
     public string Address;
     public GameObject MapPrefab;
