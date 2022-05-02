@@ -9,6 +9,6 @@ public class TurretDefenseModel
     public int Lives;
     public float StartTime;
     public int SpawnedCount;
-    public int CurrentWave;
+    public int CurrentWave = -1;
     public List<CharacterModel> Enemies = new List<CharacterModel>();
 }

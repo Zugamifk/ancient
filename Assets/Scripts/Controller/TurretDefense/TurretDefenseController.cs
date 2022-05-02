@@ -16,8 +16,11 @@ public class TurretDefenseController
     public void Update(GameModel model)
     {
         var tdModel = model.TurretDefenseModel;
+        
+        if (tdModel.CurrentWave < 0) return;
+        
         var waveData = _gameData.Waves[tdModel.CurrentWave];
-        if(tdModel.CurrentWave >= 0 && tdModel.SpawnedCount < waveData.Count)
+        if(tdModel.SpawnedCount < waveData.Count)
         {
             void SpawnedEnemy(CharacterModel enemy)
             {

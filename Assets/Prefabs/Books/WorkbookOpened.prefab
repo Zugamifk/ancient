@@ -440,7 +440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &161004532389827645
 Transform:
   m_ObjectHideFlags: 0
@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ecfaa4ce1c29c449fedd465cddf77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  _name: TestBook
   _textPage: {fileID: 1592151892391576286, guid: 486f5f30e2f1cb84ebf74f15e58c59c2, type: 3}
   _characterPage: {fileID: 4582587268298538165, guid: e7e04ccd5b2ccf5468505c2bb4676141, type: 3}
   _leftPage: {fileID: 161004532284893339}
@@ -537,7 +537,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 5
   m_TargetDisplay: 0

@@ -41,26 +41,7 @@ public class Boot : MonoBehaviour
             _turretDefenseData);
 
         // Start game
-        DemoInit(controller);
-    }
-
-    // move to demo script
-    void DemoInit(GameController controller)
-    {
-        var cmd = controller as ICommandService;
-        cmd.DoCommand(new SpawnBuildingCommand(Name.Building.Manor, Vector2Int.zero));
-        cmd.DoCommand(new SpawnBuildingCommand(Name.Building.House, new Vector2Int(5, 2)));
-        cmd.DoCommand(new BuildRoadCommand(Name.Building.Manor, Name.Building.House));
-        cmd.DoCommand(new GenerateCityCommand());
-        cmd.DoCommand(new GetItemCommand("Clock"));
-        cmd.DoCommand(new GetItemCommand("TestBook"));
-
-        if (!string.IsNullOrEmpty(_testNarrative))
-        {
-            cmd.DoCommand(new StartNarrativeCommand(_testNarrative));
-        }
-
-        cmd.DoCommand(new TurretDefenseStartGameCommand());
-        cmd.DoCommand(new TurretDefenseStartWaveCommand());
+        //SimpleNarrativeTest.Init(controller, _testNarrative);
+        TurretDefenseTest.Init(controller);
     }
 }
