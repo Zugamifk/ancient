@@ -50,20 +50,26 @@ public class TurretDefenseController
         }
     }
 
-    public void StartGame(TurretDefenseModel waveModel, GameModel gameModel, Vector2Int startPosition, Vector2Int endPosition)
+    public void StartGame(TurretDefenseModel model, GameModel gameModel, Vector2Int startPosition, Vector2Int endPosition)
     {
-        waveModel.Lives = _gameData.StartingLives;
-        waveModel.MaxLives = _gameData.StartingLives;
-        waveModel.SpawnPosition = startPosition;
-        waveModel.EndPoint = endPosition;
-        waveModel.CurrentWave = -1;
+        model.Lives = _gameData.StartingLives;
+        model.MaxLives = _gameData.StartingLives;
+        model.SpawnPosition = startPosition;
+        model.EndPoint = endPosition;
+        model.CurrentWave = -1;
     }
 
-    public void StartWave(TurretDefenseModel waveModel, GameModel gameModel)
+    public void StartWave(TurretDefenseModel model, GameModel gameModel)
     {
-        waveModel.StartTime = gameModel.TimeModel.RealTime;
-        waveModel.SpawnedCount = 0;
-        waveModel.CurrentWave++;
+        model.StartTime = gameModel.TimeModel.RealTime;
+        model.SpawnedCount = 0;
+        model.CurrentWave++;
+    }
+
+    public void LoseGame(TurretDefenseModel model)
+    {
+        model.CurrentWave = -1;
+        Debug.Log("Game over!!");
     }
 
     void OnReachedEnd(MovementModel model)
@@ -72,5 +78,6 @@ public class TurretDefenseController
         {
             CharacterId = model.OwnerId
         });
+        _commands.DoCommand(new TurretDefenseLoseLifeCommand());
     }
 }
