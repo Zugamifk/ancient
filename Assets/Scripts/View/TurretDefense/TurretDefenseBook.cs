@@ -20,7 +20,7 @@ public class TurretDefenseBook : MonoBehaviour, IModelUpdateable
     {
         var tdModel = model.TurretDefense;
         _livesText.text = string.Format(k_LivesTextString, tdModel.Lives, tdModel.MaxLives);
-        _waveCountText.text = string.Format(k_WaveCountTextString, tdModel.CurrentWave);
+        _waveCountText.text = string.Format(k_WaveCountTextString, tdModel.CurrentWave+1);
         _timeText.text = string.Format(k_TimeTextString, tdModel.CurrentTime.ToString(@"mm\:ss"));
     }
 }

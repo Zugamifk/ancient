@@ -1732,10 +1732,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 359448508236148788, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 479062080582278747, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1776,22 +1772,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2273842281720107524, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2905778597560344584, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3333031781145517999, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4410392512520325690, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4985783687630553305, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1810,18 +1790,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4985783687630553305, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5260571244197129827, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5765451687725392897, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7002060820141462093, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
-      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7022535038171986946, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
@@ -1871,10 +1839,6 @@ PrefabInstance:
     - target: {fileID: 7022535038171986975, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
       propertyPath: m_Name
       value: TurretDefenseInfo
-      objectReference: {fileID: 0}
-    - target: {fileID: 7022535038171986975, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}

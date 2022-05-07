@@ -88,7 +88,7 @@ public class Map : MonoBehaviour, IMouseInputHandler, IModelUpdateable
         foreach (var c in model.Characters)
         {
             var character = _characters[c.Id];
-            var position = _tilemapper.ModelToWorld(c.WorldPosition);
+            var position = _tilemapper.ModelToWorld(c.WorldPosition + character.PositionOffset);
             character.SetPosition(position);
             character.gameObject.SetActive(c.IsVisibleOnMap);
         }

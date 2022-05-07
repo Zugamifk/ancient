@@ -53,6 +53,7 @@ public class TurretDefenseController
     public void StartGame(TurretDefenseModel waveModel, GameModel gameModel, Vector2Int startPosition, Vector2Int endPosition)
     {
         waveModel.Lives = _gameData.StartingLives;
+        waveModel.MaxLives = _gameData.StartingLives;
         waveModel.SpawnPosition = startPosition;
         waveModel.EndPoint = endPosition;
         waveModel.CurrentWave = -1;
