@@ -8,6 +8,6 @@ public interface IBuildingModel : IIdentifiable
     string Name { get; }
     Vector2Int Position { get; }
     Vector2Int EntrancePosition { get; }
-    event EventHandler<int> Clicked;
+    event Action<int> Clicked;
     void OnClicked(int button);
 }

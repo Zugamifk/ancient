@@ -7,6 +7,6 @@ public interface IItemModel : IIdentifiable
 {
     public string Name { get; }
     public string DeskSpawnLocation { get; }
-    public event EventHandler<int> ClickedItem;
+    public event Action<int> ClickedItem;
     public void ClickItem(int button);
 }

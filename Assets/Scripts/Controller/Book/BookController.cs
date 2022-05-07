@@ -23,8 +23,8 @@ public abstract class BookController<TData> : BookController
     {
         var book = new BookModel();
         book.Name = data.Name;
-        book.IndexChanged += (_, pageIndex) => book.Index = pageIndex;
-        book.Closed += (_, _) => book.IsOpen = false;
+        book.IndexChanged += pageIndex => book.Index = pageIndex;
+        book.Closed += () => book.IsOpen = false;
         return book;
     }
 }

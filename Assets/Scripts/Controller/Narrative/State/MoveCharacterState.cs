@@ -27,7 +27,7 @@ public class MoveCharacterState : NarrativeState<MoveCharacterData>
         }
     }
 
-    void ReachedPathEnd(object sender, Vector2Int position)
+    void ReachedPathEnd(MovementModel _)
     {
         _reachedEnd = true;
     }

@@ -22,7 +22,7 @@ public class ItemController
         {
             case TextBookData textbookData:
                 var textbook = _textbookController.CreateModel(textbookData);
-                textbook.ClickedItem += (_, _) => textbook.IsOpen = true;
+                textbook.ClickedItem += _ => textbook.IsOpen = true;
                 model = textbook;
                 break;
             default:
@@ -37,7 +37,7 @@ public class ItemController
 
         if(data is PackageItemData package)
         {
-            model.ClickedItem += (_, _) =>
+            model.ClickedItem += _ =>
             {
                 OpenPackage(package, inventoryModel);
             };

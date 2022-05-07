@@ -27,7 +27,7 @@ public class EnterBuildingCommand : ICommand
         _character.Movement.ReachedPathEnd += Enterbuilding;
     }
 
-    void Enterbuilding(object sender, Vector2Int _)
+    void Enterbuilding(MovementModel model)
     {
         _building.Agents.Add(_characterName);
         _character.Movement.EnteredLocation = _buildingName;

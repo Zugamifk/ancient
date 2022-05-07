@@ -7,6 +7,7 @@ using UnityEngine;
 public class MovementModel
 {
     // live data
+    public string OwnerId { get; set; }
     public Vector2 WorldPosition { get; set; }
     public string EnteredLocation;
     public CityPath CityPath;
@@ -17,14 +18,14 @@ public class MovementModel
     public int CurrentPathIndex;
     public float MoveSpeed;
 
-    public event EventHandler<Vector2Int> ReachedPathEnd;
+    public event Action<MovementModel> ReachedPathEnd;
 
     public bool AtPathEnd => CityPath.Path == null || CurrentPathIndex >= CityPath.Path.Count;
     public bool IsVisibleOnMap => string.IsNullOrEmpty(EnteredLocation);
 
     public void OnReachedPathEnd()
     {
-        ReachedPathEnd?.Invoke(this, CityPath.Path.Last());
+        ReachedPathEnd?.Invoke(this);
         ReachedPathEnd = null;
         CityPath = null;
     }

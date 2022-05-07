@@ -28,7 +28,7 @@ public class Building : MonoBehaviour
         }
     }
 
-    void Clicked(object _, int button)
+    void Clicked(int button)
     {
         _highlighter.Highlight(!_highlighter.IsHighlighted);
         if (_model != null)

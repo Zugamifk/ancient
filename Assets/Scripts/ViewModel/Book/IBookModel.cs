@@ -8,10 +8,10 @@ public interface IBookModel
     string Name { get; }
     int NumPages { get; }
     int Index { get; }
-    event EventHandler<int> IndexChanged;
+    event Action<int> IndexChanged;
     void OnIndexChanged(int index);
     bool IsOpen { get; set; }
-    event EventHandler Closed;
+    event Action Closed;
     void OnClosed();
 
     List<IPageModel> Pages { get; }

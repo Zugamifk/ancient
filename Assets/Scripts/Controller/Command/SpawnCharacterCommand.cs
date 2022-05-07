@@ -14,19 +14,19 @@ public class SpawnCharacterCommand : ICommand
     {
         var spawnPosition = string.IsNullOrEmpty(PositionName) ? Position : controller.ParsePosition(PositionName);
         var data = controller.CharacterCollection.GetData(Name);
-        var character = new CharacterModel()
+        var character = new CharacterModel();
+        character.Profile = new ProfileModel()
         {
-            Profile = new ProfileModel()
-            {
-                Name = Name,
-            },
-            Movement = new MovementModel()
-            {
-                MoveSpeed = data.MoveSpeed,
-                WorldPosition = spawnPosition
-            }
+            Name = Name,
         };
-        
+        character.Movement = new MovementModel()
+        {
+            OwnerId = character.Id,
+            MoveSpeed = data.MoveSpeed,
+            WorldPosition = spawnPosition
+        };
+
+
         controller.Model.Characters.AddItem(character, IsUnique ? Name : null);
 
         OnSpawned?.Invoke(character);

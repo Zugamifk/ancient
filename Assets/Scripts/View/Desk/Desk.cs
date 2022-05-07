@@ -57,7 +57,7 @@ public class Desk : MonoBehaviour, IModelUpdateable
         var clickable = item.GetComponentInChildren<Clickable>();
         if (clickable != null)
         {
-            clickable.Clicked += (_, button) => model.ClickItem(button);
+            clickable.Clicked += model.ClickItem;
         }
 
         RegisterUpdateables(item.gameObject);

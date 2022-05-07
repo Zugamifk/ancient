@@ -8,7 +8,7 @@ public class MoveCharacterCommand : ICommand
     public string CharacterId;
     public string DestinationName;
     public Vector2Int Destination;
-    public EventHandler<Vector2Int> ReachedPathEnd;
+    public Action<MovementModel> ReachedPathEnd;
 
     public void Execute(GameController controller)
     {
@@ -20,7 +20,6 @@ public class MoveCharacterCommand : ICommand
         if (ReachedPathEnd != null)
         {
             character.Movement.ReachedPathEnd += ReachedPathEnd;
-            character.Movement.ReachedPathEnd += (_, _) => controller.DoCommand(new EnterBuildingCommand(CharacterId, DestinationName));
         }
     }
 }
