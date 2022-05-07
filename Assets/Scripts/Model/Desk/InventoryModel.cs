@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class InventoryModel : IInventoryModel
 {
-    public Dictionary<string, ItemModel> Items = new Dictionary<string, ItemModel>();
-
+    public IdentifiableCollection<ItemModel> Items = new IdentifiableCollection<ItemModel>();
 
     public IItemModel GetItem(string name) => Items[name];
     #region IInventoryModel
-    IEnumerable<IItemModel> IInventoryModel.Items => Items.Values;
+    IEnumerable<IItemModel> IInventoryModel.Items => Items.AllItems;
     #endregion
 }

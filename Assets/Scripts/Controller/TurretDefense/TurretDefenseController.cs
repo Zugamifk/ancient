@@ -29,7 +29,8 @@ public class TurretDefenseController
                 tdModel.Enemies.Add(enemy);
                 _commands.DoCommand(new MoveCharacterCommand() { 
                     CharacterId = enemy.Id,
-                    Destination = tdModel.EndPoint
+                    Destination = tdModel.EndPoint,
+                    ReachedPathEnd = OnReachedEnd
                 });
             }
             var step = waveData.SpawnTime / waveData.Count;
@@ -62,5 +63,13 @@ public class TurretDefenseController
         waveModel.StartTime = gameModel.TimeModel.RealTime;
         waveModel.SpawnedCount = 0;
         waveModel.CurrentWave++;
+    }
+
+    void OnReachedEnd(MovementModel model)
+    {
+        _commands.DoCommand(new RemoveCharacterCommand()
+        {
+            CharacterId = model.OwnerId
+        });
     }
 }

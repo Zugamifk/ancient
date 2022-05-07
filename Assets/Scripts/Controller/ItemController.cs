@@ -33,7 +33,7 @@ public class ItemController
         model.Name = data.Name;
         model.DeskSpawnLocation = data.DeskSpawnLocation;
 
-        inventoryModel.Items.Add(name, model);
+        inventoryModel.Items.AddItem(model, name);
 
         if(data is PackageItemData package)
         {
@@ -46,7 +46,7 @@ public class ItemController
 
     void RemoveItem(string name, InventoryModel model)
     {
-        model.Items.Remove(name);
+        model.Items.RemoveItem(name);
     }
 
     void OpenPackage(PackageItemData package, InventoryModel model)

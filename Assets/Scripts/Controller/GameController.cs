@@ -55,7 +55,7 @@ public class GameController : ICommandService
         var deltaTime = Time.deltaTime;
 
         _timeController.Update(Model.TimeModel, deltaTime);
-        foreach (var c in Model.Characters.Items)
+        foreach (var c in Model.Characters.AllItems)
         {
             _characterController.Update(c, Model);
         }

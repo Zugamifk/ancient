@@ -12,14 +12,14 @@ public class GameModel : IGameModel
     public InventoryModel Desk = new InventoryModel();
     public TurretDefenseModel TurretDefenseModel = new TurretDefenseModel();
 
-    public IEnumerable<MovementModel> MovementModels => Characters.Items.Select(c => c.Movement).Concat(TurretDefenseModel.Enemies.Select(e => e.Movement));
+    public IEnumerable<MovementModel> MovementModels => Characters.AllItems.Select(c => c.Movement).Concat(TurretDefenseModel.Enemies.Select(e => e.Movement));
 
     public ICheatController Cheats;
 
     #region IGameModel
     IMapModel IGameModel.Map => MapModel;
     ITimeModel IGameModel.Time => TimeModel;
-    IEnumerable<ICharacterModel> IGameModel.Characters => Characters.Items;
+    IEnumerable<ICharacterModel> IGameModel.Characters => Characters.AllItems;
     IInventoryModel IGameModel.Inventory => Desk;
     ICheatController IGameModel.Cheats => Cheats;
     ITurretDefenseViewModel IGameModel.TurretDefense => TurretDefenseModel;
