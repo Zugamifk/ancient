@@ -9,4 +9,5 @@ public interface IGameModel
     IEnumerable<ICharacterModel> Characters { get; }
     IInventoryModel Inventory { get; }
     ICheatController Cheats { get; }
+    ITurretDefenseViewModel TurretDefense { get; }
 }

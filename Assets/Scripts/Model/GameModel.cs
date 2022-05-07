@@ -22,6 +22,7 @@ public class GameModel : IGameModel
     IEnumerable<ICharacterModel> IGameModel.Characters => Characters.Items;
     IInventoryModel IGameModel.Inventory => Desk;
     ICheatController IGameModel.Cheats => Cheats;
+    ITurretDefenseViewModel IGameModel.TurretDefense => TurretDefenseModel;
     #endregion
 
 }
