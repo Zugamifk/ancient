@@ -361,7 +361,7 @@ TextureImporter:
         width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -369,6 +369,69 @@ TextureImporter:
       bones: []
       spriteID: 809175c734a8d6b4a8cb7e93d92caa59
       internalID: -1143590660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BuildingsIsometric_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 224
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 737ebf10e85e2414cba64f9ca13de4a9
+      internalID: -1749461629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BuildingsIsometric_15
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee8e8944363535746add205414be2e3e
+      internalID: 1604412458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BuildingsIsometric_16
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 215
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f001da96ea50e84ea03d8af9af86837
+      internalID: -1008922697
       vertices: []
       indices: 
       edges: []
@@ -390,10 +453,13 @@ TextureImporter:
       BuildingsIsometric_4: -184708301
       BuildingsIsometric_11: 19923602
       BuildingsIsometric_12: -2076810212
+      BuildingsIsometric_15: 1604412458
       BuildingsIsometric_5: -2019564094
       BuildingsIsometric_10: -186602299
+      BuildingsIsometric_16: -1008922697
       BuildingsIsometric_2: -1561730351
       BuildingsIsometric_8: -1707163734
+      BuildingsIsometric_14: -1749461629
       BuildingsIsometric_6: 1622266145
       BuildingsIsometric_7: -1516017059
       BuildingsIsometric_9: -512194672

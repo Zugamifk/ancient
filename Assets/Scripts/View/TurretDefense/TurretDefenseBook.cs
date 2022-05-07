@@ -23,4 +23,9 @@ public class TurretDefenseBook : MonoBehaviour, IModelUpdateable
         _waveCountText.text = string.Format(k_WaveCountTextString, tdModel.CurrentWave+1);
         _timeText.text = string.Format(k_TimeTextString, tdModel.CurrentTime.ToString(@"mm\:ss"));
     }
+
+    public void ClickedBuildOption(int index)
+    {
+        Debug.Log("Clicked");
+    }
 }
