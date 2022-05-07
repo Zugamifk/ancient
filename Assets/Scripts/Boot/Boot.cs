@@ -30,18 +30,18 @@ public class Boot : MonoBehaviour
     {
         // Create main controllers
         var controller = new GameController(
-            _lifecycleController, 
-            _updateableRegistry, 
-            _agentCollection, 
-            _tileDataCollection, 
-            _buildingCollection, 
-            _mapData, 
-            _narrativeCollection, 
+            _lifecycleController,
+            _updateableRegistry,
+            _agentCollection,
+            _tileDataCollection,
+            _buildingCollection,
+            _mapData,
+            _narrativeCollection,
             _deskItemCollection,
             _turretDefenseData);
 
         // Start game
         //SimpleNarrativeTest.Init(controller, _testNarrative);
-        TurretDefenseTest.Init(controller);
+        TurretDefenseTest.Init(controller, new Vector2Int[] { new Vector2Int(1,1), new Vector2Int(10, 0) });
     }
 }

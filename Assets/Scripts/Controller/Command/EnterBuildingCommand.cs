@@ -18,6 +18,7 @@ public class EnterBuildingCommand : ICommand
 
     public void Execute(GameController controller)
     {
+        Debug.Log($"COMMAND: {_characterName} enters {_buildingName}");
         _building = controller.Model.MapModel.GetBuilding(_buildingName);
         var destinationPosition = _building.Position;
         _character = controller.Model.Characters.GetItem(_characterName);
