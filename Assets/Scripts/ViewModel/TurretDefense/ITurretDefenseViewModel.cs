@@ -11,4 +11,7 @@ public interface ITurretDefenseViewModel
     int TotalWaves { get; }
     TimeSpan CurrentTime { get; }
     string BuildingBeingPlaced { get; }
+    void OnStartPlacingBuilding(string name);
+    void OnStopPlacingBuilding();
+    void OnPlaceBuilding(Vector2Int position);
 }

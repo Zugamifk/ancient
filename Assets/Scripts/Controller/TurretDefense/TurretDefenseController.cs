@@ -13,6 +13,13 @@ public class TurretDefenseController
         _gameData = data;
     }
 
+    public void ConfigureModel(TurretDefenseModel model)
+    {
+        model.StartPlacingBuilding += StartPlacingBuilding;
+        model.StopPlacingBuilding += StopPlacingBuilding;
+        model.PlaceBuilding += PlaceBuilding;
+    }
+
     public void Update(GameModel model)
     {
         var tdModel = model.TurretDefenseModel;
@@ -30,7 +37,7 @@ public class TurretDefenseController
                 _commands.DoCommand(new MoveCharacterCommand() { 
                     CharacterId = enemy.Id,
                     Destination = tdModel.EndPoint,
-                    ReachedPathEnd = OnReachedEnd
+                    ReachedPathEnd = OnEnemyReachedEnd
                 });
             }
             var step = waveData.SpawnTime / waveData.Count;
@@ -72,12 +79,30 @@ public class TurretDefenseController
         Debug.Log("Game over!!");
     }
 
-    void OnReachedEnd(MovementModel model)
+    void OnEnemyReachedEnd(MovementModel model)
     {
         _commands.DoCommand(new RemoveCharacterCommand()
         {
             CharacterId = model.OwnerId
         });
         _commands.DoCommand(new TurretDefenseLoseLifeCommand());
+    }
+
+    void StartPlacingBuilding(TurretDefenseModel model, string name)
+    {
+        Debug.Log("Start placing building");
+        model.BuildingBeingPlaced = name;
+    }
+
+    void StopPlacingBuilding(TurretDefenseModel model)
+    {
+        Debug.Log("STOP placing building");
+        model.BuildingBeingPlaced = null;
+    }
+
+    void PlaceBuilding(TurretDefenseModel model, Vector2Int position)
+    {
+        Debug.Log($"Placed {model.BuildingBeingPlaced} at {position}");
+        StopPlacingBuilding(model);
     }
 }

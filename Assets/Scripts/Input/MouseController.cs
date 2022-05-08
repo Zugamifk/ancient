@@ -19,6 +19,7 @@ class MouseController
 
     public void Update()
     {
+        //Debug.Log(_currentState.GetType());
         _currentState = _currentState.UpdateState();
     }
 }

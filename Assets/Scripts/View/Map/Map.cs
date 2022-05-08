@@ -56,6 +56,11 @@ public class Map : MonoBehaviour, IModelUpdateable
         }
     }
 
+    public Vector2Int GetTileFromWorldPosition(Vector3 worldPosition)
+    {
+        return (Vector2Int)_tileMapper.GetTileFromPosition(worldPosition);
+    }
+
     void RebuildTilemap(IGameModel model)
     {
         _tileMapper.BuildTilemap(model.Map);

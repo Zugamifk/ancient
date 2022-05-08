@@ -13,43 +13,55 @@ public class MapMouseInput : MouseInputState
         : base(state)
     {
         _mapContext = mapContext;
-        _startPosition = _context.MapCameraController.transform.localPosition;
-        _startDragPosition = Input.mousePosition;
     }
 
     public sealed override MouseInputState UpdateState()
     {
-        bool leftButtonDown = Input.GetMouseButton(0);
-        bool rightButtonDown = Input.GetMouseButton(1);
-        if (leftButtonDown || rightButtonDown)
+        RaycastHit hit;
+        if (_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layer.Desk), out hit))
         {
-            RaycastHit hit;
-            if (_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layer.Desk), out hit))
+            var target = hit.collider.gameObject;
+            var renderTex = target.GetComponent<RenderTextureRaycaster>();
+            if (renderTex != null)
             {
-                var target = hit.collider.gameObject;
-                var renderTex = target.GetComponent<RenderTextureRaycaster>();
-                if (renderTex != null)
+                if (renderTex.RayCast(hit.textureCoord, out hit))
                 {
-                    if (renderTex.RayCast(hit.textureCoord, out hit))
-                    {
-                        if (Input.GetMouseButton(0))
-                        {
-                            _mapContext?.CheatAction(hit.point);
-                        }
-                        else
-                        {
-                            var diff = _context.MapCameraController.GetWorldPosition(Input.mousePosition) - _context.MapCameraController.GetWorldPosition(_startDragPosition);
-                            _context.MapCameraController.PanTo(_startPosition - diff);
-                        }
-                        return this;
-                    }
+                    HandleMouse(hit.point);
+                    return this;
                 }
             }
-            return this;
         }
-        else
+
+        return new IdleMouseInputState(this);
+    }
+
+    void HandleMouse(Vector3 worldPosition)
+    {
+        if (!string.IsNullOrEmpty(_mapContext.BuildingBeingPlaced))
         {
-            return new IdleMouseInputState(this);
+            if (Input.GetMouseButtonUp(1))
+            {
+                _mapContext?.StopPlacing.Invoke();
+            } else if (Input.GetMouseButtonUp(0))
+            {
+                var tile = _mapContext.Map.GetTileFromWorldPosition(worldPosition);
+                _mapContext?.PlaceBuilding?.Invoke(tile);
+            }
+        } else
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                _startPosition = _context.MapCameraController.transform.localPosition;
+                _startDragPosition = Input.mousePosition;
+            }
+            if (Input.GetMouseButton(0))
+            {
+                _mapContext?.DoCheat(worldPosition);
+            } else if (Input.GetMouseButton(1))
+            {
+                var diff = _context.MapCameraController.GetWorldPosition(Input.mousePosition) - _context.MapCameraController.GetWorldPosition(_startDragPosition);
+                _context.MapCameraController.PanTo(_startPosition - diff);
+            }
         }
     }
 }

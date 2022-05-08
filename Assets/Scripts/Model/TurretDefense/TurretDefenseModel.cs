@@ -15,6 +15,9 @@ public class TurretDefenseModel : ITurretDefenseViewModel
     public int CurrentWave = -1;
     public List<CharacterModel> Enemies = new List<CharacterModel>();
     public string BuildingBeingPlaced;
+    public event Action<TurretDefenseModel, Vector2Int> PlaceBuilding;
+    public event Action<TurretDefenseModel, string> StartPlacingBuilding;
+    public event Action<TurretDefenseModel> StopPlacingBuilding;
 
     #region ITurretDefenseViewModel
     int ITurretDefenseViewModel.Lives => Lives;
@@ -28,5 +31,20 @@ public class TurretDefenseModel : ITurretDefenseViewModel
     TimeSpan ITurretDefenseViewModel.CurrentTime => CurrentTime;
 
     string ITurretDefenseViewModel.BuildingBeingPlaced => BuildingBeingPlaced;
+
+    void ITurretDefenseViewModel.OnPlaceBuilding(Vector2Int position)
+    {
+        PlaceBuilding?.Invoke(this, position);
+    }
+
+    void ITurretDefenseViewModel.OnStartPlacingBuilding(string name)
+    {
+        StartPlacingBuilding?.Invoke(this, name);
+    }
+
+    void ITurretDefenseViewModel.OnStopPlacingBuilding()
+    {
+        StopPlacingBuilding?.Invoke(this);
+    }
     #endregion
 }

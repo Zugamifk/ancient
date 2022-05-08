@@ -14,8 +14,9 @@ public class MapInputHandler : MonoBehaviour, IMouseInputHandler, IModelUpdateab
         _inputContext = new MapInputContext()
         {
             Map = _map,
-            CheatAction = CheatAction
+            DoCheat = CheatAction
         };
+        UpdateableGameObjectRegistry.RegisterUpdateable(this);
     }
 
     MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)
@@ -31,5 +32,7 @@ public class MapInputHandler : MonoBehaviour, IMouseInputHandler, IModelUpdateab
     void IModelUpdateable.UpdateFromModel(IGameModel model)
     {
         _inputContext.BuildingBeingPlaced = model.TurretDefense.BuildingBeingPlaced;
+        _inputContext.PlaceBuilding = model.TurretDefense.OnPlaceBuilding;
+        _inputContext.StopPlacing = model.TurretDefense.OnStopPlacingBuilding;
     }
 }
