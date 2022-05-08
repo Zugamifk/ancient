@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Map : MonoBehaviour, IMouseInputHandler, IModelUpdateable
+public class Map : MonoBehaviour, IModelUpdateable
 {
     [SerializeField]
     CharacterCollection _agentCollection;
@@ -92,10 +92,5 @@ public class Map : MonoBehaviour, IMouseInputHandler, IModelUpdateable
             character.SetPosition(position);
             character.gameObject.SetActive(c.IsVisibleOnMap);
         }
-    }
-
-    MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)
-    {
-        return new MapMouseInput(state, this);
     }
 }

@@ -10,4 +10,5 @@ public interface ITurretDefenseViewModel
     int CurrentWave { get; }
     int TotalWaves { get; }
     TimeSpan CurrentTime { get; }
+    string BuildingBeingPlaced { get; }
 }

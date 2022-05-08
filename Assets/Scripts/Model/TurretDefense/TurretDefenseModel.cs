@@ -14,6 +14,7 @@ public class TurretDefenseModel : ITurretDefenseViewModel
     public int SpawnedCount;
     public int CurrentWave = -1;
     public List<CharacterModel> Enemies = new List<CharacterModel>();
+    public string BuildingBeingPlaced;
 
     #region ITurretDefenseViewModel
     int ITurretDefenseViewModel.Lives => Lives;
@@ -25,5 +26,7 @@ public class TurretDefenseModel : ITurretDefenseViewModel
     int ITurretDefenseViewModel.TotalWaves => 0;
 
     TimeSpan ITurretDefenseViewModel.CurrentTime => CurrentTime;
+
+    string ITurretDefenseViewModel.BuildingBeingPlaced => BuildingBeingPlaced;
     #endregion
 }

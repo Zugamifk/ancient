@@ -5,19 +5,19 @@ using UnityEngine.Tilemaps;
 
 public class MapMouseInput : MouseInputState
 {
-    Vector3 _startPosition;
-    Vector3 _startDragPosition;
-    Map _map;
+    protected Vector3 _startPosition;
+    protected Vector3 _startDragPosition;
+    protected MapInputContext _mapContext;
 
-    public MapMouseInput(MouseInputState state, Map map)
+    public MapMouseInput(MouseInputState state, MapInputContext mapContext)
         : base(state)
     {
-        _map = map;
+        _mapContext = mapContext;
         _startPosition = _context.MapCameraController.transform.localPosition;
         _startDragPosition = Input.mousePosition;
     }
 
-    public override MouseInputState UpdateState()
+    public sealed override MouseInputState UpdateState()
     {
         bool leftButtonDown = Input.GetMouseButton(0);
         bool rightButtonDown = Input.GetMouseButton(1);
@@ -32,15 +32,16 @@ public class MapMouseInput : MouseInputState
                 {
                     if (renderTex.RayCast(hit.textureCoord, out hit))
                     {
-                        if (leftButtonDown)
+                        if (Input.GetMouseButton(0))
                         {
-                            _map.SetTile(hit.point, Name.Tile.Road);
+                            _mapContext?.CheatAction(hit.point);
                         }
                         else
                         {
                             var diff = _context.MapCameraController.GetWorldPosition(Input.mousePosition) - _context.MapCameraController.GetWorldPosition(_startDragPosition);
                             _context.MapCameraController.PanTo(_startPosition - diff);
                         }
+                        return this;
                     }
                 }
             }
