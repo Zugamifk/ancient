@@ -8,6 +8,6 @@ public class InventoryModel : IInventoryModel
 
     public IItemModel GetItem(string name) => Items[name];
     #region IInventoryModel
-    IEnumerable<IItemModel> IInventoryModel.Items => Items.AllItems;
+    IIdentifiableLookup<IItemModel> IInventoryModel.Items => Items;
     #endregion
 }

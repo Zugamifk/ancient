@@ -5,8 +5,7 @@ using UnityEngine;
 public interface IMapModel
 {
     ICityGraph CityGraph { get; }
-    IEnumerable<IBuildingModel> Buildings { get; }
+    IIdentifiableLookup<IBuildingModel> Buildings { get; }
     IMapGridModel Grid { get; }
 
-    public IBuildingModel GetBuilding(string name);
 }

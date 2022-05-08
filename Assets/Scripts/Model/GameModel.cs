@@ -19,7 +19,7 @@ public class GameModel : IGameModel
     #region IGameModel
     IMapModel IGameModel.Map => MapModel;
     ITimeModel IGameModel.Time => TimeModel;
-    IEnumerable<ICharacterModel> IGameModel.Characters => Characters.AllItems;
+    IIdentifiableLookup<ICharacterModel> IGameModel.Characters => Characters;
     IInventoryModel IGameModel.Inventory => Desk;
     ICheatController IGameModel.Cheats => Cheats;
     ITurretDefenseViewModel IGameModel.TurretDefense => TurretDefenseModel;

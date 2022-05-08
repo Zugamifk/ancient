@@ -1080,7 +1080,6 @@ MonoBehaviour:
   - {fileID: 1620077661}
   - {fileID: 1862516172}
   - {fileID: 27366270}
-  _books: []
 --- !u!1 &1581665921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f336b916adb79df4b978e54a6ff160f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agentCollection: {fileID: 11400000, guid: 4ec40115982d6334da4d53430ac828bf, type: 2}
+  _characterCollection: {fileID: 11400000, guid: 4ec40115982d6334da4d53430ac828bf, type: 2}
   _buildingCollection: {fileID: 11400000, guid: b7253795462aa34478876c987e71c37a, type: 2}
   _spawnedObjectsRoot: {fileID: 1688259637}
 --- !u!65 &1645037286

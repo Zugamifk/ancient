@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterCollection : ScriptableObject
+public class CharacterCollection : ScriptableObject, IPrefabLookup
 {
     [SerializeField]
     CharacterData[] _agents;
@@ -14,6 +14,8 @@ public class CharacterCollection : ScriptableObject
     {
         return _nameToCharacterData[name];
     }
+
+    public GameObject GetPrefab(string id) => GetData(id).MapPrefab;
 
     private void OnEnable()
     {

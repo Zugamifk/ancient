@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeskItemPrefabs : ScriptableObject
+public class DeskItemPrefabs : ScriptableObject, IPrefabLookup
 {
     [SerializeField]
     DeskItem[] _prefabs;
@@ -11,11 +11,16 @@ public class DeskItemPrefabs : ScriptableObject
 
     private void OnEnable()
     {
-        foreach(var p in _prefabs)
+        foreach (var p in _prefabs)
         {
-            _nameToDeskItem[p.Name] = p;
+            if (p != null)
+            {
+                _nameToDeskItem[p.Name] = p;
+            }
         }
     }
 
     public DeskItem GetDeskItem(string name) => _nameToDeskItem[name];
+
+    GameObject IPrefabLookup.GetPrefab(string id) => GetDeskItem(id).gameObject;
 }

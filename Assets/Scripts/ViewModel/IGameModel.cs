@@ -6,7 +6,8 @@ public interface IGameModel
 {
     IMapModel Map { get; }
     ITimeModel Time { get; }
-    IEnumerable<ICharacterModel> Characters { get; }
+    IIdentifiableLookup<ICharacterModel> Characters { get; }
+
     IInventoryModel Inventory { get; }
     ICheatController Cheats { get; }
     ITurretDefenseViewModel TurretDefense { get; }

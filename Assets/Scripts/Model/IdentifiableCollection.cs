@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class IdentifiableCollection<TModel>
+public class IdentifiableCollection<TModel> : IIdentifiableLookup<TModel>
     where TModel : IIdentifiable
 {
     Dictionary<string, TModel> _identifiables = new Dictionary<string, TModel>();
@@ -44,4 +45,8 @@ public class IdentifiableCollection<TModel>
         return _identifiables[key];
     }
 
+    public bool HasKey(string key)
+    {
+        return _identifiables.ContainsKey(key) || _uniqueIdentifiableNameToId.ContainsKey(key);
+    }
 }

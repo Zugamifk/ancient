@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingCollection : ScriptableObject
+public class BuildingCollection : ScriptableObject, IPrefabLookup
 {
     public BuildingData[] Buildings;
 

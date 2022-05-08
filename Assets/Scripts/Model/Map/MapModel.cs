@@ -11,8 +11,7 @@ public class MapModel : IMapModel
 
     #region IMapModel
     ICityGraph IMapModel.CityGraph => Graph;
-    IEnumerable<IBuildingModel> IMapModel.Buildings => Buildings.AllItems;
+    IIdentifiableLookup<IBuildingModel> IMapModel.Buildings => Buildings;
     IMapGridModel IMapModel.Grid => Grid;
-    IBuildingModel IMapModel.GetBuilding(string name) => GetBuilding(name);
     #endregion
 }
