@@ -2,23 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapInputHandler : MonoBehaviour, IMouseInputHandler
+public class MapInputHandler : MonoBehaviour, IMouseInputHandler, IModelUpdateable
 {
     [SerializeField]
     Map _map;
 
-    MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)
+    MapInputContext _inputContext;
+
+    void Awake()
     {
-        var context = new MapInputContext()
+        _inputContext = new MapInputContext()
         {
             Map = _map,
             CheatAction = CheatAction
         };
-        return new MapMouseInput(state, context);
+    }
+
+    MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)
+    {
+        return new MapMouseInput(state, _inputContext);
     }
 
     void CheatAction(Vector3 position)
     {
         _map.SetTile(position, Name.Tile.Road);
+    }
+
+    void IModelUpdateable.UpdateFromModel(IGameModel model)
+    {
+        _inputContext.BuildingBeingPlaced = model.TurretDefense.BuildingBeingPlaced;
     }
 }

@@ -18,8 +18,6 @@ public class Boot : MonoBehaviour
     [SerializeField]
     UnityLifecycleController _lifecycleController;
     [SerializeField]
-    UpdateableGameObjectRegistry _updateableRegistry;
-    [SerializeField]
     TurretDefenseData _turretDefenseData;
 
     [Header("Test")]
@@ -31,7 +29,6 @@ public class Boot : MonoBehaviour
         // Create main controllers
         var controller = new GameController(
             _lifecycleController,
-            _updateableRegistry,
             _agentCollection,
             _tileDataCollection,
             _buildingCollection,

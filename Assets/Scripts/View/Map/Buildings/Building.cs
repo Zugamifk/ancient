@@ -12,20 +12,14 @@ public class Building : MonoBehaviour
     public Vector3 EntrancePosition => _entrance.position;
 
     IBuildingModel _model;
-    IBuildingBehaviour _building;
     private void Start()
     {
-        _building = GetComponent<IBuildingBehaviour>();
         GetComponent<Clickable>().Clicked += Clicked;
     }
 
     public void UpdateModel(IBuildingModel building, IGameModel model)
     {
         _model = building;
-        if (_building != null)
-        {
-            _building.UpdateModel(model);
-        }
     }
 
     void Clicked(int button)

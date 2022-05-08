@@ -940,7 +940,6 @@ GameObject:
   - component: {fileID: 1415220726}
   - component: {fileID: 1415220728}
   - component: {fileID: 1415220727}
-  - component: {fileID: 1415220729}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -997,25 +996,8 @@ MonoBehaviour:
   _mapData: {fileID: 11400000, guid: 0788297b3894afc4db132ac2cb073a28, type: 2}
   _deskItemCollection: {fileID: 11400000, guid: 6ac59d2980d53fa4794d2b52d4b11527, type: 2}
   _lifecycleController: {fileID: 1415220727}
-  _updateableRegistry: {fileID: 1415220729}
   _turretDefenseData: {fileID: 11400000, guid: d27a825815c9edc46a37a6caaa184645, type: 2}
   _testNarrative: SpawnAndMoveAgent
---- !u!114 &1415220729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415220724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec17c15a9d4a9a546a5ee40fa8e792f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _updateableReferences:
-  - {fileID: 1645037281}
-  - {fileID: 1517378198}
-  - {fileID: 2054037878}
 --- !u!1 &1418984176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,11 +1716,6 @@ Transform:
   m_Father: {fileID: 1415220726}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2054037878 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7022535038171986975, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
-  m_PrefabInstance: {fileID: 8054398193716846852}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8054398193716846852
 PrefabInstance:
   m_ObjectHideFlags: 0

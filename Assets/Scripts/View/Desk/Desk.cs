@@ -15,7 +15,6 @@ public class Desk : MonoBehaviour, IModelUpdateable
     ViewSpawner<IItemModel, DeskItem> _itemSpawner = new ViewSpawner<IItemModel, DeskItem>();
     Dictionary<string, DeskItem> _idToDeskItem = new Dictionary<string, DeskItem>();
     Dictionary<string, DeskItemSpawn> _spawnNameToSpawn = new Dictionary<string, DeskItemSpawn>();
-    HashSet<IModelUpdateable> _spawnedUpdateables = new HashSet<IModelUpdateable>();
     Dictionary<string, Book> _openBookNameToBook = new Dictionary<string, Book>();
 
     void Awake()
@@ -28,8 +27,9 @@ public class Desk : MonoBehaviour, IModelUpdateable
         foreach (var b in _books)
         {
             _openBookNameToBook[b.Name] = b;
-            RegisterUpdateables(b.gameObject);
         }
+
+        UpdateableGameObjectRegistry.RegisterUpdateable(this);
     }
 
     public void UpdateFromModel(IGameModel model)
@@ -41,12 +41,6 @@ public class Desk : MonoBehaviour, IModelUpdateable
             transform,
             OnSpawnDeskItem
         );
-
-        _spawnedUpdateables.RemoveWhere(u => u == null);
-        foreach (var updateable in _spawnedUpdateables)
-        {
-            updateable.UpdateFromModel(model);
-        }
     }
 
     void OnSpawnDeskItem(IItemModel model, DeskItem item)
@@ -58,16 +52,6 @@ public class Desk : MonoBehaviour, IModelUpdateable
         if (clickable != null)
         {
             clickable.Clicked += model.ClickItem;
-        }
-
-        RegisterUpdateables(item.gameObject);
-    }
-
-    void RegisterUpdateables(GameObject go)
-    {
-        foreach (var u in go.GetComponentsInChildren<IModelUpdateable>())
-        {
-            _spawnedUpdateables.Add(u);
         }
     }
 

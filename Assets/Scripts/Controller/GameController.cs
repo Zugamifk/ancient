@@ -8,7 +8,6 @@ public class GameController : ICommandService
 {
     // Controllers
     UnityLifecycleController _lifecycleController;
-    UpdateableGameObjectRegistry _updateableGameObjectRegistry;
     TimeController _timeController = new TimeController();
     CharacterController _characterController = new CharacterController();
     MovementController _movementController = new MovementController();
@@ -24,11 +23,10 @@ public class GameController : ICommandService
 
     Queue<ICommand> _commandQueue = new Queue<ICommand>();
 
-    public GameController(UnityLifecycleController lifeCycleController, UpdateableGameObjectRegistry updateableRegistry, CharacterCollection characterCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, ItemCollection itemCollection, TurretDefenseData turretDefenseData)
+    public GameController(UnityLifecycleController lifeCycleController, CharacterCollection characterCollection, TileDataCollection tileCollection, BuildingCollection buildingCollection, MapData mapData, NarrativeCollection narrativeCollection, ItemCollection itemCollection, TurretDefenseData turretDefenseData)
     {
         _lifecycleController = lifeCycleController;
         _lifecycleController.OnUpdate += Update;
-        _updateableGameObjectRegistry = updateableRegistry;
 
         CharacterCollection = characterCollection;
         MapController = new MapController(this, tileCollection, buildingCollection, mapData);
@@ -72,7 +70,7 @@ public class GameController : ICommandService
 
         TurretDefenseController.Update(Model);
 
-        foreach (var updateable in _updateableGameObjectRegistry.Updateables)
+        foreach(var updateable in UpdateableGameObjectRegistry.Updateables)
         {
             updateable.UpdateFromModel(Model);
         }

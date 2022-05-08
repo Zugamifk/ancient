@@ -31,6 +31,7 @@ public class Map : MonoBehaviour, IModelUpdateable
     private void Awake()
     {
         _tilemapper = GetComponent<TileMapper>();
+        UpdateableGameObjectRegistry.RegisterUpdateable(this);
     }
 
     /// <summary>
