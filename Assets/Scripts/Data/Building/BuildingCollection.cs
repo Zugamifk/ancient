@@ -17,7 +17,7 @@ public class BuildingCollection : ScriptableObject, IPrefabLookup
         {
             if (b != null)
             {
-                _nameToBuilding.Add(b.name, b);
+                _nameToBuilding.Add(b.Name, b);
             } else
             {
                 throw new System.InvalidOperationException("Null in BuildingCollection!");

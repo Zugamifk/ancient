@@ -1059,6 +1059,8 @@ MonoBehaviour:
   _livesText: {fileID: 199674069247305700}
   _waveCountText: {fileID: 2360173633369604404}
   _timeText: {fileID: 6255220611358362638}
+  _buildingOptions:
+  - Turret
 --- !u!212 &7022535038171986947
 SpriteRenderer:
   m_ObjectHideFlags: 0
