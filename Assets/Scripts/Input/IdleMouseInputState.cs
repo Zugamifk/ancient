@@ -65,20 +65,6 @@ public class IdleMouseInputState : MouseInputState
         }
         
         var target = hit.collider.gameObject;
-        bool leftMouseButtonUp = Input.GetMouseButtonUp(0);
-        bool rightMouseButtonUp = Input.GetMouseButtonUp(1);
-
-        if (leftMouseButtonUp || rightMouseButtonUp)
-        {
-            // selectable
-            var clickable = target.GetComponent<Clickable>();
-            if (clickable != null)
-            {
-                clickable.Select(leftMouseButtonUp ? 0 : 1);
-            }
-        }
-
-        // most generic handler
         var input = target.GetComponent<IMouseInputHandler>();
         if (input != null)
         {

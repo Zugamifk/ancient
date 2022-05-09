@@ -26,7 +26,18 @@ public class MapMouseInput : MouseInputState
             {
                 if (renderTex.RayCast(hit.textureCoord, out hit))
                 {
-                    HandleMouse(hit.point);
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        target = hit.collider.gameObject;
+                        var clickable = target.GetComponent<Clickable>();
+                        if (clickable != null)
+                        {
+                            clickable.Select(0);
+                            return this;
+                        }
+                    }
+                
+                    MapHandleMouse(hit.point);
                     return this;
                 }
             }
@@ -35,19 +46,21 @@ public class MapMouseInput : MouseInputState
         return new IdleMouseInputState(this);
     }
 
-    void HandleMouse(Vector3 worldPosition)
+    void MapHandleMouse(Vector3 worldPosition)
     {
         if (!string.IsNullOrEmpty(_mapContext.BuildingBeingPlaced))
         {
             if (Input.GetMouseButtonUp(1))
             {
                 _mapContext?.StopPlacing.Invoke();
-            } else if (Input.GetMouseButtonUp(0))
+            }
+            else if (Input.GetMouseButtonUp(0))
             {
                 var tile = _mapContext.Map.GetTileFromWorldPosition(worldPosition);
                 _mapContext?.PlaceBuilding?.Invoke(tile);
             }
-        } else
+        }
+        else
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -57,7 +70,8 @@ public class MapMouseInput : MouseInputState
             if (Input.GetMouseButton(0))
             {
                 _mapContext?.DoCheat(worldPosition);
-            } else if (Input.GetMouseButton(1))
+            }
+            else if (Input.GetMouseButton(1))
             {
                 var diff = _context.MapCameraController.GetWorldPosition(Input.mousePosition) - _context.MapCameraController.GetWorldPosition(_startDragPosition);
                 _context.MapCameraController.PanTo(_startPosition - diff);

@@ -214,9 +214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5547f5054e3e1c54ab4a3fda3a00c273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _continuous: 1
-  _hourHand: {fileID: 1658060042702717550}
-  _minuteHand: {fileID: 3674249682133392838}
+  _continuous: 0
+  _hourHand: {fileID: 0}
+  _minuteHand: {fileID: 0}
   _clockSpriteRenderer: {fileID: 0}
   _clockFaces: []
 --- !u!114 &569437783671575634
