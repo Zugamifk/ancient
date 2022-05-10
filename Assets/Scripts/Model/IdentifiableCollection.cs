@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +7,8 @@ using UnityEngine;
 public class IdentifiableCollection<TModel> : IIdentifiableLookup<TModel>
     where TModel : IIdentifiable
 {
-    Dictionary<string, TModel> _identifiables = new Dictionary<string, TModel>();
-    Dictionary<string, string> _uniqueIdentifiableNameToId = new Dictionary<string, string>();
+    Dictionary<Guid, TModel> _identifiables = new Dictionary<Guid, TModel>();
+    Dictionary<string, Guid> _uniqueIdentifiableNameToId = new Dictionary<string, Guid>();
 
     public IEnumerable<TModel> AllItems => _identifiables.Values;
 
@@ -23,30 +24,41 @@ public class IdentifiableCollection<TModel> : IIdentifiableLookup<TModel>
         _identifiables[model.Id] = model;
     }
 
+    public void RemoveItem(Guid id)
+    {
+        _identifiables.Remove(id);
+    }
+
     public void RemoveItem(string key)
     {
-        if (!_identifiables.ContainsKey(key))
-        {
-            var uid = _uniqueIdentifiableNameToId[key];
-            _uniqueIdentifiableNameToId.Remove(key);
-            key = uid;
-        }
+        var id = _uniqueIdentifiableNameToId[key];
+        RemoveItem(id);
+    }
 
-        _identifiables.Remove(key);
+    public TModel GetItem(Guid id)
+    {
+        if(_identifiables.TryGetValue(id, out TModel value))
+        {
+            return value;
+        } else
+        {
+            return default;
+        }
     }
 
     public TModel GetItem(string key)
     {
-        if (!_identifiables.ContainsKey(key) && !_uniqueIdentifiableNameToId.TryGetValue(key, out key))
-        {
-            return default;
-        }
-        
-        return _identifiables[key];
+        var id = _uniqueIdentifiableNameToId[key];
+        return GetItem(id);
     }
 
-    public bool HasKey(string key)
+    public bool HasId(Guid id)
     {
-        return _identifiables.ContainsKey(key) || _uniqueIdentifiableNameToId.ContainsKey(key);
+        return _identifiables.ContainsKey(id);
+    }
+
+    public bool HasUniqueName(string key)
+    {
+        return _uniqueIdentifiableNameToId.ContainsKey(key);
     }
 }

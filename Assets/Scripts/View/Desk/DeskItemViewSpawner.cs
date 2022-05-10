@@ -16,6 +16,8 @@ public class DeskItemViewSpawner : ViewSpawner<IItemModel, DeskItem>
         return model.Inventory.Items;
     }
 
+    protected override string GetPrefabKey(IItemModel model) => model.Name;
+
     protected override void SpawnedView(IItemModel model, DeskItem view)
     {
         var spawn = _spawnNameToTransformLookup[model.DeskSpawnLocation];

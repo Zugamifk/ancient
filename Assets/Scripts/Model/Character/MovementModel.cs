@@ -7,7 +7,7 @@ using UnityEngine;
 public class MovementModel
 {
     // live data
-    public string OwnerId { get; set; }
+    public Guid OwnerId { get; set; }
     public Vector2 WorldPosition { get; set; }
     public string EnteredLocation;
     public CityPath CityPath;

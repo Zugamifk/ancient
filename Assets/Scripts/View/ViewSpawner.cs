@@ -8,7 +8,7 @@ public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
     where TIdentifiable : IIdentifiable
     where TView : MonoBehaviour, IView<TIdentifiable>
 {
-    protected Dictionary<string, TView> _spawnedViews = new Dictionary<string, TView>();
+    protected Dictionary<Guid, TView> _spawnedViews = new Dictionary<Guid, TView>();
     protected IPrefabLookup _prefabLookup;
     protected Transform _viewParent;
 
@@ -19,16 +19,16 @@ public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
         UpdateableGameObjectRegistry.RegisterUpdateable(this);
     }
 
-    public TView GetView(string id) => _spawnedViews[id];
+    public TView GetView(Guid id) => _spawnedViews[id];
 
     void IModelUpdateable.UpdateFromModel(IGameModel model)
     {
         var modelIdentifiables = GetIdentifiables(model);
 
-        List<string> toRemove = new List<string>();
+        List<Guid> toRemove = new List<Guid>();
         foreach (var id in _spawnedViews.Keys)
         {
-            if (!modelIdentifiables.HasKey(id))
+            if (!modelIdentifiables.HasId(id))
             {
                 GameObject.Destroy(_spawnedViews[id].gameObject);
                 toRemove.Add(id);
@@ -62,10 +62,7 @@ public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
 
     protected abstract IIdentifiableLookup<TIdentifiable> GetIdentifiables(IGameModel model);
     protected virtual void SpawnedView(TIdentifiable model, TView view) { }
-    protected virtual string GetPrefabKey(TIdentifiable model)
-    {
-        return model.Id;
-    }
+    protected abstract string GetPrefabKey(TIdentifiable model);
 
     private void SetLayer(Transform tf, int layer)
     {

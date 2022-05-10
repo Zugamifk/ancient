@@ -10,7 +10,7 @@ public class MoveCharacterState : NarrativeState<MoveCharacterData>
     {
         Commands.DoCommand(new MoveCharacterCommand()
         {
-            CharacterId = Data.Character,
+            CharacterName = Data.Character,
             DestinationName = Data.Destination,
             ReachedPathEnd = ReachedPathEnd
         });

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CharacterModel : ICharacterModel
 {
-    public string Id { get; } = Guid.NewGuid().ToString();
+    public Guid Id { get; } = Guid.NewGuid();
     public ProfileModel Profile;
     public MovementModel Movement;
     public HealthModel Health;
