@@ -40,9 +40,9 @@ public class MapController
         model.Grid.Dimenions = dimensions;
     }
 
-    public void AddBuilding(MapModel model, string name, Vector2Int position)
+    public BuildingModel AddBuilding(MapModel model, string name, Vector2Int position)
     {
-        var building = _cityGenerator.AddBuilding(model, name, position);
+        return _cityGenerator.AddBuilding(model, name, position);
     }
 
     public void SetTile(MapModel model, int x, int y, string type)

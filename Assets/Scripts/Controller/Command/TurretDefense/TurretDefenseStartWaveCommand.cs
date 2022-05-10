@@ -6,6 +6,9 @@ public class TurretDefenseStartWaveCommand : ICommand
 {
     public void Execute(GameController controller)
     {
-        controller.TurretDefenseController.StartWave(controller.Model.TurretDefenseModel, controller.Model);
+        var model = controller.Model.TurretDefenseModel;
+        model.StartTime = controller.Model.TimeModel.RealTime;
+        model.SpawnedCount = 0;
+        model.CurrentWave++;
     }
 }

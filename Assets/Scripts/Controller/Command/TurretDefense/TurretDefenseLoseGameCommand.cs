@@ -6,6 +6,8 @@ public class TurretDefenseLoseGameCommand : ICommand
 {
     public void Execute(GameController controller)
     {
-        controller.TurretDefenseController.LoseGame(controller.Model.TurretDefenseModel);
+        var model = controller.Model.TurretDefenseModel;
+        model.CurrentWave = -1;
+        Debug.Log("Game over!!");
     }
 }

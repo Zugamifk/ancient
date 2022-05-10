@@ -9,13 +9,14 @@ public class Turret : MonoBehaviour, IModelUpdateable
     [SerializeField]
     AttackRadius _attackRadius;
 
-    void Awake()
+    void Start()
     {
         UpdateableGameObjectRegistry.RegisterUpdateable(this);
     }
 
-    public void UpdateFromModel(IGameModel model)
+    void IModelUpdateable.UpdateFromModel(IGameModel model)
     {
-        throw new System.NotImplementedException();
+        var turretModel = model.TurretDefense.Turrets.GetItem(_identifiable.Id);
+        _attackRadius.SetRadius(turretModel.AttackRadius);
     }
 }

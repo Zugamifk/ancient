@@ -13,13 +13,6 @@ public class TurretDefenseController
         _gameData = data;
     }
 
-    public void ConfigureModel(TurretDefenseModel model)
-    {
-        model.StartPlacingBuilding += StartPlacingBuilding;
-        model.StopPlacingBuilding += StopPlacingBuilding;
-        model.PlaceBuilding += PlaceBuilding;
-    }
-
     public void Update(GameModel model)
     {
         var tdModel = model.TurretDefenseModel;
@@ -57,26 +50,16 @@ public class TurretDefenseController
         }
     }
 
-    public void StartGame(TurretDefenseModel model, GameModel gameModel, Vector2Int startPosition, Vector2Int endPosition)
+    public TurretDefenseModel GetNewModel()
     {
+        var model = new TurretDefenseModel();
         model.Lives = _gameData.StartingLives;
         model.MaxLives = _gameData.StartingLives;
-        model.SpawnPosition = startPosition;
-        model.EndPoint = endPosition;
         model.CurrentWave = -1;
-    }
-
-    public void StartWave(TurretDefenseModel model, GameModel gameModel)
-    {
-        model.StartTime = gameModel.TimeModel.RealTime;
-        model.SpawnedCount = 0;
-        model.CurrentWave++;
-    }
-
-    public void LoseGame(TurretDefenseModel model)
-    {
-        model.CurrentWave = -1;
-        Debug.Log("Game over!!");
+        model.StartPlacingBuilding += StartPlacingBuilding;
+        model.StopPlacingBuilding += StopPlacingBuilding;
+        model.PlaceBuilding += PlaceBuilding;
+        return model;
     }
 
     void OnEnemyReachedEnd(MovementModel model)
@@ -100,7 +83,7 @@ public class TurretDefenseController
 
     void PlaceBuilding(TurretDefenseModel model, Vector2Int position)
     {
-        _commands.DoCommand(new SpawnBuildingCommand(model.BuildingBeingPlaced, position));
+        _commands.DoCommand(new TurretDefenseBuildTurretCommand(model.BuildingBeingPlaced, position));
         StopPlacingBuilding(model);
     }
 }

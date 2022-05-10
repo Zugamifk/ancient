@@ -14,7 +14,7 @@ public class TurretDefenseTest
             cmd.DoCommand(new BuildRoadCommand(pair.a, pair.b));
         }
 
-        cmd.DoCommand(new TurretDefenseStartGameCommand());
+        cmd.DoCommand(new TurretDefenseStartGameCommand(pathpoints[0], pathpoints[1]));
         cmd.DoCommand(new TurretDefenseStartWaveCommand());
     }
 }

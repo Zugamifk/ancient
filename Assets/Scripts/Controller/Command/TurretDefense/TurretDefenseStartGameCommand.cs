@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class TurretDefenseStartGameCommand : ICommand
 {
+    Vector2Int _spawnPosition;
+    Vector2Int _destination;
+    public TurretDefenseStartGameCommand(Vector2Int spawnPosition, Vector2Int destination)
+    {
+        _spawnPosition = spawnPosition;
+        _destination = destination;
+    }
+
     public void Execute(GameController controller)
     {
-        controller.TurretDefenseController.StartGame(controller.Model.TurretDefenseModel, controller.Model, new Vector2Int(10, 0), new Vector2Int(1,1));
+        var model = controller.TurretDefenseController.GetNewModel();
+        model.SpawnPosition = _spawnPosition;
+        model.EndPoint = _destination;
+        controller.Model.TurretDefenseModel = model;
     }
 }

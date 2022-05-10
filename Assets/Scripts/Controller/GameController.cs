@@ -35,7 +35,6 @@ public class GameController : ICommandService
         ItemController = new ItemController(itemCollection);
 
         TurretDefenseController = new TurretDefenseController(this, turretDefenseData);
-        TurretDefenseController.ConfigureModel(Model.TurretDefenseModel);
 
         Model.Cheats = new CheatController()
         {

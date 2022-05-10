@@ -15,7 +15,7 @@ public class TurretDefenseModel : ITurretDefenseViewModel
     public int CurrentWave = -1;
     public List<CharacterModel> Enemies = new List<CharacterModel>();
     public string BuildingBeingPlaced;
-    public IdentifiableCollection<TurretModel> Turrets;
+    public IdentifiableCollection<TurretModel> Turrets = new IdentifiableCollection<TurretModel>();
     public event Action<TurretDefenseModel, Vector2Int> PlaceBuilding;
     public event Action<TurretDefenseModel, string> StartPlacingBuilding;
     public event Action<TurretDefenseModel> StopPlacingBuilding;
