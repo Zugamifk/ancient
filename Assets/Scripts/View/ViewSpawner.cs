@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
     where TIdentifiable : IIdentifiable
-    where TView : MonoBehaviour
+    where TView : MonoBehaviour, IView<TIdentifiable>
 {
     protected Dictionary<string, TView> _spawnedViews = new Dictionary<string, TView>();
     protected IPrefabLookup _prefabLookup;
@@ -40,11 +40,11 @@ public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
             _spawnedViews.Remove(id);
         }
 
-        foreach (var id in modelIdentifiables.AllItems)
+        foreach (var m in modelIdentifiables.AllItems)
         {
-            if (!_spawnedViews.ContainsKey(id.Id))
+            if (!_spawnedViews.ContainsKey(m.Id))
             {
-                var key = GetPrefabKey(id);
+                var key = GetPrefabKey(m);
                 var prefab = _prefabLookup.GetPrefab(key);
                 var instance = GameObject.Instantiate(prefab);
                 if(_viewParent!=null)
@@ -53,8 +53,9 @@ public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
                     SetLayer(instance.transform, _viewParent.gameObject.layer);
                 }
                 var view = instance.GetComponent<TView>();
-                _spawnedViews.Add(id.Id, view);
-                SpawnedView(id, view);
+                view.InitializeFromModel(m);
+                SpawnedView(m, view);
+                _spawnedViews.Add(m.Id, view);
             }
         }
     }

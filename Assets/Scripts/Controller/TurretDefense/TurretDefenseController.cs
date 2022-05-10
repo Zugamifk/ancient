@@ -90,19 +90,16 @@ public class TurretDefenseController
 
     void StartPlacingBuilding(TurretDefenseModel model, string name)
     {
-        Debug.Log("Start placing building");
         model.BuildingBeingPlaced = name;
     }
 
     void StopPlacingBuilding(TurretDefenseModel model)
     {
-        Debug.Log("STOP placing building");
         model.BuildingBeingPlaced = null;
     }
 
     void PlaceBuilding(TurretDefenseModel model, Vector2Int position)
     {
-        Debug.Log($"Placed {model.BuildingBeingPlaced} at {position}");
         _commands.DoCommand(new SpawnBuildingCommand(model.BuildingBeingPlaced, position));
         StopPlacingBuilding(model);
     }

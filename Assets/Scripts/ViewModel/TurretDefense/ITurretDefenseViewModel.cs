@@ -10,6 +10,7 @@ public interface ITurretDefenseViewModel
     int CurrentWave { get; }
     int TotalWaves { get; }
     TimeSpan CurrentTime { get; }
+    IIdentifiableLookup<ITurretModel> Turrets { get; }
     string BuildingBeingPlaced { get; }
     void OnStartPlacingBuilding(string name);
     void OnStopPlacingBuilding();

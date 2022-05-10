@@ -37,11 +37,11 @@ public class IdentifiableCollection<TModel> : IIdentifiableLookup<TModel>
 
     public TModel GetItem(string key)
     {
-        if (!_identifiables.ContainsKey(key))
+        if (!_identifiables.ContainsKey(key) && !_uniqueIdentifiableNameToId.TryGetValue(key, out key))
         {
-            key = _uniqueIdentifiableNameToId[key];
+            return default;
         }
-
+        
         return _identifiables[key];
     }
 

@@ -30,7 +30,7 @@ public class Map : MonoBehaviour, IModelUpdateable
     {
         _tileMapper = GetComponent<TileMapper>();
 
-        _characterViewSpawner = new CharacterViewSpawner(_characterCollection, _spawnedObjectsRoot);
+        _characterViewSpawner = new CharacterViewSpawner(_characterCollection, _spawnedObjectsRoot, _tileMapper);
         _buildingViewSpawner = new BuildingViewSpawner(_buildingCollection, _spawnedObjectsRoot, _tileMapper);
         UpdateableGameObjectRegistry.RegisterUpdateable(this);
     }
@@ -45,8 +45,6 @@ public class Map : MonoBehaviour, IModelUpdateable
         {
             RebuildTilemap(model);
         }
-
-        UpdateCharacters(model);
 
         while (_cheatSetTileQueue.Count > 0)
         {
@@ -66,16 +64,5 @@ public class Map : MonoBehaviour, IModelUpdateable
         _tileMapper.BuildTilemap(model.Map);
 
         _isTilemapBuilt = true;
-    }
-
-    void UpdateCharacters(IGameModel model)
-    {
-        foreach (var c in model.Characters.AllItems)
-        {
-            var character = _characterViewSpawner.GetView(c.Id);
-            var position = _tileMapper.ModelToWorld(c.WorldPosition + character.PositionOffset);
-            character.SetPosition(position);
-            character.gameObject.SetActive(c.IsVisibleOnMap);
-        }
     }
 }
