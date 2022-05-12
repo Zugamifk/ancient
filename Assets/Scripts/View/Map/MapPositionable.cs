@@ -26,7 +26,7 @@ public class MapPositionable : MonoBehaviour, IModelUpdateable
         var positionable = PositionGetter.Invoke(model, _identifiable.Id);
         if (positionable != null)
         {
-            transform.position = model.Map.TileMapTransformer.ModelToWorld(positionable.Position);
+            transform.position = model.Map.TileMapTransformer.ModelToWorld(positionable.Position + _positionOffset);
         }
     }
 }
