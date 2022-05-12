@@ -13,7 +13,7 @@ public class CharacterModel : ICharacterModel
 
     #region ICharacterModel
     string ICharacterModel.Name => Profile.Name;
-    Vector2 ICharacterModel.WorldPosition => Movement.WorldPosition;
+    public Vector2 Position => Movement.WorldPosition;
     bool ICharacterModel.IsVisibleOnMap => Movement.IsVisibleOnMap;
     #endregion
 }

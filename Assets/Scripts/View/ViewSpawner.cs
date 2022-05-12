@@ -53,7 +53,7 @@ public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
                     SetLayer(instance.transform, _viewParent.gameObject.layer);
                 }
                 var view = instance.GetComponent<TView>();
-                view.InitializeFromModel(m);
+                view.InitializeFromModel(model, m);
                 SpawnedView(m, view);
                 _spawnedViews.Add(m.Id, view);
             }

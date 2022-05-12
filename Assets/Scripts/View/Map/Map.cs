@@ -30,8 +30,8 @@ public class Map : MonoBehaviour, IModelUpdateable
     {
         _tileMapper = GetComponent<TileMapper>();
 
-        _characterViewSpawner = new CharacterViewSpawner(_characterCollection, _spawnedObjectsRoot, _tileMapper);
-        _buildingViewSpawner = new BuildingViewSpawner(_buildingCollection, _spawnedObjectsRoot, _tileMapper);
+        _characterViewSpawner = new CharacterViewSpawner(_characterCollection, _spawnedObjectsRoot);
+        _buildingViewSpawner = new BuildingViewSpawner(_buildingCollection, _spawnedObjectsRoot);
         UpdateableGameObjectRegistry.RegisterUpdateable(this);
     }
 
@@ -44,6 +44,7 @@ public class Map : MonoBehaviour, IModelUpdateable
         if (!_isTilemapBuilt)
         {
             RebuildTilemap(model);
+            model.Map.SetTileMapTransformer(_tileMapper);
         }
 
         while (_cheatSetTileQueue.Count > 0)

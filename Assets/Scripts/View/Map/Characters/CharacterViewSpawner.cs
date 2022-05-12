@@ -1,14 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterViewSpawner : ViewSpawner<ICharacterModel, Movement>
 {
-    ITileMapTransformer _tileMapTransformer;
-    public CharacterViewSpawner(IPrefabLookup prefabLookup, Transform viewParent, ITileMapTransformer tileMapTransformer)
+    public CharacterViewSpawner(IPrefabLookup prefabLookup, Transform viewParent)
         : base(prefabLookup, viewParent)
     {
-        _tileMapTransformer = tileMapTransformer;
     }
 
     protected override IIdentifiableLookup<ICharacterModel> GetIdentifiables(IGameModel model) => model.Characters;
@@ -16,6 +15,11 @@ public class CharacterViewSpawner : ViewSpawner<ICharacterModel, Movement>
     protected override void SpawnedView(ICharacterModel model, Movement view)
     {
         var positionable = view.GetComponent<MapPositionable>();
-        positionable.TileMapTransformer = _tileMapTransformer;
+        positionable.PositionGetter = GetPositionable;
+    }
+
+    IMapPositionable GetPositionable(IGameModel model, Guid id)
+    {
+        return model.Characters.GetItem(id);
     }
 }

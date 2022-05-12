@@ -31,8 +31,9 @@ public class Building : MonoBehaviour, IView<IBuildingModel>
         }
     }
 
-    public void InitializeFromModel(IBuildingModel model)
+    public void InitializeFromModel(IGameModel gameModel, IBuildingModel model)
     {
         _identifiable.Id = model.Id;
+        transform.position = gameModel.Map.TileMapTransformer.GetWorldCenterOftile((Vector3Int)model.Position);
     }
 }
