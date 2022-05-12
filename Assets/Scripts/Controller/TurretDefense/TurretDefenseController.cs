@@ -15,19 +15,26 @@ public class TurretDefenseController
 
     public void Update(GameModel model)
     {
+        SpawnWaveUnits(model);
+        UpdateTurretTargets(model);
+    }
+
+    void SpawnWaveUnits(GameModel model)
+    {
         var tdModel = model.TurretDefenseModel;
-        
+
         if (tdModel.CurrentWave < 0) return;
 
         tdModel.CurrentTime = model.TimeModel.RealTime - tdModel.StartTime;
 
         var waveData = _gameData.Waves[tdModel.CurrentWave];
-        if(tdModel.SpawnedCount < waveData.Count)
+        if (tdModel.SpawnedCount < waveData.Count)
         {
             void SpawnedEnemy(CharacterModel enemy)
             {
                 tdModel.Enemies.Add(enemy);
-                _commands.DoCommand(new MoveCharacterCommand() { 
+                _commands.DoCommand(new MoveCharacterCommand()
+                {
                     CharacterId = enemy.Id,
                     Destination = tdModel.EndPoint,
                     ReachedPathEnd = OnEnemyReachedEnd
@@ -36,7 +43,7 @@ public class TurretDefenseController
             var step = waveData.SpawnTime / waveData.Count;
             var lastSpawnTime = tdModel.StartTime.TotalSeconds + tdModel.SpawnedCount * step;
             var time = model.TimeModel.RealTime.TotalSeconds;
-            for(var t = lastSpawnTime; t < time && tdModel.SpawnedCount < waveData.Count; t += step)
+            for (var t = lastSpawnTime; t < time && tdModel.SpawnedCount < waveData.Count; t += step)
             {
                 _commands.DoCommand(new SpawnCharacterCommand()
                 {
@@ -44,8 +51,25 @@ public class TurretDefenseController
                     Position = tdModel.SpawnPosition,
                     OnSpawned = SpawnedEnemy
                 });
-                
-                tdModel.SpawnedCount ++;
+
+                tdModel.SpawnedCount++;
+            }
+        }
+    }
+
+    void UpdateTurretTargets(GameModel model)
+    {
+        var enemies = model.TurretDefenseModel.Enemies;
+        foreach (var turret in model.TurretDefenseModel.Turrets.AllItems)
+        {
+            turret.EnemiesInRange.Clear();
+            var building = model.MapModel.Buildings.GetItem(turret.Id);
+            foreach(var e in enemies)
+            {
+                if(Vector2.Distance(e.Position, building.Position) < turret.AttackRadius)
+                {
+                    turret.EnemiesInRange.Add(e.Id);
+                }
             }
         }
     }
@@ -62,6 +86,7 @@ public class TurretDefenseController
         return model;
     }
 
+    #region ViewModel events
     void OnEnemyReachedEnd(MovementModel model)
     {
         _commands.DoCommand(new RemoveCharacterCommand()
@@ -86,4 +111,5 @@ public class TurretDefenseController
         _commands.DoCommand(new TurretDefenseBuildTurretCommand(model.BuildingBeingPlaced, position));
         StopPlacingBuilding(model);
     }
+    #endregion
 }
