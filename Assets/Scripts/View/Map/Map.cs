@@ -15,7 +15,7 @@ public class Map : MonoBehaviour, IModelUpdateable
 
     TileMapper _tileMapper;
     ViewSpawner<IBuildingModel, Building> _buildingViewSpawner;
-    ViewSpawner<ICharacterModel, Movement> _characterViewSpawner;
+    ViewSpawner<ICharacterModel, Character> _characterViewSpawner;
 
     Queue<(int, int, string)> _cheatSetTileQueue = new Queue<(int, int, string)>();
     bool _isTilemapBuilt = false;

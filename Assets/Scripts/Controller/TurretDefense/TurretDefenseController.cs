@@ -74,6 +74,11 @@ public class TurretDefenseController
         }
     }
 
+    void UpdateProjectiles(GameModel model)
+    {
+
+    }
+
     public TurretDefenseModel GetNewModel()
     {
         var model = new TurretDefenseModel();

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterViewSpawner : ViewSpawner<ICharacterModel, Movement>
+public class CharacterViewSpawner : ViewSpawner<ICharacterModel, Character>
 {
     public CharacterViewSpawner(IPrefabLookup prefabLookup, Transform viewParent)
         : base(prefabLookup, viewParent)
@@ -12,7 +12,7 @@ public class CharacterViewSpawner : ViewSpawner<ICharacterModel, Movement>
 
     protected override IIdentifiableLookup<ICharacterModel> GetIdentifiables(IGameModel model) => model.Characters;
     protected override string GetPrefabKey(ICharacterModel model) => model.Name;
-    protected override void SpawnedView(ICharacterModel model, Movement view)
+    protected override void SpawnedView(ICharacterModel model, Character view)
     {
         var positionable = view.GetComponent<MapPositionable>();
         positionable.PositionGetter = GetPositionable;

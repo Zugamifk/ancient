@@ -16,6 +16,8 @@ public class TurretDefenseModel : ITurretDefenseViewModel
     public List<CharacterModel> Enemies = new List<CharacterModel>();
     public string BuildingBeingPlaced;
     public IdentifiableCollection<TurretModel> Turrets = new IdentifiableCollection<TurretModel>();
+    public IdentifiableCollection<TurretProjectileModel> Projectiles = new IdentifiableCollection<TurretProjectileModel>();
+
     public event Action<TurretDefenseModel, Vector2Int> PlaceBuilding;
     public event Action<TurretDefenseModel, string> StartPlacingBuilding;
     public event Action<TurretDefenseModel> StopPlacingBuilding;
@@ -34,6 +36,8 @@ public class TurretDefenseModel : ITurretDefenseViewModel
     string ITurretDefenseViewModel.BuildingBeingPlaced => BuildingBeingPlaced;
 
     IIdentifiableLookup<ITurretModel> ITurretDefenseViewModel.Turrets => Turrets;
+
+    IIdentifiableLookup<ITurretProjectileModel> ITurretDefenseViewModel.Projectiles => Projectiles;
 
     void ITurretDefenseViewModel.OnPlaceBuilding(Vector2Int position)
     {

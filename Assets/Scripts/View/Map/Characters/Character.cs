@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Identifiable))]
 [RequireComponent(typeof(MapPositionable))]
-public class Movement : MonoBehaviour, IView<ICharacterModel>, IModelUpdateable
+public class Character : MonoBehaviour, IView<ICharacterModel>, IModelUpdateable
 {
     [SerializeField]
     Transform _view;
