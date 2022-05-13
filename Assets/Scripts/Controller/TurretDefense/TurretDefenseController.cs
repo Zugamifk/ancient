@@ -6,7 +6,7 @@ public class TurretDefenseController
 {
     ICommandService _commands;
     TurretDefenseData _gameData;
-
+    
     public TurretDefenseController(ICommandService commands, TurretDefenseData data)
     {
         _commands = commands;
@@ -63,10 +63,9 @@ public class TurretDefenseController
         foreach (var turret in model.TurretDefenseModel.Turrets.AllItems)
         {
             turret.EnemiesInRange.Clear();
-            var building = model.MapModel.Buildings.GetItem(turret.Id);
             foreach(var e in enemies)
             {
-                if(Vector2.Distance(e.Position, building.Position) < turret.AttackRadius)
+                if(Vector2.Distance(e.Position, turret.Position) < turret.AttackRadius)
                 {
                     turret.EnemiesInRange.Add(e.Id);
                 }
@@ -88,6 +87,15 @@ public class TurretDefenseController
         model.StartPlacingBuilding += StartPlacingBuilding;
         model.StopPlacingBuilding += StopPlacingBuilding;
         model.PlaceBuilding += PlaceBuilding;
+        return model;
+    }
+
+    public TurretModel GetNewTurretModel(string name)
+    {
+        var data = _gameData.GetTurret(name);
+        var model = new TurretModel();
+        model.Name = data.Name;
+        model.AttackRadius = data.Radius;
         return model;
     }
 

@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 950c5571a4841c64f8d4a76f51d1302a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b0e8b9617185a34f9b76361531b38aa, type: 3}
   m_Name: Turret
   m_EditorClassIdentifier: 
   Name: Turret
-  EntranceOffset: {x: 0, y: -1}
-  Dimensions: {x: 1, y: 1}
-  ViewPrefab: {fileID: 3227864440446316006, guid: ce8c624ce35f43d43a2110578c1c6257, type: 3}
+  Radius: 3
+  ShotsPerSecond: 1
+  Damage: 0
+  Prefab: {fileID: 3227864440446316006, guid: ce8c624ce35f43d43a2110578c1c6257, type: 3}

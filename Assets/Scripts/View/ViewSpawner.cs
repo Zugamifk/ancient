@@ -45,6 +45,10 @@ public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
             if (!_spawnedViews.ContainsKey(m.Id))
             {
                 var key = GetPrefabKey(m);
+                if (string.IsNullOrEmpty(key))
+                {
+                    throw new InvalidOperationException($"Key for {m} is null!");
+                }
                 var prefab = _prefabLookup.GetPrefab(key);
                 var instance = GameObject.Instantiate(prefab);
                 if(_viewParent!=null)
@@ -53,6 +57,11 @@ public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
                     SetLayer(instance.transform, _viewParent.gameObject.layer);
                 }
                 var view = instance.GetComponent<TView>();
+                if(view == null)
+                {
+                    throw new InvalidOperationException($"Prefab {instance} doesn't contain a {typeof(TView)}!");
+                }
+
                 view.InitializeFromModel(model, m);
                 SpawnedView(m, view);
                 _spawnedViews.Add(m.Id, view);

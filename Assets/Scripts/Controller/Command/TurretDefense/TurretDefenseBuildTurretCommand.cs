@@ -14,13 +14,8 @@ public class TurretDefenseBuildTurretCommand : ICommand
 
     public void Execute(GameController controller)
     {
-        var building = controller.MapController.AddBuilding(controller.Model.MapModel, _name, _position);
-
-        var turret = new TurretModel()
-        {
-            Id = building.Id,
-            AttackRadius = 3
-        };
+        var turret = controller.TurretDefenseController.GetNewTurretModel(_name);
+        turret.Position = _position;
         controller.Model.TurretDefenseModel.Turrets.AddItem(turret);
     }
 }

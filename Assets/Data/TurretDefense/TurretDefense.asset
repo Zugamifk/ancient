@@ -15,3 +15,5 @@ MonoBehaviour:
   StartingLives: 10
   Waves:
   - {fileID: 11400000, guid: bee43611dbdc4a34e84d9c1e3762feaa, type: 2}
+  Turrets:
+  - {fileID: 11400000, guid: e87268e648afee348a76ef605ff5e6f3, type: 2}

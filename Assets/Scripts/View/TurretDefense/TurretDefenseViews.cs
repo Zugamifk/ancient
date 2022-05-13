@@ -5,14 +5,20 @@ using UnityEngine;
 public class TurretDefenseViews : MonoBehaviour
 {
     [SerializeField]
-    Transform _projectilesRoot;
+    Transform _spawnsRoot;
     [SerializeField]
     GameObject _projectilePrefab;
+    [SerializeField]
+    TurretDefenseData _turretDefenseData;
 
-    ViewSpawner<ITurretProjectileModel, TurretProjectile> _projectiles;
+    TurretPrefabLookup _turretPrefabs;
+    TurretViewSpawner _turrets;
+    TurretProjectileViewSpawner _projectiles;
 
     private void Awake()
     {
-        _projectiles = new TurretProjectileViewSpawner(_projectilePrefab, _projectilesRoot);
+        _projectiles = new TurretProjectileViewSpawner(_projectilePrefab, _spawnsRoot);
+        _turretPrefabs = new TurretPrefabLookup(_turretDefenseData);
+        _turrets = new TurretViewSpawner(_turretPrefabs, _spawnsRoot);
     }
 }

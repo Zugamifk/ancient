@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour, IModelUpdateable
+public class Turret : MonoBehaviour, IModelUpdateable, IView<ITurretModel>
 {
     [SerializeField]
     Identifiable _identifiable;
@@ -33,5 +33,11 @@ public class Turret : MonoBehaviour, IModelUpdateable
         {
             Debug.DrawLine(pos, kv.Value);
         }
+    }
+
+    public void InitializeFromModel(IGameModel gameModel, ITurretModel model)
+    {
+        _identifiable.Id = model.Id;
+        transform.position = gameModel.Map.TileMapTransformer.GetWorldCenterOftile((Vector3Int)model.Position);
     }
 }
