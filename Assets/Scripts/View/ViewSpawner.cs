@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
+public abstract class ViewSpawner<TIdentifiable, TView> : MonoBehaviour
     where TIdentifiable : IIdentifiable
     where TView : MonoBehaviour, IView<TIdentifiable>
 {
@@ -16,14 +16,13 @@ public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
     {
         _prefabLookup = prefabLookup;
         _viewParent = viewParent;
-        UpdateableGameObjectRegistry.RegisterUpdateable(this);
     }
 
     public TView GetView(Guid id) => _spawnedViews[id];
 
-    void IModelUpdateable.UpdateFromModel(IGameModel model)
+    void Update()
     {
-        var modelIdentifiables = GetIdentifiables(model);
+        var modelIdentifiables = GetIdentifiables();
 
         List<Guid> toRemove = new List<Guid>();
         foreach (var id in _spawnedViews.Keys)
@@ -62,14 +61,14 @@ public abstract class ViewSpawner<TIdentifiable, TView> : IModelUpdateable
                     throw new InvalidOperationException($"Prefab {instance} doesn't contain a {typeof(TView)}!");
                 }
 
-                view.InitializeFromModel(model, m);
+                view.InitializeFromModel(m);
                 SpawnedView(m, view);
                 _spawnedViews.Add(m.Id, view);
             }
         }
     }
 
-    protected abstract IIdentifiableLookup<TIdentifiable> GetIdentifiables(IGameModel model);
+    protected abstract IIdentifiableLookup<TIdentifiable> GetIdentifiables();
     protected virtual void SpawnedView(TIdentifiable model, TView view) { }
     protected abstract string GetPrefabKey(TIdentifiable model);
 

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TurretDefenseLoseLifeCommand : ICommand
 {
-    public void Execute(GameController controller)
+    public void Execute(GameModel model)
     {
-        var tdModel = controller.Model.TurretDefenseModel;
+        var tdModel = model.TurretDefenseModel;
         tdModel.Lives--;
         if(tdModel.Lives <=0)
         {
-            controller.DoCommand(new TurretDefenseLoseGameCommand());
+            Game.Do(new TurretDefenseLoseGameCommand());
         }
     }
 }

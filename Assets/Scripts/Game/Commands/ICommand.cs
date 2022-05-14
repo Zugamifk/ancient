@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IModelUpdateable
+public interface ICommand
 {
-    void UpdateFromModel(IGameModel model);
+    void Execute(GameModel model);
 }

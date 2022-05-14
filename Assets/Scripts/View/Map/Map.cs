@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Map : MonoBehaviour, IModelUpdateable
+public class Map : MonoBehaviour
 {
     [SerializeField]
     CharacterCollection _characterCollection;
@@ -32,27 +32,26 @@ public class Map : MonoBehaviour, IModelUpdateable
 
         _characterViewSpawner = new CharacterViewSpawner(_characterCollection, _spawnedObjectsRoot);
         _buildingViewSpawner = new BuildingViewSpawner(_buildingCollection, _spawnedObjectsRoot);
-        UpdateableGameObjectRegistry.RegisterUpdateable(this);
     }
 
     /// <summary>
     /// Update with new model data for per-frame updates
     /// </summary>
     /// <param name="model"></param>
-    public void UpdateFromModel(IGameModel model)
+    public void Update()
     {
         if (!_isTilemapBuilt)
         {
-            RebuildTilemap(model);
-            model.Map.SetTileMapTransformer(_tileMapper);
+            RebuildTilemap();
+            //model.Map.SetTileMapTransformer(_tileMapper);
         }
 
-        while (_cheatSetTileQueue.Count > 0)
-        {
-            var (x, y, type) = _cheatSetTileQueue.Dequeue();
-            model.Cheats.SetTile(x, y, type);
-            _tileMapper.SetTile(x, y, model.Cheats.GameModel.Map);
-        }
+        //while (_cheatSetTileQueue.Count > 0)
+        //{
+        //    var (x, y, type) = _cheatSetTileQueue.Dequeue();
+        //    model.Cheats.SetTile(x, y, type);
+        //    _tileMapper.SetTile(x, y, model.Cheats.GameModel.Map);
+        //}
     }
 
     public Vector2Int GetTileFromWorldPosition(Vector3 worldPosition)
@@ -60,9 +59,9 @@ public class Map : MonoBehaviour, IModelUpdateable
         return (Vector2Int)_tileMapper.GetTileFromPosition(worldPosition);
     }
 
-    void RebuildTilemap(IGameModel model)
+    void RebuildTilemap()
     {
-        _tileMapper.BuildTilemap(model.Map);
+        _tileMapper.BuildTilemap(Game.Model.Map);
 
         _isTilemapBuilt = true;
     }

@@ -13,8 +13,4 @@ public interface ITurretDefenseViewModel
     IIdentifiableLookup<ITurretModel> Turrets { get; }
     string BuildingBeingPlaced { get; }
     IIdentifiableLookup<ITurretProjectileModel> Projectiles { get; }
-
-    void OnStartPlacingBuilding(string name);
-    void OnStopPlacingBuilding();
-    void OnPlaceBuilding(Vector2Int position);
 }

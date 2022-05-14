@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Book : MonoBehaviour, IModelUpdateable
+public class Book : MonoBehaviour
 {
     [SerializeField]
     string _name;
@@ -33,12 +33,10 @@ public class Book : MonoBehaviour, IModelUpdateable
         _turnLeftbutton.onClick.AddListener(Clicked_TurnLeftButton);
         _turnRightbutton.onClick.AddListener(Clicked_TurnRightButton);
         _closeButton.onClick.AddListener(Clicked_Close);
-
-        UpdateableGameObjectRegistry.RegisterUpdateable(this);
     }
-    public void UpdateFromModel(IGameModel model)
+    public void Update()
     {
-        var book = model.Inventory.GetItem(Name) as IBookModel;
+        var book = Game.Model.Inventory.GetItem(Name) as IBookModel;
         if (_closing)
         {
             book.OnClosed();

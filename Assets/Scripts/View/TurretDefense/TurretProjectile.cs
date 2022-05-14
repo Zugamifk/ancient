@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretProjectile : MonoBehaviour, IModelUpdateable, IView<ITurretProjectileModel>
+public class TurretProjectile : MonoBehaviour, IView<ITurretProjectileModel>
 {
     [SerializeField]
     Transform _viewRoot;
@@ -14,12 +14,7 @@ public class TurretProjectile : MonoBehaviour, IModelUpdateable, IView<ITurretPr
         _identifiable = GetComponent<Identifiable>();
     }
 
-    public void UpdateFromModel(IGameModel model)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void InitializeFromModel(IGameModel gamemodel, ITurretProjectileModel model)
+    public void InitializeFromModel(ITurretProjectileModel model)
     {
         throw new System.NotImplementedException();
     }

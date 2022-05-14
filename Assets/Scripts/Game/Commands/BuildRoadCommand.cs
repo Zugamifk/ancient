@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BuildRoadCommand : ICommand
 {
+    static CityGenerator _cityGenerator = new CityGenerator();
+
     string _startName;
     Vector2Int _start;
     string _endName;
@@ -21,15 +23,16 @@ public class BuildRoadCommand : ICommand
         _end = end;
     }
 
-    public void Execute(GameController controller)
+    public void Execute(GameModel model)
     {
+        var cityGenerator = Services.Get<CityGenerator>();
         if (string.IsNullOrEmpty(_startName))
         {
-            controller.MapController.CityGenerator.BuildRoad(controller.Model.MapModel, _start, _end);
+            cityGenerator.BuildRoad(model.MapModel, _start, _end);
         }
         else
         {
-            controller.MapController.CityGenerator.BuildRoad(controller.Model.MapModel, _startName, _endName);
+            cityGenerator.BuildRoad(model.MapModel, _startName, _endName);
         }
     }
 }

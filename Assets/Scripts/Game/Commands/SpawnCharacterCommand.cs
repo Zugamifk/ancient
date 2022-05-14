@@ -6,14 +6,12 @@ using UnityEngine;
 public class SpawnCharacterCommand : ICommand
 {
     public string Name;
-    public string PositionName;
     public Vector2Int Position;
     public Action<CharacterModel> OnSpawned;
     public bool IsUnique;
-    public void Execute(GameController controller)
+    public void Execute(GameModel model)
     {
-        var spawnPosition = string.IsNullOrEmpty(PositionName) ? Position : controller.ParsePosition(PositionName);
-        var data = controller.CharacterCollection.GetData(Name);
+        var data = DataService.GetData<CharacterCollection>().GetData(Name);
         var character = new CharacterModel();
         character.Profile = new ProfileModel()
         {
@@ -23,11 +21,10 @@ public class SpawnCharacterCommand : ICommand
         {
             OwnerId = character.Id,
             MoveSpeed = data.MoveSpeed,
-            WorldPosition = spawnPosition
+            WorldPosition = Position
         };
 
-
-        controller.Model.Characters.AddItem(character, IsUnique ? Name : null);
+        model.Characters.AddItem(character, IsUnique ? Name : null);
 
         OnSpawned?.Invoke(character);
     }

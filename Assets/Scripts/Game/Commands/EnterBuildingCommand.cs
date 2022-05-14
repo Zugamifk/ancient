@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnterBuildingCommand : ICommand
 {
+    static PathFinder _pathFinder = new PathFinder();
     string _buildingName;
     string _characterName;
 
@@ -16,13 +17,16 @@ public class EnterBuildingCommand : ICommand
         _characterName = agentName;
     }
 
-    public void Execute(GameController controller)
+    public void Execute(GameModel model)
     {
         Debug.Log($"COMMAND: {_characterName} enters {_buildingName}");
-        _building = controller.Model.MapModel.GetBuilding(_buildingName);
+        _building = model.MapModel.GetBuilding(_buildingName);
         var destinationPosition = _building.Position;
-        _character = controller.Model.Characters.GetItem(_characterName);
-        var path = controller.MapController.PathFinder.GetDirectPath(Vector2Int.FloorToInt(_character.Movement.WorldPosition), Vector2Int.FloorToInt(destinationPosition), controller.Model.MapModel.Grid);
+        _character = model.Characters.GetItem(_characterName);
+        var path = _pathFinder.GetDirectPath(
+            Vector2Int.FloorToInt(_character.Movement.WorldPosition), 
+            Vector2Int.FloorToInt(destinationPosition), 
+            model.MapModel.Grid);
         _character.Movement.CityPath = path;
         _character.Movement.ReachedPathEnd += Enterbuilding;
     }

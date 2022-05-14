@@ -6,7 +6,7 @@ public class DeskItem : MonoBehaviour, IView<IItemModel>
 {
     public string Name;
 
-    public void InitializeFromModel(IGameModel gameModel, IItemModel model)
+    public void InitializeFromModel(IItemModel model)
     {
         throw new System.NotImplementedException();
     }

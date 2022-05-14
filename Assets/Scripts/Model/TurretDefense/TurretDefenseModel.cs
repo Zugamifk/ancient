@@ -18,10 +18,6 @@ public class TurretDefenseModel : ITurretDefenseViewModel
     public IdentifiableCollection<TurretModel> Turrets = new IdentifiableCollection<TurretModel>();
     public IdentifiableCollection<TurretProjectileModel> Projectiles = new IdentifiableCollection<TurretProjectileModel>();
 
-    public event Action<TurretDefenseModel, Vector2Int> PlaceBuilding;
-    public event Action<TurretDefenseModel, string> StartPlacingBuilding;
-    public event Action<TurretDefenseModel> StopPlacingBuilding;
-
     #region ITurretDefenseViewModel
     int ITurretDefenseViewModel.Lives => Lives;
 
@@ -38,20 +34,5 @@ public class TurretDefenseModel : ITurretDefenseViewModel
     IIdentifiableLookup<ITurretModel> ITurretDefenseViewModel.Turrets => Turrets;
 
     IIdentifiableLookup<ITurretProjectileModel> ITurretDefenseViewModel.Projectiles => Projectiles;
-
-    void ITurretDefenseViewModel.OnPlaceBuilding(Vector2Int position)
-    {
-        PlaceBuilding?.Invoke(this, position);
-    }
-
-    void ITurretDefenseViewModel.OnStartPlacingBuilding(string name)
-    {
-        StartPlacingBuilding?.Invoke(this, name);
-    }
-
-    void ITurretDefenseViewModel.OnStopPlacingBuilding()
-    {
-        StopPlacingBuilding?.Invoke(this);
-    }
     #endregion
 }

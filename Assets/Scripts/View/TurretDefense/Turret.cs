@@ -3,26 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour, IModelUpdateable, IView<ITurretModel>
+public class Turret : MonoBehaviour, IView<ITurretModel>
 {
     [SerializeField]
     Identifiable _identifiable;
 
     Dictionary<Guid, Vector2> _guidToPosition = new Dictionary<Guid, Vector2>();
 
-    void Start()
+    void Update()
     {
-        UpdateableGameObjectRegistry.RegisterUpdateable(this);
-    }
-
-    void IModelUpdateable.UpdateFromModel(IGameModel model)
-    {
-        var turretModel = model.TurretDefense.Turrets.GetItem(_identifiable.Id);
+        var turretModel = Game.Model.TurretDefense.Turrets.GetItem(_identifiable.Id);
         _guidToPosition.Clear();
         foreach(var id in turretModel.EnemiesInRange)
         {
-            var pos = model.Characters.GetItem(id).Position;
-            _guidToPosition[id] = model.Map.TileMapTransformer.ModelToWorld(pos);
+            var pos = Game.Model.Characters.GetItem(id).Position;
+            _guidToPosition[id] = Game.Model.Map.TileMapTransformer.ModelToWorld(pos);
         }
     }
 
@@ -35,9 +30,9 @@ public class Turret : MonoBehaviour, IModelUpdateable, IView<ITurretModel>
         }
     }
 
-    public void InitializeFromModel(IGameModel gameModel, ITurretModel model)
+    public void InitializeFromModel(ITurretModel model)
     {
         _identifiable.Id = model.Id;
-        transform.position = gameModel.Map.TileMapTransformer.GetWorldCenterOftile((Vector3Int)model.Position);
+        transform.position = Game.Model.Map.TileMapTransformer.GetWorldCenterOftile((Vector3Int)model.Position);
     }
 }

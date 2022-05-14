@@ -11,10 +11,7 @@ public class DeskItemViewSpawner : ViewSpawner<IItemModel, DeskItem>
         _spawnNameToTransformLookup = spawnLocationLookup;
     }
 
-    protected override IIdentifiableLookup<IItemModel> GetIdentifiables(IGameModel model)
-    {
-        return model.Inventory.Items;
-    }
+    protected override IIdentifiableLookup<IItemModel> GetIdentifiables() => Game.Model.Inventory.Items;
 
     protected override string GetPrefabKey(IItemModel model) => model.Name;
 

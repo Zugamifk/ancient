@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClockView : MonoBehaviour, IModelUpdateable
+public class ClockView : MonoBehaviour
 {
     [SerializeField]
     bool _continuous;
@@ -34,8 +34,8 @@ public class ClockView : MonoBehaviour, IModelUpdateable
         }
     }
 
-    public void UpdateFromModel(IGameModel model)
+    public void Update()
     {
-        UpdateClock(model.Time);
+        UpdateClock(Game.Model.Time);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Identifiable))]
 [RequireComponent(typeof(MapPositionable))]
-public class Character : MonoBehaviour, IView<ICharacterModel>, IModelUpdateable
+public class Character : MonoBehaviour, IView<ICharacterModel>
 {
     [SerializeField]
     Transform _view;
@@ -16,19 +16,14 @@ public class Character : MonoBehaviour, IView<ICharacterModel>, IModelUpdateable
         _identifiable = GetComponent<Identifiable>();
     }
 
-    private void Start()
-    {
-        UpdateableGameObjectRegistry.RegisterUpdateable(this);
-    }
-
-    void IView<ICharacterModel>.InitializeFromModel(IGameModel gameModel, ICharacterModel model)
+    void IView<ICharacterModel>.InitializeFromModel(ICharacterModel model)
     {
         _identifiable.Id = model.Id;
     }
 
-    void IModelUpdateable.UpdateFromModel(IGameModel model)
+    void Update()
     {
-        var characterModel = model.Characters.GetItem(_identifiable.Id);
+        var characterModel = Game.Model.Characters.GetItem(_identifiable.Id);
         if (characterModel != null)
         {
             var oldPosition = transform.position;

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Identifiable))]
-public class MapPositionable : MonoBehaviour, IModelUpdateable
+public class MapPositionable : MonoBehaviour
 {
-    public Func<IGameModel, Guid, IMapPositionable> PositionGetter;
+    public Func<Guid, IMapPositionable> PositionGetter;
     Identifiable _identifiable;
     Vector2 _positionOffset = Vector2.one;
 
@@ -16,17 +16,12 @@ public class MapPositionable : MonoBehaviour, IModelUpdateable
         _positionOffset = new Vector2(0.5f - UnityEngine.Random.value, .5f - UnityEngine.Random.value);
     }
 
-    void Start()
+    public void Update()
     {
-        UpdateableGameObjectRegistry.RegisterUpdateable(this);
-    }
-
-    public void UpdateFromModel(IGameModel model)
-    {
-        var positionable = PositionGetter.Invoke(model, _identifiable.Id);
+        var positionable = PositionGetter.Invoke(_identifiable.Id);
         if (positionable != null)
         {
-            transform.position = model.Map.TileMapTransformer.ModelToWorld(positionable.Position + _positionOffset);
+            transform.position = Game.Model.Map.TileMapTransformer.ModelToWorld(positionable.Position + _positionOffset);
         }
     }
 }

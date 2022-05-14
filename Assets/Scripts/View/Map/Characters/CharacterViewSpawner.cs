@@ -10,7 +10,7 @@ public class CharacterViewSpawner : ViewSpawner<ICharacterModel, Character>
     {
     }
 
-    protected override IIdentifiableLookup<ICharacterModel> GetIdentifiables(IGameModel model) => model.Characters;
+    protected override IIdentifiableLookup<ICharacterModel> GetIdentifiables() => Game.Model.Characters;
     protected override string GetPrefabKey(ICharacterModel model) => model.Name;
     protected override void SpawnedView(ICharacterModel model, Character view)
     {
@@ -18,8 +18,8 @@ public class CharacterViewSpawner : ViewSpawner<ICharacterModel, Character>
         positionable.PositionGetter = GetPositionable;
     }
 
-    IMapPositionable GetPositionable(IGameModel model, Guid id)
+    IMapPositionable GetPositionable(Guid id)
     {
-        return model.Characters.GetItem(id);
+        return Game.Model.Characters.GetItem(id);
     }
 }

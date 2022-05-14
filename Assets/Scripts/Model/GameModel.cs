@@ -9,7 +9,7 @@ public class GameModel : IGameModel
     public TimeModel TimeModel = new TimeModel();
     public IdentifiableCollection<CharacterModel> Characters = new IdentifiableCollection<CharacterModel>();
     public Dictionary<string, NarrativeModel> Narratives = new Dictionary<string, NarrativeModel>();
-    public InventoryModel Desk = new InventoryModel();
+    public InventoryModel Inventory = new InventoryModel();
     public TurretDefenseModel TurretDefenseModel = new TurretDefenseModel();
 
     public IEnumerable<MovementModel> MovementModels => Characters.AllItems.Select(c => c.Movement).Concat(TurretDefenseModel.Enemies.Select(e => e.Movement));
@@ -20,7 +20,7 @@ public class GameModel : IGameModel
     IMapModel IGameModel.Map => MapModel;
     ITimeModel IGameModel.Time => TimeModel;
     IIdentifiableLookup<ICharacterModel> IGameModel.Characters => Characters;
-    IInventoryModel IGameModel.Inventory => Desk;
+    IInventoryModel IGameModel.Inventory => Inventory;
     ICheatController IGameModel.Cheats => Cheats;
     ITurretDefenseViewModel IGameModel.TurretDefense => TurretDefenseModel;
     #endregion

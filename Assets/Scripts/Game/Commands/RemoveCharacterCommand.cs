@@ -6,8 +6,8 @@ using UnityEngine;
 public class RemoveCharacterCommand : ICommand
 {
     public Guid CharacterId;
-    public void Execute(GameController controller)
+    public void Execute(GameModel model)
     {
-        controller.Model.Characters.RemoveItem(CharacterId);
+        model.Characters.RemoveItem(CharacterId);
     }
 }

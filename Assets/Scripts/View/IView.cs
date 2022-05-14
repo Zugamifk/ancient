@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IView<TModel>
 {
-    void InitializeFromModel(IGameModel gamemodel, TModel model);
+    void InitializeFromModel(TModel model);
 }

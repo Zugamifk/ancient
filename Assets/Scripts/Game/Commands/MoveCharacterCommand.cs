@@ -7,18 +7,17 @@ public class MoveCharacterCommand : ICommand
 {
     public Guid CharacterId;
     public string CharacterName;
-    public string DestinationName;
     public Vector2Int Destination;
     public Action<MovementModel> ReachedPathEnd;
 
-    public void Execute(GameController controller)
+    public void Execute(GameModel model)
     {
         var character = string.IsNullOrEmpty(CharacterName) ?
-            controller.Model.Characters.GetItem(CharacterId) :
-            controller.Model.Characters.GetItem(CharacterName);
+            model.Characters.GetItem(CharacterId) :
+            model.Characters.GetItem(CharacterName);
         var startPoint = character.Movement.WorldPosition;
-        var endPoint = string.IsNullOrEmpty(DestinationName) ? Destination : controller.ParsePosition(DestinationName);
-        var path = controller.MapController.PathFinder.GetPath(Vector2Int.FloorToInt(startPoint), Vector2Int.FloorToInt(endPoint), controller.Model.MapModel.Grid);
+        var path = Services.Get<PathFinder>()
+            .GetPath(Vector2Int.FloorToInt(startPoint), Destination, model.MapModel.Grid);
         character.Movement.CityPath = path;
         if (ReachedPathEnd != null)
         {

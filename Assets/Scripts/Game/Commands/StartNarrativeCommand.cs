@@ -10,8 +10,8 @@ public class StartNarrativeCommand : ICommand
         _narrativeName = narrativeName;
     }
 
-    public void Execute(GameController controller)
+    public void Execute(GameModel model)
     {
-        controller.NarrativeController.StartNarrative(_narrativeName, controller.Model);
+        //controller.NarrativeController.StartNarrative(_narrativeName, controller.Model);
     }
 }

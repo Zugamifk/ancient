@@ -8,7 +8,7 @@ public class TurretViewSpawner : ViewSpawner<ITurretModel, Turret>
     {
     }
 
-    protected override IIdentifiableLookup<ITurretModel> GetIdentifiables(IGameModel model) => model.TurretDefense.Turrets;
+    protected override IIdentifiableLookup<ITurretModel> GetIdentifiables() => Game.Model.TurretDefense.Turrets;
 
     protected override string GetPrefabKey(ITurretModel model) => model.Name;
 }

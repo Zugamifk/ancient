@@ -10,7 +10,7 @@ public class BuildingViewSpawner : ViewSpawner<IBuildingModel, Building>
     {
     }
 
-    protected override IIdentifiableLookup<IBuildingModel> GetIdentifiables(IGameModel model) => model.Map.Buildings;
+    protected override IIdentifiableLookup<IBuildingModel> GetIdentifiables() => Game.Model.Map.Buildings;
 
     protected override string GetPrefabKey(IBuildingModel model) => model.Name;
 }
