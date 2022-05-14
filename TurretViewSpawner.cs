@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class TurretViewSpawner : ViewSpawner<ITurretModel, Turret>
 {
+    public TurretViewSpawner(IPrefabLookup prefabLookup, Transform viewParent) : base(prefabLookup, viewParent)
+    {
+    }
+
     protected override IIdentifiableLookup<ITurretModel> GetIdentifiables() => Game.Model.TurretDefense.Turrets;
+
+    protected override string GetPrefabKey(ITurretModel model) => model.Name;
 }

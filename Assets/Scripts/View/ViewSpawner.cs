@@ -4,19 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class ViewSpawner<TIdentifiable, TView> : MonoBehaviour
-    where TIdentifiable : IIdentifiable
-    where TView : MonoBehaviour, IView<TIdentifiable>
+public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
+    where TModel : IIdentifiable, IKeyHolder
+    where TView : MonoBehaviour, IView<TModel>
 {
     protected Dictionary<Guid, TView> _spawnedViews = new Dictionary<Guid, TView>();
-    protected IPrefabLookup _prefabLookup;
     protected Transform _viewParent;
-
-    public ViewSpawner(IPrefabLookup prefabLookup, Transform viewParent)
-    {
-        _prefabLookup = prefabLookup;
-        _viewParent = viewParent;
-    }
 
     public TView GetView(Guid id) => _spawnedViews[id];
 
@@ -43,13 +36,7 @@ public abstract class ViewSpawner<TIdentifiable, TView> : MonoBehaviour
         {
             if (!_spawnedViews.ContainsKey(m.Id))
             {
-                var key = GetPrefabKey(m);
-                if (string.IsNullOrEmpty(key))
-                {
-                    throw new InvalidOperationException($"Key for {m} is null!");
-                }
-                var prefab = _prefabLookup.GetPrefab(key);
-                var instance = GameObject.Instantiate(prefab);
+                var instance = Prefabs.GetInstance(m);
                 if(_viewParent!=null)
                 {
                     instance.transform.SetParent(_viewParent);
@@ -68,10 +55,8 @@ public abstract class ViewSpawner<TIdentifiable, TView> : MonoBehaviour
         }
     }
 
-    protected abstract IIdentifiableLookup<TIdentifiable> GetIdentifiables();
-    protected virtual void SpawnedView(TIdentifiable model, TView view) { }
-    protected abstract string GetPrefabKey(TIdentifiable model);
-
+    protected abstract IIdentifiableLookup<TModel> GetIdentifiables();
+    protected virtual void SpawnedView(TModel model, TView view) { }
     private void SetLayer(Transform tf, int layer)
     {
         tf.gameObject.layer = layer;

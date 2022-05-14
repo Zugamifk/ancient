@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITurretProjectileModel : IIdentifiable, IKeyHolder
+public interface IKeyHolder
 {
-
+    string Key { get; }
 }

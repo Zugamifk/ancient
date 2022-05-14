@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class DeskItemViewSpawner : ViewSpawner<IItemModel, DeskItem>
 {
+    [SerializeField]
+    DeskItemSpawn[] _spawns;
+
     Dictionary<string, DeskItemSpawn> _spawnNameToTransformLookup;
-    public DeskItemViewSpawner(DeskItemPrefabs prefabs, Transform viewParent, Dictionary<string, DeskItemSpawn> spawnLocationLookup)
-        : base(prefabs, viewParent)
+    void Awake()
     {
-        _spawnNameToTransformLookup = spawnLocationLookup;
+        foreach (var s in _spawns)
+        {
+            _spawnNameToTransformLookup[s.SpawnName] = s;
+        }
     }
 
     protected override IIdentifiableLookup<IItemModel> GetIdentifiables() => Game.Model.Inventory.Items;
-
-    protected override string GetPrefabKey(IItemModel model) => model.Name;
 
     protected override void SpawnedView(IItemModel model, DeskItem view)
     {

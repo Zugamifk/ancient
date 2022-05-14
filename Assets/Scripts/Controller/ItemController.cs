@@ -30,7 +30,7 @@ public class ItemController
                 break;
         }
 
-        model.Name = data.Name;
+        model.Key = data.Name;
         model.DeskSpawnLocation = data.DeskSpawnLocation;
 
         inventoryModel.Items.AddItem(model, name);

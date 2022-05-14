@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TurretModel : ITurretModel
 {
-    public string Name { get; set; }
+    public string Key { get; set; }
     public Guid Id { get; set; } = Guid.NewGuid();
     public Vector2Int Position { get; set; }
     public float AttackRadius { get; set; }

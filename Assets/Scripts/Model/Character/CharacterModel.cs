@@ -12,7 +12,7 @@ public class CharacterModel : ICharacterModel
     public HealthModel Health;
 
     #region ICharacterModel
-    string ICharacterModel.Name => Profile.Name;
+    string IKeyHolder.Key => Profile.Name;
     public Vector2 Position => Movement.WorldPosition;
     bool ICharacterModel.IsVisibleOnMap => Movement.IsVisibleOnMap;
     #endregion

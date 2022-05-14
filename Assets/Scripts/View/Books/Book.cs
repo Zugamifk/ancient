@@ -53,9 +53,9 @@ public class Book : MonoBehaviour
             return;
         }
 
-        if (_currentBook != book.Name)
+        if (_currentBook != book.Key)
         {
-            _currentBook = book.Name;
+            _currentBook = book.Key;
             _currentPage = book.Index;
             UpdatePages(book);
         }

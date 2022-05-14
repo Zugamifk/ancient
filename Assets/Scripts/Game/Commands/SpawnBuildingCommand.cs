@@ -17,11 +17,11 @@ public class SpawnBuildingCommand : ICommand
         var buildingData = DataService.GetData<BuildingCollection>()[_buildingName];
         var building = new BuildingModel()
         {
-            Name = buildingData.Name,
+            Key = buildingData.Name,
             Position = _position,
             EntrancePosition = _position + buildingData.EntranceOffset,
         };
-        model.MapModel.Buildings.AddItem(building, building.Name);
+        model.MapModel.Buildings.AddItem(building, building.Key);
         // set tile command
         //model.MapModel.Grid.Map[_position] = GetTileModel(Name.Tile.Building);
     }

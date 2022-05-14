@@ -29,9 +29,6 @@ public class Map : MonoBehaviour
     private void Awake()
     {
         _tileMapper = GetComponent<TileMapper>();
-
-        _characterViewSpawner = new CharacterViewSpawner(_characterCollection, _spawnedObjectsRoot);
-        _buildingViewSpawner = new BuildingViewSpawner(_buildingCollection, _spawnedObjectsRoot);
     }
 
     /// <summary>

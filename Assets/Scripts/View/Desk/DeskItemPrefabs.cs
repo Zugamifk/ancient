@@ -22,5 +22,5 @@ public class DeskItemPrefabs : ScriptableObject, IPrefabLookup
 
     public DeskItem GetDeskItem(string name) => _nameToDeskItem[name];
 
-    GameObject IPrefabLookup.GetPrefab(string id) => GetDeskItem(id).gameObject;
+    public GameObject GetPrefab(string id) => GetDeskItem(id).gameObject;
 }

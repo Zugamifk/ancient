@@ -27,7 +27,7 @@ public class GetItemCommand : ICommand
                 break;
         }
 
-        itemModel.Name = data.Name;
+        itemModel.Key = data.Name;
         itemModel.DeskSpawnLocation = data.DeskSpawnLocation;
 
         model.Inventory.Items.AddItem(itemModel, _itemName);

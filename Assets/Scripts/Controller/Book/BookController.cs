@@ -22,7 +22,7 @@ public abstract class BookController<TData> : BookController
     public virtual BookModel CreateModel(TData data)
     {
         var book = new BookModel();
-        book.Name = data.Name;
+        book.Key = data.Name;
         book.IndexChanged += pageIndex => book.Index = pageIndex;
         book.Closed += () => book.IsOpen = false;
         return book;

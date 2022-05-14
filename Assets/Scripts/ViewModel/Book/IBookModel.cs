@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IBookModel 
 {
-    string Name { get; }
+    string Key { get; }
     int NumPages { get; }
     int Index { get; }
     event Action<int> IndexChanged;
