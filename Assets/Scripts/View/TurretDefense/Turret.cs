@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour, IView<ITurretModel>, ITileMapObject
+public class Turret : MonoBehaviour, IView<ITurretModel>, IMapObject
 {
     [SerializeField]
     Identifiable _identifiable;
@@ -11,6 +11,10 @@ public class Turret : MonoBehaviour, IView<ITurretModel>, ITileMapObject
     ITurretModel _model;
     TileMapper _tileMapper;
     Dictionary<Guid, Vector2> _guidToPosition = new Dictionary<Guid, Vector2>();
+
+    public Vector2 ModelPosition => _model.Position;
+
+    public Transform Root => transform;
 
     void Update()
     {

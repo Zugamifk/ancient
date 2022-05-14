@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Identifiable))]
-public class Character : MonoBehaviour, IView<ICharacterModel>, ITileMapObject
+public class Character : MonoBehaviour, IView<ICharacterModel>, IMapObject
 {
     [SerializeField]
     Transform _view;
@@ -11,6 +11,11 @@ public class Character : MonoBehaviour, IView<ICharacterModel>, ITileMapObject
     Vector2 _positionOffset = Vector2.one;
     Identifiable _identifiable;
     TileMapper _tileMapper;
+    ICharacterModel _model;
+    public Vector2 ModelPosition => _model.Position;
+
+    public Transform Root => transform;
+
     public void InitializeFromTileMap(TileMapper tileMapper)
     {
         _tileMapper = tileMapper;

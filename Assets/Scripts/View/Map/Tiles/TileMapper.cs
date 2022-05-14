@@ -22,6 +22,12 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
         }
     }
 
+    public void AddObject(IMapObject mapObject)
+    {
+        var worldPos = ModelToWorld(mapObject.ModelPosition);
+        mapObject.Root.position = worldPos;
+    }
+
     public void SetTile(int x, int y, IMapModel model)
     {
         var tiles = new Tile[9];

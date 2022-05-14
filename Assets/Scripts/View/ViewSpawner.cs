@@ -8,8 +8,10 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
     where TModel : IIdentifiable, IKeyHolder
     where TView : MonoBehaviour, IView<TModel>
 {
-    protected Dictionary<Guid, TView> _spawnedViews = new Dictionary<Guid, TView>();
+    [SerializeField]
     protected Transform _viewParent;
+    
+    protected Dictionary<Guid, TView> _spawnedViews = new Dictionary<Guid, TView>();
 
     public TView GetView(Guid id) => _spawnedViews[id];
 

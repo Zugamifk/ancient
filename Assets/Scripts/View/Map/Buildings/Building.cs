@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Identifiable))]
-public class Building : MonoBehaviour, IView<IBuildingModel>, ITileMapObject
+public class Building : MonoBehaviour, IView<IBuildingModel>, IMapObject
 {
     [SerializeField]
     Highlighter _highlighter;
@@ -13,6 +13,10 @@ public class Building : MonoBehaviour, IView<IBuildingModel>, ITileMapObject
     Identifiable _identifiable;
 
     public Vector3 EntrancePosition => _entrance.position;
+
+    Vector2 IMapObject.ModelPosition => _model.Position;
+
+    public Transform Root => transform;
 
     IBuildingModel _model;
 
