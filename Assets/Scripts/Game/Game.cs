@@ -23,7 +23,8 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        SimpleNarrativeTest.Init("ReceiveLetter");
+        //SimpleNarrativeTest.Init("ReceiveLetter");
+        TurretDefenseTest.Init(new[] { Vector2Int.zero, new Vector2Int(0,10) });
     }
 
     private void Update()
