@@ -7,6 +7,8 @@ public class TurretDefenseTest
 {
     public static void Init(Vector2Int[] pathpoints)
     {
+        Game.Do(new LoadMapDataCommand());
+
         var pathfinder = new PathFinder();
         var pairs = pathpoints.Zip(pathpoints.Skip(1), (a, b) => (a, b));
         foreach (var pair in pairs)

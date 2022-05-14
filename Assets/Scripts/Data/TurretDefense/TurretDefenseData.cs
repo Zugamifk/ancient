@@ -15,6 +15,7 @@ public class TurretDefenseData : ScriptableObject
         {
             _turretNameToData.Add(t.name, t);
         }
+        DataService.Register(this);
     }
 
     public TurretData GetTurret(string name) => _turretNameToData[name];
