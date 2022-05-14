@@ -16,8 +16,15 @@ public static class Prefabs
     public static GameObject GetInstance<TKeyHolder>(TKeyHolder key)
         where TKeyHolder : IKeyHolder
     {
-        var data = _nameableTypeToPrefabCollection[typeof(TKeyHolder)];
-        var prefab = data.GetPrefab(key.Key);
-        return GameObject.Instantiate(prefab);
+        try
+        {
+            var data = _nameableTypeToPrefabCollection[typeof(TKeyHolder)];
+            var prefab = data.GetPrefab(key.Key);
+            return GameObject.Instantiate(prefab);
+        } catch
+        {
+            Debug.LogError($"Failed to get prefab {key.Key} of type {typeof(TKeyHolder)}");
+            throw;
+        }
     }
 }

@@ -18,6 +18,7 @@ public class DeskItemPrefabs : ScriptableObject, IPrefabLookup
                 _nameToDeskItem[p.Name] = p;
             }
         }
+        Prefabs.Register<IItemModel>(this);
     }
 
     public DeskItem GetDeskItem(string name) => _nameToDeskItem[name];

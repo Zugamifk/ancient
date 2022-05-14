@@ -7,7 +7,7 @@ public class DeskItemViewSpawner : ViewSpawner<IItemModel, DeskItem>
     [SerializeField]
     DeskItemSpawn[] _spawns;
 
-    Dictionary<string, DeskItemSpawn> _spawnNameToTransformLookup;
+    Dictionary<string, DeskItemSpawn> _spawnNameToTransformLookup = new();
     void Awake()
     {
         foreach (var s in _spawns)
