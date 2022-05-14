@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnBuildingCommand : ICommand
 {
+    static SetTileCommand _setBuildingTile = new();
     string _buildingName;
     Vector2Int _position;
     public SpawnBuildingCommand(string buildingName, Vector2Int position)
@@ -22,7 +23,9 @@ public class SpawnBuildingCommand : ICommand
             EntrancePosition = _position + buildingData.EntranceOffset,
         };
         model.MapModel.Buildings.AddItem(building, building.Key);
-        // set tile command
-        //model.MapModel.Grid.Map[_position] = GetTileModel(Name.Tile.Building);
+
+        _setBuildingTile.Position = _position;
+        _setBuildingTile.TileType = Name.Tile.Building;
+        _setBuildingTile.Execute(model);
     }
 }

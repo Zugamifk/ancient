@@ -11,18 +11,18 @@ public class CityGenerator
 
     public void Generate(MapModel map)
     {
-        BuildRoad(map, Vector2Int.down, new Vector2Int(
-            UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
-            UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
-        BuildRoad(map, Vector2Int.down, new Vector2Int(
-            UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
-            -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
-        BuildRoad(map, Vector2Int.down, new Vector2Int(
-            -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
-            UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
-        BuildRoad(map, Vector2Int.down, new Vector2Int(
-            -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
-            -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
+        //BuildRoad(map, Vector2Int.down, new Vector2Int(
+        //    UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
+        //    UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
+        //BuildRoad(map, Vector2Int.down, new Vector2Int(
+        //    UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
+        //    -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
+        //BuildRoad(map, Vector2Int.down, new Vector2Int(
+        //    -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
+        //    UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
+        //BuildRoad(map, Vector2Int.down, new Vector2Int(
+        //    -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
+        //    -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
         map.Grid.Id = Guid.NewGuid();
     }
 
