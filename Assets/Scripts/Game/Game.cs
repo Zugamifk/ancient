@@ -5,10 +5,15 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     GameModel _model = new GameModel();
-    public static IGameModel Model => _game._model;
 
     static Game _game;
     static Queue<ICommand> _commandQueue = new Queue<ICommand>();
+    public static IGameModel Model => _game._model;
+
+    public static void Do(ICommand command)
+    {
+        _commandQueue.Enqueue(command);
+    }
 
     Game()
     {
@@ -17,11 +22,7 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-    }
-
-    public static void Do(ICommand command)
-    {
-        _commandQueue.Enqueue(command);
+        SimpleNarrativeTest.Init("ReceiveLetter");
     }
 
     private void Update()
