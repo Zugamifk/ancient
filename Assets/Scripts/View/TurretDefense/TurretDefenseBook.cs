@@ -18,7 +18,6 @@ public class TurretDefenseBook : MonoBehaviour
     TextMeshProUGUI _timeText;
     [SerializeField]
     string[] _buildingOptions;
-    Action<string> _startBuildingAction;
 
     public void UpdateFromModel(IGameModel model)
     {
@@ -31,6 +30,6 @@ public class TurretDefenseBook : MonoBehaviour
     public void ClickedBuildOption(int index)
     {
         Debug.Log("Clicked");
-        // start building command
+        Game.Do(new TurretDefenseStartPlacingTurretCommand(_buildingOptions[index]));
     }
 }

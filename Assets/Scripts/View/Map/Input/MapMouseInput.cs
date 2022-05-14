@@ -5,14 +5,14 @@ using UnityEngine.Tilemaps;
 
 public class MapMouseInput : MouseInputState
 {
+    ITileMapTransformer _tileMapTransformer;
     protected Vector3 _startPosition;
     protected Vector3 _startDragPosition;
-    protected MapInputContext _mapContext;
 
-    public MapMouseInput(MouseInputState state, MapInputContext mapContext)
+    public MapMouseInput(MouseInputState state, ITileMapTransformer tileMapTransformer)
         : base(state)
     {
-        _mapContext = mapContext;
+        _tileMapTransformer = tileMapTransformer;
     }
 
     public sealed override MouseInputState UpdateState()
@@ -48,17 +48,17 @@ public class MapMouseInput : MouseInputState
 
     void MapHandleMouse(Vector3 worldPosition)
     {
-        if (!string.IsNullOrEmpty(_mapContext.BuildingBeingPlaced))
+        if (!string.IsNullOrEmpty(Game.Model.TurretDefense.BuildingBeingPlaced))
         {
-            //if (Input.GetMouseButtonUp(1))
-            //{
-            //    _mapContext?.StopPlacing.Invoke();
-            //}
-            //else if (Input.GetMouseButtonUp(0))
-            //{
-            //    var tile = _mapContext.Map.GetTileFromWorldPosition(worldPosition);
-            //    _mapContext?.PlaceBuilding?.Invoke(tile);
-            //}
+            if (Input.GetMouseButtonUp(1))
+            {
+                Game.Do(new TurretDefenseStopPlacingTurretCommand());
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
+                Game.Do(new TurretDefenseBuildTurretCommand(Game.Model.TurretDefense.BuildingBeingPlaced, (Vector2Int)tile));
+            }
         }
         else
         {
@@ -67,11 +67,16 @@ public class MapMouseInput : MouseInputState
                 _startPosition = _context.MapCameraController.transform.localPosition;
                 _startDragPosition = Input.mousePosition;
             }
-            //if (Input.GetMouseButton(0))
-            //{
-            //    _mapContext?.DoCheat(worldPosition);
-            //}
-            //else 
+            if (Input.GetMouseButton(0))
+            {
+                var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
+                Game.Do(new SetTileCommand()
+                {
+                    Position = (Vector2Int)tile,
+                    TileType = Name.Tile.Road
+                });
+            }
+            else
             if (Input.GetMouseButton(1))
             {
                 var diff = _context.MapCameraController.GetWorldPosition(Input.mousePosition) - _context.MapCameraController.GetWorldPosition(_startDragPosition);

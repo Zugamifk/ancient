@@ -6,6 +6,7 @@ public class TurretDefenseBuildTurretCommand : ICommand
 {
     string _name;
     Vector2Int _position;
+
     public TurretDefenseBuildTurretCommand(string name, Vector2Int position)
     {
         _name = name;

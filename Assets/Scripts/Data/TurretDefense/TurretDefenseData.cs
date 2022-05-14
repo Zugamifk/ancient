@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretDefenseData : ScriptableObject
+public class TurretDefenseData : ScriptableObject, IPrefabLookup
 {
     public int StartingLives;
     public TurretDefenseWaveData[] Waves;
@@ -16,7 +16,10 @@ public class TurretDefenseData : ScriptableObject
             _turretNameToData.Add(t.name, t);
         }
         DataService.Register(this);
+        Prefabs.Register<ITurretModel>(this);
     }
 
     public TurretData GetTurret(string name) => _turretNameToData[name];
+
+    public GameObject GetPrefab(string key) => GetTurret(key).Prefab;
 }
