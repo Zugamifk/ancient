@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class LoadMapDataCommand : ICommand
             }
         }
         model.MapModel.Grid.Dimenions = dimensions;
+        model.MapModel.Grid.Id = Guid.NewGuid();
     }
 
     MapTileModel GetTileModel(string type)
