@@ -6,16 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class Map : MonoBehaviour
 {
-    [SerializeField]
-    CharacterCollection _characterCollection;
-    [SerializeField]
-    BuildingCollection _buildingCollection;
-    [SerializeField]
-    Transform _spawnedObjectsRoot;
-
     TileMapper _tileMapper;
-    ViewSpawner<IBuildingModel, Building> _buildingViewSpawner;
-    ViewSpawner<ICharacterModel, Character> _characterViewSpawner;
 
     Queue<(int, int, string)> _cheatSetTileQueue = new Queue<(int, int, string)>();
     bool _isTilemapBuilt = false;

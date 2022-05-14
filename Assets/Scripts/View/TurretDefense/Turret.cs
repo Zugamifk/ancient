@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour, IView<ITurretModel>
+public class Turret : MonoBehaviour, IView<ITurretModel>, ITileMapObject
 {
     [SerializeField]
     Identifiable _identifiable;
 
+    ITurretModel _model;
+    TileMapper _tileMapper;
     Dictionary<Guid, Vector2> _guidToPosition = new Dictionary<Guid, Vector2>();
 
     void Update()
@@ -17,7 +19,7 @@ public class Turret : MonoBehaviour, IView<ITurretModel>
         foreach(var id in turretModel.EnemiesInRange)
         {
             var pos = Game.Model.Characters.GetItem(id).Position;
-            _guidToPosition[id] = Game.Model.Map.TileMapTransformer.ModelToWorld(pos);
+            _guidToPosition[id] = _tileMapper.ModelToWorld(pos);
         }
     }
 
@@ -33,6 +35,12 @@ public class Turret : MonoBehaviour, IView<ITurretModel>
     public void InitializeFromModel(ITurretModel model)
     {
         _identifiable.Id = model.Id;
-        transform.position = Game.Model.Map.TileMapTransformer.GetWorldCenterOftile((Vector3Int)model.Position);
+        _model = model;
+    }
+
+    public void InitializeFromTileMap(TileMapper tileMapper)
+    {
+        _tileMapper = tileMapper;
+        transform.position = _tileMapper.GetWorldCenterOftile((Vector3Int)_model.Position);
     }
 }

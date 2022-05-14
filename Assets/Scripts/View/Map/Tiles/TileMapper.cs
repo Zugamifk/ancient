@@ -11,7 +11,18 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
     [SerializeField]
     TileDataCollection _tileDataCollection;
 
+    Guid _builtModelId;
     readonly string _defaultTileType = Name.Tile.Grass;
+
+    void Update()
+    {
+        var map = Game.Model.Map;
+        if (map.Grid.Id != _builtModelId)
+        {
+            BuildTilemap(map);
+            _builtModelId = map.Grid.Id;
+        }
+    }
 
     public void SetTile(int x, int y, IMapModel model)
     {
@@ -52,12 +63,12 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
 
     public Vector3 GetWorldCenterOftile(Vector3Int position)
     {
-        return _tilemap.CellToLocalInterpolated(position+_tilemap.GetLayoutCellCenter());
+        return _tilemap.CellToLocalInterpolated(position + _tilemap.GetLayoutCellCenter());
     }
 
     public Vector3 ModelToWorld(Vector3 local)
     {
-        return _tilemap.CellToLocalInterpolated(local+ _tilemap.GetLayoutCellCenter());
+        return _tilemap.CellToLocalInterpolated(local + _tilemap.GetLayoutCellCenter());
     }
 
     string GetTileType(IMapGridModel grid, int x, int y)

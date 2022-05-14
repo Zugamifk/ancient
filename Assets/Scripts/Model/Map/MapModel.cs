@@ -13,11 +13,5 @@ public class MapModel : IMapModel
     ICityGraph IMapModel.CityGraph => Graph;
     IIdentifiableLookup<IBuildingModel> IMapModel.Buildings => Buildings;
     IMapGridModel IMapModel.Grid => Grid;
-    ITileMapTransformer _tileMapTransformer;
-    ITileMapTransformer IMapModel.TileMapTransformer => _tileMapTransformer;
-    void IMapModel.SetTileMapTransformer(ITileMapTransformer transformer)
-    {
-        _tileMapTransformer = transformer;
-    }
     #endregion
 }

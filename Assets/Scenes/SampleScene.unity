@@ -463,7 +463,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 401243646}
-  - component: {fileID: 401243647}
   - component: {fileID: 401243649}
   - component: {fileID: 401243648}
   m_Layer: 0
@@ -488,21 +487,6 @@ Transform:
   m_Father: {fileID: 1415220726}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &401243647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401243645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7517e1b0ddc4440a93adfde1d3ac30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnsRoot: {fileID: 1688259637}
-  _projectilePrefab: {fileID: 5656084520889964626, guid: 3c4e83245e65d464bb0417801ba58c3c, type: 3}
-  _turretDefenseData: {fileID: 11400000, guid: d27a825815c9edc46a37a6caaa184645, type: 2}
 --- !u!114 &401243648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,6 +996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1415220726}
   - component: {fileID: 1415220727}
+  - component: {fileID: 1415220728}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1048,6 +1033,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0c93cf6850b7ee4a9f082134208d832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1415220728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415220724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6beccc8fe1ea0334597c23b354a7554a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1418984176
@@ -1090,7 +1087,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1517378199}
-  - component: {fileID: 1517378200}
   m_Layer: 7
   m_Name: Desk
   m_TagString: Untagged
@@ -1115,23 +1111,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1517378200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517378198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 867dcf26e3a89d74a9c7398598d37720, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefabs: {fileID: 11400000, guid: 13cebb2e0d8dd3b41b020fe635449cd6, type: 2}
-  _spawns:
-  - {fileID: 1620077661}
-  - {fileID: 1862516172}
-  - {fileID: 27366270}
 --- !u!1 &1581665921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,9 +1390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f336b916adb79df4b978e54a6ff160f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterCollection: {fileID: 11400000, guid: 4ec40115982d6334da4d53430ac828bf, type: 2}
-  _buildingCollection: {fileID: 11400000, guid: b7253795462aa34478876c987e71c37a, type: 2}
-  _spawnedObjectsRoot: {fileID: 1688259637}
 --- !u!65 &1645037286
 BoxCollider:
   m_ObjectHideFlags: 0

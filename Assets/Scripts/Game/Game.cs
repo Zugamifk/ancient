@@ -15,6 +15,10 @@ public class Game : MonoBehaviour
         _game = this;
     }
 
+    private void Start()
+    {
+    }
+
     public static void Do(ICommand command)
     {
         _commandQueue.Enqueue(command);
