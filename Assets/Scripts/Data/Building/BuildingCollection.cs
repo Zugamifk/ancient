@@ -23,5 +23,7 @@ public class BuildingCollection : ScriptableObject, IPrefabLookup
                 throw new System.InvalidOperationException("Null in BuildingCollection!");
             }
         }
+        DataService.Register(this);
+        Prefabs.Register<IBuildingModel>(this);
     }
 }
