@@ -8,8 +8,6 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
 {
     [SerializeField]
     Tilemap _tilemap;
-    [SerializeField]
-    TileDataCollection _tileDataCollection;
 
     Guid _builtModelId;
     readonly string _defaultTileType = Name.Tile.Grass;
@@ -93,6 +91,6 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
         var top = GetTileType(grid, x, y + 1);
         var right = GetTileType(grid, x + 1, y);
         var bottom = GetTileType(grid, x, y - 1);
-        return _tileDataCollection.GetTile(type, left, top, right, bottom);
+        return DataService.GetData<TileDataCollection>().GetTile(type, left, top, right, bottom);
     }
 }

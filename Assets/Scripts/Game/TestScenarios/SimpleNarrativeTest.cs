@@ -6,6 +6,7 @@ public class SimpleNarrativeTest
 {
     public static void Init(string narrative)
     {
+        Game.Do(new LoadMapDataCommand());
         Game.Do(new SpawnBuildingCommand(Name.Building.Manor, Vector2Int.zero));
         Game.Do(new SpawnBuildingCommand(Name.Building.House, new Vector2Int(5, 2)));
         Game.Do(new BuildRoadCommand(Name.Building.Manor, Name.Building.House));

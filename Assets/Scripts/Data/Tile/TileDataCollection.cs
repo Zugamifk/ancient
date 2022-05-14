@@ -23,6 +23,7 @@ public class TileDataCollection : ScriptableObject
                 _tileCache[(type, tileData.West, tileData.North, tileData.East, tileData.South)] = list;
             }
         }
+        DataService.Register(this);
     }
 
     public TileTypeData GetTypeData(string name) => _typeToTypeData[name];
