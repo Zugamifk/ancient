@@ -14,6 +14,7 @@ public class PackageDeskItem : MonoBehaviour
 
     void ClickAction(int button)
     {
-        Debug.Log("Clicked " + this);
+        var identifiable = GetComponent<Identifiable>();
+        Game.Do(new OpenPackageCommand(identifiable.Id));
     }
 }
