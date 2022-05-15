@@ -22,11 +22,5 @@ public class DeskItemViewSpawner : ViewSpawner<IItemModel, DeskItem>
     {
         var spawn = _spawnNameToTransformLookup[model.DeskSpawnLocation];
         spawn.PositionItem(view);
-
-        var clickable = view.GetComponentInChildren<Clickable>();
-        if (clickable != null)
-        {
-            clickable.Clicked += model.ClickItem;
-        }
     }
 }

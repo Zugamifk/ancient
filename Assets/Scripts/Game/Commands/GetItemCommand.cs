@@ -18,9 +18,7 @@ public class GetItemCommand : ICommand
         switch (data)
         {
             case TextBookData textbookData:
-                var textbook = CreateTextBookModel(textbookData);
-                textbook.ClickedItem += _ => textbook.IsOpen = true;
-                itemModel = textbook;
+                itemModel = CreateTextBookModel(textbookData);
                 break;
             default:
                 itemModel = new ItemModel();
@@ -45,8 +43,6 @@ public class GetItemCommand : ICommand
     {
         var book = new BookModel();
         book.Key = data.Name;
-        book.IndexChanged += pageIndex => book.Index = pageIndex;
-        book.Closed += () => book.IsOpen = false;
         return book;
     }
 

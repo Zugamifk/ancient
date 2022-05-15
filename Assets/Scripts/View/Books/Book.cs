@@ -39,7 +39,7 @@ public class Book : MonoBehaviour
         var book = Game.Model.Inventory.GetItem(Name) as IBookModel;
         if (_closing)
         {
-            book.OnClosed();
+            //book.OnClosed();
             _closing = false;
         }
 
@@ -61,7 +61,7 @@ public class Book : MonoBehaviour
         }
         else if (_currentPage != book.Index)
         {
-            book.OnIndexChanged(_currentPage);
+            //book.OnIndexChanged(_currentPage);
             UpdatePages(book);
         }
     }

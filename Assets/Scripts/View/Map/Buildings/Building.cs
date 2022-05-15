@@ -26,10 +26,6 @@ public class Building : MonoBehaviour, IView<IBuildingModel>, IMapObject
     void Clicked(int button)
     {
         _highlighter.Highlight(!_highlighter.IsHighlighted);
-        if (_model != null)
-        {
-            _model.OnClicked(button);
-        }
     }
 
     public void InitializeFromModel(IBuildingModel model)
