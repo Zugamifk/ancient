@@ -40,6 +40,7 @@ public class Character : MonoBehaviour, IView<ICharacterModel>, IMapObject
             var dir = currentPosition - oldPosition;
             _view.transform.localRotation = Quaternion.Euler(0, dir.x < 0 ? 180 : 0, 0);
             gameObject.SetActive(characterModel.IsVisibleOnMap);
+            Game.Do(new UpdateMovementCommand(_identifiable.Id));
         }
     }
 }

@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleNarrativeTest
+public class SimpleNarrativeTest : MonoBehaviour
 {
-    public static void Init(string narrative)
+    [SerializeField]
+    string _narrative;
+
+    void Start()
     {
         Game.Do(new LoadMapDataCommand());
         Game.Do(new SpawnBuildingCommand(Name.Building.Manor, Vector2Int.zero));
@@ -13,6 +16,6 @@ public class SimpleNarrativeTest
         Game.Do(new GenerateCityCommand());
         Game.Do(new GetItemCommand("Clock"));
         Game.Do(new GetItemCommand("TestBook"));
-        Game.Do(new StartNarrativeCommand(narrative));
+        Game.Do(new StartNarrativeCommand(_narrative));
     }
 }

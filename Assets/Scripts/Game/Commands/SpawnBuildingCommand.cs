@@ -23,6 +23,7 @@ public class SpawnBuildingCommand : ICommand
             EntrancePosition = _position + buildingData.EntranceOffset,
         };
         model.MapModel.Buildings.AddItem(building, building.Key);
+        
         _setBuildingTile.Position = _position;
         _setBuildingTile.TileType = Name.Tile.Building;
         _setBuildingTile.Execute(model);

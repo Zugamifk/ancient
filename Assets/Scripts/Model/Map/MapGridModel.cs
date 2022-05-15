@@ -12,7 +12,9 @@ public class MapGridModel : IMapGridModel
 
     #region IMapGridModel
     Vector2Int IMapGridModel.Dimensions => Dimenions;
-    IMapTileModel IMapGridModel.GetTile(int x, int y) => Map[new Vector2Int(x, y)];
+    IMapTileModel IMapGridModel.GetTile(Vector2Int position) => Map[position];
+
+    bool IMapGridModel.InBounds(Vector2Int pos) => Map.ContainsKey(pos);
 
     #endregion
 }

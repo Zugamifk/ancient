@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PathFinder
 {
-    public CityPath GetDirectPath(Vector2Int start, Vector2Int end, MapGridModel grid)
+    public CityPath GetDirectPath(Vector2Int start, Vector2Int end, IMapGridModel grid)
     {
         var path = new CityPath();
         int xs = Math.Sign(end.x-start.x);
@@ -24,7 +24,7 @@ public class PathFinder
         return path;
     }
 
-    public CityPath GetPath(Vector2Int start, Vector2Int end, MapGridModel grid)
+    public CityPath GetPath(Vector2Int start, Vector2Int end, IMapGridModel grid)
     {
         int EstimateDistance(Vector2Int point)
         {
@@ -98,7 +98,7 @@ public class PathFinder
             openSet.Remove(current);
             foreach (var n in GetNeighbours(current))
             {
-                var moveCost = grid.Map.ContainsKey(n) ? grid.Map[n].MoveCost : 9999;
+                var moveCost = grid.InBounds(n) ? grid.GetTile(n).MoveCost : 9999;
                 var g = GetGScore(current) + moveCost;
                 if (g < GetGScore(n))
                 {

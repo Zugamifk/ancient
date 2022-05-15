@@ -9,5 +9,6 @@ public class MapTileModel : IMapTileModel
 
     #region IMapTileModel
     string IMapTileModel.Type => Type;
+    int IMapTileModel.MoveCost => MoveCost;
     #endregion
 }

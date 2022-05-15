@@ -80,7 +80,7 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
         }
         else
         {
-            return grid.GetTile(x, y).Type;
+            return grid.GetTile(new Vector2Int(x, y)).Type;
         }
     }
 

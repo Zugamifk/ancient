@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IMapTileModel
 {
     string Type { get; }
+    int MoveCost { get; }
 }

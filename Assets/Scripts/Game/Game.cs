@@ -24,18 +24,10 @@ public class Game : MonoBehaviour
         _game = this;
     }
 
-    private void Start()
-    {
-        //SimpleNarrativeTest.Init("ReceiveLetter");
-    }
-
     private void Update()
     {
         UpdateTimeModel();
-        foreach(var c in Model.Characters.AllItems)
-        {
-            Do(new UpdateMovementCommand(c.Id));
-        }
+
         while (_commandQueue.Count > 0)
         {
             var command = _commandQueue.Dequeue();
