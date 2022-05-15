@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60be215a7e1ea924ba9aaaca7ad27e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _narrative: ReceiveLetter
+  _narrative: SpawnAndMoveAgent
 --- !u!114 &93346619
 MonoBehaviour:
   m_ObjectHideFlags: 0
