@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,5 +15,6 @@ public class SetTileCommand : ICommand
             Type = TileType,
             MoveCost = tileData.MoveCost
         };
+        model.MapModel.Grid.Id = Guid.NewGuid();
     }
 }
