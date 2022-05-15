@@ -14,12 +14,7 @@ public class Building : MonoBehaviour, IView<IBuildingModel>, IMapObject
 
     public Vector3 EntrancePosition => _entrance.position;
 
-    Vector2 IMapObject.ModelPosition => _model.Position;
-
-    public Transform Root => transform;
-
-    public bool UpdatesPosition => false;
-
+    ITileMapTransformer _tileMap;
     IBuildingModel _model;
 
     private void Awake()
@@ -41,10 +36,11 @@ public class Building : MonoBehaviour, IView<IBuildingModel>, IMapObject
     {
         _model = model;
         _identifiable.Id = model.Id;
+        transform.position = _tileMap.GetWorldCenterOftile((Vector3Int)_model.Position);
     }
 
-    public void InitializeFromTileMap(TileMapper tileMapper)
+    public void SetTileMap(ITileMapTransformer tileMap)
     {
-        transform.position = tileMapper.GetWorldCenterOftile((Vector3Int)_model.Position);
+        _tileMap = tileMap;
     }
 }

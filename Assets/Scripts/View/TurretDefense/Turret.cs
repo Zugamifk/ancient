@@ -9,14 +9,8 @@ public class Turret : MonoBehaviour, IView<ITurretModel>, IMapObject
     Identifiable _identifiable;
 
     ITurretModel _model;
-    TileMapper _tileMapper;
+    ITileMapTransformer _tileMap;
     Dictionary<Guid, Vector2> _guidToPosition = new Dictionary<Guid, Vector2>();
-
-    public Vector2 ModelPosition => _model.Position;
-
-    public Transform Root => transform;
-
-    public bool UpdatesPosition => false;
 
     void Update()
     {
@@ -25,7 +19,7 @@ public class Turret : MonoBehaviour, IView<ITurretModel>, IMapObject
         foreach(var id in turretModel.EnemiesInRange)
         {
             var pos = Game.Model.Characters.GetItem(id).Position;
-            _guidToPosition[id] = _tileMapper.ModelToWorld(pos);
+            _guidToPosition[id] = _tileMap.ModelToWorld(pos);
         }
     }
 
@@ -42,11 +36,11 @@ public class Turret : MonoBehaviour, IView<ITurretModel>, IMapObject
     {
         _identifiable.Id = model.Id;
         _model = model;
+        transform.position = _tileMap.GetWorldCenterOftile((Vector3Int)_model.Position);    
     }
 
-    public void InitializeFromTileMap(TileMapper tileMapper)
+    public void SetTileMap(ITileMapTransformer tileMap)
     {
-        _tileMapper = tileMapper;
-        transform.position = _tileMapper.GetWorldCenterOftile((Vector3Int)_model.Position);
+        _tileMap = tileMap;
     }
 }

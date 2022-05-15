@@ -10,7 +10,7 @@ public abstract class MapViewSpawner<TModel, TView> : ViewSpawner<TModel, TView>
     protected TileMapper _tileMapper;
     protected override void SpawnedView(TModel model, TView view)
     {
-        _tileMapper.AddObject(view);
+        view.SetTileMap(_tileMapper);
         base.SpawnedView(model, view);
     }
 }

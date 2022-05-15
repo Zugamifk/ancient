@@ -21,5 +21,6 @@ public class TurretDefenseBuildTurretCommand : ICommand
         turretModel.AttackRadius = data.Radius;
         turretModel.Position = _position;
         model.TurretDefenseModel.Turrets.AddItem(turretModel);
+        model.TurretDefenseModel.BuildingBeingPlaced = null;
     }
 }

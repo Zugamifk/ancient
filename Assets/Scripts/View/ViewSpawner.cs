@@ -50,8 +50,8 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
                     throw new InvalidOperationException($"Prefab {instance} doesn't contain a {typeof(TView)}!");
                 }
 
-                view.InitializeFromModel(m);
                 SpawnedView(m, view);
+                view.InitializeFromModel(m);
                 _spawnedViews.Add(m.Id, view);
             }
         }

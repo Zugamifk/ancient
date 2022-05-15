@@ -4,7 +4,5 @@ using UnityEngine;
 
 public interface IMapObject
 {
-    bool UpdatesPosition { get; }
-    Vector2 ModelPosition { get; }
-    Transform Root { get; }
+    public void SetTileMap(ITileMapTransformer tileMap);
 }
