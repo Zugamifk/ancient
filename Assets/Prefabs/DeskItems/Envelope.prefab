@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4467067241654524693}
   - component: {fileID: 5587159629281455594}
   - component: {fileID: 925595466912449175}
+  - component: {fileID: 4893016392806514667}
+  - component: {fileID: 868298938802188763}
   m_Layer: 7
   m_Name: Envelope
   m_TagString: Untagged
@@ -139,3 +141,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Envelope
+--- !u!114 &4893016392806514667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022535038171986975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a99fa8b66aaa1d48b1dc0091d0efa90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &868298938802188763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022535038171986975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a026304af239046a2c06c7bd7fed06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
