@@ -10,16 +10,12 @@ public class Character : MonoBehaviour, IView<ICharacterModel>, IMapObject
 
     Vector2 _positionOffset = Vector2.one;
     Identifiable _identifiable;
-    TileMapper _tileMapper;
     ICharacterModel _model;
     public Vector2 ModelPosition => _model.Position;
 
     public Transform Root => transform;
 
-    public void InitializeFromTileMap(TileMapper tileMapper)
-    {
-        _tileMapper = tileMapper;
-    }
+    public bool UpdatesPosition => true;
 
     private void Awake()
     {
@@ -37,12 +33,11 @@ public class Character : MonoBehaviour, IView<ICharacterModel>, IMapObject
         var characterModel = Game.Model.Characters.GetItem(_identifiable.Id);
         if (characterModel != null)
         {
-            var oldPosition = transform.position;
-            transform.position = _tileMapper.ModelToWorld(characterModel.Position + _positionOffset);
+            //var oldPosition = transform.position;
 
-            var currentPosition = transform.position;
-            var dir = currentPosition - oldPosition;
-            _view.transform.localRotation = Quaternion.Euler(0, dir.x < 0 ? 180 : 0, 0);
+            //var currentPosition = transform.position;
+            //var dir = currentPosition - oldPosition;
+            //_view.transform.localRotation = Quaternion.Euler(0, dir.x < 0 ? 180 : 0, 0);
             gameObject.SetActive(characterModel.IsVisibleOnMap);
         }
     }

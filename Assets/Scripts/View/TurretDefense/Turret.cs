@@ -16,6 +16,8 @@ public class Turret : MonoBehaviour, IView<ITurretModel>, IMapObject
 
     public Transform Root => transform;
 
+    public bool UpdatesPosition => false;
+
     void Update()
     {
         var turretModel = Game.Model.TurretDefense.Turrets.GetItem(_identifiable.Id);

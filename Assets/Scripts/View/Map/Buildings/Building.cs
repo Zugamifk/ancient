@@ -18,6 +18,8 @@ public class Building : MonoBehaviour, IView<IBuildingModel>, IMapObject
 
     public Transform Root => transform;
 
+    public bool UpdatesPosition => false;
+
     IBuildingModel _model;
 
     private void Awake()

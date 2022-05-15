@@ -11,6 +11,7 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
 
     Guid _builtModelId;
     readonly string _defaultTileType = Name.Tile.Grass;
+    HashSet<IMapObject> _updatingObjects = new HashSet<IMapObject>();
 
     void Update()
     {
@@ -20,9 +21,24 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
             BuildTilemap(map);
             _builtModelId = map.Grid.Id;
         }
+
+        _updatingObjects.RemoveWhere(o => o == null);
+        foreach(var obj in _updatingObjects)
+        {
+            UpdateObjectPosition(obj);
+        }
     }
 
     public void AddObject(IMapObject mapObject)
+    {
+        UpdateObjectPosition(mapObject);
+        if (mapObject.UpdatesPosition)
+        {
+            _updatingObjects.Add(mapObject);
+        }
+    }
+
+    void UpdateObjectPosition(IMapObject mapObject)
     {
         var worldPos = ModelToWorld(mapObject.ModelPosition);
         mapObject.Root.position = worldPos;
