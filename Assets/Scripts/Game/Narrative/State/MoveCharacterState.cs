@@ -8,10 +8,12 @@ public class MoveCharacterState : NarrativeState<MoveCharacterData>
 
     public override void EnterState(IGameModel model)
     {
+        var locator = Services.Get<LocationFinder>();
+        var position = locator.FindMapLocation(Data.Destination, model);
         Game.Do(new MoveCharacterCommand()
         {
             CharacterName = Data.Character,
-            //DestinationName = Data.Destination,
+            Destination = Vector2Int.FloorToInt(position),
             ReachedPathEnd = ReachedPathEnd
         });
     }

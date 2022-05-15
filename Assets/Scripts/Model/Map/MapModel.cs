@@ -7,7 +7,6 @@ public class MapModel : IMapModel
     public CityGraph Graph = new CityGraph();
     public IdentifiableCollection<BuildingModel> Buildings = new IdentifiableCollection<BuildingModel>();
     public MapGridModel Grid = new MapGridModel();
-    public BuildingModel GetBuilding(string key) => Buildings.GetItem(key);
 
     #region IMapModel
     ICityGraph IMapModel.CityGraph => Graph;
