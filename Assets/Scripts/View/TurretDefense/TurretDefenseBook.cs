@@ -19,9 +19,9 @@ public class TurretDefenseBook : MonoBehaviour
     [SerializeField]
     string[] _buildingOptions;
 
-    public void UpdateFromModel(IGameModel model)
+    public void Update()
     {
-        var tdModel = model.TurretDefense;
+        var tdModel = Game.Model.TurretDefense;
         _livesText.text = string.Format(k_LivesTextString, tdModel.Lives, tdModel.MaxLives);
         _waveCountText.text = string.Format(k_WaveCountTextString, tdModel.CurrentWave+1);
         _timeText.text = string.Format(k_TimeTextString, tdModel.CurrentTime.ToString(@"mm\:ss"));

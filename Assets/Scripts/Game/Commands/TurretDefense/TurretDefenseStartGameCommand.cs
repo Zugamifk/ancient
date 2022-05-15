@@ -19,7 +19,6 @@ public class TurretDefenseStartGameCommand : ICommand
         turretDefenseModel.Lives = turretDefenseData.StartingLives;
         turretDefenseModel.MaxLives = turretDefenseData.StartingLives;
         turretDefenseModel.CurrentWave = -1;
-        turretDefenseModel.SpawnPosition = _spawnPosition;
         turretDefenseModel.EndPoint = _destination;
         model.TurretDefenseModel = turretDefenseModel;
     }

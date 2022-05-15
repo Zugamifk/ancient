@@ -23,6 +23,8 @@ public class CharacterCollection : ScriptableObject, IPrefabLookup
         {
             _nameToCharacterData[a.Name] = a;
         }
+        DataService.Register(this);
+        Prefabs.Register<ICharacterModel>(this);
     }
 
 }

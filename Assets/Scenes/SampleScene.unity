@@ -466,6 +466,7 @@ GameObject:
   - component: {fileID: 401243646}
   - component: {fileID: 401243649}
   - component: {fileID: 401243648}
+  - component: {fileID: 401243650}
   m_Layer: 0
   m_Name: TurretDefense
   m_TagString: Untagged
@@ -515,6 +516,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewParent: {fileID: 1688259637}
+--- !u!114 &401243650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401243645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2177e8f753672d4298f4b7a85aae0f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pathPoints:
+  - {x: 0, y: 0}
+  - {x: 0, y: 10}
 --- !u!1 &430524228
 GameObject:
   m_ObjectHideFlags: 0

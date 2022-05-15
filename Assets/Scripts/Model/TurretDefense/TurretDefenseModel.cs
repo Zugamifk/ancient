@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class TurretDefenseModel : ITurretDefenseViewModel
 {
-    public Vector2Int SpawnPosition;
     public Vector2Int EndPoint;
     public int Lives;
     public int MaxLives;
     public TimeSpan StartTime;
     public TimeSpan CurrentTime;
-    public int SpawnedCount;
+    public int SpawnedCount {get;set;}
     public int CurrentWave = -1;
     public List<CharacterModel> Enemies = new List<CharacterModel>();
     public string BuildingBeingPlaced;
@@ -34,5 +33,7 @@ public class TurretDefenseModel : ITurretDefenseViewModel
     IIdentifiableLookup<ITurretModel> ITurretDefenseViewModel.Turrets => Turrets;
 
     IIdentifiableLookup<ITurretProjectileModel> ITurretDefenseViewModel.Projectiles => Projectiles;
+
+    IEnumerable<IIdentifiable> ITurretDefenseViewModel.Enemies => Enemies;
     #endregion
 }
