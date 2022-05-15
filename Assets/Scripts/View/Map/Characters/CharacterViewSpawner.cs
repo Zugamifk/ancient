@@ -9,6 +9,7 @@ public class CharacterViewSpawner : MapViewSpawner<ICharacterModel, Character>
 
     protected override void SpawnedView(ICharacterModel model, Character view)
     {
+        base.SpawnedView(model, view);
         var positionable = view.GetComponent<MapPositionable>();
         positionable.PositionGetter = GetPositionable;
     }

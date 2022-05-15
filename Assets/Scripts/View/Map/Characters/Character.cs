@@ -15,7 +15,7 @@ public class Character : MonoBehaviour, IView<ICharacterModel>, IMapObject
 
     public Transform Root => transform;
 
-    public bool UpdatesPosition => true;
+    public bool UpdatesPosition => this != null;
 
     private void Awake()
     {
@@ -26,6 +26,7 @@ public class Character : MonoBehaviour, IView<ICharacterModel>, IMapObject
     void IView<ICharacterModel>.InitializeFromModel(ICharacterModel model)
     {
         _identifiable.Id = model.Id;
+        _model = model;
     }
 
     void Update()

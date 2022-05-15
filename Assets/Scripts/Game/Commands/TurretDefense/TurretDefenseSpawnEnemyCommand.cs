@@ -30,7 +30,6 @@ public class TurretDefenseSpawnEnemyCommand : ICommand
         var time = model.TimeModel.RealTime.TotalSeconds;
         for (var t = lastSpawnTime; t < time && tdModel.SpawnedCount < waveData.Count; t += step)
         {
-            Debug.Log("Spawn");
             Game.Do(new SpawnCharacterCommand()
             {
                 Name = waveData.Enemy.Name,

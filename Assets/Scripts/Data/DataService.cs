@@ -8,7 +8,12 @@ public static class DataService
 
     internal static void Register<T>(T collection) where T : ScriptableObject
     {
-        _dataTypeToCollection[typeof(T)] = collection;
+        _dataTypeToCollection[collection.GetType()] = collection;
+    }
+
+    internal static void Clear()
+    {
+        _dataTypeToCollection.Clear();
     }
 
     public static T GetData<T>() where T : ScriptableObject

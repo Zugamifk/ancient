@@ -23,7 +23,6 @@ public class TileDataCollection : ScriptableObject
                 _tileCache[(type, tileData.West, tileData.North, tileData.East, tileData.South)] = list;
             }
         }
-        DataService.Register(this);
     }
 
     public TileTypeData GetTypeData(string name) => _typeToTypeData[name];
@@ -40,7 +39,8 @@ public class TileDataCollection : ScriptableObject
         if (tiles.Count > 0)
         {
             return tiles[Random.Range(0, tiles.Count)];
-        } else
+        }
+        else
         {
             return null;
         }
@@ -57,6 +57,8 @@ public class TileDataCollection : ScriptableObject
                 return tiles;
             }
         }
+
+        Debug.Log($"Coundn't find a matching tile in {this}! {key}", this);
         return null;
     }
 

@@ -15,7 +15,6 @@ public class TurretDefenseData : ScriptableObject, IPrefabLookup
         {
             _turretNameToData.Add(t.name, t);
         }
-        DataService.Register(this);
         Prefabs.Register<ITurretModel>(this);
     }
 

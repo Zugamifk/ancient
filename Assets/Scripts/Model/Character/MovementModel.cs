@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class MovementModel
+public class MovementModel : IIdentifiable
 {
     // live data
     public Guid OwnerId { get; set; }
@@ -22,6 +22,8 @@ public class MovementModel
 
     public bool AtPathEnd => CityPath.Path == null || CurrentPathIndex >= CityPath.Path.Count;
     public bool IsVisibleOnMap => string.IsNullOrEmpty(EnteredLocation);
+
+    Guid IIdentifiable.Id => OwnerId;
 
     public void OnReachedPathEnd()
     {

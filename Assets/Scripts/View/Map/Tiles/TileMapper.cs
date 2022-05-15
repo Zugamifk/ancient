@@ -25,7 +25,10 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
         _updatingObjects.RemoveWhere(o => o == null);
         foreach(var obj in _updatingObjects)
         {
-            UpdateObjectPosition(obj);
+            if (obj.UpdatesPosition)
+            {
+                UpdateObjectPosition(obj);
+            }
         }
     }
 
@@ -41,7 +44,7 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
     void UpdateObjectPosition(IMapObject mapObject)
     {
         var worldPos = ModelToWorld(mapObject.ModelPosition);
-        mapObject.Root.position = worldPos;
+        mapObject.Root.position = worldPos; 
     }
 
     public void SetTile(int x, int y, IMapModel model)
@@ -116,3 +119,4 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
         return DataService.GetData<TileDataCollection>().GetTile(type, left, top, right, bottom);
     }
 }
+ 

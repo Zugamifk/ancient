@@ -20,7 +20,6 @@ public class ItemCollection : ScriptableObject
         {
             _nameToItemData[i.Name] = i;
         }
-        DataService.Register(this);
     }
 
 }
