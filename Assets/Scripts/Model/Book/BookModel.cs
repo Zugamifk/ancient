@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BookModel : ItemModel, IItemModel, IBookModel
+public class BookModel : ItemModel, IItemModel, IBookModel, IExaminable
 {
     public List<IPageModel> Pages { get; } = new List<IPageModel>();
 
@@ -12,4 +12,5 @@ public class BookModel : ItemModel, IItemModel, IBookModel
     public int Index { get; set; }
 
     public bool IsOpen { get; set; }
+    public bool IsExamining { get => IsOpen; set => IsOpen = value; }
 }

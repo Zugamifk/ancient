@@ -3,29 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenPackageCommand : ICommand
+public class ExamineItemCommand : ICommand
 {
     Guid _id;
-    public OpenPackageCommand(Guid id)
+
+    public ExamineItemCommand(Guid id)
     {
         _id = id;
     }
 
     public void Execute(GameModel model)
     {
-        Game.Do(new RemoveItemCommand(_id));
-
         var item = model.Inventory.Items.GetItem(_id);
-        if(item is not PackageItemModel package)
+        if (item is not IExaminable examinable)
         {
             throw new InvalidOperationException($"Item {item.Key} ({_id}) is not a package!");
         }
 
         Debug.Log($"Opening {item.Key} ({item.Id})");
 
-        foreach (var packageItem in package.Contents)
-        {
-            Game.Do(new GetItemCommand(packageItem));
-        }
+        examinable.IsExamining = true;
     }
 }
