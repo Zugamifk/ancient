@@ -20,7 +20,7 @@ public class ExamineItemCommand : ICommand
             throw new InvalidOperationException($"Item {item.Key} ({_id}) is not a package!");
         }
 
-        Debug.Log($"Opening {item.Key} ({item.Id})");
+        Debug.Log($"Examining {item.Key} ({item.Id})");
 
         examinable.IsExamining = true;
     }
