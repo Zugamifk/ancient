@@ -13,6 +13,7 @@ public class OpenPackageCommand : ICommand
 
     public void Execute(GameModel model)
     {
+        Game.Do(new RemoveItemCommand(_id));
 
         var item = model.Inventory.Items.GetItem(_id);
         Debug.Log($"Opening {item.Key} ({item.Id})");
