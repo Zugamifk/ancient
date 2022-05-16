@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GetItemCommand : ICommand
@@ -13,6 +14,7 @@ public class GetItemCommand : ICommand
 
     public void Execute(GameModel model)
     {
+
         var data = DataService.GetData<ItemCollection>().GetData(_itemName);
         ItemModel itemModel;
         switch (data)
@@ -20,6 +22,12 @@ public class GetItemCommand : ICommand
             case TextBookData textbookData:
                 var bookMaker = Services.Get<BookMaker>();
                 itemModel = bookMaker.CreateTextBookModel(textbookData);
+                break;
+            case PackageItemData packageData:
+                itemModel = new PackageItemModel()
+                {
+                    Contents = packageData.Contents.Select(i=>i.Name).ToList()
+                };
                 break;
             default:
                 itemModel = new ItemModel();
@@ -30,5 +38,6 @@ public class GetItemCommand : ICommand
         itemModel.DeskSpawnLocation = data.DeskSpawnLocation;
 
         model.Inventory.Items.AddItem(itemModel, _itemName);
+        Debug.Log($"Receieved {itemModel.Key} ({itemModel.Id})");
     }
 }
