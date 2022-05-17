@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BookModel : ItemModel, IItemModel, IBookModel, IExaminable
+public class BookModel : ItemModel, IItemModel, IBookModel, IExaminableModel
 {
     public List<IPageModel> Pages { get; } = new List<IPageModel>();
 

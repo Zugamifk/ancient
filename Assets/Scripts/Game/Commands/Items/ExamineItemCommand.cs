@@ -15,7 +15,7 @@ public class ExamineItemCommand : ICommand
     public void Execute(GameModel model)
     {
         var item = model.Inventory.Items.GetItem(_id);
-        if (item is not IExaminable examinable)
+        if (item is not IExaminableModel examinable)
         {
             throw new InvalidOperationException($"Item {item.Key} ({_id}) is not a package!");
         }
