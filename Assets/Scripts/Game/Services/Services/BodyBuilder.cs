@@ -62,7 +62,7 @@ public class BodyBuilder
     }
 
     void Connect<TPart>(TPart partA, TPart partB)
-        where TPart : IConnectable<TPart>
+        where TPart : BodyPartModel
     {
         partA.Connected.Add(partB);
         partB.Connected.Add(partA);

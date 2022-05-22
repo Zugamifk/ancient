@@ -6,19 +6,26 @@ public class HealthDiagnosticService
 {
     public bool IsAlive(BodyModel body)
     {
-        return IsGettingBlood(body, body.Brain);
+        var brainHasBlood = IsGettingBlood(body, body.Brain);
+        var heartHasBrainConnection = IsNerveConnectedToBrain(body, body.Heart);
+        return brainHasBlood && heartHasBrainConnection;
     }
 
-    public bool IsGettingBlood(BodyModel body, IHasBlood partA)
+    public bool IsGettingBlood(BodyModel body, IHasBlood part)
     {
-        return IsConnected<BloodVesselModel>(body.Heart.Blood, partA.Blood);
+        return IsConnected<BloodVesselModel>(body.Heart.Blood, part.Blood) && part.Blood.BloodLevel > 0;
     }
 
-    public bool IsConnected<TPart>(IConnectable<TPart> partA, IConnectable<TPart> partB)
-        where TPart : IConnectable<TPart>
+    public bool IsNerveConnectedToBrain(BodyModel body, IHasNerves part)
     {
-        HashSet<IConnectable<TPart>> visited = new();
-        Stack<IConnectable<TPart>> path = new();
+        return IsConnected<NerveModel>(body.Brain.Nerve, part.Nerve);
+    }
+
+    public bool IsConnected<TPart>(BodyPartModel partA, BodyPartModel partB)
+        where TPart : BodyPartModel
+    {
+        HashSet<BodyPartModel> visited = new();
+        Stack<BodyPartModel> path = new();
         path.Push(partA);
         while(path.Count > 0)
         {

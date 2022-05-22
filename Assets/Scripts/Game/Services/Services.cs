@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-internal static class Services
+public static class Services
 {
     static Dictionary<Type, object> _serviceTypeToInstance = new Dictionary<Type, object>();
     public static T Get<T>() where T : new()
