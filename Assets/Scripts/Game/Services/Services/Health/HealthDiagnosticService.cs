@@ -11,7 +11,7 @@ public class HealthDiagnosticService
 
     public bool IsGettingBlood(BodyModel body, IHasBlood partA)
     {
-        return IsConnected(body.Heart.Blood, partA.Blood);
+        return IsConnected<BloodVesselModel>(body.Heart.Blood, partA.Blood);
     }
 
     public bool IsConnected<TPart>(IConnectable<TPart> partA, IConnectable<TPart> partB)

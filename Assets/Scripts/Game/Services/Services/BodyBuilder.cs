@@ -10,6 +10,7 @@ public class BodyBuilder
         
         var torso = CreatePart<TorsoModel>();
         body.Heart = CreatePart<HeartModel>();
+        Connect<BodyPartModel>(body.Heart, torso);
 
         body.Head = CreatePart<HeadModel>();
         var leftEye = CreatePart<EyeModel>();
@@ -18,18 +19,21 @@ public class BodyBuilder
         var mouth = CreatePart<MouthModel>();
         var hair = CreatePart<HairModel>();
         body.Brain = CreatePart<BrainModel>();
-        Connect<MainBodyPartModel>(torso, body.Head);
+        Connect<BodyPartModel>(body.Head, body.Brain);
+        Connect<BodyPartModel>(torso, body.Head);
 
         body.LeftArm = CreatePart<ArmModel>();
-        Connect<MainBodyPartModel>(body.LeftArm, torso);
+        Connect<BodyPartModel>(body.LeftArm, torso);
         var leftHand = CreatePart<HandModel>();
-        Connect<MainBodyPartModel>(body.LeftArm, leftHand);
+        Connect<BodyPartModel>(body.LeftArm, leftHand);
         body.RightArm = CreatePart<ArmModel>();
-        Connect<MainBodyPartModel>(body.RightArm, torso);
+        Connect<BodyPartModel>(body.RightArm, torso);
         var rightHand = CreatePart<HandModel>();
-        Connect<MainBodyPartModel>(body.RightArm, rightHand);
+        Connect<BodyPartModel>(body.RightArm, rightHand);
         return body;
     }
+
+
 
     TPart CreatePart<TPart>() where TPart : BodyPartModel, new()
     {

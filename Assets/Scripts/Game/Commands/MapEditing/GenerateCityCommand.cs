@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GenerateCityCommand : ICommand
 {
-    
     public void Execute(GameModel model)
     {
         var cityGenerator = Services.Get<CityGenerator>();

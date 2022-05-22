@@ -7,6 +7,7 @@ public class TurretDefense : MonoBehaviour
 {
     [SerializeField]
     Vector2Int[] _pathPoints;
+
     void Start()
     {
         Game.Do(new LoadMapDataCommand());
