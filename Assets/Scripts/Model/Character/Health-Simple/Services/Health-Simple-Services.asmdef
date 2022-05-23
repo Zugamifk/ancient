@@ -1,0 +1,18 @@
+{
+    "name": "Health-Simple-Services",
+    "rootNamespace": "",
+    "references": [
+        "GUID:85848065166441e47bc7da6cce295a8f",
+        "GUID:5de6134c1c064b04dabbf980177af609",
+        "GUID:f1eacd49830892c4e9c9d11bbf989cc6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

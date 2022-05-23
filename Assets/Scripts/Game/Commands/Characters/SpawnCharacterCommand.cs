@@ -23,8 +23,6 @@ public class SpawnCharacterCommand : ICommand
             MoveSpeed = data.MoveSpeed,
             WorldPosition = Position
         };
-        var bodyBuilder = Services.Get<BodyBuilder>();
-        character.Health.Body = bodyBuilder.BuildHuman();
 
         model.Characters.AddItem(character, IsUnique ? Name : null);
 

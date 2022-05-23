@@ -7,7 +7,8 @@
         "Commands",
         "Core",
         "Model",
-        ""
+        "Health-Simple-Services",
+        "Health-Simple"
     ],
     "includePlatforms": [
         "Editor"
