@@ -37,5 +37,49 @@ namespace Fluids.Tests
             var sum = a + b;
             Assert.AreEqual(sum.Amount, 5);
         }
+
+        [Test]
+        public void AddFloat_AddsAmounts()
+        {
+            var a = new FluidMeasure(2);
+            var b = 3;
+            var sum = a + b;
+            Assert.AreEqual(sum.Amount, 5);
+            sum = b + a;
+            Assert.AreEqual(sum.Amount, 5);
+        }
+
+        [Test]
+        public void SubtractMeasure_SubtractsAmounts()
+        {
+            var a = new FluidMeasure(5);
+            var b = new FluidMeasure(2);
+            var sum = a - b;
+            Assert.AreEqual(sum.Amount, 3);
+        }
+
+        [Test]
+        public void SubtractFloat_SubtractsAmounts()
+        {
+            var a = new FluidMeasure(5);
+            var b = 2;
+            var sum = a - b;
+            Assert.AreEqual(sum.Amount, 3);
+            a = new FluidMeasure(2);
+            b = 5;
+            sum = b - a;
+            Assert.AreEqual(sum.Amount, 3);
+        }
+
+        [Test]
+        public void SubtractMeasure_ThrowsOnNegativeResult()
+        {
+            Assert.Throws<ArgumentException>(()=>
+            {
+                var a = new FluidMeasure(2);
+                var b = new FluidMeasure(5);
+                var sum = a - b;
+            });
+        }
     }
 }
