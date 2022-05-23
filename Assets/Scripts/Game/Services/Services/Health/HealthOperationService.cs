@@ -18,4 +18,13 @@ public class HealthOperationService
     {
         part.IsCut = true;
     }
+
+    public void SetBloodOxygenLevel(BodyModel body, float percentageLevel)
+    {
+        var hfs = Services.Get<HealthFunctionService>();
+        foreach(var b in hfs.GetConnected(body.Heart.Blood))
+        {
+            b.OxygenLevel = percentageLevel;
+        }
+    }
 }

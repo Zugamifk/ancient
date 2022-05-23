@@ -37,8 +37,6 @@ public class BodyBuilder
         return body;
     }
 
-
-
     public TPart CreatePart<TPart>(string name) where TPart : BodyPartModel, new()
     {
         var part = new TPart();

@@ -8,7 +8,7 @@ public class TestBodyHealth
 {
     // A Test behaves as an ordinary method
     [Test]
-    public void NewHumanBody_IsAlive()
+    public void NewBody_IsAlive()
     {
         var body = Services.Get<BodyBuilder>().BuildHuman();
         var healthService = Services.Get<HealthDiagnosticService>();
@@ -21,6 +21,21 @@ public class TestBodyHealth
         var body = Services.Get<BodyBuilder>().BuildHuman();
         var healthService = Services.Get<HealthDiagnosticService>();
         Assert.IsTrue(healthService.CanBreath(body));
+    }
+
+    [Test]
+    public void NewBody_InhaleRaisesOxygenLevels()
+    {
+        var body = Services.Get<BodyBuilder>().BuildHuman();
+        var operationService = Services.Get<HealthOperationService>();
+        operationService.SetBloodOxygenLevel(body, 50);
+        var functionService = Services.Get<HealthFunctionService>();
+        functionService.Inhale(body);
+
+        foreach(var part in functionService.GetConnected(body.Head.Blood))
+        {
+            Assert.IsTrue(part.OxygenLevel > 50);
+        }
     }
 
     [Test]
