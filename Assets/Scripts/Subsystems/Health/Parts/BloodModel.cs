@@ -7,7 +7,7 @@ namespace Health
     public class BloodModel : IFluid
     {
         public Percentage OxygenLevel;
-
         public float Measure { get; set; }
+        public float OxygenMeasure => Measure * OxygenLevel;
     }
 }

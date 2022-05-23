@@ -31,6 +31,6 @@ public readonly struct Percentage
     public static implicit operator float(Percentage a) => a._value;
     public static implicit operator Percentage(float a) => new Percentage(a);
 
-    public static float operator *(float a, Percentage b) => a * b._value;
-    public static float operator *(Percentage a, float b) => a._value * b;
+    public static float operator *(float a, Percentage b) => a * b._value / 100;
+    public static float operator *(Percentage a, float b) => a._value / 100 * b;
 }
