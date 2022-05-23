@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Health
+namespace Fluids
 {
     public interface IFluid
     {
-        float Measure { get; }
+        FluidMeasure Measure { get; }
     }
 }

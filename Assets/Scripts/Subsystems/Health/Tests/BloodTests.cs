@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using Fluids;
 
 namespace Health.Tests
 {
@@ -19,7 +20,7 @@ namespace Health.Tests
         public void NewBlood_EmptyConstructor_MeasureZero()
         {
             IFluid blood = new BloodModel();
-            Assert.AreEqual(blood.Measure, 0);
+            Assert.AreEqual(blood.Measure.Amount, 0);
         }
 
         [Test]
@@ -28,16 +29,16 @@ namespace Health.Tests
             var blood = new BloodModel();
             blood.Measure = 100;
             blood.OxygenLevel = 100;
-            Assert.AreEqual(blood.OxygenMeasure, 100);
+            Assert.AreEqual(blood.OxygenMeasure.Amount, 100);
             blood.OxygenLevel = 50;
-            Assert.AreEqual(blood.OxygenMeasure, 50);
+            Assert.AreEqual(blood.OxygenMeasure.Amount, 50);
             blood.Measure = 50;
-            Assert.AreEqual(blood.OxygenMeasure, 25);
+            Assert.AreEqual(blood.OxygenMeasure.Amount, 25);
             blood.OxygenLevel = 0;
-            Assert.AreEqual(blood.OxygenMeasure, 0);
+            Assert.AreEqual(blood.OxygenMeasure.Amount, 0);
             blood.OxygenLevel = 100;
             blood.Measure = 0;
-            Assert.AreEqual(blood.OxygenMeasure, 0);
+            Assert.AreEqual(blood.OxygenMeasure.Amount, 0);
         }
     }
 }

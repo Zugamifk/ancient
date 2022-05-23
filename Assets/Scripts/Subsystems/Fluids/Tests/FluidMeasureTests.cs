@@ -81,5 +81,16 @@ namespace Fluids.Tests
                 var sum = a - b;
             });
         }
+
+        [Test]
+        public void MultiplyPercent_ReturnsPercentOfAmount()
+        {
+            var a = new FluidMeasure(10);
+            var b = new Percentage(50);
+            var half = a * b;
+            Assert.AreEqual(half.Amount, 5);
+            half = b * a;
+            Assert.AreEqual(half.Amount, 5);
+        }
     }
 }

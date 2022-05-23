@@ -19,11 +19,14 @@ namespace Fluids
             _amount = amount;
         }
 
+        public static implicit operator FluidMeasure(float amount) => new FluidMeasure(amount);
         public static FluidMeasure operator +(FluidMeasure a, FluidMeasure b) => new FluidMeasure(a._amount + b.Amount);
         public static FluidMeasure operator +(FluidMeasure a, float b) => new FluidMeasure(a._amount + b);
         public static FluidMeasure operator +(float a, FluidMeasure b) => new FluidMeasure(a + b.Amount);
         public static FluidMeasure operator -(FluidMeasure a, FluidMeasure b) => new FluidMeasure(a._amount - b.Amount);
         public static FluidMeasure operator -(FluidMeasure a, float b) => new FluidMeasure(a._amount - b);
         public static FluidMeasure operator -(float a, FluidMeasure b) => new FluidMeasure(a - b.Amount);
+        public static FluidMeasure operator *(FluidMeasure a, Percentage b) => new FluidMeasure(a.Amount * b);
+        public static FluidMeasure operator *(Percentage a, FluidMeasure b) => new FluidMeasure(a * b.Amount);
     }
 }

@@ -4,7 +4,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Fluids"
+        "Fluids",
+        "Core"
     ],
     "includePlatforms": [
         "Editor"
