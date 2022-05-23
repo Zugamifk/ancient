@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Health
 {
-    public interface IBodyModel
+    public interface IBody
     {
         
     }

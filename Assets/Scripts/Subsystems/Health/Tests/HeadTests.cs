@@ -13,28 +13,35 @@ namespace Health.Tests
         [Test]
         public void NewHead_EmptyConstructor_HasName()
         {
-            IHasName head = new HeadModel();
+            IHasName head = new Head();
             Assert.IsNotEmpty(head.Name);
         }
 
         [Test]
         public void NewHead_NamedConstructor_StartsWithOwnerName()
         {
-            IHasName head = new HeadModel(TEST_HEAD_NAME);
+            IHasName head = new Head(TEST_HEAD_NAME);
             Assert.IsTrue(head.Name.StartsWith(TEST_HEAD_NAME));
         }
         
         [Test]
         public void NewHead_HasSkull()
         {
-            HeadModel head = new HeadModel(TEST_HEAD_NAME);
+            Head head = new Head(TEST_HEAD_NAME);
             Assert.IsNotNull(head.Skull);
         }
 
         [Test]
         public void NewHead_HasBloodVessels()
         {
-            HeadModel head = new HeadModel(TEST_HEAD_NAME);
+            Head head = new Head(TEST_HEAD_NAME);
+            Assert.IsNotNull(head.BloodVessels);
+        }
+
+        [Test]
+        public void NewHead_HasNoBlood()
+        {
+            Head head = new Head(TEST_HEAD_NAME);
             Assert.IsNotNull(head.BloodVessels);
         }
     }

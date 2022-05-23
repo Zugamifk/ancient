@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Health
 {
-    public class HumanBodyModel : IBodyModel, IHasName
+    public class HumanBody : IBody, IHasName
     {
         public string Name { get; }
-        public HumanBodyModel(string name = null)
+        public HumanBody(string name = null)
         {
             Name = name ?? "Human";
         }

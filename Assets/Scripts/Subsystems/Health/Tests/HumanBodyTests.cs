@@ -14,14 +14,14 @@ namespace Health.Tests
         [Test]
         public void NewBody_EmptyConstructor_HasName()
         {
-            IHasName body = new HumanBodyModel();
+            IHasName body = new HumanBody();
             Assert.IsNotEmpty(body.Name);
         }
 
         [Test]
         public void NewBody_NamedConstructor_HasGivenName()
         {
-            IHasName body = new HumanBodyModel(TEST_BODY_NAME);
+            IHasName body = new HumanBody(TEST_BODY_NAME);
             Assert.AreEqual(body.Name, TEST_BODY_NAME);
         }
     }

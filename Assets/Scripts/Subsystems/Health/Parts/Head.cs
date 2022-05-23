@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace Health
 {
-    public class HeadModel : IHasName
+    public class Head : IHasName
     {
         const float BLOOD_VOLUME = 10;
 
         public string Name { get; }
-        public BoneModel Skull { get; } = new("Skull");
-        public BloodVesselModel BloodVessels { get; } = new BloodVesselModel(BLOOD_VOLUME);
-        public HeadModel()
+        public Bone Skull { get; } = new("Skull");
+        public BloodVessel BloodVessels { get; } = new BloodVessel(BLOOD_VOLUME);
+        public Head()
         {
             Name = "Head";
         }
 
-        public HeadModel(string ownerName)
+        public Head(string ownerName)
         {
             Name = $"{ownerName} Head";
             Skull = new($"{ownerName} Skull");

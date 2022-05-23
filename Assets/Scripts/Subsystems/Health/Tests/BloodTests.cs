@@ -12,21 +12,21 @@ namespace Health.Tests
         [Test]
         public void NewBlood_EmptyConstructor_NoOxygen()
         {
-            var blood = new BloodModel();
+            var blood = new Blood();
             Assert.AreEqual((float)blood.OxygenLevel, 0);
         }
 
         [Test]
         public void NewBlood_EmptyConstructor_MeasureZero()
         {
-            IFluid blood = new BloodModel();
+            IFluid blood = new Blood();
             Assert.AreEqual(blood.Measure.Value, 0);
         }
 
         [Test]
         public void OxygenMeasure_IsPercentageOfOxygenLevel()
         {
-            var blood = new BloodModel();
+            var blood = new Blood();
             blood.Measure = 100;
             blood.OxygenLevel = 100;
             Assert.AreEqual(blood.OxygenMeasure.Value, 100);

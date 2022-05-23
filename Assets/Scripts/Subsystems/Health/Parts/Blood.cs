@@ -6,7 +6,7 @@ using Core;
 
 namespace Health
 {
-    public class BloodModel : IFluid
+    public class Blood : IFluid
     {
         public Percentage OxygenLevel;
         public Measure Measure { get; set; }

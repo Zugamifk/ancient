@@ -5,11 +5,10 @@ using Fluids;
 
 namespace Health
 {
-    public class BloodVesselModel
+    public class BloodVessel
     {
         public FluidVolume Volume { get; }
-
-        public BloodVesselModel(float capacity)
+        public BloodVessel(float capacity)
         {
             Volume = new FluidVolume(capacity);
         }

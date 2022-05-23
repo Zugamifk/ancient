@@ -13,14 +13,14 @@ namespace Health.Tests
         [Test]
         public void NewBone_EmptyConstructor_HasName()
         {
-            IHasName bone = new BoneModel();
+            IHasName bone = new Bone();
             Assert.IsNotEmpty(bone.Name);
         }
 
         [Test]
         public void NewBone_NamedConstructor_StartsWithPartName()
         {
-            IHasName head = new BoneModel(TEST_BONE_PART_NAME);
+            IHasName head = new Bone(TEST_BONE_PART_NAME);
             Assert.IsTrue(head.Name.StartsWith(TEST_BONE_PART_NAME));
         }
     }

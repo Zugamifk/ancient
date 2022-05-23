@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace Health
 {
-    public class BoneModel : IHasName
+    public class Bone : IHasName
     {
         public string Name { get; }
-        public BoneModel()
+        public Bone()
         {
             Name = "Bone";
         }
 
-        public BoneModel(string name) {
+        public Bone(string name) {
             Name = name;
         }
     }
