@@ -59,4 +59,34 @@ public class TestBodyHealth
         var healthService = Services.Get<HealthDiagnosticService>();
         Assert.IsFalse(healthService.CanBreath(body));
     }
+
+    [Test]
+    public void NewBody_CanWalk()
+    {
+        var body = Services.Get<BodyBuilder>().BuildHuman();
+        var healthService = Services.Get<HealthDiagnosticService>();
+        Assert.IsTrue(healthService.CanWalk(body));
+    }
+
+    [Test]
+    public void RemoveLeftLeg_CanNotWalk()
+    {
+        var body = Services.Get<BodyBuilder>().BuildHuman();
+        var operationService = Services.Get<HealthOperationService>();
+        operationService.Remove(body, body.LeftLeg);
+
+        var healthService = Services.Get<HealthDiagnosticService>();
+        Assert.IsFalse(healthService.CanWalk(body));
+    }
+
+    [Test]
+    public void RemoveRightLeg_CanNotWalk()
+    {
+        var body = Services.Get<BodyBuilder>().BuildHuman();
+        var operationService = Services.Get<HealthOperationService>();
+        operationService.Remove(body, body.RightLeg);
+
+        var healthService = Services.Get<HealthDiagnosticService>();
+        Assert.IsFalse(healthService.CanWalk(body));
+    }
 }

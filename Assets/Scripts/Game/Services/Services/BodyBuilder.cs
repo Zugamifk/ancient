@@ -9,7 +9,7 @@ public class BodyBuilder
         var body = new BodyModel();
         
         var torso = CreatePart<TorsoModel>("Torso");
-        body.Heart = CreatePart<HeartModel>("Hear");
+        body.Heart = CreatePart<HeartModel>("Heart");
         Connect(body.Heart, torso);
         body.LeftLung = CreatePart<LungModel>("Left Lung");
         Connect(body.LeftLung, torso);
@@ -34,6 +34,15 @@ public class BodyBuilder
         Connect(body.RightArm, torso);
         var rightHand = CreatePart<HandModel>("Right Hand");
         Connect(body.RightArm, rightHand);
+
+        body.LeftLeg = CreatePart<LegModel>("Left Leg");
+        Connect(body.LeftLeg, torso);
+        var leftFoot = CreatePart<FootModel>("Left Foot");
+        Connect(body.LeftArm, leftHand);
+        body.RightLeg = CreatePart<LegModel>("Right Leg");
+        Connect(body.RightLeg, torso);
+        var rightFoot = CreatePart<FootModel>("Right Foot");
+        Connect(body.RightLeg, rightFoot);
         return body;
     }
 

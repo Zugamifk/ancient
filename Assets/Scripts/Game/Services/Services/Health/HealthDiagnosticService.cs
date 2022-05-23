@@ -15,6 +15,16 @@ public class HealthDiagnosticService
         return IsFunctioning(body, body.LeftLung) && IsFunctioning(body, body.RightLung);
     }
 
+    public bool CanWalk(BodyModel body)
+    {
+        return IsLegUsable(body, body.LeftLeg) && IsLegUsable(body, body.RightLeg);
+    }
+
+    bool IsLegUsable(BodyModel body, LegModel leg)
+    {
+        return IsGettingBlood(body, leg) && IsNerveConnectedToBrain(body, leg);
+    }
+
     public bool IsGettingBlood(BodyModel body, IHasBlood part)
     {
         return IsConnected<BloodVesselModel>(body.Heart.Blood, part.Blood) && part.Blood.BloodLevel > 0;
