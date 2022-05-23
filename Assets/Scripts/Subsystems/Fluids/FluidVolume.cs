@@ -9,7 +9,7 @@ namespace Fluids
     public class FluidVolume
     {
         public Measure Capacity { get; }
-        public FluidMixture Fluids { get; }
+        public FluidMixture Fluids { get; } = new FluidMixture();
 
         public FluidVolume(Measure capacity)
         {

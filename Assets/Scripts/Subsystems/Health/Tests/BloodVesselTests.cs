@@ -14,5 +14,12 @@ namespace Health.Tests
             var bloodVessel = new BloodVessel(10);
             Assert.NotNull(bloodVessel.Volume);
         }
+
+        [Test]
+        public void Constructor_NoFluid()
+        {
+            var bloodVessel = new BloodVessel(10);
+            Assert.AreEqual(0, bloodVessel.Volume.Fluids.Measure.Value);
+        }
     }
 }

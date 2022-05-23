@@ -38,5 +38,12 @@ namespace Fluids.Tests
             container = new FluidVolume(amount);
             Assert.AreEqual(amount, container.Capacity.Value);
         }
+
+        [Test]
+        public void Constructor_ZeroMeasure()
+        {
+            var container = new FluidVolume(10);
+            Assert.AreEqual(0, container.Fluids.Measure.Value);
+        }
     }
 }

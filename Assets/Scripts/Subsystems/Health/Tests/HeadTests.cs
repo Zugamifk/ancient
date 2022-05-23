@@ -42,7 +42,7 @@ namespace Health.Tests
         public void NewHead_HasNoBlood()
         {
             Head head = new Head(TEST_HEAD_NAME);
-            Assert.IsNotNull(head.BloodVessels.BloodContents.Measure.IsEmpty);
+            Assert.IsNotNull(head.BloodVessels.BloodContents == null);
         }
     }
 }
