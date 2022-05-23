@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Health
 {
-    public class HumanBodyModel : IBodyModel
+    public class HumanBodyModel : IBodyModel, IHasName
     {
         public string Name { get; }
         public HumanBodyModel(string name = null)
