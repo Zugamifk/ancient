@@ -12,8 +12,8 @@ namespace Health
             Name = "Bone";
         }
 
-        public BoneModel(string partName) {
-            Name = $"{partName} Bone";
+        public BoneModel(string name) {
+            Name = name;
         }
     }
 }

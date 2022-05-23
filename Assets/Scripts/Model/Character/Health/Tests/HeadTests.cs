@@ -8,7 +8,7 @@ namespace Health.Tests
 {
     public class HeadTests
     {
-        const string TEST_HEAD_NAME = "Name";
+        const string TEST_HEAD_NAME = "HEADTEST";
 
         [Test]
         public void NewHead_EmptyConstructor_HasName()
@@ -22,6 +22,13 @@ namespace Health.Tests
         {
             IHasName head = new HeadModel(TEST_HEAD_NAME);
             Assert.IsTrue(head.Name.StartsWith(TEST_HEAD_NAME));
+        }
+        
+        [Test]
+        public void NewHead_HasSkull()
+        {
+            HeadModel head = new HeadModel(TEST_HEAD_NAME);
+            Assert.IsNotNull(head.Skull);
         }
     }
 }

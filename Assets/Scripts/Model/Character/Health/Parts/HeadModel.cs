@@ -7,6 +7,7 @@ namespace Health
     public class HeadModel : IHasName
     {
         public string Name { get; }
+        public BoneModel Skull { get; } = new("Skull");
         public HeadModel()
         {
             Name = "Head";
@@ -15,6 +16,7 @@ namespace Health
         public HeadModel(string ownerName)
         {
             Name = $"{ownerName} Head";
+            Skull = new($"{ownerName} Skull");
         } 
     }
 }
