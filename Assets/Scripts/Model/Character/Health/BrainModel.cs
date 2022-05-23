@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrainModel : BodyPartModel, IHasNerves, IHasBlood
+public class BrainModel : OrganModel
 {
-    public NerveModel Nerve { get; set; }
-    public BloodVesselModel Blood { get; set; }
 }

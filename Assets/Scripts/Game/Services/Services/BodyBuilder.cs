@@ -11,6 +11,10 @@ public class BodyBuilder
         var torso = CreatePart<TorsoModel>("Torso");
         body.Heart = CreatePart<HeartModel>("Hear");
         Connect(body.Heart, torso);
+        body.LeftLung = CreatePart<LungModel>("Left Lung");
+        Connect(body.LeftLung, torso);
+        body.RightLung = CreatePart<LungModel>("Right Lung");
+        Connect(body.RightLung, torso);
 
         body.Head = CreatePart<HeadModel>("Head");
         var leftEye = CreatePart<EyeModel>("Left Eye");

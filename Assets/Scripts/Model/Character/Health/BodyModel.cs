@@ -9,7 +9,9 @@ public class BodyModel
 
     public TorsoModel Torso;
     public HeartModel Heart;
-    
+    public LungModel LeftLung;
+    public LungModel RightLung;
+
     public LegModel LeftLeg;
     public LegModel RightLeg;
     public ArmModel LeftArm;

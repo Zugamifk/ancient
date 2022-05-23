@@ -7,9 +7,12 @@ public class HealthDiagnosticService
 {
     public bool IsAlive(BodyModel body)
     {
-        var brainHasBlood = IsGettingBlood(body, body.Brain);
-        var heartHasBrainConnection = IsNerveConnectedToBrain(body, body.Heart);
-        return brainHasBlood && heartHasBrainConnection;
+        return IsFunctioning(body, body.Brain);
+    }
+
+    public bool CanBreath(BodyModel body)
+    {
+        return IsFunctioning(body, body.LeftLung) && IsFunctioning(body, body.RightLung);
     }
 
     public bool IsGettingBlood(BodyModel body, IHasBlood part)
@@ -20,6 +23,11 @@ public class HealthDiagnosticService
     public bool IsNerveConnectedToBrain(BodyModel body, IHasNerves part)
     {
         return IsConnected<NerveModel>(body.Brain.Nerve, part.Nerve);
+    }
+
+    public bool IsFunctioning(BodyModel body, OrganModel organ)
+    {
+        return IsGettingBlood(body, organ) && IsNerveConnectedToBrain(body, organ);
     }
 
     public bool IsConnected<TPart>(BodyPartModel partA, BodyPartModel partB)

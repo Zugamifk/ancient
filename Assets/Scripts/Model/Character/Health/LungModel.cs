@@ -2,17 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LungModel : MonoBehaviour
+public class LungModel : OrganModel, IHasMuscle
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public MuscleModel Muscle { get; set; }
 }
