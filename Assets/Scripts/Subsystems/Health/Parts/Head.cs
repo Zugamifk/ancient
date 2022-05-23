@@ -11,6 +11,8 @@ namespace Health
         public string Name { get; }
         public Bone Skull { get; } = new("Skull");
         public BloodVessel BloodVessels { get; } = new BloodVessel(BLOOD_VOLUME);
+        public Brain Brain { get; } = new Brain();
+
         public Head()
         {
             Name = "Head";
@@ -20,6 +22,7 @@ namespace Health
         {
             Name = $"{ownerName} Head";
             Skull = new($"{ownerName} Skull");
+            Brain = new(ownerName);
         }
     }
 }

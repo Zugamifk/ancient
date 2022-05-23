@@ -44,5 +44,12 @@ namespace Health.Tests
             Head head = new Head(TEST_HEAD_NAME);
             Assert.IsNotNull(head.BloodVessels.BloodContents == null);
         }
+
+        [Test]
+        public void NewHead_HasBrain()
+        {
+            Head head = new Head(TEST_HEAD_NAME);
+            Assert.IsNotNull(head.Brain);
+        }
     }
 }
