@@ -20,7 +20,7 @@ namespace Health.Tests
         public void NewBlood_EmptyConstructor_MeasureZero()
         {
             IFluid blood = new BloodModel();
-            Assert.AreEqual(blood.Measure.Amount, 0);
+            Assert.AreEqual(blood.Measure.Measure, 0);
         }
 
         [Test]
@@ -29,16 +29,16 @@ namespace Health.Tests
             var blood = new BloodModel();
             blood.Measure = 100;
             blood.OxygenLevel = 100;
-            Assert.AreEqual(blood.OxygenMeasure.Amount, 100);
+            Assert.AreEqual(blood.OxygenMeasure.Measure, 100);
             blood.OxygenLevel = 50;
-            Assert.AreEqual(blood.OxygenMeasure.Amount, 50);
+            Assert.AreEqual(blood.OxygenMeasure.Measure, 50);
             blood.Measure = 50;
-            Assert.AreEqual(blood.OxygenMeasure.Amount, 25);
+            Assert.AreEqual(blood.OxygenMeasure.Measure, 25);
             blood.OxygenLevel = 0;
-            Assert.AreEqual(blood.OxygenMeasure.Amount, 0);
+            Assert.AreEqual(blood.OxygenMeasure.Measure, 0);
             blood.OxygenLevel = 100;
             blood.Measure = 0;
-            Assert.AreEqual(blood.OxygenMeasure.Amount, 0);
+            Assert.AreEqual(blood.OxygenMeasure.Measure, 0);
         }
     }
 }

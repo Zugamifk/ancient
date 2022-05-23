@@ -7,8 +7,8 @@ namespace Fluids
 {
     public struct FluidMeasure
     {
-        float _amount;
-        public float Amount => _amount;
+        float _measure;
+        public float Measure => _measure;
 
         public FluidMeasure(float amount = 0)
         {
@@ -16,17 +16,17 @@ namespace Fluids
             {
                 throw new ArgumentException("Can not create measure with negative value!");
             }
-            _amount = amount;
+            _measure = amount;
         }
 
         public static implicit operator FluidMeasure(float amount) => new FluidMeasure(amount);
-        public static FluidMeasure operator +(FluidMeasure a, FluidMeasure b) => new FluidMeasure(a._amount + b.Amount);
-        public static FluidMeasure operator +(FluidMeasure a, float b) => new FluidMeasure(a._amount + b);
-        public static FluidMeasure operator +(float a, FluidMeasure b) => new FluidMeasure(a + b.Amount);
-        public static FluidMeasure operator -(FluidMeasure a, FluidMeasure b) => new FluidMeasure(a._amount - b.Amount);
-        public static FluidMeasure operator -(FluidMeasure a, float b) => new FluidMeasure(a._amount - b);
-        public static FluidMeasure operator -(float a, FluidMeasure b) => new FluidMeasure(a - b.Amount);
-        public static FluidMeasure operator *(FluidMeasure a, Percentage b) => new FluidMeasure(a.Amount * b);
-        public static FluidMeasure operator *(Percentage a, FluidMeasure b) => new FluidMeasure(a * b.Amount);
+        public static FluidMeasure operator +(FluidMeasure a, FluidMeasure b) => new FluidMeasure(a._measure + b.Measure);
+        public static FluidMeasure operator +(FluidMeasure a, float b) => new FluidMeasure(a._measure + b);
+        public static FluidMeasure operator +(float a, FluidMeasure b) => new FluidMeasure(a + b.Measure);
+        public static FluidMeasure operator -(FluidMeasure a, FluidMeasure b) => new FluidMeasure(a._measure - b.Measure);
+        public static FluidMeasure operator -(FluidMeasure a, float b) => new FluidMeasure(a._measure - b);
+        public static FluidMeasure operator -(float a, FluidMeasure b) => new FluidMeasure(a - b.Measure);
+        public static FluidMeasure operator *(FluidMeasure a, Percentage b) => new FluidMeasure(a.Measure * b);
+        public static FluidMeasure operator *(Percentage a, FluidMeasure b) => new FluidMeasure(a * b.Measure);
     }
 }
