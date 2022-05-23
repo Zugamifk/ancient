@@ -14,5 +14,12 @@ namespace Health.Tests
             var blood = new BloodModel();
             Assert.AreEqual((float)blood.OxygenLevel, 0);
         }
+
+        [Test]
+        public void NewBlood_EmptyConstructor_MeasureZero()
+        {
+            IFluid blood = new BloodModel();
+            Assert.AreEqual(blood.Measure, 0);
+        }
     }
 }

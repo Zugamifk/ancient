@@ -5,7 +5,8 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Health",
-        "Core"
+        "Core",
+        "Fluids"
     ],
     "includePlatforms": [
         "Editor"

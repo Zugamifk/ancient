@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace Health
 {
-    public class BloodModel
+    public class BloodModel : IFluid
     {
         public Percentage OxygenLevel;
+
+        public float Measure { get; set; }
     }
 }
