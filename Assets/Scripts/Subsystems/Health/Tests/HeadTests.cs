@@ -51,5 +51,12 @@ namespace Health.Tests
             Head head = new Head(TEST_HEAD_NAME);
             Assert.IsNotNull(head.Brain);
         }
+
+        [Test]
+        public void NewHead_HasNerves()
+        {
+            Head head = new Head(TEST_HEAD_NAME);
+            Assert.IsNotNull(head.Nerves);
+        }
     }
 }
