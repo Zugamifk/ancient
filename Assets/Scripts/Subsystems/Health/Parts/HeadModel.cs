@@ -8,6 +8,7 @@ namespace Health
     {
         public string Name { get; }
         public BoneModel Skull { get; } = new("Skull");
+        public BloodVesselModel BloodVessels { get; } = new BloodVesselModel();
         public HeadModel()
         {
             Name = "Head";

@@ -30,5 +30,12 @@ namespace Health.Tests
             HeadModel head = new HeadModel(TEST_HEAD_NAME);
             Assert.IsNotNull(head.Skull);
         }
+
+        [Test]
+        public void NewHead_HasBloodVessels()
+        {
+            HeadModel head = new HeadModel(TEST_HEAD_NAME);
+            Assert.IsNotNull(head.BloodVessels);
+        }
     }
 }

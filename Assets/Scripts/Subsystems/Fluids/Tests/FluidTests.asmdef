@@ -1,5 +1,5 @@
 {
-    "name": "Tests",
+    "name": "FluidTests",
     "rootNamespace": "Fluids.Tests",
     "references": [
         "UnityEngine.TestRunner",
