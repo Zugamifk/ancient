@@ -89,4 +89,12 @@ public class TestBodyHealth
         var healthService = Services.Get<HealthDiagnosticService>();
         Assert.IsFalse(healthService.CanWalk(body));
     }
+
+    [Test]
+    public void NewBody_CanSee()
+    {
+        var body = Services.Get<BodyBuilder>().BuildHuman();
+        var healthService = Services.Get<HealthDiagnosticService>();
+        Assert.IsTrue(healthService.CanSee(body));
+    }
 }

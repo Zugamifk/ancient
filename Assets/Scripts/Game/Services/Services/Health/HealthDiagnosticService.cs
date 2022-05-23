@@ -20,6 +20,11 @@ public class HealthDiagnosticService
         return IsLegUsable(body, body.LeftLeg) && IsLegUsable(body, body.RightLeg);
     }
 
+    public bool CanSee(BodyModel body)
+    {
+        return IsFunctioning(body, body.Head.LeftEye) && IsFunctioning(body, body.Head.RightEye);
+    }
+
     bool IsLegUsable(BodyModel body, LegModel leg)
     {
         return IsGettingBlood(body, leg) && IsNerveConnectedToBrain(body, leg);
@@ -63,7 +68,7 @@ public class HealthDiagnosticService
             }
         }
 
-        Debug.Log($"{partA} is not connected to {partB}");
+        //Debug.Log($"{partA} is not connected to {partB}");
         return false;
     }
 }

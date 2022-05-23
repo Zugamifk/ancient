@@ -17,11 +17,16 @@ public class BodyBuilder
         Connect(body.RightLung, torso);
 
         body.Head = CreatePart<HeadModel>("Head");
-        var leftEye = CreatePart<EyeModel>("Left Eye");
-        var rightEye = CreatePart<EyeModel>("Right Eye");
-        var nose = CreatePart<NoseModel>("Nose");
-        var mouth = CreatePart<MouthModel>("Mouth");
-        var hair = CreatePart<HairModel>("Hair");
+        body.Head.LeftEye = CreatePart<EyeModel>("Left Eye");
+        Connect(body.Head, body.Head.LeftEye);
+        body.Head.RightEye = CreatePart<EyeModel>("Right Eye");
+        Connect(body.Head, body.Head.RightEye);
+        body.Head.Nose = CreatePart<NoseModel>("Nose");
+        Connect(body.Head, body.Head.Nose);
+        body.Head.Mouth = CreatePart<MouthModel>("Mouth");
+        Connect(body.Head, body.Head.Mouth);
+        body.Head.Hair = CreatePart<HairModel>("Hair");
+        Connect(body.Head, body.Head.Hair);
         body.Brain = CreatePart<BrainModel>("Brain");
         Connect(body.Head, body.Brain);
         Connect(torso, body.Head);
