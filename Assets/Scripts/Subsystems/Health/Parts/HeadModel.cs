@@ -20,6 +20,6 @@ namespace Health
         {
             Name = $"{ownerName} Head";
             Skull = new($"{ownerName} Skull");
-        } 
+        }
     }
 }

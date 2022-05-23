@@ -6,11 +6,12 @@ using Core;
 
 namespace Fluids
 {
-    public class FluidContainer
+    public class FluidVolume
     {
         public Measure Capacity { get; }
+        public FluidMixture Fluids { get; }
 
-        public FluidContainer(Measure capacity)
+        public FluidVolume(Measure capacity)
         {
             if (capacity.Value <= 0)
             {

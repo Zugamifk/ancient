@@ -7,11 +7,11 @@ namespace Health
 {
     public class BloodVesselModel
     {
-        public FluidContainer BloodVolume { get; }
+        public FluidVolume Volume { get; }
 
         public BloodVesselModel(float capacity)
         {
-            BloodVolume = new FluidContainer(capacity);
+            Volume = new FluidVolume(capacity);
         }
     }
 }

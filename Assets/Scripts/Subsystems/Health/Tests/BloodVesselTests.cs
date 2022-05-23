@@ -12,7 +12,7 @@ namespace Health.Tests
         public void Constructor_HasVolume()
         {
             var bloodVessel = new BloodVesselModel(10);
-            Assert.NotNull(bloodVessel.BloodVolume);
+            Assert.NotNull(bloodVessel.Volume);
         }
     }
 }
