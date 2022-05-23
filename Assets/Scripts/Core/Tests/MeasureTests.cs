@@ -4,71 +4,72 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using System;
+using Core;
 
-namespace Fluids.Tests
+namespace Core.Tests
 {
-    public class FluidMeasureTests
+    public class MeasureTests
     {
         [Test]
         public void NewMeasure_EmptyConstructor_MeasureZero()
         {
-            var measure = new FluidMeasure();
-            Assert.AreEqual(measure.Measure, 0);
+            var measure = new Measure();
+            Assert.AreEqual(measure.Amount, 0);
         }
 
         [Test]
         public void NewMeasure_AmountEqualsGiven()
         {
-            var measure = new FluidMeasure(100);
-            Assert.AreEqual(measure.Measure, 100);
+            var measure = new Measure(100);
+            Assert.AreEqual(measure.Amount, 100);
         }
 
         [Test]
         public void NewMeasure_NegativeAmount_Throws()
         {
-            Assert.Throws<ArgumentException>(()=> new FluidMeasure(-100));
+            Assert.Throws<ArgumentException>(()=> new Measure(-100));
         }
 
         [Test]
         public void AddMeasure_AddsAmounts()
         {
-            var a = new FluidMeasure(2);
-            var b = new FluidMeasure(3);
+            var a = new Measure(2);
+            var b = new Measure(3);
             var sum = a + b;
-            Assert.AreEqual(sum.Measure, 5);
+            Assert.AreEqual(sum.Amount, 5);
         }
 
         [Test]
         public void AddFloat_AddsAmounts()
         {
-            var a = new FluidMeasure(2);
+            var a = new Measure(2);
             var b = 3;
             var sum = a + b;
-            Assert.AreEqual(sum.Measure, 5);
+            Assert.AreEqual(sum.Amount, 5);
             sum = b + a;
-            Assert.AreEqual(sum.Measure, 5);
+            Assert.AreEqual(sum.Amount, 5);
         }
 
         [Test]
         public void SubtractMeasure_SubtractsAmounts()
         {
-            var a = new FluidMeasure(5);
-            var b = new FluidMeasure(2);
+            var a = new Measure(5);
+            var b = new Measure(2);
             var sum = a - b;
-            Assert.AreEqual(sum.Measure, 3);
+            Assert.AreEqual(sum.Amount, 3);
         }
 
         [Test]
         public void SubtractFloat_SubtractsAmounts()
         {
-            var a = new FluidMeasure(5);
+            var a = new Measure(5);
             var b = 2;
             var sum = a - b;
-            Assert.AreEqual(sum.Measure, 3);
-            a = new FluidMeasure(2);
+            Assert.AreEqual(sum.Amount, 3);
+            a = new Measure(2);
             b = 5;
             sum = b - a;
-            Assert.AreEqual(sum.Measure, 3);
+            Assert.AreEqual(sum.Amount, 3);
         }
 
         [Test]
@@ -76,8 +77,8 @@ namespace Fluids.Tests
         {
             Assert.Throws<ArgumentException>(()=>
             {
-                var a = new FluidMeasure(2);
-                var b = new FluidMeasure(5);
+                var a = new Measure(2);
+                var b = new Measure(5);
                 var sum = a - b;
             });
         }
@@ -85,12 +86,12 @@ namespace Fluids.Tests
         [Test]
         public void MultiplyPercent_ReturnsPercentOfAmount()
         {
-            var a = new FluidMeasure(10);
+            var a = new Measure(10);
             var b = new Percentage(50);
             var half = a * b;
-            Assert.AreEqual(half.Measure, 5);
+            Assert.AreEqual(half.Amount, 5);
             half = b * a;
-            Assert.AreEqual(half.Measure, 5);
+            Assert.AreEqual(half.Amount, 5);
         }
     }
 }

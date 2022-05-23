@@ -3,18 +3,34 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using System;
 
 namespace Fluids.Tests
 {
     public class FluidContainerTests
     {
-        // A Test behaves as an ordinary method
         [Test]
-        public void FluidContainer_EmptyConstructor_ZeroCapacityAndMeasure()
+        public void FluidContainer_Constructor_ZeroOrNegativeThrowsException()
         {
-            var container = new FluidContainer();
-            Assert.AreEqual(container.Amount.Measure, 0);
-            Assert.AreEqual(container.Capacity.Measure, 0);
+            Assert.Throws<ArgumentException>(()=> new FluidContainer(0));
+            Assert.Throws<ArgumentException>(()=> new FluidContainer(-1));
+        }
+
+        [Test]
+        public void FluidContainer_Constructor_CapacityEqualsPassedValue()
+        {
+            float amount = 10;
+            var container = new FluidContainer(amount);
+            Assert.AreEqual(amount, container.Capacity.Amount);
+            amount = 25;
+            container = new FluidContainer(amount);
+            Assert.AreEqual(amount, container.Capacity.Amount);
+            amount = 1000000;
+            container = new FluidContainer(amount);
+            Assert.AreEqual(amount, container.Capacity.Amount);
+            amount = Mathf.PI;
+            container = new FluidContainer(amount);
+            Assert.AreEqual(amount, container.Capacity.Amount);
         }
     }
 }

@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Core;
 
 namespace Fluids
 {
     public class FluidContainer
     {
-        Dictionary<Type, FluidMeasure> _fluidToMeasure = new Dictionary<Type, FluidMeasure>();
-        public FluidMeasure Amount { get; }
-        public FluidMeasure Capacity { get; }
-        public FluidMeasure GetAmountOfFluid<TFluid>()
+        public Measure Capacity { get; }
+
+        public FluidContainer(Measure capacity)
         {
-            if(_fluidToMeasure.TryGetValue(typeof(TFluid), out var measure))
+            if (capacity.Amount <= 0)
             {
-                return measure;
-            } else
-            {
-                return default;
+                throw new ArgumentException("Fluid capacity can not be zero!");
             }
+            Capacity = capacity;
         }
     }
 }
