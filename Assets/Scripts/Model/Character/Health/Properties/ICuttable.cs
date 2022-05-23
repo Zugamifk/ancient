@@ -4,8 +4,5 @@ using UnityEngine;
 
 public interface ICuttable
 {
-    public enum ECutState
-    {
-        None
-    }
+    public bool IsCut { get; set; }
 }

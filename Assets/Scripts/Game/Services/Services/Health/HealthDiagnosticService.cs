@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class HealthDiagnosticService
@@ -37,12 +38,14 @@ public class HealthDiagnosticService
             if (!visited.Contains(point))
             {
                 visited.Add(point);
-                foreach(var p in point.Connected)
+                foreach(var p in point.Connected.Where(p=>p is TPart))
                 {
                     path.Push(p);
                 }
             }
         }
+
+        Debug.Log($"{partA} is not connected to {partB}");
         return false;
     }
 }
