@@ -1,14 +1,10 @@
 {
-    "name": "HealthSimpleTests",
-    "rootNamespace": "",
+    "name": "HealthTests",
+    "rootNamespace": "Health.Tests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Commands",
-        "Core",
-        "Model",
-        "Health-Simple-Services",
-        "Health-Simple"
+        "Health"
     ],
     "includePlatforms": [
         "Editor"
