@@ -10,6 +10,8 @@ namespace Core
         float _value;
         public float Value => _value;
 
+        public bool IsEmpty => _value == 0;
+
         public Measure(float value = 0)
         {
             if (value < 0)
