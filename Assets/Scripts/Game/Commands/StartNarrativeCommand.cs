@@ -26,7 +26,7 @@ internal class StartNarrativeCommand : ICommand
         model.Name = data.Name;
 
         var stepData = data.Steps.First(s => s.Name == data.StartStep);
-        var builder = Services.Get<NarrativeBuilder>();
+        var builder = new NarrativeBuilder();
         model.CurrentState = builder.BuildNarrativeState(stepData);
 
         return model;

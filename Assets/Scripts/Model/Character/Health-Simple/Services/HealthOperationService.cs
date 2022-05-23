@@ -7,8 +7,8 @@ public class HealthOperationService
 {
     public void Remove(BodyModel body, BodyPartModel part)
     {
-        var builder = Services.Get<BodyBuilder>();
-        foreach(var p in part.Connected.ToList())
+        var builder = new BodyBuilder();
+        foreach (var p in part.Connected.ToList())
         {
             builder.Disconnect(p, part);
         }
@@ -21,8 +21,8 @@ public class HealthOperationService
 
     public void SetBloodOxygenLevel(BodyModel body, float percentageLevel)
     {
-        var hfs = Services.Get<HealthFunctionService>();
-        foreach(var b in hfs.GetConnected(body.Heart.Blood))
+        var hfs = new HealthFunctionService();
+        foreach (var b in hfs.GetConnected(body.Heart.Blood))
         {
             b.OxygenLevel = percentageLevel;
         }

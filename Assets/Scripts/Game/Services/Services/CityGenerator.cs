@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CityGenerator
 {
+    PathFinder _pathFinder = new();
     int _roadExtents=10;
     int _roadExtentsVariability = 4;
 
@@ -44,7 +45,7 @@ public class CityGenerator
     public void BuildRoad(MapModel model, Vector2Int pointA, Vector2Int pointB)
     {
         var roadtile = GetTileModel(Name.Tile.Road);
-        var path = Services.Get<PathFinder>().GetPath(pointA, pointB, model.Grid);
+        var path = _pathFinder.GetPath(pointA, pointB, model.Grid);
         foreach (var p in path.Path)
         {
             model.Grid.Map[p] = roadtile;

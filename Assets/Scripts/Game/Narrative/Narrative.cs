@@ -29,7 +29,7 @@ public class Narrative : MonoBehaviour
             var data = collection.GetNarrative(narrative.Name);
             var stateData = data.Steps.First(s => s.Name == next);
             narrative.CurrentState.ExitState(Game.Model);
-            var builder = Services.Get<NarrativeBuilder>();
+            var builder = new NarrativeBuilder();
             narrative.CurrentState = builder.BuildNarrativeState(stateData);
             narrative.CurrentState.EnterState(Game.Model);
         }

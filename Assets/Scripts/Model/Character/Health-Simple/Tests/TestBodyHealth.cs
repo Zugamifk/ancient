@@ -12,26 +12,29 @@ namespace HealthSimple
         [Test]
         public void NewBody_IsAlive()
         {
-            var body = Services.Get<BodyBuilder>().BuildHuman();
-            var healthService = Services.Get<HealthDiagnosticService>();
+            var builder = new BodyBuilder();
+            var body = builder.BuildHuman();
+            var healthService = new HealthDiagnosticService();
             Assert.IsTrue(healthService.IsAlive(body));
         }
 
         [Test]
         public void NewBody_CanBreath()
         {
-            var body = Services.Get<BodyBuilder>().BuildHuman();
-            var healthService = Services.Get<HealthDiagnosticService>();
+            var builder = new BodyBuilder();
+            var body = builder.BuildHuman();
+            var healthService = new HealthDiagnosticService();
             Assert.IsTrue(healthService.CanBreath(body));
         }
 
         [Test]
         public void NewBody_InhaleRaisesOxygenLevels()
         {
-            var body = Services.Get<BodyBuilder>().BuildHuman();
-            var operationService = Services.Get<HealthOperationService>();
+            var builder = new BodyBuilder();
+            var body = builder.BuildHuman();
+            var operationService = new HealthOperationService();
             operationService.SetBloodOxygenLevel(body, 50);
-            var functionService = Services.Get<HealthFunctionService>();
+            var functionService = new HealthFunctionService();
             functionService.Inhale(body);
 
             foreach (var part in functionService.GetConnected(body.Head.Blood))
@@ -43,60 +46,66 @@ namespace HealthSimple
         [Test]
         public void RemoveHead_IsNotAlive()
         {
-            var body = Services.Get<BodyBuilder>().BuildHuman();
-            var operationService = Services.Get<HealthOperationService>();
+            var builder = new BodyBuilder();
+            var body = builder.BuildHuman();
+            var operationService = new HealthOperationService();
             operationService.Remove(body, body.Head);
 
-            var healthService = Services.Get<HealthDiagnosticService>();
+            var healthService = new HealthDiagnosticService();
             Assert.IsFalse(healthService.IsAlive(body));
         }
 
         [Test]
         public void RemoveHead_CantBreath()
         {
-            var body = Services.Get<BodyBuilder>().BuildHuman();
-            var operationService = Services.Get<HealthOperationService>();
+            var builder = new BodyBuilder();
+            var body = builder.BuildHuman();
+            var operationService = new HealthOperationService();
             operationService.Remove(body, body.Head);
 
-            var healthService = Services.Get<HealthDiagnosticService>();
+            var healthService = new HealthDiagnosticService();
             Assert.IsFalse(healthService.CanBreath(body));
         }
 
         [Test]
         public void NewBody_CanWalk()
         {
-            var body = Services.Get<BodyBuilder>().BuildHuman();
-            var healthService = Services.Get<HealthDiagnosticService>();
+            var builder = new BodyBuilder();
+            var body = builder.BuildHuman();
+            var healthService = new HealthDiagnosticService();
             Assert.IsTrue(healthService.CanWalk(body));
         }
 
         [Test]
         public void RemoveLeftLeg_CanNotWalk()
         {
-            var body = Services.Get<BodyBuilder>().BuildHuman();
-            var operationService = Services.Get<HealthOperationService>();
+            var builder = new BodyBuilder();
+            var body = builder.BuildHuman();
+            var operationService = new HealthOperationService();
             operationService.Remove(body, body.LeftLeg);
 
-            var healthService = Services.Get<HealthDiagnosticService>();
+            var healthService = new HealthDiagnosticService();
             Assert.IsFalse(healthService.CanWalk(body));
         }
 
         [Test]
         public void RemoveRightLeg_CanNotWalk()
         {
-            var body = Services.Get<BodyBuilder>().BuildHuman();
-            var operationService = Services.Get<HealthOperationService>();
+            var builder = new BodyBuilder();
+            var body = builder.BuildHuman();
+            var operationService = new HealthOperationService();
             operationService.Remove(body, body.RightLeg);
 
-            var healthService = Services.Get<HealthDiagnosticService>();
+            var healthService = new HealthDiagnosticService();
             Assert.IsFalse(healthService.CanWalk(body));
         }
 
         [Test]
         public void NewBody_CanSee()
         {
-            var body = Services.Get<BodyBuilder>().BuildHuman();
-            var healthService = Services.Get<HealthDiagnosticService>();
+            var builder = new BodyBuilder();
+            var body = builder.BuildHuman();
+            var healthService = new HealthDiagnosticService();
             Assert.IsTrue(healthService.CanSee(body));
         }
     }

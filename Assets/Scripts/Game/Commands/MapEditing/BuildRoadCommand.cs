@@ -25,14 +25,13 @@ public class BuildRoadCommand : ICommand
 
     public void Execute(GameModel model)
     {
-        var cityGenerator = Services.Get<CityGenerator>();
         if (string.IsNullOrEmpty(_startName))
         {
-            cityGenerator.BuildRoad(model.MapModel, _start, _end);
+            _cityGenerator.BuildRoad(model.MapModel, _start, _end);
         }
         else
         {
-            cityGenerator.BuildRoad(model.MapModel, _startName, _endName);
+            _cityGenerator.BuildRoad(model.MapModel, _startName, _endName);
         }
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SpawnCharacterState : NarrativeState<SpawnCharacterData>
 {
+    static LocationFinder _locationFinder = new();
     public override string UpdateState(IGameModel model)
     {
-        var locator = Services.Get<LocationFinder>();
-        var position = locator.FindMapLocation(Data.Position, model);
+        var position = _locationFinder.FindMapLocation(Data.Position, model);
         Game.Do(new SpawnCharacterCommand()
         {
             Name = Data.Character,

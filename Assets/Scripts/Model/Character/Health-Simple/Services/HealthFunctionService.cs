@@ -7,8 +7,8 @@ public class HealthFunctionService
 {
     public void Inhale(BodyModel body)
     {
-        var diag = Services.Get<HealthDiagnosticService>();
-        if(!diag.CanBreath(body))
+        var diag = new HealthDiagnosticService();
+        if (!diag.CanBreath(body))
         {
             return;
         }

@@ -16,7 +16,7 @@ public class MoveCharacterCommand : ICommand
             model.Characters.GetItem(CharacterId) :
             model.Characters.GetItem(CharacterName);
         var startPoint = character.Movement.WorldPosition;
-        var path = Services.Get<PathFinder>()
+        var path = new PathFinder()
             .GetPath(Vector2Int.FloorToInt(startPoint), Destination, model.MapModel.Grid);
         character.Movement.CityPath = path;
         if (ReachedPathEnd != null)

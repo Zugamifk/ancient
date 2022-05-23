@@ -20,7 +20,7 @@ public class GetItemCommand : ICommand
         switch (data)
         {
             case TextBookData textbookData:
-                var bookMaker = Services.Get<BookMaker>();
+                var bookMaker = new BookMaker();
                 itemModel = bookMaker.CreateTextBookModel(textbookData);
                 break;
             case PackageItemData packageData:
