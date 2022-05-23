@@ -6,15 +6,16 @@ using Core;
 
 namespace Fluids
 {
-    public class FluidMixture
+    public class FluidMixture : IFluid
     {
-        Dictionary<Type, Measure> _fluidToMeasure = new Dictionary<Type, Measure>();
-        public Measure Amount { get; }
+        Dictionary<Type, IFluid> _fluidToMeasure = new Dictionary<Type, IFluid>();
+        public Measure Measure { get; private set; }
 
-        //public void AddFluid<TFluid>(TFluid fluid)
-        //{
-
-        //}
+        public void AddFluid<TFluid>(TFluid fluid)
+            where TFluid : IFluid               
+        {
+            Measure += fluid.Measure.Value;
+        }
 
         //public FluidMeasure GetAmountOfFluid<TFluid>()
         //{

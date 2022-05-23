@@ -21,16 +21,16 @@ namespace Fluids.Tests
         {
             float amount = 10;
             var container = new FluidContainer(amount);
-            Assert.AreEqual(amount, container.Capacity.Amount);
+            Assert.AreEqual(amount, container.Capacity.Value);
             amount = 25;
             container = new FluidContainer(amount);
-            Assert.AreEqual(amount, container.Capacity.Amount);
+            Assert.AreEqual(amount, container.Capacity.Value);
             amount = 1000000;
             container = new FluidContainer(amount);
-            Assert.AreEqual(amount, container.Capacity.Amount);
+            Assert.AreEqual(amount, container.Capacity.Value);
             amount = Mathf.PI;
             container = new FluidContainer(amount);
-            Assert.AreEqual(amount, container.Capacity.Amount);
+            Assert.AreEqual(amount, container.Capacity.Value);
         }
     }
 }

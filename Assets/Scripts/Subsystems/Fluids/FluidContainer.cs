@@ -12,7 +12,7 @@ namespace Fluids
 
         public FluidContainer(Measure capacity)
         {
-            if (capacity.Amount <= 0)
+            if (capacity.Value <= 0)
             {
                 throw new ArgumentException("Fluid capacity can not be zero!");
             }

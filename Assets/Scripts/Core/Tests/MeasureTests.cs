@@ -14,14 +14,14 @@ namespace Core.Tests
         public void NewMeasure_EmptyConstructor_MeasureZero()
         {
             var measure = new Measure();
-            Assert.AreEqual(measure.Amount, 0);
+            Assert.AreEqual(measure.Value, 0);
         }
 
         [Test]
         public void NewMeasure_AmountEqualsGiven()
         {
             var measure = new Measure(100);
-            Assert.AreEqual(measure.Amount, 100);
+            Assert.AreEqual(measure.Value, 100);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace Core.Tests
             var a = new Measure(2);
             var b = new Measure(3);
             var sum = a + b;
-            Assert.AreEqual(sum.Amount, 5);
+            Assert.AreEqual(sum.Value, 5);
         }
 
         [Test]
@@ -45,9 +45,9 @@ namespace Core.Tests
             var a = new Measure(2);
             var b = 3;
             var sum = a + b;
-            Assert.AreEqual(sum.Amount, 5);
+            Assert.AreEqual(sum.Value, 5);
             sum = b + a;
-            Assert.AreEqual(sum.Amount, 5);
+            Assert.AreEqual(sum.Value, 5);
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace Core.Tests
             var a = new Measure(5);
             var b = new Measure(2);
             var sum = a - b;
-            Assert.AreEqual(sum.Amount, 3);
+            Assert.AreEqual(sum.Value, 3);
         }
 
         [Test]
@@ -65,11 +65,11 @@ namespace Core.Tests
             var a = new Measure(5);
             var b = 2;
             var sum = a - b;
-            Assert.AreEqual(sum.Amount, 3);
+            Assert.AreEqual(sum.Value, 3);
             a = new Measure(2);
             b = 5;
             sum = b - a;
-            Assert.AreEqual(sum.Amount, 3);
+            Assert.AreEqual(sum.Value, 3);
         }
 
         [Test]
@@ -89,9 +89,9 @@ namespace Core.Tests
             var a = new Measure(10);
             var b = new Percentage(50);
             var half = a * b;
-            Assert.AreEqual(half.Amount, 5);
+            Assert.AreEqual(half.Value, 5);
             half = b * a;
-            Assert.AreEqual(half.Amount, 5);
+            Assert.AreEqual(half.Value, 5);
         }
     }
 }
