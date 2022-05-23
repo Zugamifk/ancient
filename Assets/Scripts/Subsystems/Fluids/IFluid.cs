@@ -7,6 +7,6 @@ namespace Fluids
 {
     public interface IFluid
     {
-        Measure Measure { get; }
+        Measure Measure { get; set; }
     }
 }

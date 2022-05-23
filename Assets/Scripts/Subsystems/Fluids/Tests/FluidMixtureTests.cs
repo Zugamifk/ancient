@@ -22,6 +22,13 @@ namespace Fluids.Tests
         }
 
         [Test]
+        public void EmptyFluid_DoesNotContainFluid()
+        {
+            var mixture = new FluidMixture();
+            Assert.IsFalse(mixture.ContainsFluid<TestFluid>());
+        }
+
+        [Test]
         public void AddFluid_IncreasesAmount()
         {
             var mixture = new FluidMixture();
@@ -31,6 +38,18 @@ namespace Fluids.Tests
             };
             mixture.AddFluid(fluid);
             Assert.AreEqual(10, mixture.Measure.Value);
+        }
+
+        [Test]
+        public void AddFluid_AddsFluid()
+        {
+            var mixture = new FluidMixture();
+            var fluid = new TestFluid()
+            {
+                Measure = 10
+            };
+            mixture.AddFluid(fluid);
+            Assert.IsTrue(mixture.ContainsFluid<TestFluid>());
         }
     }
 }
