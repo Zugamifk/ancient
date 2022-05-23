@@ -33,4 +33,15 @@ public class TestBodyHealth
         var healthService = Services.Get<HealthDiagnosticService>();
         Assert.IsFalse(healthService.IsAlive(body));
     }
+
+    [Test]
+    public void RemoveHead_CantBreath()
+    {
+        var body = Services.Get<BodyBuilder>().BuildHuman();
+        var operationService = Services.Get<HealthOperationService>();
+        operationService.Remove(body, body.Head);
+
+        var healthService = Services.Get<HealthDiagnosticService>();
+        Assert.IsFalse(healthService.CanBreath(body));
+    }
 }
