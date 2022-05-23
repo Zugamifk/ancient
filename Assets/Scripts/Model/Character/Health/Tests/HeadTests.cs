@@ -18,7 +18,7 @@ namespace Health.Tests
         }
 
         [Test]
-        public void NewHead_NamedConstructor_HasGivenName()
+        public void NewHead_NamedConstructor_StartsWithOwnerName()
         {
             IHasName head = new HeadModel(TEST_HEAD_NAME);
             Assert.IsTrue(head.Name.StartsWith(TEST_HEAD_NAME));
