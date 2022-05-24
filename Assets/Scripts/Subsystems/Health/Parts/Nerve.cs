@@ -18,5 +18,10 @@ namespace Health
         {
             Name = $"{ownerName} Nerve";
         }
+
+        public bool IsConnectedTo(Nerve other)
+        {
+            return false;
+        }
     }
 }

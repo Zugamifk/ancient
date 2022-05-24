@@ -10,6 +10,7 @@ namespace Health.Tests
     public class NerveTests
     {
         const string TEST_NERVE_NAME = "NERVE TEST";
+        const string TEST_NERVE_NAME_OTHER = "OTHER NERVE TEST";
 
         [Test]
         public void EmptyConstructor_HasName()
@@ -26,17 +27,25 @@ namespace Health.Tests
         }
 
         [Test]
-        public void NewNerve_HasConnectedSet()
+        public void New_HasConnectedSet()
         {
             Nerve nerve = new Nerve(TEST_NERVE_NAME);
             Assert.NotNull(nerve.Connected);
         }
 
         [Test]
-        public void NewNerve_HasNoConnections()
+        public void New_HasNoConnections()
         {
             Nerve nerve = new Nerve(TEST_NERVE_NAME);
             Assert.Zero(nerve.Connected.Count());
+        }
+
+        [Test]
+        public void IsConnected_IsNotConnectedToOther_ReturnsFalse()
+        {
+            Nerve nerve = new Nerve(TEST_NERVE_NAME);
+            Nerve other = new Nerve(TEST_NERVE_NAME_OTHER);
+            Assert.IsFalse(nerve.IsConnectedTo(other));
         }
     }
 }
