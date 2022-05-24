@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TowerDefense.ViewModels;
 
 public interface IGameModel
 {
@@ -10,5 +11,5 @@ public interface IGameModel
 
     IInventoryModel Inventory { get; }
     ICheatController Cheats { get; }
-    ITurretDefenseViewModel TurretDefense { get; }
+    ITowerDefense TowerDefense { get; }
 }

@@ -48,20 +48,20 @@ public class MapMouseInput : MouseInputState
 
     void MapHandleMouse(Vector3 worldPosition)
     {
-        if (!string.IsNullOrEmpty(Game.Model.TurretDefense.BuildingBeingPlaced))
-        {
-            if (Input.GetMouseButtonUp(1))
-            {
-                Game.Do(new StopPlacingTowerCommand());
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
-                Game.Do(new BuildTowerCommand(Game.Model.TurretDefense.BuildingBeingPlaced, (Vector2Int)tile));
-            }
-        }
-        else
-        {
+        //if (!string.IsNullOrEmpty(Game.Model.TowerDefense.BuildingBeingPlaced))
+        //{
+        //    if (Input.GetMouseButtonUp(1))
+        //    {
+        //        Game.Do(new StopPlacingTowerCommand());
+        //    }
+        //    else if (Input.GetMouseButtonUp(0))
+        //    {
+        //        var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
+        //        Game.Do(new BuildTowerCommand(Game.Model.TowerDefense.BuildingBeingPlaced, (Vector2Int)tile));
+        //    }
+        //}
+        //else
+        //{
             if (Input.GetMouseButtonDown(1))
             {
                 _startPosition = _context.MapCameraController.transform.localPosition;
@@ -82,6 +82,6 @@ public class MapMouseInput : MouseInputState
                 var diff = _context.MapCameraController.GetWorldPosition(Input.mousePosition) - _context.MapCameraController.GetWorldPosition(_startDragPosition);
                 _context.MapCameraController.PanTo(_startPosition - diff);
             }
-        }
+        //}
     }
 }

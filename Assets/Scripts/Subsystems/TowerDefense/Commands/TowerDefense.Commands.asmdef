@@ -1,11 +1,13 @@
 {
-    "name": "Model",
-    "rootNamespace": "",
+    "name": "TowerDefense.Commands",
+    "rootNamespace": "TowerDefense.Commands",
     "references": [
-        "GUID:69560c3be3d56564da3ecb875d90f45b",
-        "GUID:f1eacd49830892c4e9c9d11bbf989cc6",
+        "GUID:5de6134c1c064b04dabbf980177af609",
+        "GUID:eb0fbfe5148c2b84d8e9d35051e16c98",
         "GUID:b855fe0f42fa5334e9d93ae89d608a4c",
-        "GUID:7b318051aef0cea44892d3d3b82d6f88"
+        "GUID:f1eacd49830892c4e9c9d11bbf989cc6",
+        "GUID:3fa8afd92b1d86d4e8b564ca0ce4dafd",
+        "GUID:d2dbe21ee0e45dd4d9458d4fe5bec48f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

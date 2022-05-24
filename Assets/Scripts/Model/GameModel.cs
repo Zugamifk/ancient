@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TowerDefense.Models;
+using TowerDefense.ViewModels;
 
 public class GameModel : IGameModel
 {
@@ -10,9 +12,9 @@ public class GameModel : IGameModel
     public IdentifiableCollection<CharacterModel> Characters = new IdentifiableCollection<CharacterModel>();
     public Dictionary<string, NarrativeModel> Narratives = new Dictionary<string, NarrativeModel>();
     public InventoryModel Inventory = new InventoryModel();
-    public TurretDefenseModel TurretDefenseModel = new TurretDefenseModel();
+    public TowerDefenseGame TowerDefense = new TowerDefenseGame();
 
-    public IEnumerable<MovementModel> MovementModels => Characters.AllItems.Select(c => c.Movement).Concat(TurretDefenseModel.Enemies.Select(e => e.Movement));
+    public IEnumerable<MovementModel> MovementModels => Characters.AllItems.Select(c => c.Movement);
 
     public ICheatController Cheats;
 
@@ -22,7 +24,7 @@ public class GameModel : IGameModel
     IIdentifiableLookup<ICharacterModel> IGameModel.Characters => Characters;
     IInventoryModel IGameModel.Inventory => Inventory;
     ICheatController IGameModel.Cheats => Cheats;
-    ITurretDefenseViewModel IGameModel.TurretDefense => TurretDefenseModel;
+    ITowerDefense IGameModel.TowerDefense => TowerDefense;
     #endregion
 
 }

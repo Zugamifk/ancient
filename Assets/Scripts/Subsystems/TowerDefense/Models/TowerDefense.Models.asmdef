@@ -1,11 +1,9 @@
 {
-    "name": "Model",
-    "rootNamespace": "",
+    "name": "TowerDefense.Models",
+    "rootNamespace": "TowerDefense.Models",
     "references": [
-        "GUID:69560c3be3d56564da3ecb875d90f45b",
-        "GUID:f1eacd49830892c4e9c9d11bbf989cc6",
-        "GUID:b855fe0f42fa5334e9d93ae89d608a4c",
-        "GUID:7b318051aef0cea44892d3d3b82d6f88"
+        "GUID:7b318051aef0cea44892d3d3b82d6f88",
+        "GUID:f1eacd49830892c4e9c9d11bbf989cc6"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
