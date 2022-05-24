@@ -12,10 +12,7 @@ public class TurretDefenseEnemyReachEndCommand : ICommand
     }
     public void Execute(GameModel model)
     {
-        Game.Do(new RemoveCharacterCommand()
-        {
-            CharacterId = _id
-        });
         Game.Do(new TurretDefenseLoseLifeCommand());
+        Game.Do(new TurretDefenseRemoveEnemyCommand(_id));
     }
 }

@@ -18,8 +18,11 @@ public class Turret : MonoBehaviour, IView<ITurretModel>, IMapObject
         _guidToPosition.Clear();
         foreach(var id in turretModel.EnemiesInRange)
         {
-            var pos = Game.Model.Characters.GetItem(id).Position;
-            _guidToPosition[id] = _tileMap.ModelToWorld(pos);
+            var character = Game.Model.Characters.GetItem(id);
+            if(character!=null)
+            {   
+                _guidToPosition[id] = _tileMap.ModelToWorld(character.Position);
+            }
         }
     }
 
