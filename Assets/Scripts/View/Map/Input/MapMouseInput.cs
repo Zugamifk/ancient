@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+using TowerDefense;
 public class MapMouseInput : MouseInputState
 {
     ITileMapTransformer _tileMapTransformer;
@@ -52,12 +52,12 @@ public class MapMouseInput : MouseInputState
         {
             if (Input.GetMouseButtonUp(1))
             {
-                Game.Do(new TurretDefenseStopPlacingTurretCommand());
+                Game.Do(new StopPlacingTowerCommand());
             }
             else if (Input.GetMouseButtonUp(0))
             {
                 var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
-                Game.Do(new TurretDefenseBuildTurretCommand(Game.Model.TurretDefense.BuildingBeingPlaced, (Vector2Int)tile));
+                Game.Do(new BuildTowerCommand(Game.Model.TurretDefense.BuildingBeingPlaced, (Vector2Int)tile));
             }
         }
         else
