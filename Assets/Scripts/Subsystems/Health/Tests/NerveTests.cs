@@ -47,5 +47,14 @@ namespace Health.Tests
             Nerve other = new Nerve(TEST_NERVE_NAME_OTHER);
             Assert.IsFalse(nerve.IsConnectedTo(other));
         }
+
+        [Test]
+        public void IsConnected_IsConnectedToOther_ReturnsTrue()
+        {
+            Nerve nerve = new Nerve(TEST_NERVE_NAME);
+            Nerve other = new Nerve(TEST_NERVE_NAME_OTHER);
+            nerve.ConnectTo(other);
+            Assert.IsTrue(nerve.IsConnectedTo(other));
+        }
     }
 }

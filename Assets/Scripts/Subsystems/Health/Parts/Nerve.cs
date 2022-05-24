@@ -7,7 +7,8 @@ namespace Health
     public class Nerve : IHasName
     {
         public string Name { get; }
-        public IEnumerable<Nerve> Connected { get; } = new HashSet<Nerve>();
+        HashSet<Nerve> _connected = new();
+        public IEnumerable<Nerve> Connected => _connected;
 
         public Nerve()
         {
@@ -21,7 +22,12 @@ namespace Health
 
         public bool IsConnectedTo(Nerve other)
         {
-            return false;
+            return _connected.Contains(other);
+        }
+
+        public void ConnectTo(Nerve other)
+        {
+            _connected.Add(other);
         }
     }
 }
