@@ -1,0 +1,16 @@
+{
+    "name": "TowerDefense.Behaviours",
+    "rootNamespace": "TowerDefense.Behaviours",
+    "references": [
+        "GUID:b855fe0f42fa5334e9d93ae89d608a4c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
