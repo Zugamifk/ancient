@@ -13,13 +13,6 @@ namespace Health.Tests
         const string TEST_NERVE_NAME_OTHER = "OTHER NERVE TEST";
 
         [Test]
-        public void EmptyConstructor_HasName()
-        {
-            IHasName nerve = new Nerve();
-            Assert.IsNotEmpty(nerve.Name);
-        }
-
-        [Test]
         public void NamedConstructor_StartsWithOwnerName()
         {
             IHasName nerve = new Nerve(TEST_NERVE_NAME);

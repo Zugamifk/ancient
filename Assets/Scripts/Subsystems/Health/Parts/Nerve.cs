@@ -10,11 +10,6 @@ namespace Health
         HashSet<Nerve> _connected = new();
         public IEnumerable<Nerve> Connected => _connected;
 
-        public Nerve()
-        {
-            Name = "Nerve";
-        }
-
         public Nerve(string ownerName)
         {
             Name = $"{ownerName} Nerve";
