@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -35,7 +36,7 @@ namespace Health.Tests
         public void NewNerve_HasNoConnections()
         {
             Nerve nerve = new Nerve(TEST_NERVE_NAME);
-            Assert.Zero(nerve.Connected.Count);
+            Assert.Zero(nerve.Connected.Count());
         }
     }
 }
