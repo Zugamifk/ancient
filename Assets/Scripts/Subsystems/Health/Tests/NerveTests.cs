@@ -23,5 +23,19 @@ namespace Health.Tests
             IHasName nerve = new Nerve(TEST_NERVE_NAME);
             Assert.IsTrue(nerve.Name.StartsWith(TEST_NERVE_NAME));
         }
+
+        [Test]
+        public void NewNerve_HasConnectedSet()
+        {
+            Nerve nerve = new Nerve(TEST_NERVE_NAME);
+            Assert.NotNull(nerve.Connected);
+        }
+
+        [Test]
+        public void NewNerve_HasNoConnections()
+        {
+            Nerve nerve = new Nerve(TEST_NERVE_NAME);
+            Assert.Zero(nerve.Connected.Count);
+        }
     }
 }

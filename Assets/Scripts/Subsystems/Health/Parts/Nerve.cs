@@ -7,6 +7,8 @@ namespace Health
     public class Nerve : IHasName
     {
         public string Name { get; }
+        public HashSet<Nerve> Connected { get; } = new();
+
         public Nerve()
         {
             Name = "Nerve";
