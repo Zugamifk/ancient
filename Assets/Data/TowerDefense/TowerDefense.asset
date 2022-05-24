@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1e8eededcda5af4ea1ef91c1771410d, type: 3}
-  m_Name: TurretDefense
+  m_Name: TowerDefense
   m_EditorClassIdentifier: 
   StartingLives: 10
   Waves:
   - {fileID: 11400000, guid: bee43611dbdc4a34e84d9c1e3762feaa, type: 2}
-  Turrets:
+  Towers:
   - {fileID: 11400000, guid: e87268e648afee348a76ef605ff5e6f3, type: 2}

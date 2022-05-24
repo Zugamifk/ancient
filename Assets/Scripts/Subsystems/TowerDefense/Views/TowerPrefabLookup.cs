@@ -11,7 +11,7 @@ namespace TowerDefense.Views
         public TowerPrefabLookup(TowerDefenseData data)
         {
             _lookup = new();
-            foreach (var d in data.Turrets)
+            foreach (var d in data.Towers)
             {
                 _lookup[d.Name] = d.Prefab;
             }

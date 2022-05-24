@@ -9,12 +9,12 @@ namespace TowerDefense.Data
     {
         public int StartingLives;
         public TurretDefenseWaveData[] Waves;
-        public Tower[] Turrets;
+        public Tower[] Towers;
 
         Dictionary<string, Tower> _turretNameToData = new Dictionary<string, Tower>();
         private void OnEnable()
         {
-            foreach (var t in Turrets)
+            foreach (var t in Towers)
             {
                 _turretNameToData.Add(t.name, t);
             }

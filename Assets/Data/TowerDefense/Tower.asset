@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b0e8b9617185a34f9b76361531b38aa, type: 3}
-  m_Name: Turret
+  m_Name: Tower
   m_EditorClassIdentifier: 
   Name: Turret
   Radius: 3
