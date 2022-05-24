@@ -14,5 +14,10 @@ namespace Health
         public BloodVessel BloodVessels { get; } = new BloodVessel(BLOOD_VOLUME);
         public Brain Brain { get; } = new Brain();
         public Nerve Nerves { get; } = new Nerve(NAME);
+
+        public Head()
+        {
+            Nerves.ConnectTo(Brain.Nerves);
+        }
     }
 }

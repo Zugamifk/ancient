@@ -51,5 +51,12 @@ namespace Health.Tests
             Head head = new Head();
             Assert.IsNotNull(head.Nerves);
         }
+
+        [Test]
+        public void NewHead_NervesConnectedToBrain()
+        {
+            Head head = new Head();
+            Assert.IsTrue(head.Nerves.IsConnectedTo(head.Brain.Nerves));
+        }
     }
 }

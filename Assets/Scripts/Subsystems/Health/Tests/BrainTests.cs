@@ -8,8 +8,6 @@ namespace Health.Tests
 {
     public class BrainTests
     {
-        const string TEST_BRAIN_NAME = "BRAIN TEST";
-
         [Test]
         public void New_HasName()
         {
