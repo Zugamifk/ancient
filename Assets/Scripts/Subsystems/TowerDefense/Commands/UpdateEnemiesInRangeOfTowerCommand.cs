@@ -16,7 +16,7 @@ namespace TowerDefense.Commands
 
         public void Execute(GameModel model)
         {
-            var tower = model.TowerDefense.Turrets.GetItem(_id);
+            var tower = model.TowerDefense.Towers.GetItem(_id);
             tower.EnemiesInRange.Clear();
             foreach (var e in model.TowerDefense.EnemyIds.Select(model.Characters.GetItem))
             {

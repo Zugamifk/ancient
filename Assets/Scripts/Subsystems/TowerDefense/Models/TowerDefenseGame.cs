@@ -17,7 +17,7 @@ namespace TowerDefense.Models
         public int CurrentWave = -1;
         public List<Guid> EnemyIds = new List<Guid>();
         public string BuildingBeingPlaced;
-        public IdentifiableCollection<Tower> Turrets = new IdentifiableCollection<Tower>();
+        public IdentifiableCollection<Tower> Towers = new IdentifiableCollection<Tower>();
         public IdentifiableCollection<Projectile> Projectiles = new IdentifiableCollection<Projectile>();
 
         #region ITurretDefenseViewModel
@@ -33,7 +33,7 @@ namespace TowerDefense.Models
 
         string ITowerDefense.BuildingBeingPlaced => BuildingBeingPlaced;
 
-        IIdentifiableLookup<ITower> ITowerDefense.Turrets => Turrets;
+        IIdentifiableLookup<ITower> ITowerDefense.Turrets => Towers;
 
         IIdentifiableLookup<IProjectile> ITowerDefense.Projectiles => Projectiles;
 

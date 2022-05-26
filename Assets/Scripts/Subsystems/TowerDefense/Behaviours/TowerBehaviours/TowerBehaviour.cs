@@ -9,9 +9,20 @@ namespace TowerDefense.Behaviours
     {
         FiringBehaviour _firing = new();
 
-        public void UpdateFiringState(Tower tower)
+        public void UpdateFiringState(GameModel game, Tower tower)
         {
+            var cooldown = 1 / tower.ShotsPerSecond;
+            tower.ShotCooldown -= game.TimeModel.LastDeltaTime;
+            while(tower.ShotCooldown < 0)
+            {
+                tower.ShotCooldown += cooldown;
 
+                var projectile = new Projectile()
+                {
+
+                };
+                game.TowerDefense.Projectiles.AddItem(projectile);
+            }
         }
     }
 }
