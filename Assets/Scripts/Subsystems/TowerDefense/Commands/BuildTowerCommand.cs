@@ -24,6 +24,7 @@ namespace TowerDefense.Commands
             turretModel.Key = data.Name;
             turretModel.AttackRadius = data.Radius;
             turretModel.Position = _position;
+            turretModel.ShotsPerSecond = data.ShotsPerSecond;
             model.TowerDefense.Towers.AddItem(turretModel);
             model.TowerDefense.BuildingBeingPlaced = null;
         }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74eb662d6fa548468d857055407bc45, type: 3}
   m_Name: PojectileLookup
   m_EditorClassIdentifier: 
-  PrefabReferences:
+  Projectiles:
   - {fileID: 11400000, guid: 6c0d9230af6b685499f3c7495d6450d3, type: 2}

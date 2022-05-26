@@ -15,7 +15,6 @@ namespace TowerDefense.Behaviours
             while(tower.ShotCooldown < 0 && GetTargetInRange(game, tower, out Vector3 position))
             {
                 tower.ShotCooldown += cooldown;
-
                 var projectile = new Projectile()   
                 {
                     Key="TowerBomb",

@@ -14,7 +14,7 @@ namespace TowerDefense.Models
         public float AttackRadius { get; set; }
         public HashSet<Guid> EnemiesInRange = new HashSet<Guid>();
         public float ShotsPerSecond { get; set; }
-        public float ShotCooldown { get; set; }
+        public float ShotCooldown { get; set; } = 0;
         IEnumerable<Guid> ITower.EnemiesInRange => EnemiesInRange;
     }
 }
