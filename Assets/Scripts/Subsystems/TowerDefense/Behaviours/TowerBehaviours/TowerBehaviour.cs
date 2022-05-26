@@ -8,8 +8,6 @@ namespace TowerDefense.Behaviours
 {
     public class TowerBehaviour
     {
-        FiringBehaviour _firing = new();
-
         public void FireProjectiles(GameModel game, Tower tower)
         {
             var cooldown = 1 / tower.ShotsPerSecond;
