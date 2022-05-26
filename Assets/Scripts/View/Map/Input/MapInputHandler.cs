@@ -19,7 +19,6 @@ public class MapInputHandler : MonoBehaviour, IMouseInputHandler
         foreach(var h in handlers)
         {
             h.SetTileMapTransformer(_tileMapper);
-            Debug.Log($"Using {h} map input handler");
         }
     }
 

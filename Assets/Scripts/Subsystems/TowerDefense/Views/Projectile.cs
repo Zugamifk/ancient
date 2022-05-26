@@ -19,7 +19,6 @@ namespace TowerDefense.Views
 
         public void InitializeFromModel(IProjectile model)
         {
-            throw new System.NotImplementedException();
         }
     }
 }

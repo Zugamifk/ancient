@@ -4,12 +4,15 @@ using UnityEngine;
 
 namespace TowerDefense.Data
 {
-    public class Tower : ScriptableObject
+    public class TowerData : ScriptableObject, IPrefabReference
     {
         public string Name;
         public float Radius;
         public float ShotsPerSecond;
         public float Damage;
         public GameObject Prefab;
+
+        string IPrefabReference.Name => Name;
+        GameObject IPrefabReference.Prefab => Prefab;
     }
 }

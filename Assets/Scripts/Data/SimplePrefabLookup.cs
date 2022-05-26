@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimplePrefabLookup<TKeyHolder, TReference> : ScriptableObject, IPrefabLookup
+public abstract class SimplePrefabLookup<TKeyHolder, TReference> : ScriptableObject, IPrefabLookup
     where TKeyHolder : IKeyHolder
     where TReference : IPrefabReference
 {
-    public TReference[] PrefabReferences;
-
     Dictionary<string, TReference> _nameToPrefab = new Dictionary<string, TReference>();
 
     public GameObject GetPrefab(string name) => _nameToPrefab[name].Prefab;
@@ -28,4 +26,6 @@ public class SimplePrefabLookup<TKeyHolder, TReference> : ScriptableObject, IPre
         }
         Prefabs.Register<TKeyHolder>(this);
     }
+
+    protected abstract IEnumerable<TReference> PrefabReferences { get; }
 }

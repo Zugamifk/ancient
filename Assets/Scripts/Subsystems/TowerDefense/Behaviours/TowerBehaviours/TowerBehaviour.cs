@@ -18,6 +18,7 @@ namespace TowerDefense.Behaviours
 
                 var projectile = new Projectile()   
                 {
+                    Key="TowerBomb",
                     Position = position
                 };
                 game.TowerDefense.Projectiles.AddItem(projectile);

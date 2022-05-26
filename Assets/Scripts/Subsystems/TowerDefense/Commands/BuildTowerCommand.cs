@@ -19,7 +19,7 @@ namespace TowerDefense.Commands
 
         public void Execute(GameModel model)
         {
-            var data = DataService.GetData<TowerDefenseData>().GetTurret(_name);
+            var data = DataService.GetData<TowerDefenseData>().GetTower(_name);
             var turretModel = new Models.Tower();
             turretModel.Key = data.Name;
             turretModel.AttackRadius = data.Radius;
