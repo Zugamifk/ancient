@@ -17,8 +17,9 @@ namespace TowerDefense.Views
             _identifiable = GetComponent<Identifiable>();
         }
 
-        public void InitializeFromModel(IProjectile model)
+        void IView<IProjectile>.InitializeFromModel(IProjectile model)
         {
+            _identifiable.Id = model.Id;
         }
     }
 }

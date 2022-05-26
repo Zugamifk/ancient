@@ -16,7 +16,7 @@ public class MapPositionable : MonoBehaviour
 
     public void Update()
     {
-        var positionable = PositionGetter.Invoke(_identifiable.Id);
+        var positionable = PositionGetter?.Invoke(_identifiable.Id);
         if (positionable != null)
         {
         }
