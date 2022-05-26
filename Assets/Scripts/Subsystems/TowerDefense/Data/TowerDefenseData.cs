@@ -8,7 +8,7 @@ namespace TowerDefense.Data
     public class TowerDefenseData : ScriptableObject, IPrefabLookup
     {
         public int StartingLives;
-        public TurretDefenseWaveData[] Waves;
+        public TowerDefenseWaveData[] Waves;
         public Tower[] Towers;
 
         Dictionary<string, Tower> _turretNameToData = new Dictionary<string, Tower>();

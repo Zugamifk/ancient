@@ -5,7 +5,7 @@ using TowerDefense.ViewModels;
 
 namespace TowerDefense.Views
 {
-    public class ProjectileViewSpawner : ViewSpawner<IProjectile, TurretProjectile>
+    public class ProjectileViewSpawner : ViewSpawner<IProjectile, Projectile>
     {
         protected override IIdentifiableLookup<IProjectile> GetIdentifiables() => Game.Model.TowerDefense.Projectiles;
     }

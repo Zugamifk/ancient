@@ -8,11 +8,13 @@ public class MapMouseInput : MouseInputState
     ITileMapTransformer _tileMapTransformer;
     protected Vector3 _startPosition;
     protected Vector3 _startDragPosition;
+    IEnumerable<IMapMouseInputHandler> _inputHandlers;
 
-    public MapMouseInput(MouseInputState state, ITileMapTransformer tileMapTransformer)
+    public MapMouseInput(MouseInputState state, ITileMapTransformer tileMapTransformer, IEnumerable<IMapMouseInputHandler> inputHandlers)
         : base(state)
     {
         _tileMapTransformer = tileMapTransformer;
+        _inputHandlers = inputHandlers;
     }
 
     public sealed override MouseInputState UpdateState()
@@ -48,40 +50,39 @@ public class MapMouseInput : MouseInputState
 
     void MapHandleMouse(Vector3 worldPosition)
     {
-        //if (!string.IsNullOrEmpty(Game.Model.TowerDefense.BuildingBeingPlaced))
-        //{
-        //    if (Input.GetMouseButtonUp(1))
-        //    {
-        //        Game.Do(new StopPlacingTowerCommand());
-        //    }
-        //    else if (Input.GetMouseButtonUp(0))
-        //    {
-        //        var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
-        //        Game.Do(new BuildTowerCommand(Game.Model.TowerDefense.BuildingBeingPlaced, (Vector2Int)tile));
-        //    }
-        //}
-        //else
-        //{
-            if (Input.GetMouseButtonDown(1))
+        foreach(var handler in _inputHandlers)
+        {
+            if (handler.ShouldHandleInput(worldPosition))
             {
-                _startPosition = _context.MapCameraController.transform.localPosition;
-                _startDragPosition = Input.mousePosition;
+                handler.HandleInput(worldPosition);
+                return;
             }
-            if (Input.GetMouseButton(0))
+        }
+
+        DefaultHandInput(worldPosition);
+    }
+
+    void DefaultHandInput(Vector3 worldPosition)
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            _startPosition = _context.MapCameraController.transform.localPosition;
+            _startDragPosition = Input.mousePosition;
+        }
+        if (Input.GetMouseButton(0))
+        {
+            var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
+            Game.Do(new SetTileCommand()
             {
-                var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
-                Game.Do(new SetTileCommand()
-                {
-                    Position = (Vector2Int)tile,
-                    TileType = Name.Tile.Road
-                });
-            }
-            else
-            if (Input.GetMouseButton(1))
-            {
-                var diff = _context.MapCameraController.GetWorldPosition(Input.mousePosition) - _context.MapCameraController.GetWorldPosition(_startDragPosition);
-                _context.MapCameraController.PanTo(_startPosition - diff);
-            }
-        //}
+                Position = (Vector2Int)tile,
+                TileType = Name.Tile.Road
+            });
+        }
+        else
+        if (Input.GetMouseButton(1))
+        {
+            var diff = _context.MapCameraController.GetWorldPosition(Input.mousePosition) - _context.MapCameraController.GetWorldPosition(_startDragPosition);
+            _context.MapCameraController.PanTo(_startPosition - diff);
+        }
     }
 }

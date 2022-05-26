@@ -5,7 +5,7 @@ using TowerDefense.ViewModels;
 
 namespace TowerDefense.Views
 {
-    public class TurretProjectile : MonoBehaviour, IView<IProjectile>
+    public class Projectile : MonoBehaviour, IView<IProjectile>
     {
         [SerializeField]
         Transform _viewRoot;

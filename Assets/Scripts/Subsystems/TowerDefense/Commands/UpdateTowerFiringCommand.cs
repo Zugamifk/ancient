@@ -14,7 +14,7 @@ namespace TowerDefense.Commands
 
         public void Execute(GameModel model)
         {
-            _towerBehaviour.UpdateFiringState(model, model.TowerDefense.Towers.GetItem(_id));
+            _towerBehaviour.FireProjectiles(model, model.TowerDefense.Towers.GetItem(_id));
         }
     }
 }

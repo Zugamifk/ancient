@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0e8b9617185a34f9b76361531b38aa, type: 3}
   m_Name: Tower
   m_EditorClassIdentifier: 
-  Name: Turret
+  Name: Tower
   Radius: 3
   ShotsPerSecond: 1
   Damage: 0

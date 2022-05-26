@@ -571,6 +571,7 @@ GameObject:
   - component: {fileID: 401243649}
   - component: {fileID: 401243648}
   - component: {fileID: 401243650}
+  - component: {fileID: 401243651}
   m_Layer: 0
   m_Name: TurretDefense
   m_TagString: Untagged
@@ -635,6 +636,18 @@ MonoBehaviour:
   _pathPoints:
   - {x: 0, y: 0}
   - {x: 0, y: 10}
+--- !u!114 &401243651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401243645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f5c31d9711c104387c8bbee7cafbbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &430524228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1704,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileMapper: {fileID: 1645037283}
+  _mapInputHandlerContainers:
+  - {fileID: 401243645}
 --- !u!1 &1688259636
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,6 +2156,10 @@ PrefabInstance:
     - target: {fileID: 812813587367919301, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358537342291918564, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
+      propertyPath: _buildingOptions.Array.data[0]
+      value: Tower
       objectReference: {fileID: 0}
     - target: {fileID: 3182888111972453255, guid: f763318c2b3e2a143941fccacf5ccc92, type: 3}
       propertyPath: m_AnchorMax.y
