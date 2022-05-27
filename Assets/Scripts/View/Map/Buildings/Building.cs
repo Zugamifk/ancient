@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Identifiable))]
-public class Building : MonoBehaviour, IView<IBuildingModel>, IMapObject
+public class Building : MonoBehaviour, IView<IBuildingModel>
 {
     [SerializeField]
     Highlighter _highlighter;
@@ -13,9 +13,6 @@ public class Building : MonoBehaviour, IView<IBuildingModel>, IMapObject
     Identifiable _identifiable;
 
     public Vector3 EntrancePosition => _entrance.position;
-
-    ITileMapTransformer _tileMap;
-    IBuildingModel _model;
 
     private void Awake()
     {
@@ -30,13 +27,6 @@ public class Building : MonoBehaviour, IView<IBuildingModel>, IMapObject
 
     public void InitializeFromModel(IBuildingModel model)
     {
-        _model = model;
         _identifiable.Id = model.Id;
-        transform.position = _tileMap.GetWorldCenterOftile((Vector3Int)_model.Position);
-    }
-
-    public void SetTileMap(ITileMapTransformer tileMap)
-    {
-        _tileMap = tileMap;
     }
 }

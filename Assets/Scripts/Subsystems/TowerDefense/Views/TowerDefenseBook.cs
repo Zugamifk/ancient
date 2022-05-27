@@ -31,7 +31,6 @@ namespace TowerDefense.Views
 
         public void ClickedBuildOption(int index)
         {
-            Debug.Log("Clicked");
             Game.Do(new StartPlacingTowerCommand(_buildingOptions[index]));
         }
     }

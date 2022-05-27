@@ -19,7 +19,7 @@ public class UpdateMovementCommand : ICommand
             var distance = movement.MoveSpeed * model.TimeModel.LastDeltaTime;
             while (distance > 0 && !movement.AtPathEnd)
             {
-                var end = (Vector2)path.Path[movement.CurrentPathIndex];
+                var end = path.Path[movement.CurrentPathIndex] + movement.PositionOffset;
                 var dir = (end - movement.WorldPosition);
                 var distanceToEnd = dir.magnitude;
                 if (distance < distanceToEnd)

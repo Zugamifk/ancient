@@ -9,6 +9,8 @@ public class MovementModel : IIdentifiable
     // live data
     public Guid OwnerId { get; set; }
     public Vector2 WorldPosition { get; set; }
+    public Vector2 PositionOffset { get; } = new Vector2(0.5f - UnityEngine.Random.value, .5f - UnityEngine.Random.value);
+
     public string EnteredLocation;
     public CityPath CityPath;
 

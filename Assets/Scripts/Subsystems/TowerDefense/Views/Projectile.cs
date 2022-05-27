@@ -11,6 +11,7 @@ namespace TowerDefense.Views
         Transform _viewRoot;
 
         Identifiable _identifiable;
+        ITileMapTransformer _tileMapper;
 
         void Awake()
         {

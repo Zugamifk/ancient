@@ -5,9 +5,8 @@ using UnityEngine;
 
 namespace TowerDefense.ViewModels
 {
-    public interface ITower : IIdentifiable, IKeyHolder
+    public interface ITower : IIdentifiable, IKeyHolder, IMapPositionable
     {
-        Vector2Int Position { get; }
         float AttackRadius { get; }
         IEnumerable<Guid> EnemiesInRange { get; }
     }

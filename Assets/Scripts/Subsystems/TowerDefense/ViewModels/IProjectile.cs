@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TowerDefense.ViewModels
 {
-    public interface IProjectile : IIdentifiable, IKeyHolder
+    public interface IProjectile : IIdentifiable, IKeyHolder, IMapPositionable
     {
 
     }

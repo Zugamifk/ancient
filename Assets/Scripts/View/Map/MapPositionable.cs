@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Identifiable))]
 public class MapPositionable : MonoBehaviour
 {
-    public Func<Guid, IMapPositionable> PositionGetter;
+    public Func<Guid, Vector3> PositionGetter;
     Identifiable _identifiable;
 
     void Awake()
@@ -16,9 +16,10 @@ public class MapPositionable : MonoBehaviour
 
     public void Update()
     {
-        var positionable = PositionGetter?.Invoke(_identifiable.Id);
-        if (positionable != null)
+        var position = PositionGetter?.Invoke(_identifiable.Id); ;
+        if (position.HasValue)
         {
+            transform.position = position.Value;
         }
     }
 }
