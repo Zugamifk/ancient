@@ -22,6 +22,13 @@ namespace Health
         public void ConnectSource(IBloodCirculator source)
         {
             Sources.Add(source);
+            source.Sinks.Add(this);
+        }
+
+        public void ConnectSink(IBloodCirculator sink)
+        {
+            Sinks.Add(sink);
+            sink.Sources.Add(this);
         }
     }
 }

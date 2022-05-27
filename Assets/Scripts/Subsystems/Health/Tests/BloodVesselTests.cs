@@ -43,10 +43,27 @@ namespace Health.Tests
             var source = new BloodVessel(10);
 
             Assert.IsFalse(bloodVessel.Sources.Contains(source));
+            Assert.IsFalse(source.Sinks.Contains(bloodVessel));
 
             bloodVessel.ConnectSource(source);
 
             Assert.IsTrue(bloodVessel.Sources.Contains(source));
+            Assert.IsTrue(source.Sinks.Contains(bloodVessel));
+        }
+
+        [Test]
+        public void ConnectSink_AddsToSinks()
+        {
+            var bloodVessel = new BloodVessel(10);
+            var sink = new BloodVessel(10);
+
+            Assert.IsFalse(bloodVessel.Sinks.Contains(sink));
+            Assert.IsFalse(sink.Sources.Contains(bloodVessel));
+
+            bloodVessel.ConnectSink(sink);
+
+            Assert.IsTrue(bloodVessel.Sinks.Contains(sink));
+            Assert.IsTrue(sink.Sources.Contains(bloodVessel));
         }
     }
 }
