@@ -6,9 +6,13 @@ namespace Health
 {
     public class Torso : IHasName
     {
+        const float BLOOD_VOLUME = 10;
+
         const string NAME = "Torso";
         public string Name => NAME;
 
-        public Heart Heart { get; }
+        public Heart Heart { get; } = new();
+        public BloodVessel BloodVessels { get; } = new(BLOOD_VOLUME);
+        public Nerve Nerves { get; } = new(NAME);
     }
 }
