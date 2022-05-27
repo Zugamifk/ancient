@@ -12,6 +12,7 @@ public class PathFollower
     }
 
     public Vector3 Position => _path.GetPointAtDistance(_distance);
+    public bool AtEnd => Mathf.Approximately(_distance, _path.Length);
 
     public void Step(float step)
     {
