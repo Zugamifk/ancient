@@ -31,5 +31,12 @@ namespace Health.Tests
             HumanBody body = new HumanBody(TEST_BODY_NAME);
             Assert.NotNull(body.Head);
         }
+
+        [Test]
+        public void NewBody_HasTorso()
+        {
+            HumanBody body = new HumanBody(TEST_BODY_NAME);
+            Assert.NotNull(body.Torso);
+        }
     }
 }

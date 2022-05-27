@@ -9,6 +9,7 @@ namespace Health
         public string Name { get; }
 
         public Head Head { get; } = new Head();
+        public Torso Torso { get; } = new();
 
         public HumanBody(string name = null)
         {
