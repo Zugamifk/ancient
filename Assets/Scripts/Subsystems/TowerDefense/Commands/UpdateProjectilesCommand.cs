@@ -14,6 +14,7 @@ namespace TowerDefense.Commands
                 p.Trajectory.Step(Time.deltaTime);
                 if (p.Trajectory.AtEnd)
                 {
+                    Game.Do(new DamageAreaCommand(p.Position, 2));
                     toRemove.Add(p);
                 }
             }

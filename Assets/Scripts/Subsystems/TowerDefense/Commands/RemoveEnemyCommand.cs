@@ -11,8 +11,7 @@ namespace TowerDefense.Commands
         public RemoveEnemyCommand(Guid id) => _id = id;
         public void Execute(GameModel model)
         {
-            var character = model.Characters.GetItem(_id);
-            model.TowerDefense.EnemyIds.Remove(character.Id);
+            model.TowerDefense.EnemyIds.Remove(_id);
             Game.Do(new RemoveCharacterCommand()
             {
                 CharacterId = _id
