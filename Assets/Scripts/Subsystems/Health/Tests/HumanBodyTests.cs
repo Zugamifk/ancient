@@ -24,5 +24,12 @@ namespace Health.Tests
             IHasName body = new HumanBody(TEST_BODY_NAME);
             Assert.AreEqual(body.Name, TEST_BODY_NAME);
         }
+
+        [Test]
+        public void NewBody_HasHead()
+        {
+            HumanBody body = new HumanBody(TEST_BODY_NAME);
+            Assert.NotNull(body.Head);
+        }
     }
 }
