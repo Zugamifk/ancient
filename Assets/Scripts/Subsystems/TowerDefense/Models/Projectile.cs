@@ -11,6 +11,7 @@ namespace TowerDefense.Models
         public string Key { get; set; }
         public Guid Id { get; } = Guid.NewGuid();
         public float FlightProgress { get; set; }
-        public Vector2 Position { get; set; }
+        public Vector2 Position => Trajectory.Position;
+        public PathFollower Trajectory { get; set; }
     }
 }

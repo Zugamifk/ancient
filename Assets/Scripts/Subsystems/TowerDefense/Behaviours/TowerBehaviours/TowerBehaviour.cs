@@ -15,10 +15,11 @@ namespace TowerDefense.Behaviours
             while(tower.ShotCooldown < 0 && GetTargetInRange(game, tower, out Vector3 position))
             {
                 tower.ShotCooldown += cooldown;
-                var projectile = new Projectile()   
+                var path = new DirectPath(tower.Position, position);
+                var projectile = new Projectile()
                 {
-                    Key="TowerBomb",
-                    Position = position
+                    Key = "TowerBomb",
+                    Trajectory = new PathFollower(path)
                 };
                 game.TowerDefense.Projectiles.AddItem(projectile);
             }

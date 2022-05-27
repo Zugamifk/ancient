@@ -10,7 +10,7 @@ namespace TowerDefense.Commands
         {
             foreach(var p in model.TowerDefense.Projectiles.AllItems)
             {
-
+                p.Trajectory.Step(Time.deltaTime);
             }
         }
     }

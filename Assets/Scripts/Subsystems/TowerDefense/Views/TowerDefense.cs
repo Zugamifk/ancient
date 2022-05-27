@@ -54,6 +54,7 @@ namespace TowerDefense.Commands
                 Game.Do(new UpdateEnemiesInRangeOfTowerCommand(tower.Id));
                 Game.Do(new UpdateTowerFiringCommand(tower.Id));
             }
+            Game.Do(new UpdateProjectilesCommand());
         }
     }
 }
