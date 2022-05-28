@@ -38,5 +38,19 @@ namespace Health.Tests
             HumanBody body = new HumanBody(TEST_BODY_NAME);
             Assert.NotNull(body.Torso);
         }
+
+        [Test]
+        public void New_TorsoBloodHasHeadSink()
+        {
+            HumanBody body = new HumanBody(TEST_BODY_NAME);
+            Assert.IsTrue(body.Torso.BloodCirculation.HasSink(body.Head.BloodCirculation));
+        }
+
+        [Test]
+        public void New_TorsoBloodHasHeadSource()
+        {
+            HumanBody body = new HumanBody(TEST_BODY_NAME);
+            Assert.IsTrue(body.Torso.BloodCirculation.HasSource(body.Head.BloodCirculation));
+        }
     }
 }

@@ -14,6 +14,9 @@ namespace Health
         public HumanBody(string name = null)
         {
             Name = name ?? "Human";
+
+            Torso.BloodCirculation.ConnectSink(Head.BloodCirculation);
+            Torso.BloodCirculation.ConnectSource(Head.BloodCirculation);
         }
     }
 }
