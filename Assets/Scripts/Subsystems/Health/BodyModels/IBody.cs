@@ -6,6 +6,8 @@ namespace Health
 {
     public interface IBody
     {
-        
+        Head Head { get; }
+        Brain Brain { get; }
+        Heart Heart { get; }
     }
 }

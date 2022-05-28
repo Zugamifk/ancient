@@ -33,7 +33,7 @@ namespace Health.Tests
         public void New_HasNoBlood()
         {
             Brain brain = new Brain();
-            Assert.IsNotNull(brain.BloodCirculation.BloodContents == null);
+            Assert.That(brain.BloodCirculation.HasBlood, Is.False);
         }
     }
 }

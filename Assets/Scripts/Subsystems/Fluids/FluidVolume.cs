@@ -19,5 +19,10 @@ namespace Fluids
             }
             Capacity = capacity;
         }
+
+        public void Add(IFluid fluid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

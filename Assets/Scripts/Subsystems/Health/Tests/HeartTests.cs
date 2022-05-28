@@ -26,7 +26,7 @@ namespace Health.Tests
         public void New_HasNoBlood()
         {
             Heart heart = new();
-            Assert.IsNotNull(heart.BloodCirculation.BloodContents == null);
+            Assert.That(heart.BloodCirculation.HasBlood, Is.False);
         }
 
         [Test]

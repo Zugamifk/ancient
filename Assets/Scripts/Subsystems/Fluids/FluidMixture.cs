@@ -18,12 +18,18 @@ namespace Fluids
             var contained = GetFluid<TFluid>();
             if (contained != null)
             {
-                contained.Measure += fluid.Measure;
-            } else
+                throw new NotImplementedException();
+            }
+            else
             {
                 _fluidToMeasure.Add(typeof(TFluid), fluid);
             }
             _measure += fluid.Measure.Value;
+        }
+
+        public IFluid CombineWith(IFluid other)
+        {
+            throw new NotImplementedException();
         }
 
         public bool ContainsFluid<TFluid>() => _fluidToMeasure.ContainsKey(typeof(TFluid));
@@ -40,17 +46,5 @@ namespace Fluids
                 return default;
             }
         }
-
-        //public FluidMeasure GetAmountOfFluid<TFluid>()
-        //{
-        //    if (_fluidToMeasure.TryGetValue(typeof(TFluid), out var measure))
-        //    {
-        //        return measure;
-        //    }
-        //    else
-        //    {
-        //        return default;
-        //    }
-        //}
     }
 }

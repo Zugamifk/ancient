@@ -8,7 +8,6 @@ namespace Health.Tests
 {
     public class DiagnosticsTests
     {
-        // A Test behaves as an ordinary method
         [Test]
         public void NewBody_IsAlive()
         {

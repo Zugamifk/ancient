@@ -14,6 +14,7 @@ namespace Health
         public ISet<BloodCirculation> Sources { get; } = new HashSet<BloodCirculation>();
 
         public ISet<BloodCirculation> Sinks { get; } = new HashSet<BloodCirculation>();
+        public bool HasBlood => BloodContents.Measure > 0;
 
         public BloodCirculation(float capacity)
         {

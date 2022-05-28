@@ -10,40 +10,42 @@ namespace Fluids.Tests
 {
     public class FluidVolumeTests
     {
-        class TestFluid : IFluid
-        {
-            public Measure Measure { get; set; }
-        }
-
         [Test]
-        public void Constructor_ZeroOrNegativeThrowsException()
+        public void New_ZeroOrNegativeThrowsException()
         {
             Assert.Throws<ArgumentException>(()=> new FluidVolume(0));
             Assert.Throws<ArgumentException>(()=> new FluidVolume(-1));
         }
 
         [Test]
-        public void Constructor_CapacityEqualsPassedValue()
+        public void New_CapacityEqualsPassedValue()
         {
             float amount = 10;
-            var container = new FluidVolume(amount);
-            Assert.AreEqual(amount, container.Capacity.Value);
+            var volume = new FluidVolume(amount);
+            Assert.AreEqual(amount, volume.Capacity.Value);
             amount = 25;
-            container = new FluidVolume(amount);
-            Assert.AreEqual(amount, container.Capacity.Value);
+            volume = new FluidVolume(amount);
+            Assert.AreEqual(amount, volume.Capacity.Value);
             amount = 1000000;
-            container = new FluidVolume(amount);
-            Assert.AreEqual(amount, container.Capacity.Value);
+            volume = new FluidVolume(amount);
+            Assert.AreEqual(amount, volume.Capacity.Value);
             amount = Mathf.PI;
-            container = new FluidVolume(amount);
-            Assert.AreEqual(amount, container.Capacity.Value);
+            volume = new FluidVolume(amount);
+            Assert.AreEqual(amount, volume.Capacity.Value);
         }
 
         [Test]
-        public void Constructor_ZeroMeasure()
+        public void New_ZeroMeasure()
         {
             var container = new FluidVolume(10);
             Assert.AreEqual(0, container.Fluids.Measure.Value);
+        }
+
+        [Test]
+        public void Add_MeasureEqualsAddedAmount()
+        {
+            var volume = new FluidVolume(1);
+            var f = new TestFluid(.5f);
         }
     }
 }

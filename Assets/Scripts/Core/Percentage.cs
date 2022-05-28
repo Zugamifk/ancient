@@ -7,6 +7,9 @@ public readonly struct Percentage
     readonly float _value;
     readonly bool _allowNegative;
     readonly bool _allowAbove100;
+
+    public float Value => _value;
+
     public Percentage(float value) : this(value, false, false) { }
     public Percentage(float value, bool allowNegative, bool allowAbove100)
     {

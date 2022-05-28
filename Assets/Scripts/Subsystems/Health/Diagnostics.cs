@@ -14,7 +14,9 @@ namespace Health
 
         public bool IsAlive()
         {
-            return false;
+            var brainHasBlood = _body.Brain.BloodCirculation.BloodContents.Measure > 0;
+            var brainHasOxygen = brainHasBlood && _body.Brain.BloodCirculation.BloodContents.OxygenLevel > 50;
+            return brainHasOxygen;
         }
     }
 }

@@ -9,11 +9,6 @@ namespace Fluids.Tests
 {
     public class FluidMixtureTests
     {
-        class TestFluid : IFluid
-        {
-            public Measure Measure { get; set; }
-        }
-
         [Test]
         public void Constructor_ZeroMeasure()
         {
@@ -32,10 +27,7 @@ namespace Fluids.Tests
         public void AddFluid_IncreasesAmount()
         {
             var mixture = new FluidMixture();
-            var fluid = new TestFluid()
-            {
-                Measure = 10
-            };
+            var fluid = new TestFluid(10);
             mixture.AddFluid(fluid);
             Assert.AreEqual(10, mixture.Measure.Value);
         }
@@ -44,10 +36,7 @@ namespace Fluids.Tests
         public void AddFluid_AddsFluid()
         {
             var mixture = new FluidMixture();
-            var fluid = new TestFluid()
-            {
-                Measure = 10
-            };
+            var fluid = new TestFluid(10);
             mixture.AddFluid(fluid);
             Assert.IsTrue(mixture.ContainsFluid<TestFluid>());
         }

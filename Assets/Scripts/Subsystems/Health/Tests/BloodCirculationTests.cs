@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 
 namespace Health.Tests
 {
-    public class BloodVesselTests
+    public class BloodCirculationTests
     {
         [Test]
         public void New_HasVolume()
@@ -41,11 +41,8 @@ namespace Health.Tests
         {
             var bloodVessel = new BloodCirculation(10);
             var source = new BloodCirculation(10);
-
             Assert.IsFalse(bloodVessel.HasSource(source));
-
             bloodVessel.ConnectSource(source);
-
             Assert.IsTrue(bloodVessel.HasSource(source));
         }
 
@@ -54,12 +51,25 @@ namespace Health.Tests
         {
             var bloodVessel = new BloodCirculation(10);
             var sink = new BloodCirculation(10);
-
             Assert.IsFalse(bloodVessel.HasSink(sink));
-
             bloodVessel.ConnectSink(sink);
-
             Assert.IsTrue(bloodVessel.HasSink(sink));
         }
+
+        [Test]
+        public void HasBlood_BloodContentsNull_ReturnsFalse()
+        {
+            var bloodVessel = new BloodCirculation(10);
+            Assert.That(bloodVessel.HasBlood, Is.False);
+        }
+
+        [Test]
+        public void HasBlood_BloodContentsNotNull_ReturnsTrue()
+        {
+            var bloodVessel = new BloodCirculation(10);
+            bloodVessel.Volume.Add(new Blood(10));
+            Assert.That(bloodVessel.HasBlood, Is.True);
+        }
+
     }
 }

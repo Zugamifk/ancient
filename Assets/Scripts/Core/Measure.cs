@@ -5,7 +5,7 @@ using System;
 
 namespace Core
 {
-    public struct Measure
+    public struct Measure : IEquatable<Measure>, IComparable, IComparable<Measure>
     {
         float _value;
         public float Value => _value;
@@ -28,7 +28,48 @@ namespace Core
         public static Measure operator -(Measure a, Measure b) => new Measure(a._value - b.Value);
         public static Measure operator -(Measure a, float b) => new Measure(a._value - b);
         public static Measure operator -(float a, Measure b) => new Measure(a - b.Value);
+
+        public static bool operator <(Measure a, Measure b) => a.Value < b.Value;
+        public static bool operator <=(Measure a, Measure b) => a.Value <= b.Value;
+        public static bool operator >(Measure a, Measure b) => a.Value > b.Value;
+        public static bool operator >=(Measure a, Measure b) => a.Value >= b.Value;
+        public static bool operator ==(Measure a, Measure b) => a.Value == b.Value;
+        public static bool operator !=(Measure a, Measure b) => a.Value != b.Value;
+
         public static Measure operator *(Measure a, Percentage b) => new Measure(a.Value * b);
         public static Measure operator *(Percentage a, Measure b) => new Measure(a * b.Value);
+
+        public bool Equals(Measure other)
+        {
+            return other == this;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == default) return 1;
+
+            var measure = (Measure)obj;
+            return _value.CompareTo(measure._value);
+        }
+
+        public int CompareTo(Measure other) => Value.CompareTo(other.Value);
+
+        public override bool Equals(object obj)
+        {
+            if (obj == default) return false;
+
+            var measure = (Measure)obj;
+            return _value.Equals(measure._value);
+        }
+
+        public override int GetHashCode()
+        {
+            return _value.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return $"Measure: {_value}";
+        }
     }
 }

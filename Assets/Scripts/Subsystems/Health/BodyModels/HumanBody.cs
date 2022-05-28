@@ -11,6 +11,9 @@ namespace Health
         public Head Head { get; } = new Head();
         public Torso Torso { get; } = new();
 
+        public Brain Brain => Head.Brain;
+        public Heart Heart => Torso.Heart;
+
         public HumanBody(string name = null)
         {
             Name = name ?? "Human";
