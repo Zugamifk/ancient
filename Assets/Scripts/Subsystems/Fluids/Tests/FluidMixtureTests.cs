@@ -84,5 +84,13 @@ namespace Fluids.Tests
             fluid = mixture.GetFluid<TestFluid>();
             Assert.That(mixture.Measure.Value, Is.EqualTo(measure * 2));
         }
+
+        [Test]
+        public void Addfluid_TypeIFluid_ThrowArgumentException()
+        {
+            var mixture = new FluidMixture();
+            IFluid fluid = new TestFluid();
+            Assert.That(()=>mixture.AddFluid(fluid), Throws.ArgumentException);
+        }
     }
 }

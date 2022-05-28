@@ -15,6 +15,10 @@ namespace Fluids
         public void AddFluid<TFluid>(TFluid fluid)
             where TFluid : IFluid
         {
+            if (typeof(TFluid) == typeof(IFluid))
+            {
+                throw new ArgumentException($"Passed a fluid of type IFluid! Specify type when calling");
+            }
             AddFluid(fluid, typeof(TFluid));
         }
 
@@ -28,10 +32,11 @@ namespace Fluids
         public TFluid GetFluid<TFluid>()
             where TFluid : IFluid
         {
-            if(_fluidToMeasure.TryGetValue(typeof(TFluid), out IFluid fluid))
+            if (_fluidToMeasure.TryGetValue(typeof(TFluid), out IFluid fluid))
             {
                 return (TFluid)fluid;
-            } else
+            }
+            else
             {
                 return default;
             }
@@ -39,11 +44,12 @@ namespace Fluids
 
         void AddFluid(IFluid fluid, Type type)
         {
-            if(_fluidToMeasure.TryGetValue(type, out IFluid contained))
+            if (_fluidToMeasure.TryGetValue(type, out IFluid contained))
             {
                 var combined = fluid.CombineWith(contained);
                 _fluidToMeasure[type] = combined;
-            } else
+            }
+            else
             {
                 _fluidToMeasure.Add(type, fluid);
             }

@@ -42,6 +42,18 @@ namespace Fluids.Tests
         }
 
         [Test]
+        public void Add_ContainsAddedFluidType()
+        {
+            var volume = new FluidVolume(1);
+            float measure = .5f;
+            var f = new TestFluid(measure);
+
+            volume.Add(f);
+
+            Assert.That(volume.Fluids.GetFluid<TestFluid>(), Is.TypeOf<TestFluid>());
+        }
+
+        [Test]
         public void Add_MeasureEqualsAddedAmount()
         {
             var volume = new FluidVolume(1);

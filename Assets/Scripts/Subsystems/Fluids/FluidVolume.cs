@@ -20,7 +20,8 @@ namespace Fluids
             Capacity = capacity;
         }
 
-        public void Add(IFluid fluid)
+        public void Add<TFluid>(TFluid fluid)
+            where TFluid : IFluid
         {
             if (Fluids.Measure + fluid.Measure > Capacity)
             {
