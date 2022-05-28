@@ -9,6 +9,7 @@ namespace Health
     {
         const string NAME = "Heart";
         public string Name => NAME;
+        public BloodCirculation BloodVessels { get; } = new(10);
 
     }
 }
