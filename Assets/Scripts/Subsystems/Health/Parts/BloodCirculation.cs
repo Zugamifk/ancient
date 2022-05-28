@@ -42,5 +42,10 @@ namespace Health
         {
             return Sources.Contains(source);
         }
+
+        public bool IsAnoxic()
+        {
+            return BloodContents.OxygenLevel < 50;
+        }
     }
 }
