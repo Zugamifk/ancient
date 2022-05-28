@@ -45,7 +45,10 @@ namespace Fluids.Tests
         public void Add_MeasureEqualsAddedAmount()
         {
             var volume = new FluidVolume(1);
-            var f = new TestFluid(.5f);
+            float measure = .5f;
+            var f = new TestFluid(measure);
+            volume.Add(f);
+            Assert.That(volume.Fluids.Measure, Is.EqualTo(measure));
         }
     }
 }
