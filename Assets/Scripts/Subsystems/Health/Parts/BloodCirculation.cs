@@ -5,27 +5,27 @@ using Fluids;
 
 namespace Health
 {
-    public class BloodVessel : IBloodCirculator
+    public class BloodCirculation
     {
         public FluidVolume Volume { get; }
         public Blood BloodContents => Volume.Fluids.GetFluid<Blood>();
 
-        public ISet<IBloodCirculator> Sources { get; } = new HashSet<IBloodCirculator>();
+        public ISet<BloodCirculation> Sources { get; } = new HashSet<BloodCirculation>();
 
-        public ISet<IBloodCirculator> Sinks { get; } = new HashSet<IBloodCirculator>();
+        public ISet<BloodCirculation> Sinks { get; } = new HashSet<BloodCirculation>();
 
-        public BloodVessel(float capacity)
+        public BloodCirculation(float capacity)
         {
             Volume = new FluidVolume(capacity);
         }
 
-        public void ConnectSource(IBloodCirculator source)
+        public void ConnectSource(BloodCirculation source)
         {
             Sources.Add(source);
             source.Sinks.Add(this);
         }
 
-        public void ConnectSink(IBloodCirculator sink)
+        public void ConnectSink(BloodCirculation sink)
         {
             Sinks.Add(sink);
             sink.Sources.Add(this);

@@ -11,7 +11,7 @@ namespace Health
 
         public string Name => NAME;
         public Bone Skull { get; } = new("Skull");
-        public BloodVessel BloodVessels { get; } = new BloodVessel(BLOOD_VOLUME);
+        public BloodCirculation BloodVessels { get; } = new BloodCirculation(BLOOD_VOLUME);
         public Brain Brain { get; } = new Brain();
         public Nerve Nerves { get; } = new Nerve(NAME);
 

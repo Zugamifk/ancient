@@ -11,36 +11,36 @@ namespace Health.Tests
         [Test]
         public void New_HasVolume()
         {
-            var bloodVessel = new BloodVessel(10);
+            var bloodVessel = new BloodCirculation(10);
             Assert.NotNull(bloodVessel.Volume);
         }
 
         [Test]
         public void New_NoFluid()
         {
-            var bloodVessel = new BloodVessel(10);
+            var bloodVessel = new BloodCirculation(10);
             Assert.AreEqual(0, bloodVessel.Volume.Fluids.Measure.Value);
         }
 
         [Test]
         public void New_SourcesEmpty()
         {
-            var bloodVessel = new BloodVessel(10);
+            var bloodVessel = new BloodCirculation(10);
             Assert.Zero(bloodVessel.Sources.Count);
         }
 
         [Test]
         public void New_SinksEmpty()
         {
-            var bloodVessel = new BloodVessel(10);
+            var bloodVessel = new BloodCirculation(10);
             Assert.Zero(bloodVessel.Sinks.Count);
         }
 
         [Test]
         public void ConnectSource_AddsToSources()
         {
-            var bloodVessel = new BloodVessel(10);
-            var source = new BloodVessel(10);
+            var bloodVessel = new BloodCirculation(10);
+            var source = new BloodCirculation(10);
 
             Assert.IsFalse(bloodVessel.Sources.Contains(source));
             Assert.IsFalse(source.Sinks.Contains(bloodVessel));
@@ -54,8 +54,8 @@ namespace Health.Tests
         [Test]
         public void ConnectSink_AddsToSinks()
         {
-            var bloodVessel = new BloodVessel(10);
-            var sink = new BloodVessel(10);
+            var bloodVessel = new BloodCirculation(10);
+            var sink = new BloodCirculation(10);
 
             Assert.IsFalse(bloodVessel.Sinks.Contains(sink));
             Assert.IsFalse(sink.Sources.Contains(bloodVessel));

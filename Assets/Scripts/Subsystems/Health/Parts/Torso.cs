@@ -12,7 +12,7 @@ namespace Health
         public string Name => NAME;
 
         public Heart Heart { get; } = new();
-        public BloodVessel BloodVessels { get; } = new(BLOOD_VOLUME);
+        public BloodCirculation BloodVessels { get; } = new(BLOOD_VOLUME);
         public Nerve Nerves { get; } = new(NAME);
     }
 }
