@@ -21,5 +21,19 @@ namespace Health.Tests
             Brain brain = new Brain();
             Assert.NotNull(brain.Nerves);
         }
+
+        [Test]
+        public void New_HasBloodVessels()
+        {
+            Brain brain = new Brain();
+            Assert.IsNotNull(brain.BloodCirculation);
+        }
+
+        [Test]
+        public void New_HasNoBlood()
+        {
+            Brain brain = new Brain();
+            Assert.IsNotNull(brain.BloodCirculation.BloodContents == null);
+        }
     }
 }
