@@ -28,15 +28,21 @@ namespace Fluids
         public TFluid GetFluid<TFluid>()
             where TFluid : IFluid
         {
-            return default;
+            if(_fluidToMeasure.TryGetValue(typeof(TFluid), out IFluid fluid))
+            {
+                return (TFluid)fluid;
+            } else
+            {
+                return default;
+            }
         }
 
         void AddFluid(IFluid fluid, Type type)
         {
             if(_fluidToMeasure.TryGetValue(type, out IFluid contained))
             {
-                fluid = fluid.CombineWith(contained);
-                _fluidToMeasure[type] = fluid;
+                var combined = fluid.CombineWith(contained);
+                _fluidToMeasure[type] = combined;
             } else
             {
                 _fluidToMeasure.Add(type, fluid);

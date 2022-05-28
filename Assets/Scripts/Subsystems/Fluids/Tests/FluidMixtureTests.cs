@@ -22,12 +22,23 @@ namespace Fluids.Tests
             var mixture = new FluidMixture();
             Assert.IsFalse(mixture.ContainsFluid<TestFluid>());
         }
+
         [Test]
         public void GetFluid_Empty_ReturnsMeasureZero()
         {
             var mixture = new FluidMixture();
             var fluid = mixture.GetFluid<TestFluid>();
-            Assert.That(fluid.Measure, Is.EqualTo(0));
+            Assert.That(fluid.Measure.Value, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void GetFluid_Added_ReturnsAddedFluidWithMeasure()
+        {
+            var mixture = new FluidMixture();
+            var toAdd = new TestFluid(10);
+            mixture.AddFluid(toAdd);
+            var fluid = mixture.GetFluid<TestFluid>();
+            Assert.That(fluid.Measure.Value, Is.EqualTo(10));
         }
 
         [Test]
@@ -49,7 +60,7 @@ namespace Fluids.Tests
         }
 
         [Test]
-        public void AddFluid_AlreadyContains_IncreasesAmount()
+        public void AddFluid_AlreadyContains_IncreasesFluidAmount()
         {
             float measure = 10;
             var mixture = new FluidMixture();
@@ -58,7 +69,20 @@ namespace Fluids.Tests
             mixture.AddFluid(fluid);
 
             fluid = mixture.GetFluid<TestFluid>();
-            Assert.That(fluid.Measure, Is.EqualTo(measure * 2));
+            Assert.That(fluid.Measure.Value, Is.EqualTo(measure * 2));
+        }
+
+        [Test]
+        public void AddFluid_AlreadyContains_IncreasesMixtureAmount()
+        {
+            float measure = 10;
+            var mixture = new FluidMixture();
+            var fluid = new TestFluid(measure);
+            mixture.AddFluid(fluid);
+            mixture.AddFluid(fluid);
+
+            fluid = mixture.GetFluid<TestFluid>();
+            Assert.That(mixture.Measure.Value, Is.EqualTo(measure * 2));
         }
     }
 }
