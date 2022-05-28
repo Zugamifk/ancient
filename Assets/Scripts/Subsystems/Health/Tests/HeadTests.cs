@@ -26,14 +26,14 @@ namespace Health.Tests
         public void NewHead_HasBloodVessels()
         {
             Head head = new Head();
-            Assert.IsNotNull(head.BloodVessels);
+            Assert.IsNotNull(head.BloodCirculation);
         }
 
         [Test]
         public void NewHead_HasNoBlood()
         {
             Head head = new Head();
-            Assert.IsNotNull(head.BloodVessels.BloodContents == null);
+            Assert.IsNotNull(head.BloodCirculation.BloodContents == null);
         }
 
         [Test]

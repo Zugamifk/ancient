@@ -12,28 +12,28 @@ namespace Health.Tests
         const string TEST_BODY_NAME = "Body Name";
 
         [Test]
-        public void NewBody_EmptyConstructor_HasName()
+        public void New_EmptyConstructor_HasName()
         {
             IHasName body = new HumanBody();
             Assert.IsNotEmpty(body.Name);
         }
 
         [Test]
-        public void NewBody_NamedConstructor_HasGivenName()
+        public void New_NamedConstructor_HasGivenName()
         {
             IHasName body = new HumanBody(TEST_BODY_NAME);
             Assert.AreEqual(body.Name, TEST_BODY_NAME);
         }
 
         [Test]
-        public void NewBody_HasHead()
+        public void New_HasHead()
         {
             HumanBody body = new HumanBody(TEST_BODY_NAME);
             Assert.NotNull(body.Head);
         }
 
         [Test]
-        public void NewBody_HasTorso()
+        public void New_HasTorso()
         {
             HumanBody body = new HumanBody(TEST_BODY_NAME);
             Assert.NotNull(body.Torso);
