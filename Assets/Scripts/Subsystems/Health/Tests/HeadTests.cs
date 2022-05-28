@@ -56,5 +56,23 @@ namespace Health.Tests
             Head head = new Head();
             Assert.IsTrue(head.Nerves.IsConnectedTo(head.Brain.Nerves));
         }
+
+        [Test]
+        public void New_HeadBloodHasBrainSink()
+        {
+            Head head = new Head();
+            var headVessels = head.BloodCirculation;
+            var brainVessels = head.Brain.BloodCirculation;
+            Assert.IsTrue(headVessels.HasSink(brainVessels));
+        }
+
+        [Test]
+        public void New_HeadBloodHasBrainSource()
+        {
+            Head head = new Head();
+            var headVessels = head.BloodCirculation;
+            var brainVessels = head.Brain.BloodCirculation;
+            Assert.IsTrue(headVessels.HasSource(brainVessels));
+        }
     }
 }

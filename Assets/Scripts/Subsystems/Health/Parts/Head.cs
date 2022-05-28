@@ -18,6 +18,9 @@ namespace Health
         public Head()
         {
             Nerves.ConnectTo(Brain.Nerves);
+
+            BloodCirculation.ConnectSink(Brain.BloodCirculation);
+            BloodCirculation.ConnectSource(Brain.BloodCirculation);
         }
     }
 }
