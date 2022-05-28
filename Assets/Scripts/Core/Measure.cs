@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+// THIS SCRIPT HAS UNIT TESTS!
 namespace Core
 {
     public struct Measure : IEquatable<Measure>, IComparable, IComparable<Measure>

@@ -28,12 +28,19 @@ namespace Fluids
         public TFluid GetFluid<TFluid>()
             where TFluid : IFluid
         {
-            throw new NotImplementedException();
+            return default;
         }
 
         void AddFluid(IFluid fluid, Type type)
         {
-            _fluidToMeasure.Add(type, fluid);
+            if(_fluidToMeasure.TryGetValue(type, out IFluid contained))
+            {
+                fluid = fluid.CombineWith(contained);
+                _fluidToMeasure[type] = fluid;
+            } else
+            {
+                _fluidToMeasure.Add(type, fluid);
+            }
             _measure += fluid.Measure;
         }
     }

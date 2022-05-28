@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace Fluids.Tests
 {
-    internal class TestFluid : IFluid
+    internal readonly struct TestFluid : IFluid
     {
-        public Measure Measure { get; set; }
+        public Measure Measure { get; }
         public TestFluid(Measure m) => Measure = m;
 
         public IFluid CombineWith(IFluid other) => new TestFluid(Measure + other.Measure);
