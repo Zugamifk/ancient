@@ -50,7 +50,17 @@ namespace Fluids.Tests
 
             volume.Add(f);
 
-            Assert.That(volume.Fluids.Measure, Is.EqualTo(measure));
+            Assert.That(volume.Fluids.Measure.Value, Is.EqualTo(measure));
+        }
+
+        [Test]
+        public void Add_ExceedCapacity_ThrowsArgumentException()
+        {
+            var volume = new FluidVolume(1);
+            float measure = 2;
+            var fluid = new TestFluid(measure);
+
+            Assert.That(()=>volume.Add(fluid), Throws.ArgumentException);
         }
     }
 }

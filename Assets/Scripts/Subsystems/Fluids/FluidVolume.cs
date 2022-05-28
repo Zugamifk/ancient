@@ -22,7 +22,12 @@ namespace Fluids
 
         public void Add(IFluid fluid)
         {
-            throw new NotImplementedException();
+            if (Fluids.Measure + fluid.Measure > Capacity)
+            {
+                throw new ArgumentException($"Exceeded fluid capacity! Capacity: {Capacity}, Measure: {Fluids.Measure + fluid.Measure}");
+            }
+
+            Fluids.AddFluid(fluid);
         }
     }
 }
