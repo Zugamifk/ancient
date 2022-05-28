@@ -95,6 +95,15 @@ namespace Health.Tests
             Blood bloodB = new(100);
             IFluid combined = bloodA.CombineWith(bloodB);
             Assert.That(combined is Blood, Is.True);
-        } 
+        }
+
+        [Test]
+        public void CombineWith_MoreBlood_AddsMeasures()
+        {
+            Blood bloodA = new(100);
+            Blood bloodB = new(100);
+            IFluid combined = bloodA.CombineWith(bloodB);
+            Assert.That(combined.Measure.Value, Is.EqualTo(200));
+        }
     }
 }
