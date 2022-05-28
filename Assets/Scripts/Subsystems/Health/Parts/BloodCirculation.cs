@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fluids;
+using System;
 
 namespace Health
 {
@@ -29,6 +30,16 @@ namespace Health
         {
             Sinks.Add(sink);
             sink.Sources.Add(this);
+        }
+
+        public bool HasSink(BloodCirculation sink)
+        {
+            return Sinks.Contains(sink);
+        }
+
+        public bool HasSource(BloodCirculation source)
+        {
+            return Sources.Contains(source);
         }
     }
 }

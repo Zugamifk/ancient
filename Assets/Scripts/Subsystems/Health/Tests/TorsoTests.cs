@@ -26,14 +26,14 @@ namespace Health.Tests
         public void New_HasBloodVessels()
         {
             Torso torso = new();
-            Assert.IsNotNull(torso.BloodVessels);
+            Assert.IsNotNull(torso.BloodCirculation);
         }
 
         [Test]
         public void New_HasNoBlood()
         {
             Torso torso = new();
-            Assert.IsNotNull(torso.BloodVessels.BloodContents == null);
+            Assert.IsNotNull(torso.BloodCirculation.BloodContents == null);
         }
 
         [Test]
@@ -41,6 +41,24 @@ namespace Health.Tests
         {
             Torso torso = new();
             Assert.IsNotNull(torso.Nerves);
+        }
+
+        [Test]
+        public void New_HeartBloodHasTorsoSink()
+        {
+            Torso torso = new();
+            var heartVessels = torso.Heart.BloodCirculation;
+            var torsoVessels = torso.BloodCirculation;
+            Assert.IsTrue(heartVessels.HasSink(torsoVessels));
+        }
+
+        [Test]
+        public void New_HeartBloodHasTorsoSource()
+        {
+            Torso torso = new();
+            var heartVessels = torso.Heart.BloodCirculation;
+            var torsoVessels = torso.BloodCirculation;
+            Assert.IsTrue(heartVessels.HasSource(torsoVessels));
         }
     }
 }

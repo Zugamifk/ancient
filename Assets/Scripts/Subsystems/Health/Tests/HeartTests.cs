@@ -19,14 +19,21 @@ namespace Health.Tests
         public void New_HasBloodVessels()
         {
             Heart heart = new();
-            Assert.IsNotNull(heart.BloodVessels);
+            Assert.IsNotNull(heart.BloodCirculation);
         }
 
         [Test]
         public void New_HasNoBlood()
         {
             Heart heart = new();
-            Assert.IsNotNull(heart.BloodVessels.BloodContents == null);
+            Assert.IsNotNull(heart.BloodCirculation.BloodContents == null);
+        }
+
+        [Test]
+        public void New_HasNerves()
+        {
+            Heart heart = new();
+            Assert.IsNotNull(heart.Nerves);
         }
     }
 }

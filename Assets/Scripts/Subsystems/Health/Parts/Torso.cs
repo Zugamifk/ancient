@@ -12,7 +12,13 @@ namespace Health
         public string Name => NAME;
 
         public Heart Heart { get; } = new();
-        public BloodCirculation BloodVessels { get; } = new(BLOOD_VOLUME);
+        public BloodCirculation BloodCirculation { get; } = new(BLOOD_VOLUME);
         public Nerve Nerves { get; } = new(NAME);
+
+        public Torso()
+        {
+            Heart.BloodCirculation.ConnectSink(BloodCirculation);
+            Heart.BloodCirculation.ConnectSource(BloodCirculation);
+        }
     }
 }

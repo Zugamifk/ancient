@@ -42,13 +42,11 @@ namespace Health.Tests
             var bloodVessel = new BloodCirculation(10);
             var source = new BloodCirculation(10);
 
-            Assert.IsFalse(bloodVessel.Sources.Contains(source));
-            Assert.IsFalse(source.Sinks.Contains(bloodVessel));
+            Assert.IsFalse(bloodVessel.HasSource(source));
 
             bloodVessel.ConnectSource(source);
 
-            Assert.IsTrue(bloodVessel.Sources.Contains(source));
-            Assert.IsTrue(source.Sinks.Contains(bloodVessel));
+            Assert.IsTrue(bloodVessel.HasSource(source));
         }
 
         [Test]
@@ -57,13 +55,11 @@ namespace Health.Tests
             var bloodVessel = new BloodCirculation(10);
             var sink = new BloodCirculation(10);
 
-            Assert.IsFalse(bloodVessel.Sinks.Contains(sink));
-            Assert.IsFalse(sink.Sources.Contains(bloodVessel));
+            Assert.IsFalse(bloodVessel.HasSink(sink));
 
             bloodVessel.ConnectSink(sink);
 
-            Assert.IsTrue(bloodVessel.Sinks.Contains(sink));
-            Assert.IsTrue(sink.Sources.Contains(bloodVessel));
+            Assert.IsTrue(bloodVessel.HasSink(sink));
         }
     }
 }
