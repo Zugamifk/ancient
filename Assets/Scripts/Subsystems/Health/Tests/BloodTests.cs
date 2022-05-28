@@ -4,6 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Fluids;
+using Core;
 
 namespace Health.Tests
 {
@@ -24,7 +25,7 @@ namespace Health.Tests
         }
 
         [Test]
-        public void New_WithMeasure_AssignsMeasure()
+        public void New_WithFloat_AssignsMeasure()
         {
             var blood = new Blood(100);
             Assert.AreEqual(100, blood.Measure.Value);
@@ -37,7 +38,7 @@ namespace Health.Tests
         }
 
         [Test]
-        public void New_WithNegativeMeasure_ThrowArgumentException()
+        public void New_WithNegativeFloat_ThrowArgumentException()
         {
             Assert.That(() => new Blood(-1), Throws.ArgumentException);
         }

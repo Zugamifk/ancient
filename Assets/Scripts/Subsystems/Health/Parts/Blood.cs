@@ -13,7 +13,7 @@ namespace Health
         public Measure Measure { get; }
         public Measure OxygenMeasure => Measure * OxygenLevel;
 
-        public Blood(float measure) : this(measure, 0) { }
+        public Blood(Measure measure) : this(measure, 0) { }
         public Blood(Measure measure, Percentage oxygenLevel) 
         {
             OxygenLevel = oxygenLevel;
@@ -24,7 +24,7 @@ namespace Health
 
         public IFluid CombineWith(IFluid other)
         {
-            throw new NotImplementedException();
+            return new Blood(other.Measure+Measure);
         }
     }
 }
