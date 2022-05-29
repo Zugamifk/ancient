@@ -37,11 +37,12 @@ namespace Health.Tests
         }
 
         [Test]
-        public void PulseContract_HeartHasBlood_AddsBloodToSink()
+        public void PulseContract_HeartHasBlood_AddsBloodToSink(
+            [Values(1,Mathf.PI, 1000)] float amount)
         {
-            var sink = new BloodCirculation(10);
+            var sink = new BloodCirculation(amount);
             var heart = new Heart();
-            heart.BloodCirculation.Volume.Add(new Blood(1));
+            heart.BloodCirculation.Volume.Add(new Blood(amount));
             heart.BloodCirculation.ConnectSink(sink);
 
             Assume.That(sink.HasBlood, Is.False);
@@ -50,7 +51,7 @@ namespace Health.Tests
 
             heart.PulseContract();
 
-            Assert.That(sink.HasBlood, Is.True);
+            Assert.That(sink.BloodContents.Measure, Is.EqualTo(amount));
         }
     }
 }
