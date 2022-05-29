@@ -2,6 +2,7 @@ using Fluids;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Health
@@ -20,9 +21,12 @@ namespace Health
 
         public void PulseContract()
         {
+            var sumSinkCapacity = BloodCirculation.Sinks.Sum(s => s.Volume.Capacity);
             foreach(var s in BloodCirculation.Sinks)
             {
-                s.Volume.Add(new Blood(BloodCirculation.Volume.Fluids.Measure));
+                var proportion = s.Volume.Capacity / sumSinkCapacity;
+                var sinkMeasureToAdd = BloodCirculation.Volume.Fluids.Measure * proportion;
+                s.Volume.Add(new Blood(sinkMeasureToAdd));
             }
         }
     }

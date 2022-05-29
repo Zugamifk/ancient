@@ -95,6 +95,7 @@ namespace Health.Tests
             heart.PulseContract();
 
             Assert.That(sinkA.BloodContents.Measure.Value, Is.EqualTo(sinkCapacityA));
+            Assert.That(sinkB.BloodContents.Measure.Value, Is.EqualTo(sinkCapacityB));
         }
     }
 }
