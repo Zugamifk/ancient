@@ -61,8 +61,16 @@ namespace Core
         {
             if (obj == default) return false;
 
-            var measure = (Measure)obj;
-            return _value.Equals(measure._value);
+            if(obj is Measure measure)
+            {
+                return measure.Value == _value;
+            } else if(obj is float f)
+            {
+                return f == _value;
+            } else
+            {
+                return base.Equals(obj);
+            }
         }
 
         public override int GetHashCode()

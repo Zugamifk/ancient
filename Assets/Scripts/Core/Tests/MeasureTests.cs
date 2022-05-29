@@ -70,45 +70,52 @@ namespace Core.Tests
 
         #region Combine
         [Test]
-        public void AddMeasure_AddsAmounts()
+        public void AddMeasure_AddsAmounts(
+            [Values(0, 1, 0.5f, 1000)] float a,
+            [Values(0, 1, 0.5f, 1000)] float b)
         {
-            var a = new Measure(2);
-            var b = new Measure(3);
-            var sum = a + b;
-            Assert.AreEqual(sum.Value, 5);
+            var result = new Measure(a) + new Measure(b);
+            Assert.That(result.Value, Is.EqualTo(a + b));
         }
 
         [Test]
-        public void AddFloat_AddsAmounts()
+        public void AddFloat_AddsAmounts(
+            [Values(0, 1, 0.5f, 1000)] float a,
+            [Values(0, 1, 0.5f, 1000)] float b)
         {
-            var a = new Measure(2);
-            var b = 3;
-            var sum = a + b;
-            Assert.AreEqual(sum.Value, 5);
-            sum = b + a;
-            Assert.AreEqual(sum.Value, 5);
+            var ma = new Measure(a);
+            var mb = new Measure(b);
+            var floatSum = a + b;
+            var aPmb = a + mb;
+            var maPb = ma + b;
+            Assert.AreEqual(aPmb, floatSum);
+            Assert.AreEqual(maPb, floatSum);
         }
 
         [Test]
-        public void SubtractMeasure_SubtractsAmounts()
+        public void SubtractMeasure_SubtractsAmounts(
+                    [Values(10, 100, 123.456f)] float a,
+                    [Values(0, 1, 0.5f)] float b)
         {
-            var a = new Measure(5);
-            var b = new Measure(2);
-            var sum = a - b;
-            Assert.AreEqual(sum.Value, 3);
+            var ma = new Measure(a);
+            var mb = new Measure(b);
+            var measureResult = ma - mb;
+            var floatResult = a - b;
+            Assert.That(measureResult.Value, Is.EqualTo(floatResult));
         }
 
         [Test]
-        public void SubtractFloat_SubtractsAmounts()
+        public void SubtractFloat_SubtractsAmounts(
+                    [Values(10, 100, 123.456f)] float a,
+                    [Values(0, 1, 0.5f)] float b)
         {
-            var a = new Measure(5);
-            var b = 2;
-            var sum = a - b;
-            Assert.AreEqual(sum.Value, 3);
-            a = new Measure(2);
-            b = 5;
-            sum = b - a;
-            Assert.AreEqual(sum.Value, 3);
+            var ma = new Measure(a);
+            var mb = new Measure(b);
+            var aMmb = a - mb;
+            var maMb = ma - b;
+            var floatResult = a - b;
+            Assert.AreEqual(aMmb, floatResult);
+            Assert.AreEqual(maMb, floatResult);
         }
 
         [Test]
@@ -196,25 +203,33 @@ namespace Core.Tests
         }
 
         [Test]
-        public void IsEqual_ComparesValues()
+        public void IsEqual_ComparesValues(
+            [Values(0,1)] float a,
+            [Values(0,1)] float b)
         {
-            Measure zero = 0;
-            Measure one = 1;
-            Assert.IsFalse(zero == one);
-            Assert.IsTrue(zero == zero);
-            Assert.IsTrue(one == one);
-            Assert.IsFalse(one == zero);
+            var resultMM = new Measure(a) == new Measure(b);
+            Assert.That(resultMM, Is.EqualTo(a == b));
+
+            var resultFM = a == new Measure(b);
+            Assert.That(resultFM, Is.EqualTo(a == b));
+
+            var resultMF = new Measure(a) == b;
+            Assert.That(resultMF, Is.EqualTo(a == b));
         }
 
         [Test]
-        public void IsNotEqual_ComparesValues()
+        public void IsNotEqual_ComparesValues(
+            [Values(0, 1)] float a,
+            [Values(0, 1)] float b)
         {
-            Measure zero = 0;
-            Measure one = 1;
-            Assert.IsTrue(zero != one);
-            Assert.IsFalse(zero != zero);
-            Assert.IsFalse(one != one);
-            Assert.IsTrue(one != zero);
+            var resultMM = new Measure(a) != new Measure(b);
+            Assert.That(resultMM, Is.EqualTo(a != b));
+
+            var resultFM = a != new Measure(b);
+            Assert.That(resultFM, Is.EqualTo(a != b));
+
+            var resultMF = new Measure(a) != b;
+            Assert.That(resultMF, Is.EqualTo(a != b));
         }
 #pragma warning restore CS1718
         #endregion
