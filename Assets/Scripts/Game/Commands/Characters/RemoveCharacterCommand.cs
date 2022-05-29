@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class RemoveCharacterCommand : ICommand
 {
-    public Guid CharacterId;
+    Guid _id;
+
+    public RemoveCharacterCommand(Guid id) => _id = id;
+
     public void Execute(GameModel model)
     {
-        model.Characters.RemoveItem(CharacterId);
+        model.Characters.RemoveItem(_id);
     }
 }

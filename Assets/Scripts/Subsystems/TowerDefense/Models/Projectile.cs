@@ -13,5 +13,6 @@ namespace TowerDefense.Models
         public float FlightProgress { get; set; }
         public Vector2 Position => Trajectory.Position;
         public PathFollower Trajectory { get; set; }
+        public float MoveSpeed { get; set; }
     }
 }

@@ -1,17 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace TowerDefense.Commands
 {
-    public class RemoveEnemyCommand : ICommand
+    public class UpdateEnemyListCommand : ICommand
     {
-        Guid _id;
-        public RemoveEnemyCommand(Guid id) => _id = id;
         public void Execute(GameModel model)
         {
-            model.TowerDefense.EnemyIds.Remove(_id);
+            model.TowerDefense.EnemyIds.RemoveAll(id => !model.Characters.HasId(id));
         }
     }
 }

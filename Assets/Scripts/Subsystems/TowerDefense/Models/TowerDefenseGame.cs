@@ -33,7 +33,7 @@ namespace TowerDefense.Models
 
         string ITowerDefense.BuildingBeingPlaced => BuildingBeingPlaced;
 
-        IIdentifiableLookup<ITower> ITowerDefense.Turrets => Towers;
+        IIdentifiableLookup<ITower> ITowerDefense.Towers => Towers;
 
         IIdentifiableLookup<IProjectile> ITowerDefense.Projectiles => Projectiles;
 

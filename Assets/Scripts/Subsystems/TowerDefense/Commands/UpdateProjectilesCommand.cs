@@ -11,7 +11,7 @@ namespace TowerDefense.Commands
             List<Models.Projectile> toRemove = new List<Models.Projectile>();
             foreach(var p in model.TowerDefense.Projectiles.AllItems)
             {
-                p.Trajectory.Step(Time.deltaTime);
+                p.Trajectory.Step(p.MoveSpeed * Time.deltaTime);
                 if (p.Trajectory.AtEnd)
                 {
                     Game.Do(new DamageAreaCommand(p.Position, 2));

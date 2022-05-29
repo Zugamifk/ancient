@@ -28,6 +28,7 @@ namespace TowerDefense.Commands
 
         public void Update()
         {
+            Game.Do(new UpdateEnemyListCommand());
             SpawnWaveUnits();
             UpdateTowers();
         }
@@ -49,7 +50,7 @@ namespace TowerDefense.Commands
 
         void UpdateTowers()
         {
-            foreach (var tower in Game.Model.TowerDefense.Turrets.AllItems)
+            foreach (var tower in Game.Model.TowerDefense.Towers.AllItems)
             {
                 Game.Do(new UpdateEnemiesInRangeOfTowerCommand(tower.Id));
                 Game.Do(new UpdateTowerFiringCommand(tower.Id));

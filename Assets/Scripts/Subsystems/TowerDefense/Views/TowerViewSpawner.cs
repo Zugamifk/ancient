@@ -7,6 +7,6 @@ namespace TowerDefense.Views
 {
     public class TowerViewSpawner : MapViewSpawner<ITower, Tower>
     {
-        protected override IIdentifiableLookup<ITower> GetIdentifiables() => Game.Model.TowerDefense.Turrets;
+        protected override IIdentifiableLookup<ITower> GetIdentifiables() => Game.Model.TowerDefense.Towers;
     }
 }

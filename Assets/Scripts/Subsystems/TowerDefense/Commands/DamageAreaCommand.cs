@@ -21,7 +21,7 @@ namespace TowerDefense.Commands
             {
                 if (Vector2.Distance(e.Position, _position) < _radius)
                 {
-                    Game.Do(new RemoveEnemyCommand(e.Id));
+                    Game.Do(new StopHeartCommand(e.Id));
                 }
             }
         }

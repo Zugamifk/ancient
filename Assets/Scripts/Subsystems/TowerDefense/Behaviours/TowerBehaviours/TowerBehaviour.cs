@@ -19,7 +19,8 @@ namespace TowerDefense.Behaviours
                 var projectile = new Projectile()
                 {
                     Key = "TowerBomb",
-                    Trajectory = new PathFollower(path)
+                    Trajectory = new PathFollower(path),
+                    MoveSpeed = 5
                 };
                 game.TowerDefense.Projectiles.AddItem(projectile);
             }

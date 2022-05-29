@@ -20,6 +20,9 @@ namespace Health
 
             Torso.BloodCirculation.ConnectSink(Head.BloodCirculation);
             Torso.BloodCirculation.ConnectSource(Head.BloodCirculation);
+
+            // make alive
+            Heart.IsBeating = true;
         }
     }
 }

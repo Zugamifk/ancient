@@ -15,7 +15,7 @@ namespace TowerDefense.Commands
         public void Execute(GameModel model)
         {
             Game.Do(new LoseLifeCommand());
-            Game.Do(new RemoveEnemyCommand(_id));
+            Game.Do(new RemoveCharacterCommand(_id));
         }
     }
 }

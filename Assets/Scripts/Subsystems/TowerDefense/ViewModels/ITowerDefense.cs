@@ -13,7 +13,7 @@ namespace TowerDefense.ViewModels
         int SpawnedCount { get; }
         int TotalWaves { get; }
         TimeSpan CurrentTime { get; }
-        IIdentifiableLookup<ITower> Turrets { get; }
+        IIdentifiableLookup<ITower> Towers { get; }
         string BuildingBeingPlaced { get; }
         IIdentifiableLookup<IProjectile> Projectiles { get; }
         IEnumerable<Guid> EnemyIds { get; }
