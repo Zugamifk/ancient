@@ -16,6 +16,7 @@ namespace Health
         public int HeartRate { get; set; } = 80;
         public Blood Blood => _bloodCirculation.BloodContents;
         public Measure Capacity => _bloodCirculation.Volume.Capacity;
+        public bool IsBeating { get; set; }
 
         public Heart(float capacity)
         {
