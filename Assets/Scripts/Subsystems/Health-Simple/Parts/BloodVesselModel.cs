@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class BloodVesselModel : BodyPartModel
 {
-    public Percentage BloodLevel { get; set; } = new Percentage(100);
-    public Percentage OxygenLevel { get; set; } = new Percentage(100);
+    public Percent BloodLevel { get; set; } = new Percent(100);
+    public Percent OxygenLevel { get; set; } = new Percent(100);
 }

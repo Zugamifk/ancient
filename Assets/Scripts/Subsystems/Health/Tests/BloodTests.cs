@@ -46,45 +46,45 @@ namespace Health.Tests
         [Test]
         public void New_WithOxygenLevel_AssignsOxygenLevel()
         {
-            var blood = new Blood(100, 100);
+            var blood = new Blood(100, Percent.OneHundred);
             Assert.AreEqual(100, blood.OxygenLevel.Value);
 
-            blood = new Blood(100, 0);
+            blood = new Blood(100, Percent.Zero);
             Assert.AreEqual(0, blood.OxygenLevel.Value);
 
-            blood = new Blood(100, Mathf.PI);
+            blood = new Blood(100, new Percent(Mathf.PI));
             Assert.AreEqual(Mathf.PI, blood.OxygenLevel.Value);
         }
 
         [Test]
         public void OxygenMeasure_IsPercentageOfOxygenLevel()
         {
-            var blood = new Blood(100,100);
+            var blood = new Blood(100, Percent.OneHundred);
             Assert.AreEqual(blood.OxygenMeasure.Value, 100);
-            blood = new(100, 50);
+            blood = new(100, new Percent(50));
             Assert.AreEqual(blood.OxygenMeasure.Value, 50);
-            blood = new(50, 50);
+            blood = new(50, new Percent(50));
             Assert.AreEqual(blood.OxygenMeasure.Value, 25);
-            blood = new(100, 0);
+            blood = new(100, Percent.Zero);
             Assert.AreEqual(blood.OxygenMeasure.Value, 0);
-            blood = new(0, 100);
+            blood = new(0, Percent.OneHundred);
             Assert.AreEqual(blood.OxygenMeasure.Value, 0);
         }
 
         [Test]
         public void IsOxygenated_OxygenMeasureZero_ReturnsFalse()
         {
-            Blood blood = new(100, 0);
+            Blood blood = new(100, Percent.Zero);
             Assert.That(blood.IsOxygenated, Is.False);
         }
 
         [Test]
         public void IsOxygenated_OxygenMeasureNotZero_ReturnsTrue()
         {
-            Blood blood = new(100, 100);
+            Blood blood = new(100, Percent.OneHundred);
             Assert.That(blood.IsOxygenated, Is.True);
 
-            blood = new(100, 1);
+            blood = new(100, (Percent)1);
             Assert.That(blood.IsOxygenated, Is.True);
         }
 

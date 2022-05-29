@@ -9,12 +9,12 @@ namespace Health
 {
     public readonly struct Blood : IFluid
     {
-        public Percentage OxygenLevel { get; }
+        public Percent OxygenLevel { get; }
         public Measure Measure { get; }
         public Measure OxygenMeasure => Measure * OxygenLevel;
 
-        public Blood(Measure measure) : this(measure, 0) { }
-        public Blood(Measure measure, Percentage oxygenLevel) 
+        public Blood(Measure measure) : this(measure, Percent.Zero) { }
+        public Blood(Measure measure, Percent oxygenLevel) 
         {
             OxygenLevel = oxygenLevel;
             Measure = measure;

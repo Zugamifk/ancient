@@ -14,7 +14,7 @@ public class HealthFunctionService
         }
         foreach(var part in GetConnected(body.Heart.Blood))
         {
-            part.OxygenLevel = 100;
+            part.OxygenLevel = Percent.OneHundred;
         }
     }
 

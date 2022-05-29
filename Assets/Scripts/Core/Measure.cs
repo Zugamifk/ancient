@@ -30,8 +30,9 @@ namespace Core
         public static Measure operator -(Measure a, float b) => new Measure(a._value - b);
         public static Measure operator -(float a, Measure b) => new Measure(a - b.Value);
 
-        public static Measure operator *(Measure a, Percentage b) => new Measure(a.Value * b);
-        public static Measure operator *(Percentage a, Measure b) => new Measure(a * b.Value);
+        public static Measure operator *(Measure a, float b) => new Measure(a.Value * b);
+        public static Measure operator *(Measure a, Percent b) => new Measure(a.Value * b);
+        public static Measure operator *(Percent a, Measure b) => new Measure(a * b.Value);
 
         public static bool operator <(Measure a, Measure b) => a.Value < b.Value;
         public static bool operator <=(Measure a, Measure b) => a.Value <= b.Value;

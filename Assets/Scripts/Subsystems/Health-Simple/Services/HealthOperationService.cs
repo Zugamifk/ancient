@@ -19,12 +19,12 @@ public class HealthOperationService
         part.IsCut = true;
     }
 
-    public void SetBloodOxygenLevel(BodyModel body, float percentageLevel)
+    public void SetBloodOxygenLevel(BodyModel body, float oxygenPercent)
     {
         var hfs = new HealthFunctionService();
         foreach (var b in hfs.GetConnected(body.Heart.Blood))
         {
-            b.OxygenLevel = percentageLevel;
+            b.OxygenLevel = new Percent(oxygenPercent);
         }
     }
 }

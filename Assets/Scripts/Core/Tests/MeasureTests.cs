@@ -10,6 +10,7 @@ namespace Core.Tests
 {
     public class MeasureTests
     {
+#region New
         [Test]
         public void New_EmptyConstructor_MeasureZero()
         {
@@ -29,7 +30,9 @@ namespace Core.Tests
         {
             Assert.Throws<ArgumentException>(()=> new Measure(-100));
         }
+#endregion
 
+#region IsEmpty
         [Test]
         public void IsEmpty_ZeroMeasure_True()
         {
@@ -44,6 +47,9 @@ namespace Core.Tests
             Assert.That(measure.IsEmpty, Is.False);
         }
 
+#endregion
+
+#region Cast
         [Test]
         public void ImplicitCast_FromFloat_ValueMatches()
         {
@@ -60,6 +66,9 @@ namespace Core.Tests
             });
         }
 
+        #endregion
+
+#region Combine
         [Test]
         public void AddMeasure_AddsAmounts()
         {
@@ -112,18 +121,58 @@ namespace Core.Tests
                 var sum = a - b;
             });
         }
+        #endregion
 
+#region Scale
         [Test]
         public void MultiplyPercent_ReturnsPercentOfAmount()
         {
             var a = new Measure(10);
-            var b = new Percentage(50);
+            var b = new Percent(50);
             var half = a * b;
             Assert.AreEqual(half.Value, 5);
             half = b * a;
             Assert.AreEqual(half.Value, 5);
         }
 
+        [Test]
+        public void MultiplyNumber_ReturnsMeasureWithValueMultiplied()
+        {
+            var big = 1000f;
+
+            var m0 = new Measure(0);
+            var m1 = new Measure(1);
+            var mPi = new Measure(Mathf.PI);
+            var mBig = new Measure(big);
+
+            var n0 = 0f;
+            var n1 = 1f;
+            var nPi = Mathf.PI;
+            var nBig = big;
+
+            Assert.That(m0 * n0, Is.EqualTo(new Measure(0)));
+            Assert.That(m0 * n1, Is.EqualTo(new Measure(0)));
+            Assert.That(m0 * nPi, Is.EqualTo(new Measure(0)));
+            Assert.That(m0 * nBig, Is.EqualTo(new Measure(0)));
+
+            Assert.That(m1 * n0, Is.EqualTo(new Measure(0)));
+            Assert.That(m1 * n1, Is.EqualTo(new Measure(1)));
+            Assert.That(m1 * nPi, Is.EqualTo(new Measure(Mathf.PI)));
+            Assert.That(m1 * nBig, Is.EqualTo(new Measure(big)));
+
+            Assert.That(mPi * n0, Is.EqualTo(new Measure(0)));
+            Assert.That(mPi * n1, Is.EqualTo(new Measure(Mathf.PI)));
+            Assert.That(mPi * nPi, Is.EqualTo(new Measure(Mathf.PI * Mathf.PI)));
+            Assert.That(mPi * nBig, Is.EqualTo(new Measure(Mathf.PI * big)));
+
+            Assert.That(mBig * n0, Is.EqualTo(new Measure(0)));
+            Assert.That(mBig * n1, Is.EqualTo(new Measure(big)));
+            Assert.That(mBig * nPi, Is.EqualTo(new Measure(big * Mathf.PI)));
+            Assert.That(mBig * nBig, Is.EqualTo(new Measure(big * big)));
+        }
+        #endregion
+
+        #region Compare
 #pragma warning disable CS1718
         [Test]
         public void LessThan_ComparesValues()
@@ -191,6 +240,6 @@ namespace Core.Tests
             Assert.IsTrue(one != zero);
         }
 #pragma warning restore CS1718
-
+        #endregion
     }
 }
