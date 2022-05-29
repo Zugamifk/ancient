@@ -70,21 +70,5 @@ namespace Health.Tests
             bloodVessel.Volume.Add(new Blood(10));
             Assert.That(bloodVessel.HasBlood, Is.True);
         }
-
-        [Test]
-        public void IsAnoxic_LowOxygen_ReturnTrue()
-        {
-            var bloodVessel = new BloodCirculation(10);
-            bloodVessel.Volume.Add(new Blood(10));
-            Assert.That(bloodVessel.IsAnoxic(), Is.True);
-        }
-
-        [Test]
-        public void IsAnoxic_HighOxygen_ReturnFalse()
-        {
-            var bloodVessel = new BloodCirculation(10);
-            bloodVessel.Volume.Add(new Blood(10, Percent.OneHundred));
-            Assert.That(bloodVessel.IsAnoxic(), Is.False);
-        }
     }
 }

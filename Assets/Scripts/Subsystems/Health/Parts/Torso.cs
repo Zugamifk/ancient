@@ -17,8 +17,6 @@ namespace Health
 
         public Torso()
         {
-            Heart.BloodCirculation.ConnectSink(BloodCirculation);
-            Heart.BloodCirculation.ConnectSource(BloodCirculation);
         }
     }
 }
