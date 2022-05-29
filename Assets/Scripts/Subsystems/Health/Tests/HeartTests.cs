@@ -97,5 +97,25 @@ namespace Health.Tests
             Assert.That(sinkA.BloodContents.Measure.Value, Is.EqualTo(sinkCapacityA));
             Assert.That(sinkB.BloodContents.Measure.Value, Is.EqualTo(sinkCapacityB));
         }
+
+        [Test]
+        public void PulseContract_MultipleSinks_NotFull_SplitsProportionally(
+            [Values(1, 2, 3, 10, Mathf.PI)] float sinkCapacityA,
+            [Values(1, 2, 3, 10, Mathf.PI)] float sinkCapacityB,
+            [Values(.1f, .25f, .75f)] float proportion)
+        {
+            var sinkA = new BloodCirculation(sinkCapacityA);
+            var sinkB = new BloodCirculation(sinkCapacityB);
+            var totalCapacity = sinkCapacityA + sinkCapacityB;
+            var heart = new Heart(totalCapacity);
+            heart.BloodCirculation.Volume.Add(new Blood(totalCapacity * proportion));
+            heart.BloodCirculation.ConnectSink(sinkA);
+            heart.BloodCirculation.ConnectSink(sinkB);
+
+            heart.PulseContract();
+
+            Assert.That(Mathf.Approximately(sinkA.BloodContents.Measure.Value, sinkCapacityA * proportion), Is.True);
+            Assert.That(Mathf.Approximately(sinkB.BloodContents.Measure.Value, sinkCapacityB * proportion), Is.True);
+        }
     }
 }
