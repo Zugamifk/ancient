@@ -38,7 +38,7 @@ namespace Health.Tests
 
         [Test]
         public void New_BloodCirculationCapacity_MatchesGivenCapacity(
-            [Values(1,Mathf.PI,100,9999)] float capacity)
+            [Values(1, Mathf.PI, 100, 9999)] float capacity)
         {
             Heart heart = new(capacity);
             Assert.That(heart.BloodCirculation.Volume.Capacity.Value, Is.EqualTo(capacity));
@@ -46,7 +46,7 @@ namespace Health.Tests
 
         [Test]
         public void PulseContract_HeartHasBlood_AddsBloodToSink(
-            [Values(1,Mathf.PI, 1000)] float amount)
+            [Values(1, Mathf.PI, 1000)] float amount)
         {
             var sink = new BloodCirculation(amount);
             var heart = new Heart(amount);
@@ -60,6 +60,41 @@ namespace Health.Tests
             heart.PulseContract();
 
             Assert.That(sink.BloodContents.Measure.Value, Is.EqualTo(amount));
+        }
+
+        [Test]
+        public void PulseContract_HeartEmpty_AddsNoBloodToSink(
+            [Values(1, Mathf.PI, 1000)] float capacity)
+        {
+            var sink = new BloodCirculation(capacity);
+            var heart = new Heart(capacity);
+            heart.BloodCirculation.ConnectSink(sink);
+
+            Assume.That(sink.HasBlood, Is.False);
+            Assume.That(heart.BloodCirculation.HasBlood, Is.False);
+            Assume.That(heart.BloodCirculation.HasSink(sink), Is.True);
+
+            heart.PulseContract();
+
+            Assert.That(sink.HasBlood, Is.False);
+        }
+
+        [Test]
+        public void PulseContract_MultipleSinks_SplitsBetweenSinks(
+            [Values(1, 2, 3, 10, Mathf.PI)] float sinkCapacityA,
+            [Values(1, 2, 3, 10, Mathf.PI)] float sinkCapacityB)
+        {
+            var sinkA = new BloodCirculation(sinkCapacityA);
+            var sinkB = new BloodCirculation(sinkCapacityB);
+            var totalCapacity = sinkCapacityA + sinkCapacityB;
+            var heart = new Heart(totalCapacity);
+            heart.BloodCirculation.Volume.Add(new Blood(totalCapacity));
+            heart.BloodCirculation.ConnectSink(sinkA);
+            heart.BloodCirculation.ConnectSink(sinkB);
+
+            heart.PulseContract();
+
+            Assert.That(sinkA.BloodContents.Measure.Value, Is.EqualTo(sinkCapacityA));
         }
     }
 }
