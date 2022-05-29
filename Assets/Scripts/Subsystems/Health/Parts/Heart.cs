@@ -10,14 +10,19 @@ namespace Health
     {
         const string NAME = "Heart";
         public string Name => NAME;
-        public BloodCirculation BloodCirculation { get; } = new(10);
+        public BloodCirculation BloodCirculation { get; }
         public int HeartRate { get; set; } = 80;
+
+        public Heart(float capacity)
+        {
+            BloodCirculation = new(capacity);
+        }
 
         public void PulseContract()
         {
             foreach(var s in BloodCirculation.Sinks)
             {
-                s.Volume.Add(new Blood(1));
+                s.Volume.Add(new Blood(BloodCirculation.Volume.Fluids.Measure));
             }
         }
     }

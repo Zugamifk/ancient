@@ -11,7 +11,7 @@ namespace Health
         const string NAME = "Torso";
         public string Name => NAME;
 
-        public Heart Heart { get; } = new();
+        public Heart Heart { get; } = new(BLOOD_VOLUME);
         public BloodCirculation BloodCirculation { get; } = new(BLOOD_VOLUME);
         public Nerve Nerves { get; } = new(NAME);
 

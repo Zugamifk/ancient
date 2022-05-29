@@ -11,29 +11,37 @@ namespace Health.Tests
         [Test]
         public void New_HasName()
         {
-            IHasName heart = new Heart();
+            IHasName heart = new Heart(1);
             Assert.IsNotEmpty(heart.Name);
         }
 
         [Test]
         public void New_HasBloodVessels()
         {
-            Heart heart = new();
+            Heart heart = new(1);
             Assert.IsNotNull(heart.BloodCirculation);
         }
 
         [Test]
         public void New_HasNoBlood()
         {
-            Heart heart = new();
+            Heart heart = new(1);
             Assert.That(heart.BloodCirculation.HasBlood, Is.False);
         }
 
         [Test]
         public void New_HeartRate_IsRegular()
         {
-            Heart heart = new();
+            Heart heart = new(1);
             Assert.That(heart.HeartRate, Is.InRange(60, 100));
+        }
+
+        [Test]
+        public void New_BloodCirculationCapacity_MatchesGivenCapacity(
+            [Values(1,Mathf.PI,100,9999)] float capacity)
+        {
+            Heart heart = new(capacity);
+            Assert.That(heart.BloodCirculation.Volume.Capacity.Value, Is.EqualTo(capacity));
         }
 
         [Test]
@@ -41,7 +49,7 @@ namespace Health.Tests
             [Values(1,Mathf.PI, 1000)] float amount)
         {
             var sink = new BloodCirculation(amount);
-            var heart = new Heart();
+            var heart = new Heart(amount);
             heart.BloodCirculation.Volume.Add(new Blood(amount));
             heart.BloodCirculation.ConnectSink(sink);
 
@@ -51,7 +59,7 @@ namespace Health.Tests
 
             heart.PulseContract();
 
-            Assert.That(sink.BloodContents.Measure, Is.EqualTo(amount));
+            Assert.That(sink.BloodContents.Measure.Value, Is.EqualTo(amount));
         }
     }
 }

@@ -66,6 +66,14 @@ namespace Core.Tests
             });
         }
 
+        [Test]
+        public void ImplicitCast_ToFloat_ValueMatches()
+        {
+            Measure measure = 1;
+            float toFloat = measure;
+            Assert.That(toFloat, Is.EqualTo(1));
+        }
+
         #endregion
 
         #region Combine

@@ -23,6 +23,8 @@ namespace Core
         }
 
         public static implicit operator Measure(float amount) => new Measure(amount);
+        public static implicit operator float(Measure measure) => measure.Value;
+
         public static Measure operator +(Measure a, Measure b) => new Measure(a._value + b.Value);
         public static Measure operator +(Measure a, float b) => new Measure(a._value + b);
         public static Measure operator +(float a, Measure b) => new Measure(a + b.Value);
