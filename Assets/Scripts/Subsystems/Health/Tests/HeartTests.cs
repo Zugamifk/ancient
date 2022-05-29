@@ -35,5 +35,12 @@ namespace Health.Tests
             Heart heart = new();
             Assert.IsNotNull(heart.Nerves);
         }
+
+        [Test]
+        public void New_HeartRate_IsRegular()
+        {
+            Heart heart = new();
+            Assert.That(heart.HeartRate, Is.InRange(60, 100));
+        }
     }
 }

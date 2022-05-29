@@ -11,5 +11,6 @@ namespace Health
         public string Name => NAME;
         public BloodCirculation BloodCirculation { get; } = new(10);
         public Nerve Nerves { get; } = new(NAME);
+        public int HeartRate { get; set; } = 80;
     }
 }
