@@ -30,13 +30,6 @@ namespace Health.Tests
         }
 
         [Test]
-        public void New_HasNerves()
-        {
-            Heart heart = new();
-            Assert.IsNotNull(heart.Nerves);
-        }
-
-        [Test]
         public void New_HeartRate_IsRegular()
         {
             Heart heart = new();
