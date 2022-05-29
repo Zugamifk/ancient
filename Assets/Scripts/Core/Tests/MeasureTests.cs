@@ -10,7 +10,7 @@ namespace Core.Tests
 {
     public class MeasureTests
     {
-#region New
+        #region New
         [Test]
         public void New_EmptyConstructor_MeasureZero()
         {
@@ -28,11 +28,11 @@ namespace Core.Tests
         [Test]
         public void New_NegativeAmount_Throws()
         {
-            Assert.Throws<ArgumentException>(()=> new Measure(-100));
+            Assert.Throws<ArgumentException>(() => new Measure(-100));
         }
-#endregion
+        #endregion
 
-#region IsEmpty
+        #region IsEmpty
         [Test]
         public void IsEmpty_ZeroMeasure_True()
         {
@@ -47,9 +47,9 @@ namespace Core.Tests
             Assert.That(measure.IsEmpty, Is.False);
         }
 
-#endregion
+        #endregion
 
-#region Cast
+        #region Cast
         [Test]
         public void ImplicitCast_FromFloat_ValueMatches()
         {
@@ -68,7 +68,7 @@ namespace Core.Tests
 
         #endregion
 
-#region Combine
+        #region Combine
         [Test]
         public void AddMeasure_AddsAmounts()
         {
@@ -114,7 +114,7 @@ namespace Core.Tests
         [Test]
         public void SubtractMeasure_ThrowsOnNegativeResult()
         {
-            Assert.Throws<ArgumentException>(()=>
+            Assert.Throws<ArgumentException>(() =>
             {
                 var a = new Measure(2);
                 var b = new Measure(5);
@@ -123,7 +123,7 @@ namespace Core.Tests
         }
         #endregion
 
-#region Scale
+        #region Scale
         [Test]
         public void MultiplyPercent_ReturnsPercentOfAmount()
         {
@@ -136,39 +136,16 @@ namespace Core.Tests
         }
 
         [Test]
-        public void MultiplyNumber_ReturnsMeasureWithValueMultiplied()
+        public void MultiplyNumber_ReturnsMeasureWithValueMultiplied(
+            [Values(0, 1, Mathf.PI, 1000)] float scalar,
+            [Values(0, 1, Mathf.PI, 1000)] float measureValue)
         {
-            var big = 1000f;
-
-            var m0 = new Measure(0);
-            var m1 = new Measure(1);
-            var mPi = new Measure(Mathf.PI);
-            var mBig = new Measure(big);
-
-            var n0 = 0f;
-            var n1 = 1f;
-            var nPi = Mathf.PI;
-            var nBig = big;
-
-            Assert.That(m0 * n0, Is.EqualTo(new Measure(0)));
-            Assert.That(m0 * n1, Is.EqualTo(new Measure(0)));
-            Assert.That(m0 * nPi, Is.EqualTo(new Measure(0)));
-            Assert.That(m0 * nBig, Is.EqualTo(new Measure(0)));
-
-            Assert.That(m1 * n0, Is.EqualTo(new Measure(0)));
-            Assert.That(m1 * n1, Is.EqualTo(new Measure(1)));
-            Assert.That(m1 * nPi, Is.EqualTo(new Measure(Mathf.PI)));
-            Assert.That(m1 * nBig, Is.EqualTo(new Measure(big)));
-
-            Assert.That(mPi * n0, Is.EqualTo(new Measure(0)));
-            Assert.That(mPi * n1, Is.EqualTo(new Measure(Mathf.PI)));
-            Assert.That(mPi * nPi, Is.EqualTo(new Measure(Mathf.PI * Mathf.PI)));
-            Assert.That(mPi * nBig, Is.EqualTo(new Measure(Mathf.PI * big)));
-
-            Assert.That(mBig * n0, Is.EqualTo(new Measure(0)));
-            Assert.That(mBig * n1, Is.EqualTo(new Measure(big)));
-            Assert.That(mBig * nPi, Is.EqualTo(new Measure(big * Mathf.PI)));
-            Assert.That(mBig * nBig, Is.EqualTo(new Measure(big * big)));
+            var measure = new Measure(measureValue);
+            var resultMS = measure * scalar;
+            var resultSM = scalar * measure;
+            var value = scalar * measureValue;
+            Assert.That(resultMS, Is.EqualTo(new Measure(value)));
+            Assert.That(resultSM, Is.EqualTo(new Measure(value)));
         }
         #endregion
 
@@ -180,7 +157,7 @@ namespace Core.Tests
             Measure zero = 0;
             Measure one = 1;
             Assert.IsTrue(zero < one);
-            Assert.IsFalse(one < zero); 
+            Assert.IsFalse(one < zero);
             Assert.IsFalse(zero < zero);
             Assert.IsFalse(one < one);
         }

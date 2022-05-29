@@ -37,24 +37,20 @@ namespace Health.Tests
         }
 
         [Test]
-        public void PulseExpand_SourceHasBlood_FillsHeart()
-        {
-            var source = new BloodCirculation(10);
-            source.Volume.Add(new Blood(10));
-            var heart = new Heart();
-            heart.PulseExpand();
-            Assert.That(heart.BloodCirculation.HasBlood, Is.True);
-        }
-
-        [Test]
-        public void PulseContract_HeartHasBlood_FillsSink()
+        public void PulseContract_HeartHasBlood_AddsBloodToSink()
         {
             var sink = new BloodCirculation(10);
-            sink.Volume.Add(new Blood(10));
             var heart = new Heart();
+            heart.BloodCirculation.Volume.Add(new Blood(1));
             heart.BloodCirculation.ConnectSink(sink);
+
+            Assume.That(sink.HasBlood, Is.False);
+            Assume.That(heart.BloodCirculation.HasBlood, Is.True);
+            Assume.That(heart.BloodCirculation.HasSink(sink), Is.True);
+
             heart.PulseContract();
-            Assert.That(heart.BloodCirculation.HasBlood, Is.True);
+
+            Assert.That(sink.HasBlood, Is.True);
         }
     }
 }

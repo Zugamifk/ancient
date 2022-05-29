@@ -13,15 +13,12 @@ namespace Health
         public BloodCirculation BloodCirculation { get; } = new(10);
         public int HeartRate { get; set; } = 80;
 
-        public void PulseExpand()
-        {
-            throw new NotImplementedException();
-        }
-
         public void PulseContract()
         {
-            var measure = BloodCirculation.BloodContents.Measure;
-            var portionPerSink = measure.Value / BloodCirculation.Sinks.Count;
+            foreach(var s in BloodCirculation.Sinks)
+            {
+                s.Volume.Add(new Blood(1));
+            }
         }
     }
 }
