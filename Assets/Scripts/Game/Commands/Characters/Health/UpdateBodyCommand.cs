@@ -15,7 +15,7 @@ public class UpdateBodyCommand : ICommand
         var body = character.Health.Body;
         if(!body.Heart.IsBeating)
         {
-            Game.Do(new RemoveCharacterCommand(_id));
+            // dead
             return;
         }
     }
