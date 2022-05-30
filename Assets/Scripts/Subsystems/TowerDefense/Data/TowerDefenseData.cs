@@ -10,6 +10,7 @@ namespace TowerDefense.Data
         public TowerData[] Towers;
         public int StartingLives;
         public TowerDefenseWaveData[] Waves;
+        public int StartingCoins;
 
         protected override IEnumerable<TowerData> PrefabReferences => Towers;
 

@@ -430,6 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6324554537961240799}
   - component: {fileID: 4772056149225657720}
+  - component: {fileID: 3604008485692232025}
   m_Layer: 7
   m_Name: Button
   m_TagString: Untagged
@@ -502,19 +503,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 813480877980300292}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1358537342291918564}
-        m_TargetAssemblyTypeName: TurretDefenseBook, View
-        m_MethodName: ClickedBuildOption
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &3604008485692232025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800148664984090681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba964fad889c1de4d9ed5bcad0e0e615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerIcon: {fileID: 1205248250966313414}
 --- !u!1 &2905778597560344584
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1749461629, guid: ca3f75199449c3c4cbf22d39b5cffaa7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1233,9 +1235,9 @@ MonoBehaviour:
   _livesText: {fileID: 199674069247305700}
   _waveCountText: {fileID: 2360173633369604404}
   _timeText: {fileID: 6255220611358362638}
-  _buildingOptions:
-  - Turret
   _coinsText: {fileID: 4482578588016922868}
+  _buildTowerButtons:
+  - {fileID: 3604008485692232025}
 --- !u!212 &7022535038171986947
 SpriteRenderer:
   m_ObjectHideFlags: 0

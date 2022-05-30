@@ -24,6 +24,7 @@ namespace TowerDefense.Commands
             towerDefenseModel.MaxLives = towerDefenseData.StartingLives;
             towerDefenseModel.CurrentWave = -1;
             towerDefenseModel.EndPoint = _destination;
+            towerDefenseModel.Coins = towerDefenseData.StartingCoins;
             model.TowerDefense = towerDefenseModel;
         }
     }

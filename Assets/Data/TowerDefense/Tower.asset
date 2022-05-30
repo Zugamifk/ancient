@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Tower
   m_EditorClassIdentifier: 
   Name: Tower
+  Sprite: {fileID: -1749461629, guid: ca3f75199449c3c4cbf22d39b5cffaa7, type: 3}
   Radius: 3
   ShotsPerSecond: 4
-  Damage: 0
+  Damage: 1
+  BuildCost: 5
   Prefab: {fileID: 3227864440446316006, guid: ce8c624ce35f43d43a2110578c1c6257, type: 3}

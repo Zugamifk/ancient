@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using TowerDefense.Data;
 
 namespace TowerDefense.Views
 {
@@ -20,9 +21,20 @@ namespace TowerDefense.Views
         [SerializeField]
         TextMeshProUGUI _timeText;
         [SerializeField]
-        string[] _buildingOptions;
-        [SerializeField]
         TextMeshProUGUI _coinsText;
+        [SerializeField]
+        TowerDefenseBuildTowerButton[] _buildTowerButtons;
+
+        int _lastUpdatedCoinAmount;
+
+        private void Start()
+        {
+            var data = DataService.GetData<TowerDefenseData>();
+            for(int i = 0; i < data.Towers.Length; i++)
+            {
+                _buildTowerButtons[i].SetTower(data.Towers[i]);
+            }
+        }
 
         public void Update()
         {
@@ -30,12 +42,21 @@ namespace TowerDefense.Views
             _livesText.text = string.Format(k_LivesTextString, tdModel.Lives, tdModel.MaxLives);
             _waveCountText.text = string.Format(k_WaveCountTextString, tdModel.CurrentWave + 1);
             _timeText.text = string.Format(k_TimeTextString, tdModel.CurrentTime.ToString(@"mm\:ss"));
-            _coinsText.text = string.Format(k_CoinsTextString, tdModel.Coins);
+            if (_lastUpdatedCoinAmount != tdModel.Coins)
+            {
+                OnCoinsChanged();
+            }
         }
 
-        public void ClickedBuildOption(int index)
+        void OnCoinsChanged()
         {
-            Game.Do(new StartPlacingTowerCommand(_buildingOptions[index]));
+            var tdModel = Game.Model.TowerDefense;
+            _coinsText.text = string.Format(k_CoinsTextString, tdModel.Coins);
+            for (int i = 0; i < _buildTowerButtons.Length; i++)
+            {
+                _buildTowerButtons[i].UpdateState();
+            }
+            _lastUpdatedCoinAmount = tdModel.Coins;
         }
     }
 }

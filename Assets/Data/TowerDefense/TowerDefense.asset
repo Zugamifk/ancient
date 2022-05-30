@@ -17,3 +17,4 @@ MonoBehaviour:
   StartingLives: 10
   Waves:
   - {fileID: 11400000, guid: bee43611dbdc4a34e84d9c1e3762feaa, type: 2}
+  StartingCoins: 25
