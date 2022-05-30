@@ -27,7 +27,7 @@ public class BuildRoadCommand : ICommand
     {
         if (string.IsNullOrEmpty(_startName))
         {
-            _cityGenerator.BuildRoad(model.MapModel, _start, _end);
+            _cityGenerator.BuildRoad(model.MapModel, _start, _end, true);
         }
         else
         {

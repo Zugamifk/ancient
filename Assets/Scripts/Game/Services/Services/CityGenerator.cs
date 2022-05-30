@@ -39,13 +39,13 @@ public class CityGenerator
 
         var pointA = Vector2Int.FloorToInt(start.EntrancePosition);
         var pointB = Vector2Int.FloorToInt(end.EntrancePosition);
-        BuildRoad(model, pointA, pointB);
+        BuildRoad(model, pointA, pointB, false);
     }
 
-    public void BuildRoad(MapModel model, Vector2Int pointA, Vector2Int pointB)
+    public void BuildRoad(MapModel model, Vector2Int pointA, Vector2Int pointB, bool direct = false)
     {
         var roadtile = GetTileModel(Name.Tile.Road);
-        var path = _pathFinder.GetPath(pointA, pointB, model.Grid);
+        var path = direct ? _pathFinder.GetDirectPath(pointA, pointB, model.Grid) : _pathFinder.GetPath(pointA, pointB, model.Grid);
         foreach (var p in path.Path)
         {
             model.Grid.Map[p] = roadtile;
