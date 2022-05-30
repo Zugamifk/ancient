@@ -19,7 +19,7 @@ namespace TowerDefense.Models
         public string BuildingBeingPlaced;
         public IdentifiableCollection<Tower> Towers = new IdentifiableCollection<Tower>();
         public IdentifiableCollection<Projectile> Projectiles = new IdentifiableCollection<Projectile>();
-
+        public int Coins { get; set; }
         #region ITurretDefenseViewModel
         int ITowerDefense.Lives => Lives;
 

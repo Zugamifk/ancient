@@ -17,5 +17,6 @@ namespace TowerDefense.ViewModels
         string BuildingBeingPlaced { get; }
         IIdentifiableLookup<IProjectile> Projectiles { get; }
         IEnumerable<Guid> EnemyIds { get; }
+        int Coins { get; }
     }
 }

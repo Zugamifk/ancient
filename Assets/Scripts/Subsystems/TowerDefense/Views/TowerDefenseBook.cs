@@ -11,6 +11,7 @@ namespace TowerDefense.Views
         const string k_LivesTextString = "LIVES: {0}/{1}";
         const string k_WaveCountTextString = "WAVE {0}";
         const string k_TimeTextString = "TIME: {0}";
+        const string k_CoinsTextString = "COINS: {0}";
 
         [SerializeField]
         TextMeshProUGUI _livesText;
@@ -20,6 +21,8 @@ namespace TowerDefense.Views
         TextMeshProUGUI _timeText;
         [SerializeField]
         string[] _buildingOptions;
+        [SerializeField]
+        TextMeshProUGUI _coinsText;
 
         public void Update()
         {
@@ -27,6 +30,7 @@ namespace TowerDefense.Views
             _livesText.text = string.Format(k_LivesTextString, tdModel.Lives, tdModel.MaxLives);
             _waveCountText.text = string.Format(k_WaveCountTextString, tdModel.CurrentWave + 1);
             _timeText.text = string.Format(k_TimeTextString, tdModel.CurrentTime.ToString(@"mm\:ss"));
+            _coinsText.text = string.Format(k_CoinsTextString, tdModel.Coins);
         }
 
         public void ClickedBuildOption(int index)
