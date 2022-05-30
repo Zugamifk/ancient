@@ -21,7 +21,7 @@ namespace TowerDefense.Views
         [SerializeField]
         TextMeshProUGUI _timeText;
         [SerializeField]
-        TextMeshProUGUI _coinsText;
+        NumberRoll _coinsText;
         [SerializeField]
         TowerDefenseBuildTowerButton[] _buildTowerButtons;
 
@@ -34,6 +34,7 @@ namespace TowerDefense.Views
             {
                 _buildTowerButtons[i].SetTower(data.Towers[i]);
             }
+            _coinsText.SetTextFormat(k_CoinsTextString);
         }
 
         public void Update()
@@ -51,7 +52,7 @@ namespace TowerDefense.Views
         void OnCoinsChanged()
         {
             var tdModel = Game.Model.TowerDefense;
-            _coinsText.text = string.Format(k_CoinsTextString, tdModel.Coins);
+            _coinsText.SetTarget(tdModel.Coins);
             for (int i = 0; i < _buildTowerButtons.Length; i++)
             {
                 _buildTowerButtons[i].UpdateState();

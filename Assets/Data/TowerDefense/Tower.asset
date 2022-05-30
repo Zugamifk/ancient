@@ -17,5 +17,5 @@ MonoBehaviour:
   Radius: 3
   ShotsPerSecond: 4
   Damage: 1
-  BuildCost: 5
+  BuildCost: 250
   Prefab: {fileID: 3227864440446316006, guid: ce8c624ce35f43d43a2110578c1c6257, type: 3}
