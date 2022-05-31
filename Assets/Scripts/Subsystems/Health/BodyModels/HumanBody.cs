@@ -24,5 +24,10 @@ namespace Health
             // make alive
             Heart.IsBeating = true;
         }
+
+        public bool IsAlive()
+        {
+            return Heart.IsBeating;
+        }
     }
 }

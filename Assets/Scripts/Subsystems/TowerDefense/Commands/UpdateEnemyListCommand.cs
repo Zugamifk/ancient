@@ -8,7 +8,6 @@ namespace TowerDefense.Commands
 {
     public class UpdateEnemyListCommand : ICommand
     {
-        static HealthDiagnosticService _diagnosticService = new();
         public void Execute(GameModel model)
         {
             model.TowerDefense.EnemyIds.RemoveAll(id => !model.Characters.HasId(id));
@@ -17,8 +16,7 @@ namespace TowerDefense.Commands
             foreach (var id in model.TowerDefense.EnemyIds)
             {
                 var character = model.Characters.GetItem(id);
-                _diagnosticService.Body = character.Health.Body;
-                if (!_diagnosticService.IsAlive())
+                if (!character.Health.Body.IsAlive())
                 {
                     Game.Do(new RemoveCharacterCommand(id));
                     var data = enemyData.GetEnemy(character.Key);
