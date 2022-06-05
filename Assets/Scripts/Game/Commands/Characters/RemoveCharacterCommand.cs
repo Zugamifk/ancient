@@ -12,5 +12,6 @@ public class RemoveCharacterCommand : ICommand
     public void Execute(GameModel model)
     {
         model.Characters.RemoveItem(_id);
+        model.AllIdentifiables.RemoveItem(_id);
     }
 }

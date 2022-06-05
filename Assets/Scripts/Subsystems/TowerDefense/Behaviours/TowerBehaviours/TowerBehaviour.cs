@@ -23,6 +23,7 @@ namespace TowerDefense.Behaviours
                     MoveSpeed = 5
                 };
                 game.TowerDefense.Projectiles.AddItem(projectile);
+                game.AllIdentifiables.AddItem(projectile);
             }
         }
 

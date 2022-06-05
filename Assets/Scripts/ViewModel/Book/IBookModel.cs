@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBookModel 
+public interface IBookModel : IIsOpen
 {
     string Key { get; }
     int NumPages { get; }
     int Index { get; }
-    bool IsOpen { get; set; }
     List<IPageModel> Pages { get; }
 }

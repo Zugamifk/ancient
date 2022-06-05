@@ -7,6 +7,7 @@ using TowerDefense.ViewModels;
 
 public class GameModel : IGameModel
 {
+    public IdentifiableCollection<IIdentifiable> AllIdentifiables = new IdentifiableCollection<IIdentifiable>();
     public MapModel MapModel = new MapModel();
     public TimeModel TimeModel = new TimeModel();
     public IdentifiableCollection<CharacterModel> Characters = new IdentifiableCollection<CharacterModel>();
@@ -25,6 +26,8 @@ public class GameModel : IGameModel
     IInventoryModel IGameModel.Inventory => Inventory;
     ICheatController IGameModel.Cheats => Cheats;
     ITowerDefense IGameModel.TowerDefense => TowerDefense;
+
+    IIdentifiableLookup<IIdentifiable> IGameModel.AllIdentifiables => AllIdentifiables;
     #endregion
 
 }

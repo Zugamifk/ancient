@@ -38,6 +38,7 @@ public class GetItemCommand : ICommand
         itemModel.DeskSpawnLocation = data.DeskSpawnLocation;
 
         model.Inventory.Items.AddItem(itemModel, _itemName);
+        model.AllIdentifiables.AddItem(itemModel, _itemName);
         Debug.Log($"Receieved {itemModel.Key} ({itemModel.Id})");
     }
 }

@@ -21,6 +21,7 @@ namespace TowerDefense.Commands
             foreach(var p in toRemove)
             {
                 model.TowerDefense.Projectiles.RemoveItem(p.Id);
+                model.AllIdentifiables.RemoveItem(p.Id);
             }
         }
     }

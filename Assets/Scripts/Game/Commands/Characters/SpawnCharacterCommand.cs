@@ -24,7 +24,9 @@ public class SpawnCharacterCommand : ICommand
             WorldPosition = Position
         };
 
-        model.Characters.AddItem(character, IsUnique ? Name : null);
+        var uniqueName = IsUnique ? Name : null;
+        model.Characters.AddItem(character, uniqueName);
+        model.AllIdentifiables.AddItem(character, uniqueName);
 
         OnSpawned?.Invoke(character);
     }
