@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 3227864440446316000}
   - component: {fileID: 8876253886302017525}
   - component: {fileID: -258350909489918514}
+  - component: {fileID: 1367134854162770351}
   m_Layer: 0
   m_Name: Manor
   m_TagString: Untagged
@@ -302,6 +303,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.57, y: 2.38, z: 1}
   m_Center: {x: 0.06, y: 0.88, z: 0}
+--- !u!114 &1367134854162770351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227864440446316006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0976b6c52b53e70449f6ba20587d4496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3227864440568188576
 GameObject:
   m_ObjectHideFlags: 0
