@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class Game : MonoBehaviour
     Game()
     {
         _game = this;
+    }
+
+    private void Start()
+    {
+        SceneManager.LoadScene("Desk", LoadSceneMode.Additive);
     }
 
     private void Update()
