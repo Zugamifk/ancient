@@ -10,7 +10,7 @@ public class OpenItemCommand : ICommand
     public OpenItemCommand(Guid id) => _id = id;
     public void Execute(GameModel model)
     {
-        var openable = model.AllIdentifiables.GetItem(_id) as IIsOpen;
-
+        var openable = model.AllIdentifiables.GetItem(_id) as IOpenable;
+        openable.IsOpen = true;
     }
 }
