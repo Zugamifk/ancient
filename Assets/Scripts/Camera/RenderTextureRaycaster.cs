@@ -7,7 +7,6 @@ public class RenderTextureRaycaster : MonoBehaviour
     [SerializeField]
     string _cameraName;
 
-
     public bool RayCast(Vector2 texCoord, out RaycastHit hit)
     {
         hit = default;
