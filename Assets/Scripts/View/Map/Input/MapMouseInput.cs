@@ -10,8 +10,7 @@ public class MapMouseInput : MouseInputState
     protected Vector3 _startDragPosition;
     IEnumerable<IMapMouseInputHandler> _inputHandlers;
 
-    public MapMouseInput(MouseInputState state, ITileMapTransformer tileMapTransformer, IEnumerable<IMapMouseInputHandler> inputHandlers)
-        : base(state)
+    public MapMouseInput(ITileMapTransformer tileMapTransformer, IEnumerable<IMapMouseInputHandler> inputHandlers)
     {
         _tileMapTransformer = tileMapTransformer;
         _inputHandlers = inputHandlers;
@@ -19,8 +18,9 @@ public class MapMouseInput : MouseInputState
 
     public sealed override MouseInputState UpdateState()
     {
+        var cam = CameraController.TryGetCamera(Name.Camera.Desk);
         RaycastHit hit;
-        if (_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layer.Desk), out hit))
+        if (cam.RayCast(Input.mousePosition, out hit))
         {
             var target = hit.collider.gameObject;
             var renderTex = target.GetComponent<RenderTextureRaycaster>();
@@ -45,7 +45,7 @@ public class MapMouseInput : MouseInputState
             }
         }
 
-        return new IdleMouseInputState(this);
+        return new DeskInputState();
     }
 
     void MapHandleMouse(Vector3 worldPosition)
@@ -64,9 +64,10 @@ public class MapMouseInput : MouseInputState
 
     void DefaultHandInput(Vector3 worldPosition)
     {
+        var cam = CameraController.TryGetCamera(Name.Camera.Map);
         if (Input.GetMouseButtonDown(1))
         {
-            _startPosition = _context.MapCameraController.transform.localPosition;
+            _startPosition = cam.transform.localPosition;
             _startDragPosition = Input.mousePosition;
         }
         if (Input.GetMouseButton(0))
@@ -81,8 +82,8 @@ public class MapMouseInput : MouseInputState
         else
         if (Input.GetMouseButton(1))
         {
-            var diff = _context.MapCameraController.GetWorldPosition(Input.mousePosition) - _context.MapCameraController.GetWorldPosition(_startDragPosition);
-            _context.MapCameraController.PanTo(_startPosition - diff);
+            var diff = cam.GetWorldPosition(Input.mousePosition) - cam.GetWorldPosition(_startDragPosition);
+            cam.PanTo(_startPosition - diff);
         }
     }
 }

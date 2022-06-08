@@ -24,6 +24,6 @@ public class MapInputHandler : MonoBehaviour, IMouseInputHandler
 
     MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)
     {
-        return new MapMouseInput(state, _tileMapper, _mapInputHandlers);
+        return new MapMouseInput(_tileMapper, _mapInputHandlers);
     }
 }

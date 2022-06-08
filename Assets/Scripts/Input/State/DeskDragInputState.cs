@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-internal class DragInputState : MouseInputState
+internal class DeskDragInputState : MouseInputState
 {
     Vector3 _lastDragPos;
     Draggable _draggable;
 
-    public DragInputState(MouseInputState state, Draggable target)
-        : base(state)
+    public DeskDragInputState(Draggable target)
     {
-        _lastDragPos = _context.DeskCameraController.GetMouseWorldPosition();
+        var cam = CameraController.TryGetCamera(Name.Camera.Desk);
+        _lastDragPos = cam.GetMouseWorldPosition();
         _draggable = target;
     }
 
@@ -18,13 +18,14 @@ internal class DragInputState : MouseInputState
     {
         if (Input.GetMouseButton(0))
         {
-            var mousePos = _context.DeskCameraController.GetMouseWorldPosition();
+            var cam = CameraController.TryGetCamera(Name.Camera.Desk);
+            var mousePos = cam.GetMouseWorldPosition();
             _draggable.Root.Translate(mousePos - _lastDragPos);
             _lastDragPos = mousePos;
             return this;
         } else
         {
-            return new IdleMouseInputState(this);
+            return new DeskInputState();
         }
     }
 }

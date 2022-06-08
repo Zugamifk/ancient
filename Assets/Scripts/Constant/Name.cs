@@ -4,6 +4,12 @@ using UnityEngine;
 
 public static partial class Name
 {
+    public static class Camera
+    {
+        public static string Desk = "Desk";
+        public static string Map = "Map";
+    }
+
     public static class Tile
     {
         // ground

@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    [SerializeField]
-    CameraController _deskCameraController;
-    [SerializeField]
-    CameraController _mapCameraController;
-
     MouseController _mouseController;
 
     void Start()
     {
-        _mouseController = new MouseController(_deskCameraController, _mapCameraController);
+        _mouseController = new MouseController();
     }
 
     void Update()

@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleMouseInputState : MouseInputState
+public class DeskInputState : MouseInputState
 {
     const float DRAG_THRESHOLD = 5;
     Vector3? _dragStartPos;
 
     public override MouseInputState UpdateState()
     {
+        var cam = CameraController.TryGetCamera(Name.Camera.Desk);
         RaycastHit hit;
-        if (!_context.DeskCameraController.RayCast(Input.mousePosition, 1 << LayerMask.NameToLayer(Layer.Desk), out hit))
+        if (!cam.RayCast(Input.mousePosition, out hit))
         {
             return this;
         }
@@ -49,7 +50,7 @@ public class IdleMouseInputState : MouseInputState
             var drag = (Input.mousePosition - _dragStartPos.Value).magnitude;
             if (draggable != null && drag >= DRAG_THRESHOLD)
             {
-                return new DragInputState(this, draggable);
+                return new DeskDragInputState(draggable);
             }
         }
 
@@ -73,11 +74,4 @@ public class IdleMouseInputState : MouseInputState
 
         return this;
     }
-
-    public IdleMouseInputState(MouseInputState inputState)
-        : base(inputState)
-    {
-    }
-
-    public IdleMouseInputState(InputStateContext context) : base(context) { }
 }
