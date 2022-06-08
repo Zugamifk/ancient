@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: -6399722773491083068}
   - component: {fileID: -7291803222602549711}
   - component: {fileID: 85037213819682633}
+  - component: {fileID: 7182066745859786813}
   m_Layer: 7
   m_Name: Map
   m_TagString: Untagged
@@ -150,6 +151,19 @@ MonoBehaviour:
   _closedRoot: {fileID: 1592058847934891487}
   _openClickable: {fileID: 3255588128187183206}
   _closedClickable: {fileID: 1592058847673535309}
+--- !u!114 &7182066745859786813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592058846673094303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5f7193c6830fd4caea94773a405177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mapSceneName: City
 --- !u!1 &1592058846757733114
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfb359894d94754c9bfaa8ad753b776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
+  _cameraName: 
 --- !u!1 &1592058847390927568
 GameObject:
   m_ObjectHideFlags: 0

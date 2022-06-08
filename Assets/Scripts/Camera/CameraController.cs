@@ -21,6 +21,8 @@ public class CameraController : MonoBehaviour
 
     Camera _camera;
 
+    public Camera Camera => _camera;
+
     private void Awake()
     {
         _camera = GetComponentInChildren<Camera>();

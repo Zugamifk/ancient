@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb84c101d6a5088409bf6fdb8d403cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: Map
 --- !u!20 &1581665926
 Camera:
   m_ObjectHideFlags: 0
@@ -509,8 +510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileMapper: {fileID: 1645037283}
-  _mapInputHandlerContainers:
-  - {fileID: 0}
+  _mapInputHandlerContainers: []
 --- !u!1 &1688259636
 GameObject:
   m_ObjectHideFlags: 0
