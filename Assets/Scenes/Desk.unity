@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb84c101d6a5088409bf6fdb8d403cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: Desk
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

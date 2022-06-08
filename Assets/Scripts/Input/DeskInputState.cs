@@ -11,7 +11,7 @@ public class DeskInputState : MouseInputState
     {
         var cam = CameraController.TryGetCamera(Name.Camera.Desk);
         RaycastHit hit;
-        if (!cam.RayCast(Input.mousePosition, out hit))
+        if (cam == null || !cam.RayCast(Input.mousePosition, out hit))
         {
             return this;
         }

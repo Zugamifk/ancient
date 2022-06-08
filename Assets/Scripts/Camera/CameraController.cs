@@ -24,6 +24,10 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         _camera = GetComponentInChildren<Camera>();
+        if (string.IsNullOrEmpty(_name))
+        {
+            throw new System.InvalidOperationException($"Camera {this} name is null!");
+        }
         _nameToController[_name] = this;
     }
 
