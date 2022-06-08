@@ -29,7 +29,6 @@ public class Game : MonoBehaviour
     private void Start()
     {
         SceneManager.LoadScene("Desk", LoadSceneMode.Additive);
-        Game.Do(new GetItemCommand("Map"));
     }
 
     private void Update()

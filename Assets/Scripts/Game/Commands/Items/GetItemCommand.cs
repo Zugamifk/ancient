@@ -28,6 +28,9 @@ public class GetItemCommand : ICommand
                     Contents = packageData.Contents.Select(i=>i.Name).ToList()
                 };
                 break;
+            case MapItemData mapItemData:
+                itemModel = new MapItemModel();
+                break;
             default:
                 itemModel = new ItemModel();
                 break;
@@ -38,6 +41,5 @@ public class GetItemCommand : ICommand
 
         model.Inventory.Items.AddItem(itemModel, _itemName);
         model.AllIdentifiables.AddItem(itemModel, _itemName);
-        Debug.Log($"Receieved {itemModel.Key} ({itemModel.Id})");
     }
 }
