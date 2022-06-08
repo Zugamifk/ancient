@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DeskCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}

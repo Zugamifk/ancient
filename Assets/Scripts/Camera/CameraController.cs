@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
     public bool RayCast(Vector2 position, out RaycastHit hit)
     {
         var ray = _camera.ScreenPointToRay(position);
-        return Physics.Raycast(ray, out hit, float.MaxValue, gameObject.layer);
+        return Physics.Raycast(ray, out hit, float.MaxValue, 1 << gameObject.layer);
     }
 
     public void PanTo(Vector2 position)
