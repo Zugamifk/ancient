@@ -69,7 +69,7 @@ public class MapMouseInput : MouseInputState
         if (Input.GetMouseButtonDown(1))
         {
             _startPosition = cam.transform.localPosition;
-            _startDragPosition = cam.GetMouseWorldPosition();
+            _startDragPosition = Input.mousePosition;
         }
         if (Input.GetMouseButton(0))
         {
@@ -83,8 +83,7 @@ public class MapMouseInput : MouseInputState
         else
         if (Input.GetMouseButton(1))
         {
-            var input = cam.GetMouseWorldPosition();
-            var diff = cam.GetMouseWorldPosition() - _startDragPosition;
+            var diff = cam.GetWorldPosition(Input.mousePosition) - cam.GetWorldPosition(_startDragPosition);
             cam.PanTo(_startPosition - diff);
         }
     }
