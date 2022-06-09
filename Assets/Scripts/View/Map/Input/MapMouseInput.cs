@@ -45,6 +45,7 @@ public class MapMouseInput : MouseInputState
             }
         }
 
+        Debug.Log(".");
         return new DeskInputState();
     }
 
@@ -68,7 +69,7 @@ public class MapMouseInput : MouseInputState
         if (Input.GetMouseButtonDown(1))
         {
             _startPosition = cam.transform.localPosition;
-            _startDragPosition = Input.mousePosition;
+            _startDragPosition = cam.GetMouseWorldPosition();
         }
         if (Input.GetMouseButton(0))
         {
@@ -82,7 +83,8 @@ public class MapMouseInput : MouseInputState
         else
         if (Input.GetMouseButton(1))
         {
-            var diff = cam.GetWorldPosition(Input.mousePosition) - cam.GetWorldPosition(_startDragPosition);
+            var input = cam.GetMouseWorldPosition();
+            var diff = cam.GetMouseWorldPosition() - _startDragPosition;
             cam.PanTo(_startPosition - diff);
         }
     }
