@@ -41,7 +41,7 @@ public class Openable : MonoBehaviour
 
     void ClickedOpenClickable(int _)
     {
-        Game.Do(new OpenItemCommand(_identifiable.Id));
+        Game.Do(new CloseItemCommand(_identifiable.Id));
     }
 
     void ClickedClosedClickable(int _)
