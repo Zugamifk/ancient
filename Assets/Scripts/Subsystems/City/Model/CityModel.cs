@@ -9,11 +9,11 @@ namespace City.Model
 {
     public class CityModel : ICityModel
     {
-        public MapModel Map = new();
+        public MapModel MapModel = new();
         public CityGraph Graph = new CityGraph();
         public IdentifiableCollection<BuildingModel> Buildings = new IdentifiableCollection<BuildingModel>();
 
-        IMapModel ICityModel.Map => Map;
+        IMapModel ICityModel.Map => MapModel;
         ICityGraph ICityModel.CityGraph => Graph;
         IIdentifiableLookup<IBuildingModel> ICityModel.Buildings => Buildings;
     }

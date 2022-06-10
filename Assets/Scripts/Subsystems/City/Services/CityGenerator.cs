@@ -12,8 +12,8 @@ namespace City.Services
     public class CityGenerator
     {
         PathFinder _pathFinder = new();
-        int _roadExtents = 10;
-        int _roadExtentsVariability = 4;
+        //int _roadExtents = 10;
+        //int _roadExtentsVariability = 4;
 
         public void Generate(CityModel map)
         {
@@ -50,10 +50,10 @@ namespace City.Services
         public void BuildRoad(CityModel model, Vector2Int pointA, Vector2Int pointB, bool direct = false)
         {
             var roadtile = GetTileModel(Name.Tile.Road);
-            var path = direct ? _pathFinder.GetDirectPath(pointA, pointB, model.Map.Grid) : _pathFinder.GetPath(pointA, pointB, model.Map.Grid);
+            var path = direct ? _pathFinder.GetDirectPath(pointA, pointB, model.MapModel.Grid) : _pathFinder.GetPath(pointA, pointB, model.MapModel.Grid);
             foreach (var p in path.Path)
             {
-                model.Map.Grid.Map[p] = roadtile;
+                model.MapModel.Grid.Map[p] = roadtile;
             }
         }
 

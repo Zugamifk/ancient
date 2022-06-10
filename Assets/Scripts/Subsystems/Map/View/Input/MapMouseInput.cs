@@ -48,7 +48,6 @@ namespace Map.View
                 }
             }
 
-            Debug.Log(".");
             return new DeskInputState();
         }
 

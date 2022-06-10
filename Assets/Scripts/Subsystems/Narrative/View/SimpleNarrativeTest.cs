@@ -12,10 +12,6 @@ namespace Narrative.View
 
         void Start()
         {
-            //Game.Do(new LoadMapDataCommand());
-            //Game.Do(new GenerateCityCommand());
-            Game.Do(new GetItemCommand("Clock"));
-            Game.Do(new GetItemCommand("TestBook"));
             Game.Do(new StartNarrativeCommand(_narrative));
         }
     }

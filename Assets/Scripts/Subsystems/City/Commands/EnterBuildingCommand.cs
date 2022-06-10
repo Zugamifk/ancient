@@ -29,7 +29,7 @@ namespace City.Commands
             var path = _pathFinder.GetDirectPath(
                 Vector2Int.FloorToInt(_character.Movement.WorldPosition),
                 Vector2Int.FloorToInt(destinationPosition),
-                model.CityModel.Map.Grid);
+                model.CityModel.MapModel.Grid);
             _character.Movement.CityPath = path;
             _character.Movement.ReachedPathEnd += Enterbuilding;
         }
