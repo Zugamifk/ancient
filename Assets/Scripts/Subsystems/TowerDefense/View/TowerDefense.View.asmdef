@@ -1,0 +1,33 @@
+{
+    "name": "TowerDefense.View",
+    "rootNamespace": "TowerDefense.View",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:49ca4e5e1f109b3468d9d624cb8369e2",
+        "GUID:5de6134c1c064b04dabbf980177af609",
+        "GUID:de33c2b004740cc418ff566cc77be079",
+        "GUID:3fa8afd92b1d86d4e8b564ca0ce4dafd",
+        "GUID:7b318051aef0cea44892d3d3b82d6f88",
+        "GUID:69560c3be3d56564da3ecb875d90f45b",
+        "GUID:f1eacd49830892c4e9c9d11bbf989cc6",
+        "GUID:d2dbe21ee0e45dd4d9458d4fe5bec48f",
+        "GUID:a72a0e70bb087d44d9fd8ca015a2b8fd",
+        "GUID:41f9d3f98fb8d5b448dc91f72a53f18a",
+        "GUID:cb9576e91cb93e749b9b3c971f95c94e",
+        "GUID:8e91a756a924d7a40876f9c1977a9473",
+        "GUID:1b269c2d8b3d3ef4681b87b2d47b79df",
+        "GUID:19a20efc28a48a84aa638e5cad7c22a7",
+        "GUID:044ded5732690344981aa88d03f38f2e",
+        "GUID:a3945ad4e5ea53448889aba61e1ef248",
+        "GUID:932048a331b8d4849b64af72743e67cc"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

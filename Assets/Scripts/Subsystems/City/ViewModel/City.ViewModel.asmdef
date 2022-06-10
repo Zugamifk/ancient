@@ -1,0 +1,17 @@
+{
+    "name": "City.ViewModel",
+    "rootNamespace": "City.ViewModel",
+    "references": [
+        "GUID:f1eacd49830892c4e9c9d11bbf989cc6",
+        "GUID:044ded5732690344981aa88d03f38f2e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

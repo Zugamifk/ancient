@@ -1,0 +1,16 @@
+{
+    "name": "City.Debug",
+    "rootNamespace": "",
+    "references": [
+        "GUID:19a20efc28a48a84aa638e5cad7c22a7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

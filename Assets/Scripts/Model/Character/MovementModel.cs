@@ -12,7 +12,7 @@ public class MovementModel : IIdentifiable
     public Vector2 PositionOffset { get; } = new Vector2(0.5f - UnityEngine.Random.value, .5f - UnityEngine.Random.value);
 
     public string EnteredLocation;
-    public CityPath CityPath;
+    public PathModel CityPath;
 
     /// <summary>
     /// The index of the path node we are current moving towards

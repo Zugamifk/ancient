@@ -4,11 +4,14 @@ using System.Linq;
 using UnityEngine;
 using TowerDefense.Models;
 using TowerDefense.ViewModels;
+using City.Model;
+using City.ViewModel;
+using Narrative;
 
 public class GameModel : IGameModel
 {
-    public IdentifiableCollection<IIdentifiable> AllIdentifiables = new IdentifiableCollection<IIdentifiable>();
-    public MapModel MapModel = new MapModel();
+    public IdentifiableCollection<IIdentifiable> AllIdentifiables { get; } = new IdentifiableCollection<IIdentifiable>();
+    public CityModel CityModel { get; } = new CityModel();
     public TimeModel TimeModel = new TimeModel();
     public IdentifiableCollection<CharacterModel> Characters = new IdentifiableCollection<CharacterModel>();
     public Dictionary<string, NarrativeModel> Narratives = new Dictionary<string, NarrativeModel>();
@@ -20,7 +23,7 @@ public class GameModel : IGameModel
     public ICheatController Cheats;
 
     #region IGameModel
-    IMapModel IGameModel.Map => MapModel;
+    ICityModel IGameModel.City => CityModel;
     ITimeModel IGameModel.Time => TimeModel;
     IIdentifiableLookup<ICharacterModel> IGameModel.Characters => Characters;
     IInventoryModel IGameModel.Inventory => Inventory;

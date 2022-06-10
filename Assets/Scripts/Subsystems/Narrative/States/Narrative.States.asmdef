@@ -1,0 +1,24 @@
+{
+    "name": "Narrative.States",
+    "rootNamespace": "Narrative.States",
+    "references": [
+        "GUID:f94fdccd7f945b7478153101f87ee530",
+        "GUID:69560c3be3d56564da3ecb875d90f45b",
+        "GUID:30e59c99257eb72489d6d8e71299111f",
+        "GUID:5de6134c1c064b04dabbf980177af609",
+        "GUID:ba0de53301a43bc41ab347e1a59017ac",
+        "GUID:19a20efc28a48a84aa638e5cad7c22a7",
+        "GUID:cb9576e91cb93e749b9b3c971f95c94e",
+        "GUID:8e91a756a924d7a40876f9c1977a9473",
+        "GUID:eb0fbfe5148c2b84d8e9d35051e16c98"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -8,8 +8,8 @@ public class DeskTest : MonoBehaviour
     {
         Game.Do(new GetItemCommand("Clock"));
 
-        Game.Do(new LoadMapDataCommand());
-        Game.Do(new GenerateCityCommand());
+        //Game.Do(new LoadMapDataCommand());
+        //Game.Do(new GenerateCityCommand());
         Game.Do(new GetItemCommand("Map"));
     }
 }

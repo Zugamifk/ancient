@@ -1,0 +1,21 @@
+{
+    "name": "Narrative.Services",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f94fdccd7f945b7478153101f87ee530",
+        "GUID:30e59c99257eb72489d6d8e71299111f",
+        "GUID:5f50c77e36c61fd448cbb64824e4875a",
+        "GUID:8e91a756a924d7a40876f9c1977a9473",
+        "GUID:1b269c2d8b3d3ef4681b87b2d47b79df",
+        "GUID:a3945ad4e5ea53448889aba61e1ef248"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
