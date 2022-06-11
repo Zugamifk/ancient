@@ -10,10 +10,10 @@ namespace Narrative.View
     {
         private void Update()
         {
-            //foreach (var n in Game.MutableModel.Narratives.Values)
-            //{
-            //    UpdateNarrative(n);
-            //}
+            foreach (var n in Game.MutableModel.Narratives.Values)
+            {
+                UpdateNarrative(n);
+            }
         }
 
         void UpdateNarrative(NarrativeModel narrative)
