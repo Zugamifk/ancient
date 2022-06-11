@@ -1,3 +1,4 @@
+using City.Model;
 using City.Services;
 using Map.Commands;
 using System.Collections;
@@ -15,12 +16,14 @@ namespace Narrative.States
         public override void EnterState(IGameModel model)
         {
             var position = _locationFinder.FindMapLocation(Data.Destination, model.City);
-            Game.Do(new MoveCharacterCommand()
+            var cmd = new MoveCharacterCommand()
             {
                 CharacterName = Data.Character,
                 Destination = Vector2Int.FloorToInt(position),
                 ReachedPathEnd = ReachedPathEnd
-            });
+            };
+            cmd.SetMapHandle(new MutableCityMapHandle());
+            Game.Do(cmd);
         }
 
         public override string UpdateState(IGameModel model)
