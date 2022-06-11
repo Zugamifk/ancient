@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace Map.Commands
 {
-    public interface IMapCommand
+    public interface IMutableMapHandleUser
     {
-        MapModel MapModel { set; }
+        void SetMapHandle(IMutableMapHandle mapHandle);
     }
 }

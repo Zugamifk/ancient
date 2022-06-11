@@ -1,3 +1,4 @@
+using Map.Commands;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace Map.View
 
         List<IMapMouseInputHandler> _mapInputHandlers = new();
 
+        public MapCommandFactory CommandFactory { get; set; }
+
         void Awake()
         {
             var handlers = _mapInputHandlerContainers.Select(c => c.GetComponent<IMapMouseInputHandler>());
@@ -26,7 +29,7 @@ namespace Map.View
 
         MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)
         {
-            return new MapMouseInput(_tileMapper, _mapInputHandlers);
+            return new MapMouseInput(_tileMapper, _mapInputHandlers, CommandFactory);
         }
     }
 }

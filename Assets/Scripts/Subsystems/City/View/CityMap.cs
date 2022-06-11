@@ -4,6 +4,7 @@ using UnityEngine;
 using Map.View;
 using Map.ViewModel;
 using Map.Commands;
+using City.Commands;
 
 namespace City.View
 {
@@ -11,10 +12,13 @@ namespace City.View
     {
         [SerializeField]
         TileMapper _tileMapper;
+        [SerializeField]
+        MapInputHandler _inputHandler;
 
         private void Start()
         {
             _tileMapper.SetMapHandle(new CityMapHandle());
+            _inputHandler.CommandFactory = new CityCommandFactory();
         }
     }
 }

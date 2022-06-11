@@ -8,17 +8,18 @@ namespace Map.Commands
 {
     public class MapCommandFactory
     {
-        Func<MapModel> _mapGetter;
-        public MapCommandFactory(Func<MapModel> mapGetter)
+        IMutableMapHandle _mapHandle;
+
+        public MapCommandFactory(IMutableMapHandle mapHandle)
         {
-            _mapGetter = mapGetter;
+            _mapHandle = mapHandle;
         }
 
         public TCommand GetCommand<TCommand>()
-            where TCommand : ICommand, IMapCommand, new()
+            where TCommand : ICommand, IMutableMapHandleUser, new()
         {
             var cmd = new TCommand();
-            cmd.MapModel = _mapGetter.Invoke();
+            cmd.SetMapHandle(_mapHandle);
             return cmd;
         }
     }

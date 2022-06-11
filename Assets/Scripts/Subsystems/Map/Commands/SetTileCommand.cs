@@ -7,22 +7,28 @@ using Map.Services;
 
 namespace Map.Commands
 {
-    public class SetTileCommand : ICommand, IMapCommand
+    public class SetTileCommand : ICommand, IMutableMapHandleUser
     {
         public string TileType;
         public Vector2Int Position;
+        IMutableMapHandle _mapHandle;
 
-        public MapModel MapModel { private get; set; }
+        public SetTileCommand() { }
 
         public void Execute(GameModel model)
         {
             var tileData = DataService.GetData<TileDataCollection>().GetTypeData(TileType);
-            MapModel.Grid.Map[Position] = new MapTileModel()
+            _mapHandle.Map.Grid.Map[Position] = new MapTileModel()
             {
                 Type = TileType,
                 MoveCost = tileData.MoveCost
             };
-            MapModel.Grid.Id = Guid.NewGuid();
+            _mapHandle.Map.Grid.Id = Guid.NewGuid();
+        }
+
+        public void SetMapHandle(IMutableMapHandle mapHandle)
+        {
+            _mapHandle = mapHandle;
         }
     }
 }

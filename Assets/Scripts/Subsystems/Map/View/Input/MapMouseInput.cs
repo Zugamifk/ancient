@@ -12,11 +12,13 @@ namespace Map.View
         protected Vector3 _startPosition;
         protected Vector3 _startDragPosition;
         IEnumerable<IMapMouseInputHandler> _inputHandlers;
+        MapCommandFactory _commandFactory;
 
-        public MapMouseInput(ITileMapTransformer tileMapTransformer, IEnumerable<IMapMouseInputHandler> inputHandlers)
+        public MapMouseInput(ITileMapTransformer tileMapTransformer, IEnumerable<IMapMouseInputHandler> inputHandlers, MapCommandFactory commandFactory)
         {
             _tileMapTransformer = tileMapTransformer;
             _inputHandlers = inputHandlers;
+            _commandFactory = commandFactory;
         }
 
         public sealed override MouseInputState UpdateState()
@@ -76,11 +78,10 @@ namespace Map.View
             if (Input.GetMouseButton(0))
             {
                 var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
-                Game.Do(new SetTileCommand()
-                {
-                    Position = (Vector2Int)tile,
-                    TileType = Name.Tile.Road
-                });
+                var cmd = _commandFactory.GetCommand<SetTileCommand>();
+                cmd.Position = (Vector2Int)tile;
+                cmd.TileType = Name.Tile.Road;
+                Game.Do(cmd);
             }
             else
             if (Input.GetMouseButton(1))
