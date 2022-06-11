@@ -1,5 +1,6 @@
 using City.Data;
 using City.Model;
+using City.Services;
 using Map.Commands;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace City.Commands
 {
     public class SpawnBuildingCommand : ICommand
     {
-        static SetTileCommand _setBuildingTile = new();
+        static CityGenerator _cityGenerator = new();
         CityModel _city;
         string _buildingName;
         Vector2Int _position;
@@ -22,19 +23,7 @@ namespace City.Commands
 
         public void Execute(GameModel model)
         {
-            var buildingData = DataService.GetData<BuildingCollection>()[_buildingName];
-            var building = new BuildingModel()
-            {
-                Key = buildingData.Name,
-                Position = _position,
-                EntrancePosition = _position + buildingData.EntranceOffset,
-            };
-            _city.Buildings.AddItem(building, building.Key);
-            model.AllIdentifiables.AddItem(building, building.Key);
-
-            _setBuildingTile.Position = _position;
-            _setBuildingTile.TileType = Name.Tile.Building;
-            _setBuildingTile.Execute(model);
+            _cityGenerator.AddBuilding(_buildingName, _position);
         }
     }
 }

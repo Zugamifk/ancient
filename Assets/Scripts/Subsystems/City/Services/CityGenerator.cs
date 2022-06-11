@@ -1,3 +1,4 @@
+using City.Data;
 using City.Model;
 using Map.Model;
 using Map.Services;
@@ -12,29 +13,43 @@ namespace City.Services
     public class CityGenerator
     {
         PathFinder _pathFinder = new();
-        //int _roadExtents = 10;
-        //int _roadExtentsVariability = 4;
+        int _roadExtents = 10;
+        int _roadExtentsVariability = 4;
 
-        public void Generate(CityModel map)
+        public void Generate(CityModel city)
         {
-            //BuildRoad(map, Vector2Int.down, new Vector2Int(
-            //    UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
-            //    UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
-            //BuildRoad(map, Vector2Int.down, new Vector2Int(
-            //    UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
-            //    -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
-            //BuildRoad(map, Vector2Int.down, new Vector2Int(
-            //    -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
-            //    UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
-            //BuildRoad(map, Vector2Int.down, new Vector2Int(
-            //    -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
-            //    -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
-            //Game.Do(new SpawnBuildingCommand(Name.Building.Manor, Vector2Int.zero));
-            //Game.Do(new SpawnBuildingCommand(Name.Building.House, new Vector2Int(5, 2)));
-            //Game.Do(new BuildRoadCommand(Name.Building.Manor, Name.Building.House));
-            //map.Grid.Id = Guid.NewGuid();
+            BuildRoad(city, Vector2Int.down, new Vector2Int(
+                UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
+                UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
+            BuildRoad(city, Vector2Int.down, new Vector2Int(
+                UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
+                -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
+            BuildRoad(city, Vector2Int.down, new Vector2Int(
+                -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
+                UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
+            BuildRoad(city, Vector2Int.down, new Vector2Int(
+                -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
+                -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
+            AddBuilding(Name.Building.Manor, Vector2Int.zero);
+            AddBuilding(Name.Building.House, new Vector2Int(5, 2));
+            BuildRoad(city, Name.Building.Manor, Name.Building.House);
+            city.MapModel.Grid.Id = Guid.NewGuid();
         }
 
+        public void AddBuilding(string buildingName, Vector2Int position)
+        {
+            var buildingData = DataService.GetData<BuildingCollection>()[buildingName];
+            var building = new BuildingModel()
+            {
+                Key = buildingData.Name,
+                Position = position,
+                EntrancePosition = position + buildingData.EntranceOffset,
+            };
+            Game.MutableModel.CityModel.Buildings.AddItem(building, building.Key);
+            Game.MutableModel.AllIdentifiables.AddItem(building, building.Key);
+
+            Game.MutableModel.CityModel.MapModel.Grid.Map[position] = GetTileModel(Name.Tile.Building);
+        }
 
         public void BuildRoad(CityModel model, string startName, string endName)
         {

@@ -1,6 +1,6 @@
 {
     "name": "City.View",
-    "rootNamespace": "",
+    "rootNamespace": "City.View",
     "references": [
         "GUID:de33c2b004740cc418ff566cc77be079",
         "GUID:69560c3be3d56564da3ecb875d90f45b",
@@ -10,7 +10,8 @@
         "GUID:f1eacd49830892c4e9c9d11bbf989cc6",
         "GUID:5de6134c1c064b04dabbf980177af609",
         "GUID:932048a331b8d4849b64af72743e67cc",
-        "GUID:cb9576e91cb93e749b9b3c971f95c94e"
+        "GUID:cb9576e91cb93e749b9b3c971f95c94e",
+        "GUID:044ded5732690344981aa88d03f38f2e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

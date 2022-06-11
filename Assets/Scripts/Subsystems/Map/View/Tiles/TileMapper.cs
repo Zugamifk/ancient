@@ -9,20 +9,27 @@ namespace Map.View
 {
     public class TileMapper : MonoBehaviour, ITileMapTransformer
     {
+
         [SerializeField]
         Tilemap _tilemap;
 
         Guid _builtModelId;
         readonly string _defaultTileType = Name.Tile.Grass;
-        IMapModel _mapModel;
+        IMapHandle _mapHandle;
 
         void Update()
         {
-            if (_mapModel != null && _mapModel.Grid.Id != _builtModelId)
+            var map = _mapHandle.Map;
+            if (map != null && map.Grid.Id != _builtModelId)
             {
-                BuildTilemap(_mapModel);
-                _builtModelId = _mapModel.Grid.Id;
+                BuildTilemap(map);
+                _builtModelId = map.Grid.Id;
             }
+        }
+
+        public void SetMapHandle(IMapHandle mapHandle)
+        {
+            _mapHandle = mapHandle;
         }
 
         public void SetTile(int x, int y, IMapModel model)
