@@ -17,7 +17,7 @@ public class GameModel : IGameModel
     public Dictionary<string, NarrativeModel> Narratives = new Dictionary<string, NarrativeModel>();
     public InventoryModel Inventory = new InventoryModel();
     public TowerDefenseGame TowerDefense = new TowerDefenseGame();
-
+    public IExaminable CurrentExaminable;
     public IEnumerable<MovementModel> MovementModels => Characters.AllItems.Select(c => c.Movement);
 
     public ICheatController Cheats;

@@ -14,14 +14,15 @@ public class ExamineItemCommand : ICommand
 
     public void Execute(GameModel model)
     {
-        var item = model.Inventory.Items.GetItem(_id);
-        if (item is not IExaminableModel examinable)
+        var examinable = model.AllIdentifiables.GetItem(_id) as IExaminable;
+        if (examinable == null)
         {
-            throw new InvalidOperationException($"Item {item.Key} ({_id}) is not a package!");
+            throw new InvalidOperationException($"Item {examinable.Key} ({_id}) is not an IExaminable!");
         }
 
-        Debug.Log($"Examining {item.Key} ({item.Id})");
+        Debug.Log($"Examining {examinable.Key} ({examinable.Id})");
 
         examinable.IsExamining = true;
+        model.CurrentExaminable = examinable;
     }
 }
