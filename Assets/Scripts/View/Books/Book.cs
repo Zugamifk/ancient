@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,8 +20,11 @@ public class Book : MonoBehaviour
     Button _turnLeftbutton;
     [SerializeField]
     Button _turnRightbutton;
+    [SerializeField]
+    Button _closebutton;
 
-    string _currentBook;
+    string _currentBookKey;
+    Guid _currentBookId;
     int _currentPage = 0;
 
     public string Name => _name;
@@ -29,14 +33,17 @@ public class Book : MonoBehaviour
     {
         _turnLeftbutton.onClick.AddListener(Clicked_TurnLeftButton);
         _turnRightbutton.onClick.AddListener(Clicked_TurnRightButton);
+        _closebutton.onClick.AddListener(Clicked_CloseButton);
     }
+
     public void Update()
     {
         var book = Game.Model.Inventory.GetItem(Name) as IBookModel;
 
-        if (_currentBook != book.Key)
+        if (_currentBookKey != book.Key)
         {
-            _currentBook = book.Key;
+            _currentBookKey = book.Key;
+            _currentBookId = book.Id;
             _currentPage = book.Index;
             UpdatePages(book);
         }
@@ -104,5 +111,10 @@ public class Book : MonoBehaviour
     void Clicked_TurnRightButton()
     {
         _currentPage += 2;
+    }
+
+    void Clicked_CloseButton()
+    {
+        Game.Do(new StopExaminingItemCommand(_currentBookId));
     }
 }

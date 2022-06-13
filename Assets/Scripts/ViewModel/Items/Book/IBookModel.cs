@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBookModel : IIsExamining
+public interface IBookModel : IItemModel, IIsExamining
 {
-    string Key { get; }
     int NumPages { get; }
     int Index { get; }
     List<IPageModel> Pages { get; }

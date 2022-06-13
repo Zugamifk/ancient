@@ -53,11 +53,6 @@ public class Examinable : MonoBehaviour
         }
     }
 
-    void ClickedOpenClickable(int _)
-    {
-        Game.Do(new CloseItemCommand(_identifiable.Id));
-    }
-
     void ClickedClosedClickable(int _)
     {
         Game.Do(new ExamineItemCommand(_identifiable.Id));

@@ -245,6 +245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorkbookOpened
       objectReference: {fileID: 0}
+    - target: {fileID: 161004532389827644, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+      propertyPath: _closebutton
+      value: 
+      objectReference: {fileID: 437194016532879582}
     - target: {fileID: 161004532389827645, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -291,6 +295,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+--- !u!114 &437194016532879582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2305376579663264537, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
+  m_PrefabInstance: {fileID: 1868833783420756935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2005067928107087861 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 161004532389827634, guid: ea40f9e4f362f0740855aa067f8f5c00, type: 3}
