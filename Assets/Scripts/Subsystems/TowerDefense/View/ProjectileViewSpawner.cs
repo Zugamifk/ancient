@@ -8,6 +8,6 @@ namespace TowerDefense.Views
 {
     public class ProjectileViewSpawner : MapViewSpawner<IProjectile, Projectile>
     {
-        protected override IIdentifiableLookup<IProjectile> GetIdentifiables() => Game.Model.TowerDefense.Projectiles;
+        protected override IIdentifiableLookup<IProjectile> GetIdentifiables() => Game.Model.GetModel<ITowerDefense>().Projectiles;
     }
 }

@@ -22,7 +22,8 @@ namespace TowerDefense.Behaviours
                     Trajectory = new PathFollower(path),
                     MoveSpeed = 5
                 };
-                game.TowerDefense.Projectiles.AddItem(projectile);
+                var towerDefenseModel = game.GetModel<TowerDefenseGameModel>();
+                towerDefenseModel.Projectiles.AddItem(projectile);
                 game.AllIdentifiables.AddItem(projectile);
             }
         }

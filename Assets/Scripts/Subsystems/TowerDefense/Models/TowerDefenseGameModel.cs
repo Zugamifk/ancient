@@ -6,7 +6,7 @@ using TowerDefense.ViewModels;
 
 namespace TowerDefense.Models
 {
-    public class TowerDefenseGame : ITowerDefense
+    public class TowerDefenseGameModel : ITowerDefense, IModel
     {
         public Vector2Int EndPoint;
         public int Lives;

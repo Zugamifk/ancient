@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TowerDefense.Data;
 using UnityEngine;
 using UnityEngine.UI;
+using TowerDefense.ViewModels;
 
 namespace TowerDefense.Views
 {
@@ -31,7 +32,7 @@ namespace TowerDefense.Views
         public void UpdateState()
         {
             _button.enabled = _tower!=null 
-                && Game.Model.TowerDefense.Coins >= _tower.BuildCost;
+                && Game.Model.GetModel<ITowerDefense>().Coins >= _tower.BuildCost;
         }
 
         void Clicked()

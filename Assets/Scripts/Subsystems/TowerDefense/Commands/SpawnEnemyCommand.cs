@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TowerDefense.Data;
 using Map.Commands;
+using TowerDefense.Models;
 
 namespace TowerDefense.Commands
 {
@@ -16,7 +17,7 @@ namespace TowerDefense.Commands
 
         public void Execute(GameModel model)
         {
-            var tdModel = model.TowerDefense;
+            var tdModel = model.GetModel<TowerDefenseGameModel>();
             var gamedata = DataService.GetData<TowerDefenseData>();
             var waveData = gamedata.Waves[tdModel.CurrentWave];
             void SpawnedEnemy(CharacterModel enemy)

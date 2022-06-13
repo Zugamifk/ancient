@@ -23,13 +23,14 @@ namespace City.Commands
 
         public void Execute(GameModel model)
         {
-            _building = model.CityModel.Buildings.GetItem(_buildingName);
+            var cityModel = model.GetModel<CityModel>();
+            _building = cityModel.Buildings.GetItem(_buildingName);
             var destinationPosition = _building.Position;
             _character = model.Characters.GetItem(_characterName);
             var path = _pathFinder.GetDirectPath(
                 Vector2Int.FloorToInt(_character.Movement.WorldPosition),
                 Vector2Int.FloorToInt(destinationPosition),
-                model.CityModel.MapModel.Grid);
+                cityModel.MapModel.Grid);
             _character.Movement.CityPath = path;
             _character.Movement.ReachedPathEnd += Enterbuilding;
         }

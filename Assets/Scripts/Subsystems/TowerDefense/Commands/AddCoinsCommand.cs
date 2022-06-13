@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TowerDefense.Models;
 
 namespace TowerDefense.Commands
 {
@@ -11,7 +12,7 @@ namespace TowerDefense.Commands
 
         public void Execute(GameModel model)
         {
-            model.TowerDefense.Coins += _amountToAdd;
+            model.GetModel<TowerDefenseGameModel>().Coins += _amountToAdd;
         }
     }
 }

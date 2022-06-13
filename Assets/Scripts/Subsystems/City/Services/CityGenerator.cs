@@ -45,10 +45,11 @@ namespace City.Services
                 Position = position,
                 EntrancePosition = position + buildingData.EntranceOffset,
             };
-            Game.MutableModel.CityModel.Buildings.AddItem(building, building.Key);
+            var city = Game.MutableModel.GetModel<CityModel>();
+            city.Buildings.AddItem(building, building.Key);
             Game.MutableModel.AllIdentifiables.AddItem(building, building.Key);
 
-            Game.MutableModel.CityModel.MapModel.Grid.Map[position] = GetTileModel(Name.Tile.Building);
+            city.MapModel.Grid.Map[position] = GetTileModel(Name.Tile.Building);
         }
 
         public void BuildRoad(CityModel model, string startName, string endName)

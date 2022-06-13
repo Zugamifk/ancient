@@ -2,6 +2,7 @@ using City.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using City.Model;
 
 namespace City.Commands
 {
@@ -10,7 +11,7 @@ namespace City.Commands
         static CityGenerator _cityGenerator = new CityGenerator();
         public void Execute(GameModel model)
         {
-            _cityGenerator.Generate(model.CityModel);
+            _cityGenerator.Generate(model.GetModel<CityModel>());
         }
     }
 }

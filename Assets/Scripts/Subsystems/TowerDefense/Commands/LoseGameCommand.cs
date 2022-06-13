@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TowerDefense.Models;
 using UnityEngine;
 
 namespace TowerDefense.Commands
@@ -8,7 +9,7 @@ namespace TowerDefense.Commands
     {
         public void Execute(GameModel model)
         {
-            model.TowerDefense.CurrentWave = -1;
+            model.GetModel<TowerDefenseGameModel>().CurrentWave = -1;
             Debug.Log("Game over!!");
         }
     }

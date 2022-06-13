@@ -4,10 +4,11 @@ using System.Linq;
 using UnityEngine;
 using TowerDefense.Data;
 using Map.Commands;
-using City.Model;
 using Map.Services;
 using City.Commands;
 using TowerDefense.Commands;
+using TowerDefense.ViewModels;
+using City.Model;
 
 namespace TowerDefense.View
 {
@@ -42,7 +43,7 @@ namespace TowerDefense.View
 
         void SpawnWaveUnits()
         {
-            var tdModel = Game.Model.TowerDefense;
+            var tdModel = Game.Model.GetModel<ITowerDefense>();
 
             if (tdModel.CurrentWave < 0) return;
 
@@ -57,7 +58,7 @@ namespace TowerDefense.View
 
         void UpdateTowers()
         {
-            foreach (var tower in Game.Model.TowerDefense.Towers.AllItems)
+            foreach (var tower in Game.Model.GetModel<ITowerDefense>().Towers.AllItems)
             {
                 Game.Do(new UpdateEnemiesInRangeOfTowerCommand(tower.Id));
                 Game.Do(new UpdateTowerFiringCommand(tower.Id));

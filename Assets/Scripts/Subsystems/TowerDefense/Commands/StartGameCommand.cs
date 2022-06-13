@@ -19,13 +19,13 @@ namespace TowerDefense.Commands
         public void Execute(GameModel model)
         {
             var towerDefenseData = DataService.GetData<TowerDefenseData>();
-            var towerDefenseModel = new TowerDefenseGame();
+            var towerDefenseModel = new TowerDefenseGameModel();
             towerDefenseModel.Lives = towerDefenseData.StartingLives;
             towerDefenseModel.MaxLives = towerDefenseData.StartingLives;
             towerDefenseModel.CurrentWave = -1;
             towerDefenseModel.EndPoint = _destination;
             towerDefenseModel.Coins = towerDefenseData.StartingCoins;
-            model.TowerDefense = towerDefenseModel;
+            model.SetModel<TowerDefenseGameModel>(towerDefenseModel);
         }
     }
 }

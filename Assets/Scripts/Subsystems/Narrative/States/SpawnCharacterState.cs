@@ -1,4 +1,5 @@
 using City.Services;
+using City.ViewModel;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Narrative.States
         static LocationFinder _locationFinder = new();
         public override string UpdateState(IGameModel model)
         {
-            var position = _locationFinder.FindMapLocation(Data.Position, model.City);
+            var position = _locationFinder.FindMapLocation(Data.Position, model.GetModel<ICityModel>());
             Game.Do(new SpawnCharacterCommand()
             {
                 Name = Data.Character,

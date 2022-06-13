@@ -7,6 +7,6 @@ namespace City.Model
 {
     public class MutableCityMapHandle : IMutableMapHandle
     {
-        public MapModel Map => Game.MutableModel.CityModel.MapModel;
+        public MapModel Map => Game.MutableModel.GetModel<CityModel>().MapModel;
     }
 }

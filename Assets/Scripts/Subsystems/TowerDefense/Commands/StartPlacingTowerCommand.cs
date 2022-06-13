@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TowerDefense.Models;
 
 namespace TowerDefense
 {
@@ -14,7 +15,7 @@ namespace TowerDefense
 
         public void Execute(GameModel model)
         {
-            model.TowerDefense.BuildingBeingPlaced = _towerName;
+            model.GetModel<TowerDefenseGameModel>().BuildingBeingPlaced = _towerName;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TowerDefense.Data;
 using UnityEngine;
+using TowerDefense.Models;
 
 namespace TowerDefense.Commands
 {
@@ -10,10 +11,11 @@ namespace TowerDefense.Commands
     {
         public void Execute(GameModel model)
         {
-            model.TowerDefense.EnemyIds.RemoveAll(id => !model.Characters.HasId(id));
+            var towerDefenseModel = model.GetModel<TowerDefenseGameModel>();
+            towerDefenseModel.EnemyIds.RemoveAll(id => !model.Characters.HasId(id));
 
             var enemyData = DataService.GetData<EnemyDataCollection>();
-            foreach (var id in model.TowerDefense.EnemyIds)
+            foreach (var id in towerDefenseModel.EnemyIds)
             {
                 var character = model.Characters.GetItem(id);
                 if (!character.Health.Body.IsAlive())

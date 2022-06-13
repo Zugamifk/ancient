@@ -20,15 +20,16 @@ namespace TowerDefense.Commands
         public void Execute(GameModel model)
         {
             var data = DataService.GetData<TowerDefenseData>().GetTower(_name);
-            var towertModel = new Models.Tower();
-            towertModel.Key = data.Name;
-            towertModel.AttackRadius = data.Radius;
-            towertModel.Position = _position;
-            towertModel.ShotsPerSecond = data.ShotsPerSecond;
-            model.TowerDefense.Towers.AddItem(towertModel);
-            model.TowerDefense.BuildingBeingPlaced = null;
+            var towerModel = new Tower();
+            towerModel.Key = data.Name;
+            towerModel.AttackRadius = data.Radius;
+            towerModel.Position = _position;
+            towerModel.ShotsPerSecond = data.ShotsPerSecond;
+            var towerDefenseModel = model.GetModel<TowerDefenseGameModel>();
+            towerDefenseModel.Towers.AddItem(towerModel);
+            towerDefenseModel.BuildingBeingPlaced = null;
 
-            model.TowerDefense.Coins -= data.BuildCost;
+            towerDefenseModel.Coins -= data.BuildCost;
         }
     }
 }

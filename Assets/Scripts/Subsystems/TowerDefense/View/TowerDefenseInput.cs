@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TowerDefense.Commands;
 using UnityEngine;
+using TowerDefense.ViewModels;
 
 namespace TowerDefense.Views
 {
@@ -18,7 +19,7 @@ namespace TowerDefense.Views
             else if (Input.GetMouseButtonUp(0))
             {
                 var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
-                Game.Do(new BuildTowerCommand(Game.Model.TowerDefense.BuildingBeingPlaced, (Vector2Int)tile));
+                Game.Do(new BuildTowerCommand(Game.Model.GetModel<ITowerDefense>().BuildingBeingPlaced, (Vector2Int)tile));
             }
         }
 
@@ -29,7 +30,7 @@ namespace TowerDefense.Views
 
         public bool ShouldHandleInput(Vector3 position)
         {
-            return !string.IsNullOrEmpty(Game.Model.TowerDefense.BuildingBeingPlaced);
+            return !string.IsNullOrEmpty(Game.Model.GetModel<ITowerDefense>().BuildingBeingPlaced);
         }
     }
 }

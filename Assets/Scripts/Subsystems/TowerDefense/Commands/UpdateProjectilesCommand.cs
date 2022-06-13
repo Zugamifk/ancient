@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TowerDefense.Models;
 
 namespace TowerDefense.Commands
 {
@@ -8,8 +9,9 @@ namespace TowerDefense.Commands
     {
         public void Execute(GameModel model)
         {
-            List<Models.Projectile> toRemove = new List<Models.Projectile>();
-            foreach(var p in model.TowerDefense.Projectiles.AllItems)
+            var towerDefenseModel = model.GetModel<TowerDefenseGameModel>();
+            List<Projectile> toRemove = new List<Models.Projectile>();
+            foreach(var p in towerDefenseModel.Projectiles.AllItems)
             {
                 p.Trajectory.Step(p.MoveSpeed * Time.deltaTime);
                 if (p.Trajectory.AtEnd)
@@ -20,7 +22,7 @@ namespace TowerDefense.Commands
             }
             foreach(var p in toRemove)
             {
-                model.TowerDefense.Projectiles.RemoveItem(p.Id);
+                towerDefenseModel.Projectiles.RemoveItem(p.Id);
                 model.AllIdentifiables.RemoveItem(p.Id);
             }
         }

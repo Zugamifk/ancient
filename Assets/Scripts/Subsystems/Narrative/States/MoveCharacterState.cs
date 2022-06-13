@@ -1,5 +1,6 @@
 using City.Model;
 using City.Services;
+using City.ViewModel;
 using Map.Commands;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Narrative.States
 
         public override void EnterState(IGameModel model)
         {
-            var position = _locationFinder.FindMapLocation(Data.Destination, model.City);
+            var position = _locationFinder.FindMapLocation(Data.Destination, model.GetModel<ICityModel>());
             var cmd = new MoveCharacterCommand()
             {
                 CharacterName = Data.Character,

@@ -2,6 +2,7 @@ using City.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using City.Model;
 
 namespace City.Commands
 {
@@ -30,11 +31,11 @@ namespace City.Commands
         {
             if (string.IsNullOrEmpty(_startName))
             {
-                _cityGenerator.BuildRoad(model.CityModel, _start, _end, true);
+                _cityGenerator.BuildRoad(model.GetModel<CityModel>(), _start, _end, true);
             }
             else
             {
-                _cityGenerator.BuildRoad(model.CityModel, _startName, _endName);
+                _cityGenerator.BuildRoad(model.GetModel<CityModel>(), _startName, _endName);
             }
         }
     }

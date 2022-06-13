@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TowerDefense.Models;
 
 namespace TowerDefense
 {
@@ -8,7 +9,7 @@ namespace TowerDefense
     {
         public void Execute(GameModel model)
         {
-            var towerModel = model.TowerDefense;
+            var towerModel = model.GetModel<TowerDefenseGameModel>();
             towerModel.StartTime = model.TimeModel.RealTime;
             towerModel.SpawnedCount = 0;
             towerModel.CurrentWave++;

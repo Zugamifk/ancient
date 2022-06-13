@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TowerDefense.Models;
 
 namespace TowerDefense.Commands
 {
@@ -17,7 +18,8 @@ namespace TowerDefense.Commands
 
         public void Execute(GameModel model)
         {
-            foreach (var e in model.TowerDefense.EnemyIds.Select(model.Characters.GetItem))
+            var towerDefenseModel = model.GetModel<TowerDefenseGameModel>();
+            foreach (var e in towerDefenseModel.EnemyIds.Select(model.Characters.GetItem))
             {
                 if (Vector2.Distance(e.Position, _position) < _radius)
                 {

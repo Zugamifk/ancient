@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TowerDefense.Behaviours;
+using TowerDefense.Models;
 
 namespace TowerDefense.Commands
 {
@@ -14,7 +15,8 @@ namespace TowerDefense.Commands
 
         public void Execute(GameModel model)
         {
-            _towerBehaviour.FireProjectiles(model, model.TowerDefense.Towers.GetItem(_id));
+            var towerDefenseModel = model.GetModel<TowerDefenseGameModel>();
+            _towerBehaviour.FireProjectiles(model, towerDefenseModel.Towers.GetItem(_id));
         }
     }
 }

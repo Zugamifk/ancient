@@ -8,6 +8,6 @@ namespace City.View
 {
     public class BuildingViewSpawner : MapViewSpawner<IBuildingModel, Building>
     {
-        protected override IIdentifiableLookup<IBuildingModel> GetIdentifiables() => Game.Model.City.Buildings;
+        protected override IIdentifiableLookup<IBuildingModel> GetIdentifiables() => Game.Model.GetModel<ICityModel>().Buildings;
     }
 }

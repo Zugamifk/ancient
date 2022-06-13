@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using TowerDefense.Data;
+using TowerDefense.ViewModels;
 
 namespace TowerDefense.Views
 {
@@ -39,7 +40,7 @@ namespace TowerDefense.Views
 
         public void Update()
         {
-            var tdModel = Game.Model.TowerDefense;
+            var tdModel = Game.Model.GetModel<ITowerDefense>();
             _livesText.text = string.Format(k_LivesTextString, tdModel.Lives, tdModel.MaxLives);
             _waveCountText.text = string.Format(k_WaveCountTextString, tdModel.CurrentWave + 1);
             _timeText.text = string.Format(k_TimeTextString, tdModel.CurrentTime.ToString(@"mm\:ss"));
@@ -51,7 +52,7 @@ namespace TowerDefense.Views
 
         void OnCoinsChanged()
         {
-            var tdModel = Game.Model.TowerDefense;
+            var tdModel = Game.Model.GetModel<ITowerDefense>();
             _coinsText.SetTarget(tdModel.Coins);
             for (int i = 0; i < _buildTowerButtons.Length; i++)
             {
