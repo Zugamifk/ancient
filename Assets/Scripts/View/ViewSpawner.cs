@@ -42,7 +42,7 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
                 if(_viewParent!=null)
                 {
                     instance.transform.SetParent(_viewParent);
-                    SetLayer(instance.transform, _viewParent.gameObject.layer);
+                    instance.SetLayerRecursively(_viewParent.gameObject.layer);
                 }
                 var view = instance.GetComponent<TView>();
                 if(view == null)
@@ -59,12 +59,4 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
 
     protected abstract IIdentifiableLookup<TModel> GetIdentifiables();
     protected virtual void SpawnedView(TModel model, TView view) { }
-    private void SetLayer(Transform tf, int layer)
-    {
-        tf.gameObject.layer = layer;
-        foreach (Transform child in tf)
-        {
-            SetLayer(child, layer);
-        }
-    }
 }

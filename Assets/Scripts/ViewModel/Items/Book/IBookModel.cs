@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBookModel : IIsOpen
+public interface IBookModel : IIsExamining
 {
     string Key { get; }
     int NumPages { get; }

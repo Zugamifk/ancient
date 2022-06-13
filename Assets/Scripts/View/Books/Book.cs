@@ -19,12 +19,9 @@ public class Book : MonoBehaviour
     Button _turnLeftbutton;
     [SerializeField]
     Button _turnRightbutton;
-    [SerializeField]
-    Button _closeButton;
 
     string _currentBook;
     int _currentPage = 0;
-    bool _closing;
 
     public string Name => _name;
 
@@ -32,26 +29,10 @@ public class Book : MonoBehaviour
     {
         _turnLeftbutton.onClick.AddListener(Clicked_TurnLeftButton);
         _turnRightbutton.onClick.AddListener(Clicked_TurnRightButton);
-        _closeButton.onClick.AddListener(Clicked_Close);
     }
     public void Update()
     {
         var book = Game.Model.Inventory.GetItem(Name) as IBookModel;
-        if (_closing)
-        {
-            //book.OnClosed();
-            _closing = false;
-        }
-
-        if (book.IsOpen!=gameObject.activeInHierarchy)
-        {
-            gameObject.SetActive(book.IsOpen);
-        }
-
-        if (!book.IsOpen)
-        {
-            return;
-        }
 
         if (_currentBook != book.Key)
         {
@@ -123,10 +104,5 @@ public class Book : MonoBehaviour
     void Clicked_TurnRightButton()
     {
         _currentPage += 2;
-    }
-
-    void Clicked_Close()
-    {
-        _closing = true;
     }
 }

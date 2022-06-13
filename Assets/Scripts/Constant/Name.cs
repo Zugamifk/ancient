@@ -8,6 +8,7 @@ public static partial class Name
     {
         public static string Desk = "Desk";
         public static string Map = "Map";
+        public static string Examinables = "Examinables";
     }
 
     public static class Tile
