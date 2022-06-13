@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class BookMaker
 {
+    static BookMaker()
+    {
+        ModelBuilder.RegisterFactory<BookData>(MakeBookFromData);
+    }
+
+    static BookMaker _factoryInstance = new();
+    static ItemModel MakeBookFromData(ItemData data)
+    {
+        switch (data)
+        {
+            case TextBookData textBookData:
+                return _factoryInstance.CreateTextBookModel(textBookData);
+        }
+
+        throw new System.InvalidOperationException($"No factory method for book of type {data.GetType()}!");
+    }
+
     public BookModel CreateTextBookModel(TextBookData data)
     {
         var book = CreateBookModel(data);

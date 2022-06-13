@@ -1,7 +1,10 @@
 {
     "name": "SpiritVessel.Model",
     "rootNamespace": "SpiritVessel.Model",
-    "references": [],
+    "references": [
+        "GUID:eb0fbfe5148c2b84d8e9d35051e16c98",
+        "GUID:f1eacd49830892c4e9c9d11bbf989cc6"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

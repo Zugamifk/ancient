@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapItemData : ItemData
+namespace Map.Data
 {
-    
+    public class MapItemData : ItemData
+    {
+
+    }
 }

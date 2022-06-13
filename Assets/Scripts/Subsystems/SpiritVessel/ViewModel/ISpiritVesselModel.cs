@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SpiritVessel.ViewModel
 {
-    public interface ISpiritVesselModel
+    public interface ISpiritVesselModel : IItemModel, IIsExamining
     {
 
     }
