@@ -37,7 +37,13 @@ public class GameModel : IGameModel
         where TModel : IRegisteredModel
     {
         TypeToModel[typeof(TModel)] = model;
-        TypeToModel[model.GetType()] = model;
+        foreach (var i in typeof(TModel).GetInterfaces())
+        {
+            if (typeof(IRegisteredModel).IsAssignableFrom(i))
+            {
+                TypeToModel[i] = model;
+            }
+        }
     }
 
     #region IGameModel

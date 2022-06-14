@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BookMaker
 {
-    static BookMaker()
+    [RuntimeInitializeOnLoadMethod]
+    static void RegisterBookDataFactory()
     {
-        ModelBuilder.RegisterFactory<BookData>(MakeBookFromData);
+        ModelFactory.RegisterFactory<BookData>(MakeBookFromData);
     }
 
     static BookMaker _factoryInstance = new();

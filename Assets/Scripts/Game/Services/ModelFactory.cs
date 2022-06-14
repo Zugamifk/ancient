@@ -4,42 +4,34 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class ModelBuilder
+public static class ModelFactory
 {
     public delegate ItemModel ModelFactoryDelegate(ItemData data);
 
     static Dictionary<Type, ModelFactoryDelegate> _itemDataTypetoModelFactory = new();
+    static Dictionary<Type, ModelFactoryDelegate> _itemModelTypetoModelFactory = new();
 
-    static ModelBuilder()
+    static ModelFactory()
     {
-        RegisterFactory<PackageItemData>(data => {
+        RegisterFactory<PackageItemData>(data =>
+        {
             var packageData = data as PackageItemData;
             return new PackageItemModel()
             {
                 Contents = packageData.Contents.Select(i => i.Name).ToList()
             };
         });
-
-        //case PackageItemData packageData:
-        //        itemModel = new PackageItemModel()
-        //        {
-        //            Contents = packageData.Contents.Select(i => i.Name).ToList()
-        //        };
-        //break;
-        //    case MapItemData mapItemData:
-        //        itemModel = new MapItemModel();
-        //break;
-        //default:
-        //        itemModel = new ItemModel();
-        //break;
     }
 
     public static void RegisterFactory<TData>(ModelFactoryDelegate factory)
+        where TData : ItemData
     {
         if (_itemDataTypetoModelFactory.ContainsKey(typeof(TData)))
         {
             throw new InvalidOperationException($"A factory for data type {typeof(TData)} is already registered!");
         }
+
+        Debug.Log($"Registered factory for {typeof(TData)}");
 
         _itemDataTypetoModelFactory[typeof(TData)] = factory;
     }
@@ -49,6 +41,7 @@ public static class ModelBuilder
         var type = data.GetType();
         if (!_itemDataTypetoModelFactory.TryGetValue(type, out ModelFactoryDelegate factory))
         {
+            Debug.Log($"No model of type {type}, creating default.");
             factory = DefaultFactory;
         }
 

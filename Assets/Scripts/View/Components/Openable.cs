@@ -34,7 +34,7 @@ public class Openable : MonoBehaviour
                 SetOpenedState(openable.IsOpen);
             } else
             {
-                throw new InvalidOperationException($"Item {item} ({_identifiable.Id}) is not IIsOpen!");
+                throw new InvalidOperationException($"Item {this} ({item} - {_identifiable.Id}) is not IIsOpen!");
             }
         }
     }

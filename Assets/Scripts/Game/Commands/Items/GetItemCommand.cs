@@ -15,7 +15,7 @@ public class GetItemCommand : ICommand
     public void Execute(GameModel model)
     {
         var data = DataService.GetData<ItemCollection>().GetData(_itemName);
-        var itemModel = ModelBuilder.GetModel(data);
+        var itemModel = ModelFactory.GetModel(data);
 
         model.Inventory.Items.AddItem(itemModel, _itemName);
         model.AllIdentifiables.AddItem(itemModel, _itemName);

@@ -48,7 +48,7 @@ public class Examinable : MonoBehaviour
             }
             else
             {
-                throw new InvalidOperationException($"Item {item} ({_identifiable.Id}) is not IIsExamining!");
+                throw new InvalidOperationException($"Item {this} ({item} - {_identifiable.Id}) is not IIsExamining!");
             }
         }
     }
