@@ -15,7 +15,7 @@ namespace Map.View
 
         List<IMapMouseInputHandler> _mapInputHandlers = new();
 
-        public MapCommandFactory CommandFactory { get; set; }
+        public IMapCommandFactory CommandFactory { get; set; }
 
         void Awake()
         {

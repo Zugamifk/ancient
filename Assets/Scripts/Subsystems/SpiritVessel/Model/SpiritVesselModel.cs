@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SpiritVessel.ViewModel;
 using Map.Model;
+using Map.ViewModel;
 
 namespace SpiritVessel.Model
 {
@@ -10,5 +11,9 @@ namespace SpiritVessel.Model
     {
         public MapModel MapModel { get; } = new();
         public bool IsExamining { get; set; }
+
+        #region ISpiritVesselModel 
+        IMapModel ISpiritVesselModel.Map => MapModel;
+        #endregion
     }
 }

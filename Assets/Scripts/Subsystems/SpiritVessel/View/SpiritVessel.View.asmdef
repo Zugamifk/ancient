@@ -1,7 +1,15 @@
 {
     "name": "SpiritVessel.View",
-    "rootNamespace": "SpiritVesselView",
-    "references": [],
+    "rootNamespace": "SpiritVessel.View",
+    "references": [
+        "GUID:41f9d3f98fb8d5b448dc91f72a53f18a",
+        "GUID:cb9576e91cb93e749b9b3c971f95c94e",
+        "GUID:044ded5732690344981aa88d03f38f2e",
+        "GUID:5de6134c1c064b04dabbf980177af609",
+        "GUID:f1eacd49830892c4e9c9d11bbf989cc6",
+        "GUID:69560c3be3d56564da3ecb875d90f45b",
+        "GUID:2ae98cca5c007b848857075434878784"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

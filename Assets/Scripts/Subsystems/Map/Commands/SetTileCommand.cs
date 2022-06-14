@@ -7,7 +7,7 @@ using Map.Services;
 
 namespace Map.Commands
 {
-    public class SetTileCommand : ICommand, IMutableMapHandleUser
+    public class SetTileCommand : ICommand, IMapModelMutator
     {
         public string TileType;
         public Vector2Int Position;

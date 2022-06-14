@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Map.Commands
 {
-    public interface IMutableMapHandleUser
+    public interface IMapModelMutator
     {
         void SetMapHandle(IMutableMapHandle mapHandle);
     }

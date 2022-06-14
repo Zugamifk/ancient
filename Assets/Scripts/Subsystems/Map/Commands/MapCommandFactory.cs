@@ -16,7 +16,7 @@ namespace Map.Commands
         }
 
         public TCommand GetCommand<TCommand>()
-            where TCommand : ICommand, IMutableMapHandleUser, new()
+            where TCommand : ICommand, IMapModelMutator, new()
         {
             var cmd = new TCommand();
             cmd.SetMapHandle(_mapHandle);

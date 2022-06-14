@@ -6,8 +6,14 @@ using UnityEngine;
 
 namespace City.Commands
 {
-    public class CityCommandFactory : MapCommandFactory
+    public class CityCommandFactory : IMapCommandFactory
     {
-        public CityCommandFactory() : base(new MutableCityMapHandle()) { }
+        MapCommandFactory _mapCommandFactory = new(new MutableCityMapHandle());
+
+        public TCommand GetCommand<TCommand>() 
+            where TCommand : ICommand, IMapModelMutator, new()
+        {
+            return _mapCommandFactory.GetCommand<TCommand>();
+        }
     }
 }

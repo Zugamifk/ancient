@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Map.Commands
 {
-    public class MoveCharacterCommand : ICommand, IMutableMapHandleUser
+    public class MoveCharacterCommand : ICommand, IMapModelMutator
     {
         public Guid CharacterId;
         public string CharacterName;

@@ -12,9 +12,9 @@ namespace Map.View
         protected Vector3 _startPosition;
         protected Vector3 _startDragPosition;
         IEnumerable<IMapMouseInputHandler> _inputHandlers;
-        MapCommandFactory _commandFactory;
+        IMapCommandFactory _commandFactory;
 
-        public MapMouseInput(ITileMapTransformer tileMapTransformer, IEnumerable<IMapMouseInputHandler> inputHandlers, MapCommandFactory commandFactory)
+        public MapMouseInput(ITileMapTransformer tileMapTransformer, IEnumerable<IMapMouseInputHandler> inputHandlers, IMapCommandFactory commandFactory)
         {
             _tileMapTransformer = tileMapTransformer;
             _inputHandlers = inputHandlers;
