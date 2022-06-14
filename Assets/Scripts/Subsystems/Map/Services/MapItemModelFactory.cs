@@ -6,7 +6,7 @@ using Map.Data;
 
 namespace Map.Services
 {
-    static class MapModelFactory
+    static class MapItemModelFactory
     {
         [RuntimeInitializeOnLoadMethod]
         static void RegisterMapModelFactory()
