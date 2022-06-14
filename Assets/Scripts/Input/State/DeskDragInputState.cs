@@ -9,19 +9,23 @@ internal class DeskDragInputState : MouseInputState
 
     public DeskDragInputState(Draggable target)
     {
-        var cam = CameraController.TryGetCamera(Name.Camera.Desk);
-        _lastDragPos = cam.GetMouseWorldPosition();
-        _draggable = target;
+        if (CameraController.TryGetCamera(Name.Camera.Desk, out CameraController cam))
+        {
+            _lastDragPos = cam.GetMouseWorldPosition();
+            _draggable = target;
+        }
     }
 
     public override MouseInputState UpdateState()
     {
         if (Input.GetMouseButton(0))
         {
-            var cam = CameraController.TryGetCamera(Name.Camera.Desk);
-            var mousePos = cam.GetMouseWorldPosition();
-            _draggable.Root.Translate(mousePos - _lastDragPos);
-            _lastDragPos = mousePos;
+            if (CameraController.TryGetCamera(Name.Camera.Desk, out CameraController cam))
+            {
+                var mousePos = cam.GetMouseWorldPosition();
+                _draggable.Root.Translate(mousePos - _lastDragPos);
+                _lastDragPos = mousePos;
+            }
             return this;
         } else
         {

@@ -6,14 +6,19 @@ public class CameraController : MonoBehaviour
 {
     static Dictionary<string, CameraController> _nameToController = new Dictionary<string, CameraController>();
 
-    public static CameraController TryGetCamera(string name)
+    public static bool TryGetCamera(string name, out CameraController cameraController, bool warnIfNull = true)
     {
-        if(_nameToController.TryGetValue(name, out CameraController controller))
+        if(_nameToController.TryGetValue(name, out cameraController))
         {
-            return controller;
+            return true;
         }
 
-        return null;
+        if (warnIfNull)
+        {
+            Debug.LogWarning($"No camera controller named \'{name}\' registered!");
+        }
+
+        return false;
     }
 
     [SerializeField]

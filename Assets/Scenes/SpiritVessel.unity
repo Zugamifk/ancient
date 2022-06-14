@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb84c101d6a5088409bf6fdb8d403cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: City
+  _name: Map
 --- !u!4 &1526107418
 Transform:
   m_ObjectHideFlags: 0
@@ -446,7 +446,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 64
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 22f47e4f3c6dfbc4bbe380e2a25d34cd, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 1

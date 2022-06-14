@@ -7,7 +7,7 @@ public static partial class Name
     public static class Camera
     {
         public static string Desk = "Desk";
-        public static string Map = "Map";
+        public static string City = "City";
         public static string Examinables = "Examinables";
     }
 

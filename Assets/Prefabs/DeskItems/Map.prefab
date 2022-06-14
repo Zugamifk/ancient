@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 22f47e4f3c6dfbc4bbe380e2a25d34cd, type: 2}
+  m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapSceneName: City
+  _mapRenderCameraName: City
+  _mapRender: {fileID: 1592058846664208539}
 --- !u!1 &1592058846757733114
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfb359894d94754c9bfaa8ad753b776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraName: Map
+  _cameraName: City
 --- !u!1 &1592058847390927568
 GameObject:
   m_ObjectHideFlags: 0

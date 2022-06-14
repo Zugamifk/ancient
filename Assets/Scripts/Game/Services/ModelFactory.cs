@@ -1,3 +1,4 @@
+//#define DEBUG_LOG
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,7 +32,9 @@ public static class ModelFactory
             throw new InvalidOperationException($"A factory for data type {typeof(TData)} is already registered!");
         }
 
+#if DEBUG_LOG
         Debug.Log($"Registered factory for {typeof(TData)}");
+#endif
 
         _itemDataTypetoModelFactory[typeof(TData)] = factory;
     }

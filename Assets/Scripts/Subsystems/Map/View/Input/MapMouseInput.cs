@@ -23,9 +23,8 @@ namespace Map.View
 
         public sealed override MouseInputState UpdateState()
         {
-            var cam = CameraController.TryGetCamera(Name.Camera.Desk);
-            RaycastHit hit;
-            if (cam.RayCast(Input.mousePosition, out hit))
+            if (CameraController.TryGetCamera(Name.Camera.Desk, out CameraController cam) 
+                && cam.RayCast(Input.mousePosition, out RaycastHit hit))
             {
                 var target = hit.collider.gameObject;
                 var renderTex = target.GetComponent<RenderTextureRaycaster>();
@@ -69,7 +68,11 @@ namespace Map.View
 
         void DefaultHandInput(Vector3 worldPosition)
         {
-            var cam = CameraController.TryGetCamera(Name.Camera.Map);
+            if(!CameraController.TryGetCamera(Name.Camera.City, out CameraController cam, true))
+            {
+                return;
+            }
+
             if (Input.GetMouseButtonDown(1))
             {
                 _startPosition = cam.transform.localPosition;

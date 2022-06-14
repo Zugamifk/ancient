@@ -10,8 +10,7 @@ public class RenderTextureRaycaster : MonoBehaviour
     public bool RayCast(Vector2 texCoord, out RaycastHit hit)
     {
         hit = default;
-        var cc = CameraController.TryGetCamera(_cameraName);
-        if (cc != null)
+        if (CameraController.TryGetCamera(_cameraName, out CameraController cc))
         {
             var cam = cc.Camera;
             Ray portalRay = cam.ScreenPointToRay(new Vector2(texCoord.x * cam.pixelWidth, texCoord.y * cam.pixelHeight));
