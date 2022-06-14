@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace City.ViewModel
 {
-    public interface ICityModel 
+    public interface ICityModel : IRegisteredModel
     {
         ICityGraph CityGraph { get; }
         IIdentifiableLookup<IBuildingModel> Buildings { get; }

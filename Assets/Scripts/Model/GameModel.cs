@@ -19,7 +19,7 @@ public class GameModel : IGameModel
 
     public TModel GetModel<TModel>()
     {
-        if(typeof(TModel) is not IModel)
+        if(!typeof(IRegisteredModel).IsAssignableFrom(typeof(TModel)))
         {
             throw new ArgumentException($"TModel {typeof(TModel)} does not inherit from IModel!");
         }
@@ -27,8 +27,14 @@ public class GameModel : IGameModel
         return (TModel)TypeToModel[typeof(TModel)];
     }
 
+    public void CreateModel<TModel>()
+        where TModel : IRegisteredModel, new()
+    {
+        SetModel<TModel>(new());
+    }
+
     public void SetModel<TModel>(TModel model)
-        where TModel : IModel
+        where TModel : IRegisteredModel
     {
         TypeToModel[typeof(TModel)] = model;
         TypeToModel[model.GetType()] = model;

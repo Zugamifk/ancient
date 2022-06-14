@@ -2,9 +2,7 @@
     "name": "ViewModel",
     "rootNamespace": "",
     "references": [
-        "GUID:f1eacd49830892c4e9c9d11bbf989cc6",
-        "GUID:7b318051aef0cea44892d3d3b82d6f88",
-        "GUID:19a20efc28a48a84aa638e5cad7c22a7"
+        "GUID:f1eacd49830892c4e9c9d11bbf989cc6"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

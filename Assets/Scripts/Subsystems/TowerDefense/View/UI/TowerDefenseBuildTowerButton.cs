@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TowerDefense.Data;
 using UnityEngine;
 using UnityEngine.UI;
-using TowerDefense.ViewModels;
+using TowerDefense.ViewModel;
 
 namespace TowerDefense.Views
 {

@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TowerDefense.ViewModels;
-using City.ViewModel;
 
 public interface IGameModel
 {

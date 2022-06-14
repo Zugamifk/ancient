@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using TowerDefense.Data;
-using TowerDefense.ViewModels;
+using TowerDefense.ViewModel;
 
 namespace TowerDefense.Views
 {

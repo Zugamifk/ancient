@@ -7,7 +7,7 @@ using Map.Commands;
 using Map.Services;
 using City.Commands;
 using TowerDefense.Commands;
-using TowerDefense.ViewModels;
+using TowerDefense.ViewModel;
 using City.Model;
 
 namespace TowerDefense.View

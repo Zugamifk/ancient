@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TowerDefense.ViewModels;
+using TowerDefense.ViewModel;
 using UnityEngine;
 
 namespace TowerDefense.Data

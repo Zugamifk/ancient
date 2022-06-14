@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TowerDefense.ViewModel;
 using UnityEngine;
 
-namespace TowerDefense.ViewModels
+namespace TowerDefense.ViewModel
 {
-    public interface ITowerDefense
+    public interface ITowerDefense : IRegisteredModel
     {
         int Lives { get; }
         int MaxLives { get; }

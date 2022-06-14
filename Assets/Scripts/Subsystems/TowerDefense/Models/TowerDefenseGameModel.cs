@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TowerDefense.ViewModels;
+using TowerDefense.ViewModel;
 
 namespace TowerDefense.Models
 {
-    public class TowerDefenseGameModel : ITowerDefense, IModel
+    public class TowerDefenseGameModel : ITowerDefense
     {
         public Vector2Int EndPoint;
         public int Lives;

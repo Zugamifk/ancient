@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TowerDefense.Commands;
 using UnityEngine;
-using TowerDefense.ViewModels;
+using TowerDefense.ViewModel;
 
 namespace TowerDefense.Views
 {

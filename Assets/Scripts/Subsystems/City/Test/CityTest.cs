@@ -11,6 +11,7 @@ namespace City.View
     {
         void Start()
         {
+            Game.MutableModel.CreateModel<CityModel>();
             Game.Do(new LoadMapDataCommand(Game.MutableModel.GetModel<CityModel>().MapModel));
             Game.Do(new GenerateCityCommand());
         }

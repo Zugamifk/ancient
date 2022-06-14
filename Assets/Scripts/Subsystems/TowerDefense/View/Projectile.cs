@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TowerDefense.ViewModels;
+using TowerDefense.ViewModel;
 
 namespace TowerDefense.Views
 {
