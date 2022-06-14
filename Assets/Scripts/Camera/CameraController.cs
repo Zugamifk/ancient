@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     static Dictionary<string, CameraController> _nameToController = new Dictionary<string, CameraController>();
 
-    public static bool TryGetCamera(string name, out CameraController cameraController, bool warnIfNull = true)
+    public static bool TryGetCamera(string name, out CameraController cameraController, bool warnIfNull = false)
     {
         if(_nameToController.TryGetValue(name, out cameraController))
         {

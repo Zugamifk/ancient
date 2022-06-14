@@ -18,12 +18,8 @@ public class GameModel : IGameModel
     public ICheatController Cheats;
 
     public TModel GetModel<TModel>()
+        where TModel : IRegisteredModel
     {
-        if(!typeof(IRegisteredModel).IsAssignableFrom(typeof(TModel)))
-        {
-            throw new ArgumentException($"TModel {typeof(TModel)} does not inherit from IModel!");
-        }
-
         return (TModel)TypeToModel[typeof(TModel)];
     }
 

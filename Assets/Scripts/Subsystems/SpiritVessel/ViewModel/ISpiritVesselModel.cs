@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SpiritVessel.ViewModel
 {
-    public interface ISpiritVesselModel : IItemModel, IIsExamining
+    public interface ISpiritVesselModel : IRegisteredModel, IItemModel, IIsExamining
     {
         IMapModel Map { get; }
     }

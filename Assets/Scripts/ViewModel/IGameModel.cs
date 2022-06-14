@@ -9,5 +9,5 @@ public interface IGameModel
     IIdentifiableLookup<ICharacterModel> Characters { get; }
     IInventoryModel Inventory { get; }
     ICheatController Cheats { get; }
-    TModel GetModel<TModel>();
+    TModel GetModel<TModel>() where TModel : IRegisteredModel;
 }

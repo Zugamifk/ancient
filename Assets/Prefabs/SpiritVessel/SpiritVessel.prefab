@@ -1872,6 +1872,9 @@ MonoBehaviour:
   _mainSealSprite: {fileID: 0}
   _redSealSprites: []
   _whiteSealSprites: []
+  _mapSceneName: SpiritVessel
+  _mapRenderCameraName: SpiritVessel
+  _mapRender: {fileID: 6448014548412102887}
 --- !u!114 &-4143695659008549847
 MonoBehaviour:
   m_ObjectHideFlags: 0
