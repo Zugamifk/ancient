@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SpiritVessel.Data
 {
-    public class SpiritVesselData : ItemData
+    public class SpiritVesselDeskItemData : ItemData
     {
        
     }

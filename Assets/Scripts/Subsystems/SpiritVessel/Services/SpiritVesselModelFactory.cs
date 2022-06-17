@@ -11,7 +11,7 @@ namespace SpiritVessel.Services
         [RuntimeInitializeOnLoadMethod]
         static void RegisterSpiritVesselModelFactory()
         {
-            ModelFactory.RegisterFactory<SpiritVesselData>(MakeSpiritVesselModelFromData);
+            ModelFactory.RegisterFactory<SpiritVesselDeskItemData>(MakeSpiritVesselModelFromData);
         }
 
         static ItemModel MakeSpiritVesselModelFromData(ItemData data)

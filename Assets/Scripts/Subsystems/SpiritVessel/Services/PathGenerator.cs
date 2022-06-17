@@ -7,9 +7,14 @@ namespace SpiritVessel.Services
 {
     public class PathGenerator
     {
-        public void Generate(MapModel vesselMap)
+        public void GenerateEnemyPaths(MapModel vesselMap)
         {
             Debug.Log("Generated SpiritVessel map");
+        }
+
+        void GenerateStraightPath()
+        {
+
         }
     }
 }
