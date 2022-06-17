@@ -8,6 +8,7 @@ namespace Map.Model
     public class MapModel : IMapModel
     {
         public GridModel Grid = new GridModel();
+        public IdentifiableCollection<CharacterModel> Characters = new IdentifiableCollection<CharacterModel>();
 
         #region IMapModel
         IGridModel IMapModel.Grid => Grid;

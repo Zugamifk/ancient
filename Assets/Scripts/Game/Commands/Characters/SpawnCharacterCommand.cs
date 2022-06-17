@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpawnCharacterCommand : ICommand
 {
     public string Name;
-    public Vector2Int Position;
+    public Vector2 Position;
     public Action<CharacterModel> OnSpawned;
     public bool IsUnique;
     public void Execute(GameModel model)

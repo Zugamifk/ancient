@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 1574961338}
   - component: {fileID: 1574961337}
   - component: {fileID: 1574961339}
+  - component: {fileID: 1574961340}
   m_Layer: 0
   m_Name: SpiritVesel
   m_TagString: Untagged
@@ -425,6 +426,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f624cb91c348d734a8b0455e084be220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1574961340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574961336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74dba2bb62813e4cb315b8a65016ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 5
+  _spawnRate: 0.1
 --- !u!1 &1581665921
 GameObject:
   m_ObjectHideFlags: 0
