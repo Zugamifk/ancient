@@ -11,7 +11,7 @@ namespace SpiritVessel.Commands
         static PathGenerator _pathGenerator = new();
         public void Execute(GameModel model)
         {
-            _pathGenerator.Generate(model.GetModel<SpiritVesselModel>().MapModel);
+            _pathGenerator.GenerateEnemyPaths(model.GetModel<SpiritVesselModel>().MapModel);
         }
     }
 }
