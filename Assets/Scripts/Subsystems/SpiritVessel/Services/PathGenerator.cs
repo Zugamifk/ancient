@@ -13,7 +13,6 @@ namespace SpiritVessel.Services
         
         public void GenerateEnemyPaths(MapModel vesselMap)
         {
-            Debug.Log("Generated SpiritVessel map");
             GenerateStraightPath(vesselMap, Vector2Int.zero, new Vector2Int(10,10));
         }
 

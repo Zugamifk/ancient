@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 631140735}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 814050898}
   - component: {fileID: 814050899}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 891285399}
   - component: {fileID: 891285401}
   - component: {fileID: 891285400}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1526107418}
   - component: {fileID: 1526107417}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: CameraRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 1581665922}
   - component: {fileID: 1581665926}
   - component: {fileID: 1581665927}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 512
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 22f47e4f3c6dfbc4bbe380e2a25d34cd, type: 2}
   m_TargetDisplay: 0
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 1645037283}
   - component: {fileID: 1645037286}
   - component: {fileID: 1645037287}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}

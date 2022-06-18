@@ -12,7 +12,6 @@ namespace SpiritVessel.Commands
         {
             Game.Do(new LoadMapDataCommand(model.MapModel.Id));
             Game.Do(new GenerateSpiritVesselMapCommand());
-            Debug.Log("Generated spirit vessel");
         }
     }
 }

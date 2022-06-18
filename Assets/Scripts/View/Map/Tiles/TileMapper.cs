@@ -41,7 +41,6 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
 
     public void BuildTilemap(IMapModel model)
     {
-        Debug.Log("Rebuilding tilemap");
         var grid = model.Grid;
         var d = grid.Dimensions;
         var dimensions = new BoundsInt(-d.x / 2, -d.y / 2, 0, d.x, d.y, 1);
