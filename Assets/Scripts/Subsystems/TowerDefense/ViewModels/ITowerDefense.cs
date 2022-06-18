@@ -19,5 +19,6 @@ namespace TowerDefense.ViewModel
         IIdentifiableLookup<IProjectile> Projectiles { get; }
         IEnumerable<Guid> EnemyIds { get; }
         int Coins { get; }
+        IMapModel Map { get; }
     }
 }

@@ -19,6 +19,9 @@ namespace TowerDefense.Models
         public string BuildingBeingPlaced;
         public IdentifiableCollection<Tower> Towers = new IdentifiableCollection<Tower>();
         public IdentifiableCollection<Projectile> Projectiles = new IdentifiableCollection<Projectile>();
+
+        public MapModel MapModel { get; } = new();
+
         public int Coins { get; set; }
         #region ITurretDefenseViewModel
         int ITowerDefense.Lives => Lives;
@@ -38,6 +41,8 @@ namespace TowerDefense.Models
         IIdentifiableLookup<IProjectile> ITowerDefense.Projectiles => Projectiles;
 
         IEnumerable<Guid> ITowerDefense.EnemyIds => EnemyIds;
+
+        IMapModel ITowerDefense.Map => MapModel;
         #endregion
     }
 }

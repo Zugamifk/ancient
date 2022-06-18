@@ -45,7 +45,7 @@ namespace City.Services
                 Position = position,
                 EntrancePosition = position + buildingData.EntranceOffset,
             };
-            city.Buildings.AddItem(building, building.Key);
+            city.Buildings.AddItem(building);
 
             city.MapModel.Grid.Map[position] = GetTileModel(Name.Tile.Building);
         }

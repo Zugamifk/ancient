@@ -12,12 +12,7 @@ namespace Narrative.States
         public override string UpdateState(IGameModel model)
         {
             var position = _locationFinder.FindMapLocation(Data.Position, model.GetModel<ICityModel>());
-            Game.Do(new SpawnCharacterCommand()
-            {
-                Name = Data.Character,
-                Position = Vector2Int.FloorToInt(position),
-                IsUnique = Data.IsUnique
-            });
+            Game.Do(new SpawnCharacterCommand(Data.Character, position, model.GetModel<ICityModel>().Map.Id));
             return Data.Next;
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpiritVessel.ViewModel;
 
 namespace SpiritVessel.View
 {
@@ -19,11 +20,7 @@ namespace SpiritVessel.View
             while (_spawnTimer > _spawnRate)
             {
                 var pos  = _radius * Random.insideUnitCircle.normalized;
-                Game.Do(new SpawnCharacterCommand()
-                {
-                    Name = "Kappa",
-                    Position = pos
-                });
+                Game.Do(new SpawnCharacterCommand("Kappa", pos, Game.Model.GetModel<ISpiritVesselModel>().Map.Id));
                 _spawnTimer -= _spawnRate;
             }
         }

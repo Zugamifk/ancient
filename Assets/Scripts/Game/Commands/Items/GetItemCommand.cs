@@ -17,7 +17,7 @@ public class GetItemCommand : ICommand
         var data = DataService.GetData<ItemCollection>().GetData(_itemName);
         var itemModel = ModelFactory.GetModel(data);
 
-        model.Inventory.Items.AddItem(itemModel, _itemName);
-        model.AllIdentifiables.AddItem(itemModel, _itemName);
+        model.Inventory.Items.AddItem(itemModel);
+        model.AllIdentifiables.AddItem(itemModel);
     }
 }

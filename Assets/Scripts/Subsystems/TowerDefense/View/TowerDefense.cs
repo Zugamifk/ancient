@@ -50,7 +50,7 @@ namespace TowerDefense.View
             var waveData = gamedata.Waves[tdModel.CurrentWave];
             if (tdModel.SpawnedCount < waveData.Count)
             {
-                Game.Do(new SpawnEnemyCommand(_pathPoints[0]));
+                Game.Do(new SpawnEnemyCommand(waveData.Enemy.Name, _pathPoints[0]));
             }
         }
 

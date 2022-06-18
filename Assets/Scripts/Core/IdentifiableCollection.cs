@@ -8,18 +8,18 @@ public class IdentifiableCollection<TModel> : IIdentifiableLookup<TModel>
     where TModel : IIdentifiable
 {
     Dictionary<Guid, TModel> _identifiables = new Dictionary<Guid, TModel>();
-    Dictionary<string, Guid> _uniqueIdentifiableNameToId = new Dictionary<string, Guid>();
+    Dictionary<string, Guid> _keyholderKeyToId = new Dictionary<string, Guid>();
 
     public IEnumerable<TModel> AllItems => _identifiables.Values;
 
     public TModel this[string key] => GetItem(key);
     public TModel this[Guid id] => GetItem(id);
 
-    public void AddItem(TModel model, string uniqueName = null)
+    public void AddItem(TModel model)
     {
-        if (!string.IsNullOrEmpty(uniqueName))
+        if(model is IKeyHolder keyHolder)
         {
-            _uniqueIdentifiableNameToId[uniqueName] = model.Id;
+            _keyholderKeyToId[keyHolder.Key] = model.Id;
         }
 
         _identifiables[model.Id] = model;
@@ -32,7 +32,7 @@ public class IdentifiableCollection<TModel> : IIdentifiableLookup<TModel>
 
     public void RemoveItem(string key)
     {
-        var id = _uniqueIdentifiableNameToId[key];
+        var id = _keyholderKeyToId[key];
         RemoveItem(id);
     }
 
@@ -49,7 +49,7 @@ public class IdentifiableCollection<TModel> : IIdentifiableLookup<TModel>
 
     public TModel GetItem(string key)
     {
-        var id = _uniqueIdentifiableNameToId[key];
+        var id = _keyholderKeyToId[key];
         return GetItem(id);
     }
 
@@ -60,6 +60,6 @@ public class IdentifiableCollection<TModel> : IIdentifiableLookup<TModel>
 
     public bool HasUniqueName(string key)
     {
-        return _uniqueIdentifiableNameToId.ContainsKey(key);
+        return _keyholderKeyToId.ContainsKey(key);
     }
 }
