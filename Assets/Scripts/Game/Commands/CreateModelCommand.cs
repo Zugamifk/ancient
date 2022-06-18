@@ -8,5 +8,11 @@ public class CreateModelCommand<TModel> : ICommand
     public void Execute(GameModel model)
     {
         model.CreateModel<TModel>();
+        OnCreatedModel(model, model.GetModel<TModel>());
+    }
+
+    protected virtual void OnCreatedModel(GameModel game, TModel model)
+    {
+
     }
 }

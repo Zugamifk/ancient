@@ -8,10 +8,9 @@ namespace City.Commands
 {
     public class CreateCityModelCommand : CreateModelCommand<CityModel>
     {
-        new public void Execute(GameModel model)
+        protected override void OnCreatedModel(GameModel game, CityModel model)
         {
-            base.Execute(model);
-            Game.Do(new LoadMapDataCommand(model.GetModel<ICityModel>().Map.Id));
+            Game.Do(new LoadMapDataCommand(model.MapModel.Id));
             Game.Do(new GenerateCityCommand());
         }
     }

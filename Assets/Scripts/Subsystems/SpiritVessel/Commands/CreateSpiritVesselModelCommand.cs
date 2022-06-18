@@ -8,11 +8,11 @@ namespace SpiritVessel.Commands
 {
     public class CreateSpiritVesselModelCommand : CreateModelCommand<SpiritVesselModel>
     {
-        new public void Execute(GameModel model)
+        protected override void OnCreatedModel(GameModel game, SpiritVesselModel model)
         {
-            base.Execute(model);
-            Game.Do(new LoadMapDataCommand(Game.Model.GetModel<ISpiritVesselModel>().Map.Id));
+            Game.Do(new LoadMapDataCommand(model.MapModel.Id));
             Game.Do(new GenerateSpiritVesselMapCommand());
+            Debug.Log("Generated spirit vessel");
         }
     }
 }

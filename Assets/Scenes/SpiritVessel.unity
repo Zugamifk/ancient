@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 1574961339}
   - component: {fileID: 1574961340}
   m_Layer: 0
-  m_Name: SpiritVesel
+  m_Name: SpiritVessel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

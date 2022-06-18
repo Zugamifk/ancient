@@ -44,7 +44,9 @@ public static class ModelFactory
         var type = data.GetType();
         if (!_itemDataTypetoModelFactory.TryGetValue(type, out ModelFactoryDelegate factory))
         {
+#if DEBUG_LOG
             Debug.Log($"No model of type {type}, creating default.");
+#endif
             factory = DefaultFactory;
         }
 
