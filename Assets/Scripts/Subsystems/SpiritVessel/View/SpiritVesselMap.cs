@@ -12,9 +12,10 @@ namespace SpiritVessel.View
         [SerializeField]
         MapInputHandler _inputHandler;
 
-        private void Start()
+        private IEnumerator Start()
         {
-            //_inputHandler.CommandFactory = new CityCommandFactory();
+            yield return new WaitUntil(() => Game.Model.GetModel<ISpiritVesselModel>() != null);
+            _tileMapper.MapId = Game.Model.GetModel<ISpiritVesselModel>().Map.Id;
         }
     }
 }

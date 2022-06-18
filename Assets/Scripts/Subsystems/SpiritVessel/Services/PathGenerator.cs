@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Map.Services;
+using System;
 
 namespace SpiritVessel.Services
 {
@@ -29,6 +30,7 @@ namespace SpiritVessel.Services
             {
                 model.Grid.Map[p] = roadtile;
             }
+            model.Grid.StateId = Guid.NewGuid();
         }
 
         MapTileModel GetTileModel(string type)

@@ -21,13 +21,23 @@ public class GameModel : IGameModel
     public TModel GetModel<TModel>()
         where TModel : IRegisteredModel
     {
-        return (TModel)TypeToModel[typeof(TModel)];
+        if (TypeToModel.TryGetValue(typeof(TModel), out object model)) {
+            return (TModel)model;
+        } else {
+            return default;
+        }
     }
 
-    public void CreateModel<TModel>()
+    public TModel CreateModel<TModel>()
         where TModel : IRegisteredModel, new()
     {
-        SetModel<TModel>(new());
+        var result = new TModel();
+        SetModel(result);
+        if (result is IMapUser mapUser)
+        {
+            Maps.AddItem(mapUser.MapModel);
+        }
+        return result;
     }
 
     public void SetModel<TModel>(TModel model)
