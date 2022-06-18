@@ -14,7 +14,7 @@ public class RenderTextureRaycaster : MonoBehaviour
         {
             var cam = cc.Camera;
             Ray portalRay = cam.ScreenPointToRay(new Vector2(texCoord.x * cam.pixelWidth, texCoord.y * cam.pixelHeight));
-            return Physics.Raycast(portalRay, out hit, float.MaxValue, 1 << LayerMask.NameToLayer(Layer.Map));
+            return Physics.Raycast(portalRay, out hit, float.MaxValue, cam.cullingMask);
         } else
         {
             return false;
