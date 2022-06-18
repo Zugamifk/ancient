@@ -7,10 +7,10 @@ public class MapModel : IMapModel
 {
     public Guid Id { get; } = new();
     public GridModel Grid = new GridModel();
-    public IdentifiableCollection<CharacterModel> Characters = new IdentifiableCollection<CharacterModel>();
+    public HashSet<Guid> CharacterIds = new HashSet<Guid>();
 
     #region IMapModel
     IGridModel IMapModel.Grid => Grid;
-
+    ISet<Guid> IMapModel.CharacterIds => CharacterIds;
     #endregion
 }

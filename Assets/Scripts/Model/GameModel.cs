@@ -11,7 +11,6 @@ public class GameModel : IGameModel
     public TimeModel TimeModel = new TimeModel();
     public IdentifiableCollection<MapModel> Maps { get; } = new();
     public IdentifiableCollection<CharacterModel> Characters = new IdentifiableCollection<CharacterModel>();
-    public Dictionary<string, NarrativeModel> Narratives = new Dictionary<string, NarrativeModel>();
     public InventoryModel Inventory = new InventoryModel();
     public IExaminable CurrentExaminable;
     public Dictionary<Type, object> TypeToModel = new();

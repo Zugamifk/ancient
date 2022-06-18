@@ -17,12 +17,10 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
 
     void Update()
     {
-        var modelIdentifiables = GetIdentifiables();
-
         List<Guid> toRemove = new List<Guid>();
         foreach (var id in _spawnedViews.Keys)
         {
-            if (!modelIdentifiables.HasId(id))
+            if (GetModel(id) == null)
             {
                 GameObject.Destroy(_spawnedViews[id].gameObject);
                 toRemove.Add(id);
@@ -34,7 +32,7 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
             _spawnedViews.Remove(id);
         }
 
-        foreach (var m in modelIdentifiables.AllItems)
+        foreach (var m in AllModels())
         {
             if (!_spawnedViews.ContainsKey(m.Id))
             {
@@ -57,6 +55,7 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
         }
     }
 
-    protected abstract IIdentifiableLookup<TModel> GetIdentifiables();
+    protected abstract TModel GetModel(Guid id);
+    protected abstract IEnumerable<TModel> AllModels();
     protected virtual void SpawnedView(TModel model, TView view) { }
 }

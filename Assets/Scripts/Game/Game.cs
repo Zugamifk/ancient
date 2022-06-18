@@ -14,7 +14,7 @@ public class Game : MonoBehaviour
     static Game _game;
     static Queue<ICommand> _commandQueue = new Queue<ICommand>();
     public static IGameModel Model => _game._model;
-    public static GameModel MutableModel => _game._model;
+    internal static GameModel MutableModel => _game._model;
 
     public static void Do(ICommand command)
     {

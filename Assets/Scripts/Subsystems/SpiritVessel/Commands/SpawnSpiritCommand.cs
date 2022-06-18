@@ -4,18 +4,8 @@ using UnityEngine;
 
 namespace SpiritVessel.Commands
 {
-    public class SpawnSpiritCommand : MonoBehaviour
+    public class SpawnSpiritCommand
     {
-        // Start is called before the first frame update
-        void Start()
-        {
         
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

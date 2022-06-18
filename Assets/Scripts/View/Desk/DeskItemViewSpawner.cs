@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,11 +17,19 @@ public class DeskItemViewSpawner : ViewSpawner<IItemModel, DeskItem>
         }
     }
 
-    protected override IIdentifiableLookup<IItemModel> GetIdentifiables() => Game.Model.Inventory.Items;
-
     protected override void SpawnedView(IItemModel model, DeskItem view)
     {
         var spawn = _spawnNameToTransformLookup[model.DeskSpawnLocation];
         spawn.PositionItem(view);
+    }
+
+    protected override IItemModel GetModel(Guid model)
+    {
+        return Game.Model.Inventory.Items.GetItem(model);
+    }
+
+    protected override IEnumerable<IItemModel> AllModels()
+    {
+        return Game.Model.Inventory.Items.AllItems;
     }
 }

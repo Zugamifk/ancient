@@ -19,7 +19,7 @@ namespace TowerDefense.View
 
         void Start()
         {
-            Game.Do(new LoadMapDataCommand(_cityModel.MapModel));
+            Game.Do(new LoadMapDataCommand(_cityModel.MapModel.Id));
 
             var pathfinder = new PathFinder();
             var pairs = _pathPoints.Zip(_pathPoints.Skip(1), (a, b) => (a, b));

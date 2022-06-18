@@ -4,13 +4,36 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Narrative.View
+namespace Narrative.Commands
 {
     public class NarrativeRunner : MonoBehaviour
     {
+        static Dictionary<string, NarrativeModel> _narratives = new Dictionary<string, NarrativeModel>();
+
+        public static void StartNarrative(string name)
+        {
+            var narrative = BuildNarrative(name);
+            _narratives.Add(name, narrative);
+            narrative.CurrentState.EnterState(Game.Model);
+        }
+
+        static NarrativeModel BuildNarrative(string name)
+        {
+            var collection = DataService.GetData<NarrativeCollection>();
+            var data = collection.GetNarrative(name);
+            var model = new NarrativeModel();
+            model.Name = data.Name;
+
+            var stepData = data.Steps.First(s => s.Name == data.StartStep);
+            var builder = new NarrativeBuilder();
+            model.CurrentState = builder.BuildNarrativeState(stepData);
+
+            return model;
+        }
+
         private void Update()
         {
-            foreach (var n in Game.MutableModel.Narratives.Values)
+            foreach (var n in _narratives.Values)
             {
                 UpdateNarrative(n);
             }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SpiritVessel.Model;
 using SpiritVessel.Commands;
+using SpiritVessel.ViewModel;
 
 namespace SpiritVessel.Test
 {
@@ -10,8 +11,8 @@ namespace SpiritVessel.Test
     {
         void Start()
         {
-            Game.MutableModel.CreateModel<SpiritVesselModel>();
-            Game.Do(new LoadMapDataCommand(Game.MutableModel.GetModel<SpiritVesselModel>().MapModel));
+            Game.Do(new CreateModelCommand<SpiritVesselModel>());
+            Game.Do(new LoadMapDataCommand(Game.Model.GetModel<ISpiritVesselModel>().Map.Id));
             Game.Do(new GenerateSpiritVesselMapCommand());
         }
     }

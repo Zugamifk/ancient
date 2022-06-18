@@ -30,12 +30,12 @@ namespace City.Services
             BuildRoad(city, Vector2Int.down, new Vector2Int(
                 -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability),
                 -UnityEngine.Random.Range(_roadExtents - _roadExtentsVariability, _roadExtents + _roadExtentsVariability)));
-            AddBuilding(Name.Building.Manor, Vector2Int.zero);
-            AddBuilding(Name.Building.House, new Vector2Int(5, 2));
+            AddBuilding(city, Name.Building.Manor, Vector2Int.zero);
+            AddBuilding(city, Name.Building.House, new Vector2Int(5, 2));
             BuildRoad(city, Name.Building.Manor, Name.Building.House);
         }
 
-        public void AddBuilding(string buildingName, Vector2Int position)
+        public void AddBuilding(CityModel city, string buildingName, Vector2Int position)
         {
             var buildingData = DataService.GetData<BuildingCollection>()[buildingName];
             var building = new BuildingModel()
@@ -44,9 +44,7 @@ namespace City.Services
                 Position = position,
                 EntrancePosition = position + buildingData.EntranceOffset,
             };
-            var city = Game.MutableModel.GetModel<CityModel>();
             city.Buildings.AddItem(building, building.Key);
-            Game.MutableModel.AllIdentifiables.AddItem(building, building.Key);
 
             city.MapModel.Grid.Map[position] = GetTileModel(Name.Tile.Building);
         }

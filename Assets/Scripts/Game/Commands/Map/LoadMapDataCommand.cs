@@ -7,15 +7,16 @@ using UnityEngine;
 
 public class LoadMapDataCommand : ICommand
 {
-    MapModel _map;
-    public LoadMapDataCommand(MapModel map)
+    Guid _mapId;
+    public LoadMapDataCommand(Guid mapId)
     {
-        _map = map;
+        _mapId = mapId;
     }
 
     public void Execute(GameModel model)
     {
         var mapData = DataService.GetData<MapData>();
+        var map = model.Maps.GetItem(_mapId);
         var dimensions = mapData.Dimensions;
         var x0 = -dimensions.x / 2;
         var xn = dimensions.x / 2;
@@ -25,10 +26,10 @@ public class LoadMapDataCommand : ICommand
         {
             for (int y = y0; y < yn; y++)
             {
-                _map.Grid.Map[new Vector2Int(x, y)] = GetTileModel(mapData.DefaultTile);
+                map.Grid.Map[new Vector2Int(x, y)] = GetTileModel(mapData.DefaultTile);
             }
         }
-        _map.Grid.Dimenions = dimensions;
+        map.Grid.Dimenions = dimensions;
     }
 
     MapTileModel GetTileModel(string type)

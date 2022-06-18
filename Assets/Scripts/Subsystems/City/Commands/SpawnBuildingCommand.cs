@@ -22,7 +22,7 @@ namespace City.Commands
 
         public void Execute(GameModel model)
         {
-            _cityGenerator.AddBuilding(_buildingName, _position);
+            _cityGenerator.AddBuilding(model.GetModel<CityModel>(), _buildingName, _position);
         }
     }
 }
