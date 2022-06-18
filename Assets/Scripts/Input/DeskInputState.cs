@@ -58,15 +58,11 @@ public class DeskInputState : MouseInputState
 
     MouseInputState RayCastMap(RenderTextureRaycaster raycaster, Vector2 position)
     {
-        Debug.Log("Raycast map");
-
         RaycastHit hit;
         if (!raycaster.RayCast(position, out hit))
         {
             return this;
         }
-
-        Debug.Log("Raycast IMouseInputHandler");
 
         var target = hit.collider.gameObject;
         var input = target.GetComponent<IMouseInputHandler>();
