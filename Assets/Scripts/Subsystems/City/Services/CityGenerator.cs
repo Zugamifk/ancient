@@ -33,6 +33,7 @@ namespace City.Services
             AddBuilding(city, Name.Building.Manor, Vector2Int.zero);
             AddBuilding(city, Name.Building.House, new Vector2Int(5, 2));
             BuildRoad(city, Name.Building.Manor, Name.Building.House);
+            city.MapModel.Grid.StateId = Guid.NewGuid();
         }
 
         public void AddBuilding(CityModel city, string buildingName, Vector2Int position)
