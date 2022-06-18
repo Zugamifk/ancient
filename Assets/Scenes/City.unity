@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3e1b6790dfce84499b5e789af8774c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viewParent: {fileID: 0}
-  _tileMapper: {fileID: 0}
+  _viewParent: {fileID: 1688259637}
+  _tileMapper: {fileID: 1645037283}
 --- !u!4 &419840606
 Transform:
   m_ObjectHideFlags: 0
