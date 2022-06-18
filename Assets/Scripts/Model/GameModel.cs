@@ -5,7 +5,7 @@ using UnityEngine;
 using Narrative;
 using System;
 
-public class GameModel : IGameModel
+public partial class GameModel : IGameModel
 {
     public IdentifiableCollection<IIdentifiable> AllIdentifiables { get; } = new IdentifiableCollection<IIdentifiable>();
     public TimeModel TimeModel = new TimeModel();

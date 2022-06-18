@@ -11,9 +11,7 @@ namespace SpiritVessel.Test
     {
         void Start()
         {
-            Game.Do(new CreateModelCommand<SpiritVesselModel>());
-            Game.Do(new LoadMapDataCommand(Game.Model.GetModel<ISpiritVesselModel>().Map.Id));
-            Game.Do(new GenerateSpiritVesselMapCommand());
+            Game.Do(new CreateSpiritVesselModelCommand());
         }
     }
 }

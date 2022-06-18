@@ -7,16 +7,9 @@ using System.Linq;
 
 namespace SpiritVessel.View
 {
-    public class SpiritVesselCharacterViewSpawner : MapViewSpawner<ICharacterModel, Character>
+    public class SpiritVesselCharacterViewSpawner : MapViewCharacterSpawner
     {
-        protected override IEnumerable<ICharacterModel> AllModels()
-        {
-            return Game.Model.GetModel<ISpiritVesselModel>().Map.CharacterIds.Select(Game.Model.Characters.GetItem);
-        }
-
-        protected override ICharacterModel GetModel(Guid model)
-        {
-            return Game.Model.Characters.GetItem(model);
-        }
+        protected override IEnumerable<Guid> GetCharacterIds()
+            => Game.Model.GetModel<ISpiritVesselModel>().Map.CharacterIds;
     }
 }
