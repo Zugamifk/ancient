@@ -1,7 +1,5 @@
-using City.Model;
 using City.Services;
 using City.ViewModel;
-using Map.Commands;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +21,6 @@ namespace Narrative.States
                 Destination = Vector2Int.FloorToInt(position),
                 ReachedPathEnd = ReachedPathEnd
             };
-            cmd.SetMapHandle(new MutableCityMapHandle());
             Game.Do(cmd);
         }
 

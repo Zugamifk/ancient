@@ -9,6 +9,8 @@ public class GameModel : IGameModel
 {
     public IdentifiableCollection<IIdentifiable> AllIdentifiables { get; } = new IdentifiableCollection<IIdentifiable>();
     public TimeModel TimeModel = new TimeModel();
+    public IdentifiableCollection<MapModel> Maps { get; } = new();
+    public IdentifiableCollection<CharacterModel> Characters = new IdentifiableCollection<CharacterModel>();
     public Dictionary<string, NarrativeModel> Narratives = new Dictionary<string, NarrativeModel>();
     public InventoryModel Inventory = new InventoryModel();
     public IExaminable CurrentExaminable;
@@ -44,6 +46,7 @@ public class GameModel : IGameModel
     #region IGameModel
     ITimeModel IGameModel.Time => TimeModel;
     IIdentifiableLookup<ICharacterModel> IGameModel.Characters => Characters;
+    IIdentifiableLookup<IMapModel> IGameModel.Maps => Maps;
     IInventoryModel IGameModel.Inventory => Inventory;
     ICheatController IGameModel.Cheats => Cheats;
 

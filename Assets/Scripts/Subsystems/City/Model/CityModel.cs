@@ -1,6 +1,4 @@
 using City.ViewModel;
-using Map.Model;
-using Map.ViewModel;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

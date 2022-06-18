@@ -8,7 +8,6 @@ namespace SpiritVessel.Services
 {
     public class PathGenerator
     {
-
         static PathFinder _pathFinder = new();
         
         public void GenerateEnemyPaths(MapModel vesselMap)

@@ -13,6 +13,7 @@ public class IdentifiableCollection<TModel> : IIdentifiableLookup<TModel>
     public IEnumerable<TModel> AllItems => _identifiables.Values;
 
     public TModel this[string key] => GetItem(key);
+    public TModel this[Guid id] => GetItem(id);
 
     public void AddItem(TModel model, string uniqueName = null)
     {

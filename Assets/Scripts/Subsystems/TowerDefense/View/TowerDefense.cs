@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TowerDefense.Data;
-using Map.Commands;
-using Map.Services;
 using City.Commands;
 using TowerDefense.Commands;
 using TowerDefense.ViewModel;

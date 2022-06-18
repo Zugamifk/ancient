@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Map.View;
-using Map.ViewModel;
-using Map.Commands;
 using City.Commands;
 
 namespace City.View
@@ -17,8 +14,6 @@ namespace City.View
 
         private void Start()
         {
-            _tileMapper.SetMapHandle(new CityMapHandle());
-            _inputHandler.CommandFactory = new CityCommandFactory();
         }
     }
 }

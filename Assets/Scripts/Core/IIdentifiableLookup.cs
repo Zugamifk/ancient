@@ -6,6 +6,7 @@ using UnityEngine;
 public interface IIdentifiableLookup<out TIdentifiable>
     where TIdentifiable : IIdentifiable
 {
+    TIdentifiable this[Guid id] { get; }
     bool HasUniqueName(string key);
     bool HasId(Guid id);
     TIdentifiable GetItem(string key);
