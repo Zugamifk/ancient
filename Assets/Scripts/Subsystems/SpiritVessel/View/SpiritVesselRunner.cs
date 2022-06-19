@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SpiritVessel.ViewModel;
+using SpiritVessel.Commands;
 
 namespace SpiritVessel.View
 {
@@ -16,12 +17,18 @@ namespace SpiritVessel.View
 
         private void Update()
         {
+            var model = Game.Model.GetModel<ISpiritVesselModel>();
             _spawnTimer += Time.deltaTime;
             while (_spawnTimer > _spawnRate)
             {
                 var pos  = _radius * Random.insideUnitCircle.normalized;
-                Game.Do(new SpawnCharacterCommand("Kappa", pos, Game.Model.GetModel<ISpiritVesselModel>().Map.Id));
+                Game.Do(new SpawnCharacterCommand("Kappa", pos, model.Map.Id));
                 _spawnTimer -= _spawnRate;
+            }
+
+            foreach(var id in model.Map.CharacterIds)
+            {
+                Game.Do(new UpdateSpiritCommand(id));
             }
         }
     }
