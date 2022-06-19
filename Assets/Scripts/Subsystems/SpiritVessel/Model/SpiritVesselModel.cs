@@ -7,7 +7,7 @@ namespace SpiritVessel.Model
 {
     public class SpiritVesselModel : ItemModel, ISpiritVesselModel, IExaminable, IMapUser
     {
-        public MapModel MapModel { get; } = new();
+        public MapModel MapModel { get; } = new("SpiritVessel");
         public bool IsExamining { get; set; }
 
         #region ISpiritVesselModel 

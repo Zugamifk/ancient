@@ -15,8 +15,9 @@ public class LoadMapDataCommand : ICommand
 
     public void Execute(GameModel model)
     {
-        var mapData = DataService.GetData<MapData>();
         var map = model.Maps.GetItem(_mapId);
+        var mapDataLookup = DataService.GetData<MapDataCollection>();
+        var mapData = mapDataLookup.GetData(map.Key);
         var dimensions = mapData.Dimensions;
         var x0 = -dimensions.x / 2;
         var xn = dimensions.x / 2;

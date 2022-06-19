@@ -7,7 +7,7 @@ namespace City.Model
 {
     public class CityModel : ICityModel, IMapUser
     {
-        public MapModel MapModel { get; } = new();
+        public MapModel MapModel { get; } = new("City");
         public CityGraph Graph = new CityGraph();
         public IdentifiableCollection<BuildingModel> Buildings = new IdentifiableCollection<BuildingModel>();
 

@@ -20,7 +20,7 @@ namespace TowerDefense.Models
         public IdentifiableCollection<Tower> Towers = new IdentifiableCollection<Tower>();
         public IdentifiableCollection<Projectile> Projectiles = new IdentifiableCollection<Projectile>();
 
-        public MapModel MapModel { get; } = new();
+        public MapModel MapModel { get; } = new("TowerDefense");
 
         public int Coins { get; set; }
         #region ITurretDefenseViewModel

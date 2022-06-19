@@ -6,11 +6,15 @@ using UnityEngine;
 public class MapModel : IMapModel
 {
     public Guid Id { get; } = new();
+    public string Key { get; }
     public GridModel Grid = new GridModel();
     public HashSet<Guid> CharacterIds = new HashSet<Guid>();
 
     #region IMapModel
     IGridModel IMapModel.Grid => Grid;
     ISet<Guid> IMapModel.CharacterIds => CharacterIds;
+
     #endregion
+
+    public MapModel(string key) => Key = key;
 }

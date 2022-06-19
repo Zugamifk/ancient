@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38ad353e814e88542ae5b00e4cce67cd, type: 3}
-  m_Name: MapData
+  m_Name: CityMapData
   m_EditorClassIdentifier: 
+  Key: City
   Dimensions: {x: 50, y: 50}
   DefaultTile: Grass

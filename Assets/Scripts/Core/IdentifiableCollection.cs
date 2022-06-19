@@ -17,7 +17,7 @@ public class IdentifiableCollection<TModel> : IIdentifiableLookup<TModel>
 
     public void AddItem(TModel model)
     {
-        if(model is IKeyHolder keyHolder)
+        if(model is IKeyHolder keyHolder )
         {
             _keyholderKeyToId[keyHolder.Key] = model.Id;
         }
