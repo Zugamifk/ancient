@@ -17,8 +17,9 @@ public class SetTileCommand : ICommand
 
     public void Execute(GameModel model)
     {
-        var tileData = DataService.GetData<TileDataCollection>().GetTypeData(TileType);
         var map = model.Maps.GetItem(_mapId);
+        var tileset = DataService.GetData<MapDataCollection>().GetData(map.Key).TileSet;
+        var tileData = tileset.GetTypeData(TileType);
         map.Grid.Map[Position] = new MapTileModel()
         {
             Type = TileType,

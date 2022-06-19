@@ -23,7 +23,9 @@ namespace SpiritVessel.Services
 
         void MakePath(MapModel model, Vector2Int pointA, Vector2Int pointB, bool direct = false)
         {
-            var roadtile = GetTileModel(Name.Tile.Road);
+            var mapDataLookup = DataService.GetData<MapDataCollection>();
+            var mapData = mapDataLookup.GetData(model.Key);
+            var roadtile = GetTileModel(mapData.TileSet, Name.Tile.Road);
             var path = direct ? _pathFinder.GetDirectPath(pointA, pointB, model.Grid) : _pathFinder.GetPath(pointA, pointB, model.Grid);
             foreach (var p in path.Path)
             {
@@ -32,9 +34,9 @@ namespace SpiritVessel.Services
             model.Grid.StateId = Guid.NewGuid();
         }
 
-        MapTileModel GetTileModel(string type)
+        MapTileModel GetTileModel(TileSet tileSet, string type)
         {
-            var tileData = DataService.GetData<TileDataCollection>().GetTypeData(type);
+            var tileData = tileSet.GetTypeData(type);
             return new MapTileModel()
             {
                 Type = type,

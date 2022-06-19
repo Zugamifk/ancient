@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NarrativeCollection : ScriptableObject
+public class NarrativeCollection : ScriptableObject, IRegisteredData
 {
     public NarrativeData[] Narratives;
 

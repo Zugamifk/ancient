@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SimplePrefabLookup<TKeyHolder, TReference> : ScriptableObject, IPrefabLookup
+public abstract class SimplePrefabLookup<TKeyHolder, TReference> : ScriptableObject, IPrefabLookup, IRegisteredData
     where TKeyHolder : IKeyHolder
     where TReference : IPrefabReference
 {

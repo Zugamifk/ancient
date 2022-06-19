@@ -27,15 +27,15 @@ public class LoadMapDataCommand : ICommand
         {
             for (int y = y0; y < yn; y++)
             {
-                map.Grid.Map[new Vector2Int(x, y)] = GetTileModel(mapData.DefaultTile);
+                map.Grid.Map[new Vector2Int(x, y)] = GetTileModel(mapData.TileSet, mapData.DefaultTile);
             }
         }
         map.Grid.Dimenions = dimensions;
     }
 
-    MapTileModel GetTileModel(string type)
+    MapTileModel GetTileModel(TileSet tileSet, string type)
     {
-        var tileData = DataService.GetData<TileDataCollection>().GetTypeData(type);
+        var tileData = tileSet.GetTypeData(type);
         return new MapTileModel()
         {
             Type = type,

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprites:
   - {fileID: -1313323752, guid: c8d9219a329374644bcd7e47ff68d7e8, type: 3}
-  Left: Road
-  Top: Grass
-  Right: Grass
-  Bottom: Road
+  North: Grass
+  East: Grass
+  South: Road
+  West: Road

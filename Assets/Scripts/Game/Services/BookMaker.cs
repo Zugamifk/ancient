@@ -7,7 +7,7 @@ public static class BookMaker
     [RuntimeInitializeOnLoadMethod]
     static void RegisterBookDataFactory()
     {
-        ModelFactory.RegisterFactory<TextBookData>(CreateTextBookModel);
+        ItemModelFactory.RegisterFactory<TextBookData>(CreateTextBookModel);
     }
 
     public static ItemModel CreateTextBookModel(ItemData data)

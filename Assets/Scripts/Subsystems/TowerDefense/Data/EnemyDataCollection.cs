@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TowerDefense.Data
 {
-    public class EnemyDataCollection : ScriptableObject
+    public class EnemyDataCollection : ScriptableObject, IRegisteredData
     {
         public EnemyData[] Enemies;
         Dictionary<string, EnemyData> _enemyKeyToData = new();

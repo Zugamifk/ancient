@@ -17,3 +17,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 343ed93ea3c92734f8e10816a9a15aaa, type: 2}
   - {fileID: 11400000, guid: f5ed2e3654b0b4c48a091b3dfeb8229a, type: 2}
   - {fileID: 11400000, guid: 7143bdfee605aa84f8d491e2369433dc, type: 2}
+  EdgeTypes:
+  - Grass
+  - Road
+  - Dirt
+  - Building

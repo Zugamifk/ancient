@@ -4,9 +4,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileDataCollection : ScriptableObject
+public class TileSet : ScriptableObject
 {
     public List<TileTypeData> Tiles = new List<TileTypeData>();
+    public string[] EdgeTypes;
 
     Dictionary<string, TileTypeData> _typeToTypeData = new Dictionary<string, TileTypeData>();
     Dictionary<(string, string, string, string, string), List<Tile>> _tileCache = new Dictionary<(string, string, string, string, string), List<Tile>>();

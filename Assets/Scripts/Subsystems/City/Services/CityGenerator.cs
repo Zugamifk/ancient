@@ -47,7 +47,8 @@ namespace City.Services
             };
             city.Buildings.AddItem(building);
 
-            city.MapModel.Grid.Map[position] = GetTileModel(Name.Tile.Building);
+            var tileset = DataService.GetData<MapDataCollection>().GetData(city.MapModel.Key).TileSet;
+            city.MapModel.Grid.Map[position] = GetTileModel(tileset, Name.Tile.Building);
         }
 
         public void BuildRoad(CityModel model, string startName, string endName)
@@ -63,7 +64,8 @@ namespace City.Services
 
         public void BuildRoad(CityModel model, Vector2Int pointA, Vector2Int pointB, bool direct = false)
         {
-            var roadtile = GetTileModel(Name.Tile.Road);
+            var tileset = DataService.GetData<MapDataCollection>().GetData(model.MapModel.Key).TileSet;
+            var roadtile = GetTileModel(tileset, Name.Tile.Road);
             var path = direct ? _pathFinder.GetDirectPath(pointA, pointB, model.MapModel.Grid) : _pathFinder.GetPath(pointA, pointB, model.MapModel.Grid);
             foreach (var p in path.Path)
             {
@@ -71,9 +73,9 @@ namespace City.Services
             }
         }
 
-        MapTileModel GetTileModel(string type)
+        MapTileModel GetTileModel(TileSet tileSet, string type)
         {
-            var tileData = DataService.GetData<TileDataCollection>().GetTypeData(type);
+            var tileData = tileSet.GetTypeData(type);
             return new MapTileModel()
             {
                 Type = type,

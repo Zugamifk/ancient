@@ -15,3 +15,6 @@ MonoBehaviour:
   Tiles:
   - {fileID: 11400000, guid: 1cd8c7326d7763240bdd81251363467c, type: 2}
   - {fileID: 11400000, guid: a507afe34cea8294098e0df2d594934f, type: 2}
+  EdgeTypes:
+  - Grass
+  - Road

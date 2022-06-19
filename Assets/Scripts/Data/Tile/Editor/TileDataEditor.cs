@@ -8,7 +8,7 @@ using System.Linq;
 using System.IO;
 using System;
 
-[CustomEditor(typeof(TileDataCollection))]
+[CustomEditor(typeof(TileSet))]
 public class TileDataEditor : Editor
 {
     class ListElementCallbacks
@@ -22,9 +22,7 @@ public class TileDataEditor : Editor
     const string EDGE_WILDCARD = "*";
     const string LIST_ELEMENT_UXML_PATH = "Assets/Scripts/Data/Tile/Editor/TileDataListElement.uxml";
     const string MAIN_UXML_PATH = "Assets/Scripts/Data/Tile/Editor/TileDataEditor.uxml";
-    const string TILEDATA_EDITOR_CONFIG_PATH = "Assets/Data/Tiles/TileDataEditorConfig.asset";
 
-    TileDataEditorConfig _config;
     Dictionary<string, Button> _toolbarButtons = new Dictionary<string, Button>();
     ListView _list;
     List<string> _tileEdgeTypeOptions = new List<string>();
@@ -32,10 +30,10 @@ public class TileDataEditor : Editor
 
     public override VisualElement CreateInspectorGUI()
     {
-        _config = AssetDatabase.LoadAssetAtPath<TileDataEditorConfig>(TILEDATA_EDITOR_CONFIG_PATH);
+        var collection = target as TileSet;
         _tileEdgeTypeOptions.Clear();
         _tileEdgeTypeOptions.Add(EDGE_WILDCARD);
-        _tileEdgeTypeOptions.AddRange(_config.TypeConfigs.Select(t => t.Name));
+        _tileEdgeTypeOptions.AddRange(collection.EdgeTypes);
         _toolbarButtons.Clear();
 
         var tree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(MAIN_UXML_PATH).Instantiate();
@@ -54,13 +52,14 @@ public class TileDataEditor : Editor
     void SetToolBar(VisualElement root)
     {
         root.Clear();
-        foreach (var t in _config.TypeConfigs)
+        var collection = target as TileSet;
+        foreach (var t in collection.EdgeTypes)
         {
             var button = new ToolbarButton();
-            button.text = t.Name;
-            button.clicked += () => SelectType(t.Name);
+            button.text = t;
+            button.clicked += () => SelectType(t);
             root.Add(button);
-            _toolbarButtons.Add(t.Name, button);
+            _toolbarButtons.Add(t, button);
         }
     }
 
@@ -182,7 +181,7 @@ public class TileDataEditor : Editor
 
     void ShowTypeData(string type)
     {
-        var collection = target as TileDataCollection;
+        var collection = target as TileSet;
         var data = collection.GetTypeDataEditor(type);
         if (data == null)
         {
@@ -217,7 +216,7 @@ public class TileDataEditor : Editor
         AssetDatabase.Refresh();
 
         var asset = AssetDatabase.LoadAssetAtPath<TileTypeData>(typeDataAssetPath);
-        var collection = target as TileDataCollection;
+        var collection = target as TileSet;
         collection.Tiles.Add(asset);
         EditorUtility.SetDirty(collection);
 
@@ -254,14 +253,14 @@ public class TileDataEditor : Editor
 
     void UpdateAssets()
     {
-        var collection = target as TileDataCollection;
-        foreach (var typeConfig in _config.TypeConfigs)
+        var collection = target as TileSet;
+        foreach (var edge in collection.EdgeTypes)
         {
             var rootPath = GetTargetPath();
-            var data = collection.GetTypeDataEditor(typeConfig.Name);
+            var data = collection.GetTypeDataEditor(edge);
             if(data == null)
             {
-                data = CreateNewTypeData(typeConfig.Name);
+                data = CreateNewTypeData(edge);
             }
 
             UpdateTypeData(data);

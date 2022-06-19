@@ -11,7 +11,7 @@ namespace Map.Services
         [RuntimeInitializeOnLoadMethod]
         static void RegisterMapModelFactory()
         {
-            ModelFactory.RegisterFactory<MapItemData>(MakeMapItemModel);
+            ItemModelFactory.RegisterFactory<MapItemData>(MakeMapItemModel);
         }
 
         static ItemModel MakeMapItemModel(ItemData item)

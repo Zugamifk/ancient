@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This belongs in a Data assembly
+/// Data that registers itself with the DataReferences and DataService
 /// </summary>
-public interface IData
+public interface IRegisteredData
 {
     
 }

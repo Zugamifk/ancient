@@ -26,13 +26,14 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
 
     public void SetTile(int x, int y, IMapModel model)
     {
+        var tileSet = DataService.GetData<MapDataCollection>().GetData(model.Key).TileSet;
         var tiles = new Tile[9];
         int t = 0;
         for (int j = y - 1; j <= y + 1; j++)
         {
             for (int i = x - 1; i <= x + 1; i++)
             {
-                tiles[t++] = BuildTile(i, j, model.Grid);
+                tiles[t++] = BuildTile(i, j, model.Grid, tileSet);
             }
         }
         var bounds = new BoundsInt(x - 1, y - 1, 0, 3, 3, 1);
@@ -46,11 +47,12 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
         var dimensions = new BoundsInt(-d.x / 2, -d.y / 2, 0, d.x, d.y, 1);
         var tiles = new Tile[d.x * d.y];
         int i = 0;
+        var tileSet = DataService.GetData<MapDataCollection>().GetData(model.Key).TileSet;
         for (int y = dimensions.yMin; y < dimensions.yMax; y++)
         {
             for (int x = dimensions.xMin; x < dimensions.xMax; x++)
             {
-                tiles[i++] = BuildTile(x, y, model.Grid);
+                tiles[i++] = BuildTile(x, y, model.Grid, tileSet);
             }
         }
         _tilemap.SetTilesBlock(dimensions, tiles);
@@ -86,13 +88,13 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
         }
     }
 
-    Tile BuildTile(int x, int y, IGridModel grid)
+    Tile BuildTile(int x, int y, IGridModel grid, TileSet tileset)
     {
         var type = GetTileType(grid, x, y);
         var left = GetTileType(grid, x - 1, y);
         var top = GetTileType(grid, x, y + 1);
         var right = GetTileType(grid, x + 1, y);
         var bottom = GetTileType(grid, x, y - 1);
-        return DataService.GetData<TileDataCollection>().GetTile(type, left, top, right, bottom);
+        return tileset.GetTile(type, left, top, right, bottom);
     }
 }

@@ -16,7 +16,7 @@ public static class DataService
         _dataTypeToCollection.Clear();
     }
 
-    public static T GetData<T>() where T : ScriptableObject
+    public static T GetData<T>() where T : ScriptableObject, IRegisteredData
     {
         return (T)_dataTypeToCollection[typeof(T)];
     }

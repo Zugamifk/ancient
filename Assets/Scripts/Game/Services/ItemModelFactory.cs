@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class ModelFactory
+public static class ItemModelFactory
 {
     public delegate ItemModel ModelFactoryDelegate(ItemData data);
 
     static Dictionary<Type, ModelFactoryDelegate> _itemDataTypetoModelFactory = new();
     static Dictionary<Type, ModelFactoryDelegate> _itemModelTypetoModelFactory = new();
 
-    static ModelFactory()
+    static ItemModelFactory()
     {
         RegisterFactory<PackageItemData>(data =>
         {

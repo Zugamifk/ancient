@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterCollection : ScriptableObject, IPrefabLookup
+public class CharacterCollection : ScriptableObject, IPrefabLookup, IRegisteredData
 {
     [SerializeField]
     CharacterData[] _agents;

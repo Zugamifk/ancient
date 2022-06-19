@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapDataCollection : ScriptableObject
+public class MapDataCollection : ScriptableObject, IRegisteredData
 {
     [SerializeField]
     MapData[] _mapData;
