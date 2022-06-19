@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: City
   Dimensions: {x: 50, y: 50}
+  TileSet: {fileID: 11400000, guid: 0bffc068adc793844891b9f72cbbb086, type: 2}
   DefaultTile: Grass

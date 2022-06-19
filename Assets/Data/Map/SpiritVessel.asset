@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: SpiritVessel
   Dimensions: {x: 50, y: 50}
+  TileSet: {fileID: 11400000, guid: 3951724d69187484fb54a9f3eb6a2043, type: 2}
   DefaultTile: Grass
