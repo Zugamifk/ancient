@@ -2,7 +2,9 @@
     "name": "SpiritVessel.Data",
     "rootNamespace": "SpiritVessel.Data",
     "references": [
-        "GUID:d2dbe21ee0e45dd4d9458d4fe5bec48f"
+        "GUID:d2dbe21ee0e45dd4d9458d4fe5bec48f",
+        "GUID:f1eacd49830892c4e9c9d11bbf989cc6",
+        "GUID:2ae98cca5c007b848857075434878784"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
