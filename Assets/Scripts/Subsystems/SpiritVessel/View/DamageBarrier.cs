@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpiritVessel.Commands;
 
 namespace SpiritVessel.View
 {
@@ -8,7 +9,12 @@ namespace SpiritVessel.View
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log(collision.gameObject.name);
+            var spirit = collision.gameObject.GetComponent<Spirit>();
+            Debug.Log($"{collision.gameObject.name} {spirit.Id}");
+            if(spirit!=null)
+            {
+                Game.Do(new KillSpiritCommand(spirit.Id));
+            }
         }
     }
 }

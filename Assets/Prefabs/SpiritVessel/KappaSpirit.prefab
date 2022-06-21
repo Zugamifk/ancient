@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 5101270959545978931}
   - component: {fileID: 8619638223813035293}
   - component: {fileID: 636771544121949006}
+  - component: {fileID: 8664656684138056421}
   m_Layer: 0
   m_Name: KappaSpirit
   m_TagString: Untagged
@@ -234,3 +235,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8664656684138056421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9176610934338377405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31590a0c93fc169439780817fab0f28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
