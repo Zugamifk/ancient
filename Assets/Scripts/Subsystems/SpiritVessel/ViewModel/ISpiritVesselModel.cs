@@ -7,5 +7,6 @@ namespace SpiritVessel.ViewModel
     public interface ISpiritVesselModel : IRegisteredModel, IItemModel, IIsExamining
     {
         IMapModel Map { get; }
+        IIdentifiableLookup<IAttackModel> Attacks { get; }
     }
 }

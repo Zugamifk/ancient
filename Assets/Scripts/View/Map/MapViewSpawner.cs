@@ -15,6 +15,9 @@ public abstract class MapViewSpawner<TModel, TView> : ViewSpawner<TModel, TView>
 
         var positionable = view.GetComponent<MapPositionable>();
         positionable.PositionGetter = GetPosition;
+
+        var identifiable = view.GetComponent<Identifiable>();
+        identifiable.Id = model.Id;
     }
 
     Vector3 GetPosition(Guid id)
@@ -24,6 +27,7 @@ public abstract class MapViewSpawner<TModel, TView> : ViewSpawner<TModel, TView>
         {
             return _tileMapper.ModelToWorld(positionable.Position);
         }
+
         return Vector3.zero;
     }
 }

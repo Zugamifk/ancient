@@ -8,7 +8,7 @@ namespace SpiritVessel.Model
 {
     public class AttackModel : IAttackModel
     {
-        public Guid Id { get; } = new();
+        public Guid Id { get; } = Guid.NewGuid();
 
         public string Key { get; set; }
 

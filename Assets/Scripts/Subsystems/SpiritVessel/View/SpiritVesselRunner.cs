@@ -23,6 +23,7 @@ namespace SpiritVessel.View
             {
                 var pos  = _radius * Random.insideUnitCircle.normalized;
                 Game.Do(new SpawnSpiritCommand("KappaSpirit", pos));
+                Game.Do(new DoLightningStrikeCommand());
                 _spawnTimer -= _spawnRate;
             }
 
