@@ -22,7 +22,7 @@ namespace SpiritVessel.View
             while (_spawnTimer > _spawnRate)
             {
                 var pos  = _radius * Random.insideUnitCircle.normalized;
-                Game.Do(new SpawnCharacterCommand("Kappa", pos, model.Map.Id));
+                Game.Do(new SpawnSpiritCommand("KappaSpirit", pos));
                 _spawnTimer -= _spawnRate;
             }
 
