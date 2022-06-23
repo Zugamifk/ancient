@@ -8,6 +8,9 @@ public class AnimationEvents : MonoBehaviour
 
     public void Destroy()
     {
-        Destroy(Root);
+        if (Application.isPlaying)
+        {
+            Destroy(Root);
+        }
     }
 }

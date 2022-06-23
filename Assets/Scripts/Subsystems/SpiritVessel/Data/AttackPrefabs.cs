@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SpiritVessel.Data
 {
-    public class AttackPrefabs : SimplePrefabLookup<IAttackModel, AttackData>
+    public class AttackPrefabs : KeyHoldertoPrefabReferenceLookup<IAttackModel, AttackData>
     {
         [SerializeField]
         List<AttackData> _attacks = new();

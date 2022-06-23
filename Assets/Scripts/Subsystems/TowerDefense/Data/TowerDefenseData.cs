@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TowerDefense.Data
 {
-    public class TowerDefenseData : SimplePrefabLookup<ITower, TowerData>
+    public class TowerDefenseData : KeyHoldertoPrefabReferenceLookup<ITower, TowerData>
     {
         public TowerData[] Towers;
         public int StartingLives;

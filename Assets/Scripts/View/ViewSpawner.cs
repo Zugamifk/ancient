@@ -22,6 +22,7 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
         {
             if (GetModel(id) == null)
             {
+                DestroyedView(_spawnedViews[id]);
                 GameObject.Destroy(_spawnedViews[id].gameObject);
                 toRemove.Add(id);
             }
@@ -58,4 +59,5 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
     protected abstract TModel GetModel(Guid id);
     protected abstract IEnumerable<TModel> AllModels();
     protected virtual void SpawnedView(TModel model, TView view) { }
+    protected virtual void DestroyedView(TView view) { }
 }

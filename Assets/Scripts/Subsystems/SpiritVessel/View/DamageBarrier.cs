@@ -10,7 +10,7 @@ namespace SpiritVessel.View
         private void OnTriggerEnter2D(Collider2D collision)
         {
             var spirit = collision.gameObject.GetComponent<Spirit>();
-            if(spirit!=null)
+            if (spirit != null)
             {
                 Game.Do(new KillSpiritCommand(spirit.Id));
             }
