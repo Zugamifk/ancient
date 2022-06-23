@@ -23,6 +23,8 @@ public class Game : MonoBehaviour
     Game()
     {
         _game = this;
+
+        InitializeTimeModel();
     }
 
     private void Start()
@@ -39,6 +41,13 @@ public class Game : MonoBehaviour
             var command = _commandQueue.Dequeue();
             command.Execute(_model);
         }
+    }
+
+    void InitializeTimeModel()
+    {
+        var timeModel = _model.TimeModel;
+        var time = DateTime.Now;
+        timeModel.RealTime = TimeSpan.FromSeconds(time.TimeOfDay.TotalSeconds / TimeModel.TIME_MULTIPLIER);
     }
 
     void UpdateTimeModel()
