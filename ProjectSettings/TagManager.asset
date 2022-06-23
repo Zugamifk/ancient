@@ -44,3 +44,9 @@ TagManager:
   - name: UI
     uniqueID: 3699194269
     locked: 0
+  - name: Tilemap
+    uniqueID: 1236558405
+    locked: 0
+  - name: TilemapEntities
+    uniqueID: 3017743225
+    locked: 0
