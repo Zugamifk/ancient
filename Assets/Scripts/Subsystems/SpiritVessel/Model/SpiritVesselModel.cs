@@ -11,6 +11,10 @@ namespace SpiritVessel.Model
         public bool IsExamining { get; set; }
         public IdentifiableCollection<AttackModel> Attacks { get; } = new();
 
+        public int Level { get; set; }
+        public int Experience { get; set; }
+        public int ExperienceNeeded { get; set; }
+
         #region ISpiritVesselModel 
         IMapModel ISpiritVesselModel.Map => MapModel;
         IIdentifiableLookup<IAttackModel> ISpiritVesselModel.Attacks => Attacks;
