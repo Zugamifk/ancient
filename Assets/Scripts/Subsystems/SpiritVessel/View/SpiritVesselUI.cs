@@ -16,8 +16,8 @@ namespace SpiritVessel.View
         private void Update()
         {
             var model = Game.Model.GetModel<ISpiritVesselModel>();
-            var xp = model.Experience;
-            var needed = model.ExperienceNeeded;
+            var xp = (float)model.Experience;
+            var needed = (float)model.ExperienceNeeded;
             var percent = xp / needed;
             _xpBar.fillAmount = percent;
         }
