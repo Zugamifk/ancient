@@ -83,12 +83,12 @@ TextureImporter:
       name: OpenVessel-UI-XpBar_0
       rect:
         serializedVersion: 2
-        x: 124
+        x: 122
         y: 104
-        width: 126
-        height: 147
+        width: 128
+        height: 150
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

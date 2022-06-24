@@ -83,12 +83,12 @@ TextureImporter:
       name: OpenVessel-UI-LevelUp-Signs_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 208
-        width: 30
-        height: 21
+        x: 25
+        y: 203
+        width: 29
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -104,12 +104,12 @@ TextureImporter:
       name: OpenVessel-UI-LevelUp-Signs_1
       rect:
         serializedVersion: 2
-        x: 57
-        y: 220
-        width: 19
-        height: 22
+        x: 55
+        y: 216
+        width: 27
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -125,12 +125,12 @@ TextureImporter:
       name: OpenVessel-UI-LevelUp-Signs_2
       rect:
         serializedVersion: 2
-        x: 87
-        y: 228
-        width: 19
-        height: 19
+        x: 83
+        y: 223
+        width: 28
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
