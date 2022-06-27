@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SpiritVessel.Data
 {
-    public class AttackData : ScriptableObject, IPrefabReference
+    public class SkillPrefabReference : ScriptableObject, IPrefabReference
     {
         [field:SerializeField]
         public string Name { get; set; }

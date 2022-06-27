@@ -15,7 +15,7 @@ namespace SpiritVessel.Commands
         public void Execute(GameModel model)
         {
             var srv = new LightningStrikeService();
-            srv.AcquireSkill(model.GetModel<SpiritVesselModel>().Lightning, _skill);
+            srv.AcquireSkill(model.GetModel<SpiritVesselModel>().LightningSkill, _skill);
         }
     }
 }

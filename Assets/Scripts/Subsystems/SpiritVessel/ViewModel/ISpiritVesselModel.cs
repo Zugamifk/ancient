@@ -10,5 +10,7 @@ namespace SpiritVessel.ViewModel
         IIdentifiableLookup<IAttackModel> Attacks { get; }
         int Experience { get; }
         int ExperienceNeeded { get; }
+        
+        ILightningSkillModel LightningSkill { get; }
     }
 }

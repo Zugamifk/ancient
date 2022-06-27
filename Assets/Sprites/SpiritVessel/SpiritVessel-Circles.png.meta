@@ -88,7 +88,7 @@ TextureImporter:
         width: 127
         height: 127
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -96,6 +96,27 @@ TextureImporter:
       bones: []
       spriteID: 97dbf44e4734c964fb13ce2db1bcfb86
       internalID: -1230632415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpiritVessel-Circles_1
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 129
+        width: 129
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10e18a4ec143a8542a8cbf9cd8fdebcf
+      internalID: 1796417662
       vertices: []
       indices: 
       edges: []
@@ -112,6 +133,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       SpiritVessel-Circles_0: -1230632415
+      SpiritVessel-Circles_1: 1796417662
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
