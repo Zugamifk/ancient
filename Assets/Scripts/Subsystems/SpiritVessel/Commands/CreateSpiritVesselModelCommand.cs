@@ -23,6 +23,8 @@ namespace SpiritVessel.Commands
             model.Level = 0;
             model.ExperienceNeeded = levelData.XpRequired;
             model.Experience = 0;
+
+            Game.Do(new GainSkillCommand("Lightning"));
         }
     }
 }

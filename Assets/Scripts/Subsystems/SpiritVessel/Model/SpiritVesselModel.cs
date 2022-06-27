@@ -16,6 +16,8 @@ namespace SpiritVessel.Model
         public int ExperienceNeeded { get; set; }
         public IdentifiableCollection<SkillLevelModel> AcquiredSkills { get; set; } = new();
 
+        public LightningSkillModel Lightning { get; set; }
+
         #region ISpiritVesselModel 
         IMapModel ISpiritVesselModel.Map => MapModel;
         IIdentifiableLookup<IAttackModel> ISpiritVesselModel.Attacks => Attacks;
