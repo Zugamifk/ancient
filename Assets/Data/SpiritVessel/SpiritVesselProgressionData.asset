@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - XpRequired: 25
+  - XpRequired: 50
   - XpRequired: 100
-  - XpRequired: 250
+  - XpRequired: 200
+  - XpRequired: 500
   - XpRequired: 1000
-  - XpRequired: 2500

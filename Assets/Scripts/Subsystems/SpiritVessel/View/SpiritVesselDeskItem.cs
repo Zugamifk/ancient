@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using SpiritVessel.ViewModel;
 
 namespace SpiritVessel.View
 {
@@ -26,6 +27,19 @@ namespace SpiritVessel.View
         {
             SceneManager.LoadScene(_mapSceneName, LoadSceneMode.Additive);
             StartCoroutine(GetMapRender());
+        }
+
+        private void Update()
+        {
+            var model = Game.Model.GetModel<ISpiritVesselModel>();
+            var xp = (float)model.Experience;
+            var need = (float)model.ExperienceNeeded;
+            var max = _whiteSealSprites.Length;
+            var to = max * xp / need;
+            for(int i = 0; i < max; i++)
+            {
+                _whiteSealSprites[i].enabled = i <= to;
+            }
         }
 
         IEnumerator GetMapRender()

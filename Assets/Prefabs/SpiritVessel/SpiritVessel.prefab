@@ -1717,7 +1717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6267384787601888155
 Transform:
   m_ObjectHideFlags: 0
@@ -2960,7 +2960,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainSealSprite: {fileID: 0}
   _redSealSprites: []
-  _whiteSealSprites: []
+  _whiteSealSprites:
+  - {fileID: 6267384787897896989}
+  - {fileID: 6267384788437360523}
+  - {fileID: 6267384789186864562}
+  - {fileID: 6267384787979160442}
+  - {fileID: 6267384788235240103}
+  - {fileID: 6267384788225298937}
+  - {fileID: 6267384788684077623}
+  - {fileID: 6267384787653904786}
+  - {fileID: 6267384788608165224}
+  - {fileID: 6267384788366869805}
+  - {fileID: 6267384788763720756}
   _mapSceneName: SpiritVessel
   _mapRenderCameraName: SpiritVessel
   _mapRender: {fileID: 6448014548412102887}
@@ -3713,7 +3724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1543537266358138247
 Transform:
   m_ObjectHideFlags: 0

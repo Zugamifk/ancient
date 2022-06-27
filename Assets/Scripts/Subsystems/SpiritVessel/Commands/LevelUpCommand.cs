@@ -18,13 +18,16 @@ namespace SpiritVessel.Commands
 
             spiritvessel.Level++;
 
+            var lastXp = spiritvessel.ExperienceNeeded;
+            spiritvessel.Experience -= lastXp;
+
             var prog = DataService.GetData<SpiritVesselProgressionData>();
             if(spiritvessel.Level < prog.Levels.Length)
             {
-                spiritvessel.ExperienceNeeded = prog.Levels[spiritvessel.Level].XpRequired;
+                spiritvessel.ExperienceNeeded = prog.Levels[spiritvessel.Level].XpRequired - lastXp;
             } else
             {
-                spiritvessel.ExperienceNeeded += prog.Levels[^1].XpRequired;
+                spiritvessel.ExperienceNeeded += prog.Levels[^1].XpRequired - lastXp;
             }
         }
     }
