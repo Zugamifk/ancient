@@ -12,10 +12,10 @@ namespace SpiritVessel.View
 
         public void InitializeFromModel(ILightningSkillCloudModel model)
         {
-            throw new System.NotImplementedException();
+            _identifiable.Id = model.Id;
         }
 
-        private void Start()
+        private void Awake()
         {
             _identifiable = GetComponent<Identifiable>();
         }

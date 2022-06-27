@@ -11,5 +11,12 @@ namespace SpiritVessel.Data
         List<SkillPrefabReference> _attacks = new();
 
         protected override IEnumerable<SkillPrefabReference> PrefabReferences => _attacks;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            Prefabs.Register<ILightningSkillCloudModel>(this);
+        }
     }
 }

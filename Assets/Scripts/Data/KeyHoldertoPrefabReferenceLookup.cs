@@ -11,7 +11,7 @@ public abstract class KeyHoldertoPrefabReferenceLookup<TKeyHolder, TReference> :
     public GameObject GetPrefab(string name) => _nameToPrefab[name].Prefab;
     public TReference this[string name] => _nameToPrefab[name];
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         foreach (var p in PrefabReferences)
         {

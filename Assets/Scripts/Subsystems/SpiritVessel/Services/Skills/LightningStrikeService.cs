@@ -25,6 +25,11 @@ namespace SpiritVessel.Services
         void GainLightning(LightningSkillModel model)
         {
             model.Owned = true;
+
+            var cloud = new LightningSkillCloudModel();
+            cloud.Position = 5 * Random.insideUnitCircle;
+            cloud.Radius = 2;
+            model.Clouds.AddItem(cloud);
         }
     }
 }
