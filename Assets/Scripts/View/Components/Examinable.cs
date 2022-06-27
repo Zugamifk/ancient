@@ -58,6 +58,17 @@ public class Examinable : MonoBehaviour
         Game.Do(new ExamineItemCommand(_identifiable.Id));
     }
 
+    public void SetExaminingEvent(bool examining)
+    {
+        if (examining)
+        {
+            Game.Do(new ExamineItemCommand(_identifiable.Id));
+        } else
+        {
+            Game.Do(new StopExaminingItemCommand(_identifiable.Id));
+        }
+    }
+
     void SetExaminingState(bool isExamining)
     {
         _isExamining = isExamining;
