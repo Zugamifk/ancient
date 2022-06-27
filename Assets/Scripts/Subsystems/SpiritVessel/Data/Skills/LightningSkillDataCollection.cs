@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SpiritVessel.Data
 {
-    public class LightningSkillDataCollection : MonoBehaviour
+    public class LightningSkillDataCollection : ScriptableObject
     {
         public SkillData First;
         public SkillData[] FrequencyIncreases;

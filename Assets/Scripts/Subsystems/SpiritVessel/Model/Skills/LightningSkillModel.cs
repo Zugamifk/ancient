@@ -6,6 +6,7 @@ namespace SpiritVessel.Model
 {
     public class LightningSkillModel
     {
+        public bool Owned;
         public float CoolDown { get; set; }
         public float Damage { get; set; }
         public float Radius { get; set; }

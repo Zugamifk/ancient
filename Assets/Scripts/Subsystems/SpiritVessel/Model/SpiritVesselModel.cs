@@ -14,6 +14,7 @@ namespace SpiritVessel.Model
         public int Level { get; set; }
         public int Experience { get; set; }
         public int ExperienceNeeded { get; set; }
+        public IdentifiableCollection<SkillLevelModel> AcquiredSkills { get; set; } = new();
 
         #region ISpiritVesselModel 
         IMapModel ISpiritVesselModel.Map => MapModel;

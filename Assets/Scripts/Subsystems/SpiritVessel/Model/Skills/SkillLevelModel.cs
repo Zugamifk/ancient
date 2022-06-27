@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SpiritVessel.Model
 {
-    public class SkillLevelModel
+    public class SkillLevelModel : IIdentifiable
     {
         public Guid Id { get; } = Guid.NewGuid();
     }
