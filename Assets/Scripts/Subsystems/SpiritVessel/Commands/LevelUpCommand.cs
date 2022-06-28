@@ -34,10 +34,10 @@ namespace SpiritVessel.Commands
             var prog = DataService.GetData<SpiritVesselProgressionData>();
             if(spiritvessel.Level < prog.Levels.Length)
             {
-                spiritvessel.ExperienceNeeded = prog.Levels[spiritvessel.Level].XpRequired - lastXp;
+                spiritvessel.ExperienceNeeded = prog.Levels[spiritvessel.Level].XpRequired;
             } else
             {
-                spiritvessel.ExperienceNeeded += prog.Levels[^1].XpRequired - lastXp;
+                spiritvessel.ExperienceNeeded += prog.Levels[^1].XpRequired;
             }
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using SpiritVessel.ViewModel;
 using SpiritVessel.Data;
+using SpiritVessel.Commands;
 
 namespace SpiritVessel.View
 {
@@ -57,6 +58,12 @@ namespace SpiritVessel.View
             var skillData = skills.GetData(_levelUpOptionButtons[optionIndex].skillKey);
             _name.text = skillData.DisplayName;
             _description.text = skillData.Description;
+        }
+
+        public void ChooseOption(int optionIndex)
+        {
+            Game.Do(new CompleteLevelUpSelectionCommand(_levelUpOptionButtons[optionIndex].skillKey));
+            gameObject.SetActive(false);
         }
     }
 }
