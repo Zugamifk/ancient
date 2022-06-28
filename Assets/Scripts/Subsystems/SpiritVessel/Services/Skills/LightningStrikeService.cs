@@ -25,6 +25,7 @@ namespace SpiritVessel.Services
         void GainLightning(LightningSkillModel model)
         {
             model.Owned = true;
+            model.CoolDown = 1;
 
             var cloud = new LightningSkillCloudModel();
             cloud.Position = 5 * Random.insideUnitCircle;

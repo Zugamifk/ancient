@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SpiritVessel.ViewModel;
 using System;
+using SpiritVessel.Commands;
 
 namespace SpiritVessel.View
 {
@@ -24,7 +25,7 @@ namespace SpiritVessel.View
         void Update()
         {
             var model = Game.Model.GetModel<ISpiritVesselModel>().LightningSkill.Clouds.GetItem(_identifiable.Id);
-            Debug.Log(_containedSpirits.Count);
+            Game.Do(new UpdateLightningSkillCloudCommand(_identifiable.Id));
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
