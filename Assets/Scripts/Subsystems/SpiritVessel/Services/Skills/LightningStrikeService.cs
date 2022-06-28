@@ -29,7 +29,7 @@ namespace SpiritVessel.Services
 
             var cloud = new LightningSkillCloudModel();
             cloud.Position = 5 * Random.insideUnitCircle;
-            cloud.Radius = 2;
+            cloud.Radius = 5;
             model.Clouds.AddItem(cloud);
         }
     }

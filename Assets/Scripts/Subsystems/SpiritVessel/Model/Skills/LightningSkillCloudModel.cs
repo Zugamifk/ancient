@@ -13,5 +13,7 @@ namespace SpiritVessel.Model
         public Vector2 Position { get; set; }
         public float Radius { get; set; }
         public float BoltTimer { get; set; }
+        public Vector2 MoveDirection { get; set; }
+        public float Speed { get; set; }
     }
 }
