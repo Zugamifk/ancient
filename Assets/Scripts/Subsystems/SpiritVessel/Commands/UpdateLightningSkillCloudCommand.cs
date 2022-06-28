@@ -19,6 +19,9 @@ namespace SpiritVessel.Commands
             var change = Time.deltaTime / lightning.CoolDown;
             cloud.BoltTimer -= change;
 
+            var step = Time.deltaTime * lightning.Speed * lightning.MoveDirection;
+            cloud.Position += step;
+
             if(cloud.BoltTimer <= 0)
             {
                 cloud.BoltTimer += lightning.CoolDown;

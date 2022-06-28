@@ -8,6 +8,9 @@ namespace SpiritVessel.Model
     public class LightningSkillModel : ILightningSkillModel
     {
         public bool Owned { get; set; }
+        public Vector2 MoveDirection { get; set; }
+        public float Speed { get; set; }
+
         public float CoolDown { get; set; }
         public float Damage { get; set; }
         public float Radius { get; set; }
