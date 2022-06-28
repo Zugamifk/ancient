@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc40439a3bc77543afcb1626ae22fc6, type: 3}
   m_Name: SpiritVesselSkillCollection
   m_EditorClassIdentifier: 
-  _data: []
+  _data:
+  - {fileID: 11400000, guid: 9b2b94cf2c554b048afad0a3866d4104, type: 2}

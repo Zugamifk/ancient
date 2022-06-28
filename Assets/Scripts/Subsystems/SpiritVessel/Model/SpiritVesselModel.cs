@@ -21,7 +21,8 @@ namespace SpiritVessel.Model
         public int LevelToAcquire { get; set; }
         public int Experience { get; set; }
         public int ExperienceNeeded { get; set; }
-        public IdentifiableCollection<SkillLevelModel> AcquiredSkills { get; set; } = new();
+        public HashSet<string> AcquiredSkills { get; set; } = new();
+        public HashSet<string> AvailableSkills { get; set; } = new();
 
         public LightningSkillModel LightningSkill { get; set; } = new();
 
