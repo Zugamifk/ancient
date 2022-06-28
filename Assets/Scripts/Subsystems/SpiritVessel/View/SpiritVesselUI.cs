@@ -23,7 +23,7 @@ namespace SpiritVessel.View
             var percent = xp / needed;
             _xpBar.fillAmount = percent;
 
-            if (model.LevelUp!=null)
+            if (!_levelUp.isActiveAndEnabled && model.LevelUp!=null)
             {
                 _levelUp.ShowLevelUp();
             }

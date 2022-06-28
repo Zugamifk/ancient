@@ -19,7 +19,7 @@ namespace SpiritVessel.Commands
         {
             Game.Do(new RemoveCharacterCommand(_id));
             model.GetModel<SpiritVesselModel>().MapModel.CharacterIds.Remove(_id);
-            Game.Do(new GainExperienceCommand(5));
+            Game.Do(new GainExperienceCommand(1));
         }
     }
 }
