@@ -15,10 +15,7 @@ namespace SpiritVessel.Model
 
         public int Level { get; set; }
 
-        /// <summary>
-        /// This is the level you've gained according to xp. when lower than you Level, you should get level up screens until they match.
-        /// </summary>
-        public int LevelToAcquire { get; set; }
+        public LevelUpModel LevelUp { get; set; }
         public int Experience { get; set; }
         public int ExperienceNeeded { get; set; }
         public HashSet<string> AcquiredSkills { get; set; } = new();
@@ -28,6 +25,7 @@ namespace SpiritVessel.Model
 
         #region ISpiritVesselModel 
         IMapModel ISpiritVesselModel.Map => MapModel;
+        ILevelUpModel ISpiritVesselModel.LevelUp => LevelUp;
         IIdentifiableLookup<IAttackModel> ISpiritVesselModel.Attacks => Attacks;
         ILightningSkillModel ISpiritVesselModel.LightningSkill => LightningSkill;
         #endregion

@@ -7,7 +7,7 @@ namespace SpiritVessel.Data
     public class SkillData : ScriptableObject, IKeyHolder
     {
         public string Key;
-        public string Name;
+        public string DisplayName;
         public Sprite Icon;
         public string Description;
         public SkillData[] Required;

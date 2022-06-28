@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56742e2073c54204a816a6d1580b808c, type: 3}
-  m_Name: Lightning
+  m_Name: CollateralShock
   m_EditorClassIdentifier: 
-  Key: Lightning
-  DisplayName: Lightning
-  Icon: {fileID: -1985354092, guid: 31f3a74f50bd4bc44b1801be66c646f0, type: 3}
+  Key: CollateralShock
+  DisplayName: Collateral Shock
+  Icon: {fileID: -135868708, guid: 31f3a74f50bd4bc44b1801be66c646f0, type: 3}
   Description: A cloud travels around periodically striking enemies with lightning
     and making everything under it Wet
-  Required: []
-  Unlocked:
-  - {fileID: 11400000, guid: e8464efcb4894314ab22c5a5212a159a, type: 2}
-  - {fileID: 11400000, guid: a28364c55e46fe040a4aee63b75a9cba, type: 2}
-  - {fileID: 11400000, guid: 58827dbf468f13349915cbf8d7b971eb, type: 2}
+  Required:
+  - {fileID: 11400000, guid: 9b2b94cf2c554b048afad0a3866d4104, type: 2}
+  Unlocked: []

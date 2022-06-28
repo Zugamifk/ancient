@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SpiritVessel.Model;
 using SpiritVessel.Data;
+using System.Linq;
 
 namespace SpiritVessel.Commands
 {
@@ -16,7 +17,16 @@ namespace SpiritVessel.Commands
                 throw new System.InvalidOperationException($"Can't level up! XP needed: {spiritvessel.ExperienceNeeded}, have {spiritvessel.Experience}");
             }
 
-            spiritvessel.LevelToAcquire++;
+            spiritvessel.LevelUp = new();
+            int max = 1000;
+            while(max-- > 0 && spiritvessel.LevelUp.SkillOptions.Count < 3)
+            {
+                var skill = spiritvessel.AvailableSkills.ElementAt(Random.Range(0, spiritvessel.AvailableSkills.Count));
+                if(!spiritvessel.LevelUp.SkillOptions.Contains(skill))
+                {
+                    spiritvessel.LevelUp.SkillOptions.Add(skill);
+                }
+            }
 
             var lastXp = spiritvessel.ExperienceNeeded;
             spiritvessel.Experience -= lastXp;
