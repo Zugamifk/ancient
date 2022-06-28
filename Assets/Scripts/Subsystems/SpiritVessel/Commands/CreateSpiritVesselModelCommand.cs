@@ -18,6 +18,8 @@ namespace SpiritVessel.Commands
 
         void InitializeGame(GameModel game, SpiritVesselModel model)
         {
+            model.OutsideRadius = 10;
+
             var progression = DataService.GetData<SpiritVesselProgressionData>();
             var levelData = progression.Levels[0];
             model.Level = 0;

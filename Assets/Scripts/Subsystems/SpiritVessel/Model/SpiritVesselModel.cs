@@ -8,6 +8,8 @@ namespace SpiritVessel.Model
     public class SpiritVesselModel : ItemModel, ISpiritVesselModel, IExaminable, IMapUser
     {
         public MapModel MapModel { get; } = new("SpiritVessel");
+        public float OutsideRadius { get; set; }
+
         public bool IsExamining { get; set; }
         public IdentifiableCollection<AttackModel> Attacks { get; } = new();
 

@@ -14,13 +14,20 @@ namespace SpiritVessel.Commands
 
         public void Execute(GameModel model)
         {
-            var lightning = Game.Model.GetModel<SpiritVesselModel>().LightningSkill;
+            var vessel = Game.Model.GetModel<SpiritVesselModel>();
+            var lightning = vessel.LightningSkill;
             var cloud = lightning.Clouds.GetItem(_id);
             var change = Time.deltaTime / lightning.CoolDown;
             cloud.BoltTimer -= change;
 
             var step = Time.deltaTime * lightning.Speed * lightning.MoveDirection;
             cloud.Position += step;
+
+            if(cloud.Position.magnitude > vessel.OutsideRadius)
+            {
+                var d = cloud.Position.normalized;
+                cloud.Position = -cloud.Position + d;
+            }
 
             if(cloud.BoltTimer <= 0)
             {
