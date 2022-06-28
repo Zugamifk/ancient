@@ -14,6 +14,11 @@ namespace SpiritVessel.Model
         public IdentifiableCollection<AttackModel> Attacks { get; } = new();
 
         public int Level { get; set; }
+
+        /// <summary>
+        /// This is the level you've gained according to xp. when lower than you Level, you should get level up screens until they match.
+        /// </summary>
+        public int LevelToAcquire { get; set; }
         public int Experience { get; set; }
         public int ExperienceNeeded { get; set; }
         public IdentifiableCollection<SkillLevelModel> AcquiredSkills { get; set; } = new();

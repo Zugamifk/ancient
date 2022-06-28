@@ -12,6 +12,8 @@ namespace SpiritVessel.View
         Image _xpBar;
         [SerializeField]
         Image[] _dangerLevelIcons;
+        [SerializeField]
+        SpiritVesselUILevelUp _levelUp;
 
         private void Update()
         {
@@ -20,6 +22,11 @@ namespace SpiritVessel.View
             var needed = (float)model.ExperienceNeeded;
             var percent = xp / needed;
             _xpBar.fillAmount = percent;
+
+            if (model.Level < model.LevelToAcquire)
+            {
+                _levelUp.ShowLevelUp();
+            }
         }
     }
 }

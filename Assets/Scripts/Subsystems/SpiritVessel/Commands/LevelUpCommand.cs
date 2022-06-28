@@ -16,7 +16,7 @@ namespace SpiritVessel.Commands
                 throw new System.InvalidOperationException($"Can't level up! XP needed: {spiritvessel.ExperienceNeeded}, have {spiritvessel.Experience}");
             }
 
-            spiritvessel.Level++;
+            spiritvessel.LevelToAcquire++;
 
             var lastXp = spiritvessel.ExperienceNeeded;
             spiritvessel.Experience -= lastXp;

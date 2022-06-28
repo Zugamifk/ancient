@@ -8,6 +8,8 @@ namespace SpiritVessel.ViewModel
     {
         IMapModel Map { get; }
         IIdentifiableLookup<IAttackModel> Attacks { get; }
+        int Level { get; }
+        int LevelToAcquire { get; }
         int Experience { get; }
         int ExperienceNeeded { get; }
         
