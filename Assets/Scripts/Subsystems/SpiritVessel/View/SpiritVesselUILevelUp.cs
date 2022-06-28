@@ -15,6 +15,8 @@ namespace SpiritVessel.View
         {
             public Image icon;
             public Button button;
+            [System.NonSerialized]
+            public string skillKey;
         }
 
         [SerializeField]
@@ -38,7 +40,23 @@ namespace SpiritVessel.View
                 var skillData = skills.GetData(name);
 
                 _levelUpOptionButtons[i].icon.sprite = skillData.Icon;
+                _levelUpOptionButtons[i].skillKey = name;
             }
+
+            ShowSkillInfo(0);
+        }
+
+        public void OnHoverSkillOptions(int optionIndex)
+        {
+            ShowSkillInfo(optionIndex);
+        }
+
+        void ShowSkillInfo(int optionIndex)
+        {
+            var skills = DataService.GetData<SpiritVesselSkillCollection>();
+            var skillData = skills.GetData(_levelUpOptionButtons[optionIndex].skillKey);
+            _name.text = skillData.DisplayName;
+            _description.text = skillData.Description;
         }
     }
 }
