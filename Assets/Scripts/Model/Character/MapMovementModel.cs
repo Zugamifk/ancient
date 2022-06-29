@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class MovementModel : IIdentifiable
+public class MapMovementModel : IIdentifiable
 {
     // live data
     public Guid OwnerId { get; set; }
-    public Vector2 WorldPosition { get; set; }
     public Vector2 PositionOffset { get; } = new Vector2(0.5f - UnityEngine.Random.value, .5f - UnityEngine.Random.value);
 
     public string EnteredLocation;
@@ -20,10 +19,9 @@ public class MovementModel : IIdentifiable
     public int CurrentPathIndex;
     public float MoveSpeed;
 
-    public event Action<MovementModel> ReachedPathEnd;
+    public event Action<MapMovementModel> ReachedPathEnd;
 
     public bool AtPathEnd => CityPath.Path == null || CurrentPathIndex >= CityPath.Path.Count;
-    public bool IsVisibleOnMap => string.IsNullOrEmpty(EnteredLocation);
 
     Guid IIdentifiable.Id => OwnerId;
 

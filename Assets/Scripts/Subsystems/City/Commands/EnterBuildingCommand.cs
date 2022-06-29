@@ -28,17 +28,19 @@ namespace City.Commands
             var destinationPosition = _building.Position;
             _character = model.Characters.GetItem(_characterName);
             var path = _pathFinder.GetDirectPath(
-                Vector2Int.FloorToInt(_character.Movement.WorldPosition),
+                Vector2Int.FloorToInt(_character.Position),
                 Vector2Int.FloorToInt(destinationPosition),
                 cityModel.MapModel.Grid);
-            _character.Movement.CityPath = path;
-            _character.Movement.ReachedPathEnd += Enterbuilding;
+            var movement = cityModel.MapModel.MovementModels.GetItem(_character.Id);
+            movement.CityPath = path;
+            movement.ReachedPathEnd += Enterbuilding;
         }
 
-        void Enterbuilding(MovementModel model)
+        void Enterbuilding(MapMovementModel model)
         {
             _building.Agents.Add(_characterName);
-            _character.Movement.EnteredLocation = _buildingName;
+
+            model.EnteredLocation = _buildingName;
         }
     }
 }

@@ -24,14 +24,5 @@ namespace SpiritVessel.View
                 Debug.Log(transform.position);
             }
         }
-
-        private void OnDestroy()
-        {
-            var splatter = DataService.GetData<VfxCollection>().GetItem("BloodSplatter");
-            var inst = Instantiate(splatter);
-            inst.transform.parent = transform.parent;
-            inst.transform.position = transform.position;
-            inst.SetLayerRecursively(LayerMask.NameToLayer("SpiritVessel"));
-        }
     }
 }

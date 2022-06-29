@@ -11,21 +11,22 @@ public class MoveCharacterCommand : ICommand
     public Guid CharacterId;
     public string CharacterName;
     public Vector2Int Destination;
-    public Action<MovementModel> ReachedPathEnd;
+    public Action<MapMovementModel> ReachedPathEnd;
 
     public void Execute(GameModel model)
     {
         var character = string.IsNullOrEmpty(CharacterName) ?
             model.Characters.GetItem(CharacterId) :
             model.Characters.GetItem(CharacterName);
-        var startPoint = character.Movement.WorldPosition;
         var map = model.Maps.GetItem(MapId);
+        var movement = map.MovementModels.GetItem(character.Id);
+        var startPoint = character.Position;
         var path = new PathFinder()
             .GetPath(Vector2Int.FloorToInt(startPoint), Destination, map.Grid);
-        character.Movement.CityPath = path;
+        movement.CityPath = path;
         if (ReachedPathEnd != null)
         {
-            character.Movement.ReachedPathEnd += ReachedPathEnd;
+            movement.ReachedPathEnd += ReachedPathEnd;
         }
     }
 }

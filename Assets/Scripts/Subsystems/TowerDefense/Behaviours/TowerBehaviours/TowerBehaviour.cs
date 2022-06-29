@@ -33,7 +33,8 @@ namespace TowerDefense.Behaviours
             if (tower.EnemiesInRange.Count > 0)
             {
                 var id = tower.EnemiesInRange.First();
-                position = game.Characters.GetItem(id).Position;
+                var character = game.Characters.GetItem(id);
+                position = character.Position;
                 return true;
             } else
             {

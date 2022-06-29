@@ -11,6 +11,7 @@ namespace SpiritVessel.View
     {
         [SerializeField]
         SpiritHealthbars _healthBars;
+
         protected override IEnumerable<Guid> GetCharacterIds()
             => Game.Model.GetModel<ISpiritVesselModel>().Map.CharacterIds;
 
@@ -19,6 +20,17 @@ namespace SpiritVessel.View
             base.SpawnedView(model, view);
 
             _healthBars.SpawnHealthbar(view);
+        }
+
+        protected override void DestroyedView(Character view)
+        {
+            base.DestroyedView(view);
+
+            var splatter = DataService.GetData<VfxCollection>().GetItem("BloodSplatter");
+            var inst = Instantiate(splatter);
+            inst.transform.parent = view.transform.parent;
+            inst.transform.position = view.transform.position;
+            inst.SetLayerRecursively(LayerMask.NameToLayer("SpiritVessel"));
         }
     }
 }

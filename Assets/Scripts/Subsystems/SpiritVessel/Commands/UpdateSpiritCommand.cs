@@ -18,14 +18,14 @@ namespace SpiritVessel.Commands
         {
             var character = model.Characters.GetItem(_id);
             var dir = -character.Position.normalized;
-            var step = dir * model.TimeModel.LastDeltaTime * character.Movement.MoveSpeed;
+            var step = dir * model.TimeModel.LastDeltaTime;
 
             if(step.magnitude > character.Position.magnitude)
             {
                 Game.Do(new SpiritReachEndcommand(_id));
             } else
             {
-                character.Movement.WorldPosition += step;
+                character.Position += step;
             }
         }
     }

@@ -24,18 +24,21 @@ public class SpawnCharacterCommand : ICommand
         {
             Name = _name,
         };
-        character.Movement = new MovementModel()
-        {
-            OwnerId = character.Id,
-            MoveSpeed = data.MoveSpeed,
-            WorldPosition = _position
-        };
+        character.Position = _position;
+        character.MapId = _mapId;
+        character.IsVisibleOnMap = true;
 
         model.Characters.AddItem(character);
         model.AllIdentifiables.AddItem(character);
 
         var map = model.Maps[_mapId];
         map.CharacterIds.Add(character.Id);
+        var movement = new MapMovementModel()
+        {
+            OwnerId = character.Id,
+            MoveSpeed = data.MoveSpeed,
+        };
+        map.MovementModels.AddItem(movement);
     }
 
     protected virtual void OnSpawnedCharacter(GameModel model, CharacterModel character)

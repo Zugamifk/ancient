@@ -26,7 +26,7 @@ namespace TowerDefense.Commands
             });
         }
 
-        void EnemyReachEnd(MovementModel model)
+        void EnemyReachEnd(MapMovementModel model)
         {
             Game.Do(new EnemyReachEndCommand(model.OwnerId));
         }

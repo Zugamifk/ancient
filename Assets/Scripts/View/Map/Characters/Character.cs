@@ -35,7 +35,7 @@ public class Character : MonoBehaviour, IView<ICharacterModel>
 
             gameObject.SetActive(characterModel.IsVisibleOnMap);
             Game.Do(new UpdateBodyCommand(_identifiable.Id));
-            Game.Do(new UpdateMovementCommand(_identifiable.Id));
+            Game.Do(new UpdateMapMovementCommand(characterModel.MapId, _identifiable.Id));
         }
     }
 }

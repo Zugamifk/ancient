@@ -3,16 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpdateMovementCommand : ICommand
+public class UpdateMapMovementCommand : ICommand
 {
-    Guid _id;
-    public UpdateMovementCommand(Guid id)
+    Guid _mapId;
+    Guid _characterId;
+    public UpdateMapMovementCommand(Guid mapId, Guid characterId)
     {
-        _id = id;
+        _mapId = mapId;
+        _characterId = characterId;
     }
     public void Execute(GameModel model)
     {
-        var movement = model.Characters.GetItem(_id).Movement;
+        var character = model.Characters.GetItem(_characterId);
+        var movement = model.Maps.GetItem(_mapId).MovementModels.GetItem(_characterId);
         var path = movement.CityPath;
         if (path != null)
         {
@@ -20,16 +23,16 @@ public class UpdateMovementCommand : ICommand
             while (distance > 0 && !movement.AtPathEnd)
             {
                 var end = path.Path[movement.CurrentPathIndex] + movement.PositionOffset;
-                var dir = (end - movement.WorldPosition);
+                var dir = (end - character.Position);
                 var distanceToEnd = dir.magnitude;
                 if (distance < distanceToEnd)
                 {
-                    movement.WorldPosition += dir.normalized * distance;
+                    character.Position += dir.normalized * distance;
                     break;
                 }
                 else
                 {
-                    movement.WorldPosition = end;
+                    character.Position = end;
                     movement.CurrentPathIndex++;
                     distance -= distanceToEnd;
                 }

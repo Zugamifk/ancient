@@ -36,7 +36,7 @@ namespace Narrative.States
             }
         }
 
-        void ReachedPathEnd(MovementModel _)
+        void ReachedPathEnd(MapMovementModel _)
         {
             _reachedEnd = true;
         }

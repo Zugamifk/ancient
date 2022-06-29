@@ -18,20 +18,20 @@ namespace SpiritVessel.View
 
         public void SpawnHealthbar(Character character)
         {
-            var healthbar = Instantiate(_healthBarTemplate);
+            var healthbar = Instantiate(_healthBarTemplate, _canvasRect);
             healthbar.Healthbars = this;
             healthbar.Character = character;
+            healthbar.gameObject.SetActive(true);
         }
 
         public void UpdatePosition(SpiritVesselHealthBar healthbar, Character character)
         {
             var rt = healthbar.GetComponent<RectTransform>();
-            var vp = _uiCamera.WorldToScreenPoint(character.transform.position);
-            vp.x *= _canvasRect.sizeDelta.x;
-            vp.y *= _canvasRect.sizeDelta.y;
-            vp.x -= _canvasRect.sizeDelta.x * _canvasRect.pivot.x;
-            vp.y -= _canvasRect.sizeDelta.y * _canvasRect.pivot.y;
-            healthbar.GetComponent<RectTransform>().anchoredPosition = vp;
+            rt.anchoredPosition = _uiCamera.WorldToScreenPoint(character.transform.position);
+            //var vp = _uiCamera.WorldToViewportPoint(character.transform.position);
+            //rt.anchoredPosition = new Vector2(
+            // ((vp.x * _canvasRect.sizeDelta.x) - (_canvasRect.sizeDelta.x * 0.5f)),
+            // ((vp.y * _canvasRect.sizeDelta.y) - (_canvasRect.sizeDelta.y * 0.5f)));
         }
     }
 }

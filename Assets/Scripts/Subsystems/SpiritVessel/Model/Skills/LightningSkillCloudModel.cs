@@ -10,6 +10,7 @@ namespace SpiritVessel.Model
     {
         public Guid Id { get; } = Guid.NewGuid();
         public string Key { get; } = "Cloud";
+        public Guid MapId { get; set; }
         public Vector2 Position { get; set; }
         public float Radius { get; set; }
         public float BoltTimer { get; set; }

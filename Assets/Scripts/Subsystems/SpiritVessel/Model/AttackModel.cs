@@ -12,6 +12,7 @@ namespace SpiritVessel.Model
 
         public string Key { get; set; }
 
+        public Guid MapId { get; set; }
         public Vector2 Position { get; set; }
     }
 }
