@@ -13,7 +13,8 @@ namespace SpiritVessel.Services
         
         public void GenerateEnemyPaths(MapModel vesselMap)
         {
-            GenerateStraightPath(vesselMap, Vector2Int.zero, new Vector2Int(10,10));
+            //GenerateStraightPath(vesselMap, Vector2Int.zero, new Vector2Int(10,10));
+            vesselMap.Grid.StateId = Guid.NewGuid();
         }
 
         void GenerateStraightPath(MapModel model, Vector2Int pointA, Vector2Int pointB)

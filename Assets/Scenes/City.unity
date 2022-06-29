@@ -516,6 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62737162b5aafa748a233297352bd6ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultTile: Grass
   _tilemap: {fileID: 891285401}
 --- !u!65 &1645037286
 BoxCollider:

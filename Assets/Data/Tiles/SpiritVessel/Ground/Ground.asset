@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38ad353e814e88542ae5b00e4cce67cd, type: 3}
-  m_Name: SpiritVessel
+  m_Script: {fileID: 11500000, guid: 39cb54fecb249ec4481ad687c5d79b6a, type: 3}
+  m_Name: Ground
   m_EditorClassIdentifier: 
-  Key: SpiritVessel
-  Dimensions: {x: 50, y: 50}
-  TileSet: {fileID: 11400000, guid: a517cf301ce5f3d4480e70b5e755fb5e, type: 2}
-  DefaultTile: Ground
+  Type: Ground
+  MoveCost: 1
+  Tiles:
+  - {fileID: 11400000, guid: 8bdcf6e3104548b4c9e09a32b4fe737e, type: 2}

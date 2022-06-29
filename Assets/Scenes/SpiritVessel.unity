@@ -310,9 +310,9 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814050897}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 0}
+  m_CellSize: {x: 2, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 0
+  m_CellLayout: 2
   m_CellSwizzle: 0
 --- !u!1 &891285398
 GameObject:
@@ -1046,6 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62737162b5aafa748a233297352bd6ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultTile: Ground
   _tilemap: {fileID: 891285401}
 --- !u!65 &1645037286
 BoxCollider:

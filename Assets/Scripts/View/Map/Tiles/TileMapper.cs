@@ -8,11 +8,12 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
 {
 
     [SerializeField]
+    string _defaultTile;
+    [SerializeField]
     Tilemap _tilemap;
 
     public Guid MapId { get; set; }
     Guid _gridStateId;
-    readonly string _defaultTileType = Name.Tile.Grass;
 
     void Update()
     {
@@ -80,7 +81,7 @@ public class TileMapper : MonoBehaviour, ITileMapTransformer
         var h = dimensions.y / 2;
         if (x < -w || x >= w || y < -h || y >= h)
         {
-            return _defaultTileType;
+            return _defaultTile;
         }
         else
         {

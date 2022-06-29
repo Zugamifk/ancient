@@ -13,7 +13,7 @@ public static partial class Name
 
     public static class Tile
     {
-        // ground
+        public static string Ground => "Ground";
         public static string Grass => "Grass";
         public static string Road => "Road";
         public static string Building => "Building";
