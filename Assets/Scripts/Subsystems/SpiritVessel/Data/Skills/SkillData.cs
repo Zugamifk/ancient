@@ -9,6 +9,7 @@ namespace SpiritVessel.Data
         public string Key;
         public string DisplayName;
         public Sprite Icon;
+        [TextArea]
         public string Description;
         public SkillData[] Required;
         public SkillData[] Unlocked;

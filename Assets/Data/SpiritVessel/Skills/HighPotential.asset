@@ -15,8 +15,7 @@ MonoBehaviour:
   Key: HighPotential
   DisplayName: High Potential
   Icon: {fileID: 1582579389, guid: 31f3a74f50bd4bc44b1801be66c646f0, type: 3}
-  Description: A cloud travels around periodically striking enemies with lightning
-    and making everything under it Wet
+  Description: Lightning strikes 2x as often.
   Required:
   - {fileID: 11400000, guid: 9b2b94cf2c554b048afad0a3866d4104, type: 2}
   Unlocked: []

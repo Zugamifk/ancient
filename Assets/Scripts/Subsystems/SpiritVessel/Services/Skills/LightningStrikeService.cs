@@ -10,15 +10,34 @@ namespace SpiritVessel.Services
     {
         public void AcquireSkill(LightningSkillModel model, string skillKey)
         {
-            var skills = DataService.GetData<SpiritVesselSkillCollection>();
-            var skillData = skills.GetData(skillKey);
             switch (skillKey)
             {
                 case Skill.Lightning:
                     GainLightning(model);
                     break;
-                default:
+                case Skill.HighPotential:
+                    GainHighPotential(model);
                     break;
+                case Skill.ExtremePotential:
+                    GainExtremePotential(model);
+                    break;
+                case Skill.CriticalPotential:
+                    GainCriticalPotential(model);
+                    break;
+                case Skill.ChainLightning:
+                case Skill.DoubleChain:
+                case Skill.CollateralShock:
+                case Skill.HeavyBolt:
+                case Skill.LightningBlast:
+                case Skill.StaticShockField:
+                case Skill.HeavyRain:
+                case Skill.Downpour:
+                case Skill.Cumulonimbus:
+                case Skill.Supercell:
+                case Skill.Tempest:
+                case Skill.LightningPentagram:
+                default:
+                    throw new System.InvalidOperationException($"{skillKey} is not a recognized lightning skill!");
             }
         }
 
@@ -34,6 +53,26 @@ namespace SpiritVessel.Services
             cloud.Position = 5 * Random.insideUnitCircle;
             cloud.Radius = 5;
             model.Clouds.AddItem(cloud);
+        }
+
+        void GainHighPotential(LightningSkillModel model)
+        {
+            model.CoolDown *= 0.5f;
+        }
+
+        void GainExtremePotential(LightningSkillModel model)
+        {
+            model.CoolDown *= 0.5f;
+        }
+
+        void GainCriticalPotential(LightningSkillModel model)
+        {
+            model.CoolDown *= 0.5f;
+        }
+
+        void GainChainLightning(LightningSkillModel model)
+        {
+            model.Chains += 2;
         }
     }
 }

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56742e2073c54204a816a6d1580b808c, type: 3}
-  m_Name: CollateralShock
+  m_Name: CriticalPotential
   m_EditorClassIdentifier: 
-  Key: CollateralShock
-  DisplayName: Collateral Shock
-  Icon: {fileID: -135868708, guid: 31f3a74f50bd4bc44b1801be66c646f0, type: 3}
-  Description: Lightning strikes do half as much damage to nearby enemies
+  Key: CriticalPotential
+  DisplayName: Critical Potential
+  Icon: {fileID: -1017822916, guid: 31f3a74f50bd4bc44b1801be66c646f0, type: 3}
+  Description: Lightning strikes 8x as often.
   Required:
-  - {fileID: 11400000, guid: 9b2b94cf2c554b048afad0a3866d4104, type: 2}
+  - {fileID: 11400000, guid: c12033e98e419324fa9fa93832c77e84, type: 2}
   Unlocked: []

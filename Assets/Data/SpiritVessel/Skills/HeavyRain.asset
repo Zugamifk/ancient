@@ -15,8 +15,8 @@ MonoBehaviour:
   Key: HeavyRain
   DisplayName: Heavy Rain
   Icon: {fileID: -1044444728, guid: 31f3a74f50bd4bc44b1801be66c646f0, type: 3}
-  Description: A cloud travels around periodically striking enemies with lightning
-    and making everything under it Wet
+  Description: Slows down enemies in the cloud radius and puts out fires
   Required:
   - {fileID: 11400000, guid: 9b2b94cf2c554b048afad0a3866d4104, type: 2}
-  Unlocked: []
+  Unlocked:
+  - {fileID: 11400000, guid: c12033e98e419324fa9fa93832c77e84, type: 2}
