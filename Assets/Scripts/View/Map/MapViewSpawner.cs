@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MapViewSpawner<TModel, TView> : ViewSpawner<TModel, TView>
+public abstract class MapViewSpawner<TModel, TView> : RegisteredPrefabViewSpawner<TModel, TView>
     where TModel : IIdentifiable, IKeyHolder, IMapPositionable
     where TView : MonoBehaviour, IView<TModel>
 {

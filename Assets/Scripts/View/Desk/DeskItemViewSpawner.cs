@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeskItemViewSpawner : ViewSpawner<IItemModel, DeskItem>
+public class DeskItemViewSpawner : RegisteredPrefabViewSpawner<IItemModel, DeskItem>
 {
     [SerializeField]
     DeskItemSpawn[] _spawns;

@@ -1,16 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
-    where TModel : IIdentifiable, IKeyHolder
-    where TView : MonoBehaviour, IView<TModel>
+public abstract class ViewSpawner<TIdentifiable, TView> : MonoBehaviour
+    where TIdentifiable : IIdentifiable
+    where TView : MonoBehaviour, IView<TIdentifiable>
 {
     [SerializeField]
     protected Transform _viewParent;
-    
+
     protected Dictionary<Guid, TView> _spawnedViews = new Dictionary<Guid, TView>();
 
     public TView GetView(Guid id) => _spawnedViews[id];
@@ -37,14 +36,14 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
         {
             if (!_spawnedViews.ContainsKey(m.Id))
             {
-                var instance = Prefabs.GetInstance(m);
-                if(_viewParent!=null)
+                var instance = InstantiateView(m);
+                if (_viewParent != null)
                 {
                     instance.transform.SetParent(_viewParent);
                     instance.SetLayerRecursively(_viewParent.gameObject.layer);
                 }
                 var view = instance.GetComponent<TView>();
-                if(view == null)
+                if (view == null)
                 {
                     throw new InvalidOperationException($"Prefab {instance} doesn't contain a {typeof(TView)}!");
                 }
@@ -56,8 +55,9 @@ public abstract class ViewSpawner<TModel, TView> : MonoBehaviour
         }
     }
 
-    protected abstract TModel GetModel(Guid id);
-    protected abstract IEnumerable<TModel> AllModels();
-    protected virtual void SpawnedView(TModel model, TView view) { }
+    protected abstract GameObject InstantiateView(TIdentifiable model);
+    protected abstract TIdentifiable GetModel(Guid id);
+    protected abstract IEnumerable<TIdentifiable> AllModels();
+    protected virtual void SpawnedView(TIdentifiable model, TView view) { }
     protected virtual void DestroyedView(TView view) { }
 }
