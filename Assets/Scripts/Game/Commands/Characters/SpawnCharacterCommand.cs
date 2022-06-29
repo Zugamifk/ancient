@@ -39,6 +39,8 @@ public class SpawnCharacterCommand : ICommand
             MoveSpeed = data.MoveSpeed,
         };
         map.MovementModels.AddItem(movement);
+
+        OnSpawnedCharacter(model, character);
     }
 
     protected virtual void OnSpawnedCharacter(GameModel model, CharacterModel character)

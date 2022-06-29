@@ -11,7 +11,7 @@ namespace SpiritVessel.View
         [SerializeField]
         Image _healthFill;
 
-        public SpiritHealthbars Healthbars {get;set;}
+        public SpiritHealthbars Healthbars { get; set; }
         public Character Character { get; set; }
 
         void Update()
@@ -19,11 +19,11 @@ namespace SpiritVessel.View
             if (Character == null)
             {
                 Destroy(gameObject);
+                return;
             }
-            else
-            {
-                Healthbars.UpdatePosition(this, Character);
-            }
+
+            Healthbars.UpdatePosition(this, Character);
+            UpdateHealth();
         }
 
         void UpdateHealth()

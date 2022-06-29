@@ -27,6 +27,7 @@ namespace SpiritVessel.Model
         IMapModel ISpiritVesselModel.Map => MapModel;
         ILevelUpModel ISpiritVesselModel.LevelUp => LevelUp;
         IIdentifiableLookup<IAttackModel> ISpiritVesselModel.Attacks => Attacks;
+        IIdentifiableLookup<IHitpointsHealthModel> ISpiritVesselModel.HitpointModels => HitpointModels;
         ILightningSkillModel ISpiritVesselModel.LightningSkill => LightningSkill;
         #endregion
     }
