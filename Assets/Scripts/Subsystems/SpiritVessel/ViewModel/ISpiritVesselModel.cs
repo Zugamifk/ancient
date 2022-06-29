@@ -8,6 +8,7 @@ namespace SpiritVessel.ViewModel
     {
         IMapModel Map { get; }
         IIdentifiableLookup<IAttackModel> Attacks { get; }
+        IIdentifiableLookup<IHitpointsHealthModel> HitpointModels { get; }
         int Level { get; }
         ILevelUpModel LevelUp { get; }
         int Experience { get; }

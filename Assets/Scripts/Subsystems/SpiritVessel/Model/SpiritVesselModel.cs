@@ -12,9 +12,9 @@ namespace SpiritVessel.Model
 
         public bool IsExamining { get; set; }
         public IdentifiableCollection<AttackModel> Attacks { get; } = new();
+        public IdentifiableCollection<HitpointsHealthModel> HitpointModels { get; } = new();
 
         public int Level { get; set; }
-
         public LevelUpModel LevelUp { get; set; }
         public int Experience { get; set; }
         public int ExperienceNeeded { get; set; }

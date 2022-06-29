@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SpiritVessel.ViewModel;
 
 namespace SpiritVessel.View
 {
@@ -27,7 +28,9 @@ namespace SpiritVessel.View
 
         void UpdateHealth()
         {
-            var model = Game.Model.Characters.GetItem(Character.Id);
+            var model = Game.Model.GetModel<ISpiritVesselModel>().HitpointModels.GetItem(Character.Id);
+            var percent = (float)model.Current / (float)model.Max;
+            _healthFill.fillAmount = percent;
         }
     }
 }
