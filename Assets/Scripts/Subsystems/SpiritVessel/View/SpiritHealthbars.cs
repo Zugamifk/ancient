@@ -28,10 +28,6 @@ namespace SpiritVessel.View
         {
             var rt = healthbar.GetComponent<RectTransform>();
             rt.anchoredPosition = _uiCamera.WorldToScreenPoint(character.transform.position);
-            //var vp = _uiCamera.WorldToViewportPoint(character.transform.position);
-            //rt.anchoredPosition = new Vector2(
-            // ((vp.x * _canvasRect.sizeDelta.x) - (_canvasRect.sizeDelta.x * 0.5f)),
-            // ((vp.y * _canvasRect.sizeDelta.y) - (_canvasRect.sizeDelta.y * 0.5f)));
         }
     }
 }
