@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class Character : MonoBehaviour, IView<ICharacterModel>
 
     Identifiable _identifiable;
     Vector3 _lastPosition;
+
+    public Guid Id => _identifiable.Id;
 
     private void Awake()
     {

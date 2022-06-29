@@ -10,9 +10,24 @@ namespace SpiritVessel.View
         [SerializeField]
         Image _healthFill;
 
-        public void SetHealthPercent(float percent)
+        public SpiritHealthbars Healthbars {get;set;}
+        public Character Character { get; set; }
+
+        void Update()
         {
-            _healthFill.fillAmount = percent;
+            if (Character == null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Healthbars.UpdatePosition(this, Character);
+            }
+        }
+
+        void UpdateHealth()
+        {
+            var model = Game.Model.Characters.GetItem(Character.Id);
         }
     }
 }

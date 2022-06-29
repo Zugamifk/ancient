@@ -9,6 +9,7 @@ public class MapModel : IMapModel
     public string Key { get; }
     public GridModel Grid = new GridModel();
     public HashSet<Guid> CharacterIds = new HashSet<Guid>();
+    public IdentifiableCollection<MovementModel> MovementModels = new();
 
     #region IMapModel
     IGridModel IMapModel.Grid => Grid;
