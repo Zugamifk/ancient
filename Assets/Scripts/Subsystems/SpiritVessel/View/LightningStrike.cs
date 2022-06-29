@@ -12,7 +12,7 @@ namespace SpiritVessel.View
             var spirit = collision.gameObject.GetComponent<Spirit>();
             if (spirit != null)
             {
-                Game.Do(new KillSpiritCommand(spirit.Id));
+                Game.Do(new DamageSpiritCommand(spirit.Id, 2));
             }
         }
     }

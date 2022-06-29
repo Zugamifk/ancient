@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpiritVesselProgressionData
   m_EditorClassIdentifier: 
   Levels:
-  - XpRequired: 1
+  - XpRequired: 30
   - XpRequired: 50
   - XpRequired: 100
   - XpRequired: 200

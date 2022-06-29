@@ -18,4 +18,5 @@ MonoBehaviour:
   Description: Lightning strikes 4x as often.
   Required:
   - {fileID: 11400000, guid: a28364c55e46fe040a4aee63b75a9cba, type: 2}
-  Unlocked: []
+  Unlocked:
+  - {fileID: 11400000, guid: 8f063126a581efc45892788e10103447, type: 2}

@@ -18,7 +18,7 @@ namespace SpiritVessel.Commands
             var hp = new HitpointsHealthModel();
             hp.Id = character.Id;
             hp.Max = 5;
-            hp.Current = 3;
+            hp.Current = 5;
             model.GetModel<SpiritVesselModel>().HitpointModels.AddItem(hp);
         }
     }
