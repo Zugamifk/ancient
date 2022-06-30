@@ -8,5 +8,7 @@ namespace SpiritVessel.ViewModel
     {
         bool Owned { get; }
         IIdentifiableLookup<ILightningSkillCloudModel> Clouds { get; }
+        int Chains { get; }
+        float ChainRadius { get; }
     }
 }

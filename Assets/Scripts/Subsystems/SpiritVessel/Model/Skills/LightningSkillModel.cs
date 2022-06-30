@@ -15,6 +15,7 @@ namespace SpiritVessel.Model
         public float Damage { get; set; }
         public float Radius { get; set; }
         public int Chains { get; set; }
+        public float ChainRadius { get; set; }
         public bool HeavyRain { get; set; }
         public IdentifiableCollection<LightningSkillCloudModel> Clouds { get; set; } = new();
         public bool Ultimate { get; set; }

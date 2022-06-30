@@ -53,6 +53,9 @@ namespace SpiritVessel.Services
             cloud.Position = 5 * Random.insideUnitCircle;
             cloud.Radius = 5;
             model.Clouds.AddItem(cloud);
+
+            model.Chains = 5;
+            model.ChainRadius = 3;
         }
 
         void GainHighPotential(LightningSkillModel model)

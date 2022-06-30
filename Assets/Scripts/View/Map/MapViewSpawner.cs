@@ -13,9 +13,6 @@ public abstract class MapViewSpawner<TModel, TView> : RegisteredPrefabViewSpawne
     {
         base.SpawnedView(model, view);
 
-        var identifiable = view.GetComponent<Identifiable>();
-        identifiable.Id = model.Id;
-
         var positionable = view.GetComponent<MapPositionable>();
         positionable.PositionGetter = GetPosition;
         positionable.Update();
