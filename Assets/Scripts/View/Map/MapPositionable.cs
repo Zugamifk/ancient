@@ -16,9 +16,13 @@ public class MapPositionable : MonoBehaviour
 
     public void Update()
     {
-        var position = PositionGetter?.Invoke(_identifiable.Id); ;
+        var position = PositionGetter?.Invoke(_identifiable.Id);
         if (position.HasValue)
         {
+            if (position.Value == Vector3.zero)
+            {
+                Debug.Log($"Moving from {transform.position} to zero position!");
+            }
             transform.position = position.Value;
         }
     }

@@ -13,11 +13,12 @@ public abstract class MapViewSpawner<TModel, TView> : RegisteredPrefabViewSpawne
     {
         base.SpawnedView(model, view);
 
-        var positionable = view.GetComponent<MapPositionable>();
-        positionable.PositionGetter = GetPosition;
-
         var identifiable = view.GetComponent<Identifiable>();
         identifiable.Id = model.Id;
+
+        var positionable = view.GetComponent<MapPositionable>();
+        positionable.PositionGetter = GetPosition;
+        positionable.Update();
     }
 
     Vector3 GetPosition(Guid id)
@@ -27,6 +28,8 @@ public abstract class MapViewSpawner<TModel, TView> : RegisteredPrefabViewSpawne
         {
             return _tileMapper.ModelToWorld(positionable.Position);
         }
+
+        Debug.Log($"No positionable found for id {id}");
 
         return Vector3.zero;
     }

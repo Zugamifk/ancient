@@ -48,6 +48,12 @@ public abstract class ViewSpawner<TIdentifiable, TView> : MonoBehaviour
                     throw new InvalidOperationException($"Prefab {instance} doesn't contain a {typeof(TView)}!");
                 }
 
+                var identifiable = view.GetComponent<Identifiable>();
+                if (identifiable != null)
+                {
+                    identifiable.Id = m.Id;
+                }
+
                 SpawnedView(m, view);
                 view.InitializeFromModel(m);
                 _spawnedViews.Add(m.Id, view);
