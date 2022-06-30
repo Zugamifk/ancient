@@ -11,6 +11,11 @@ namespace SpiritVessel.Commands
     {
         public void Execute(GameModel model)
         {
+            if (SpiritVesselDebugOptions.DisableLevelUp)
+            {
+                return;
+            }
+
             var spiritvessel = model.GetModel<SpiritVesselModel>();
             if(spiritvessel.Experience < spiritvessel.ExperienceNeeded)
             {

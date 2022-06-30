@@ -154,7 +154,7 @@ MonoBehaviour:
   Texture: {fileID: 2800000, guid: cf8fa268efcef6849b3bd7d96af5b1da, type: 3}
   Dimensions: {x: 32, y: 32}
   StartIndex: 0
-  FrameCount: 0
+  FrameCount: 4
   AnimationClip: {fileID: -7983098793229427272, guid: f558315aa55bcf240a89f50dd0702c57, type: 2}
 --- !u!114 &6669801523393787604
 MonoBehaviour:

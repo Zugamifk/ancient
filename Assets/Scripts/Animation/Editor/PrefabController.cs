@@ -63,6 +63,8 @@ public class PrefabController
         var sa = inst.GetComponent<SpriteAnimation>();
         sa.Texture = texture;
         sa.Dimensions = dimensions;
+        sa.StartIndex = startIndex;
+        sa.FrameCount = frameCount;
 
         var anim = prefab.GetComponent<Animator>();
         var cont = anim.runtimeAnimatorController;
