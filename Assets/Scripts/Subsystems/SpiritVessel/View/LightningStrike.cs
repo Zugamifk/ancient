@@ -13,6 +13,7 @@ namespace SpiritVessel.View
             if (spirit != null)
             {
                 Game.Do(new DamageSpiritCommand(spirit.Id, 2));
+                VfxService.Play("LightningHit", spirit.transform.position, spirit.transform.parent);
             }
         }
     }

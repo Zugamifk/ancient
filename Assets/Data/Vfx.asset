@@ -15,3 +15,5 @@ MonoBehaviour:
   _prefabs:
   - <Name>k__BackingField: BloodSplatter
     <Prefab>k__BackingField: {fileID: 4179514252130526132, guid: 9a23916f48c80004c8a57bfdb0ac1093, type: 3}
+  - <Name>k__BackingField: LightningHit
+    <Prefab>k__BackingField: {fileID: 9160064984377414799, guid: c30666d24dae34b439bc3bd69d1852e3, type: 3}

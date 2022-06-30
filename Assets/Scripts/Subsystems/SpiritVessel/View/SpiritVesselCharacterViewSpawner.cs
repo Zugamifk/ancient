@@ -26,11 +26,7 @@ namespace SpiritVessel.View
         {
             base.DestroyedView(view);
 
-            var splatter = DataService.GetData<VfxCollection>().GetItem("BloodSplatter");
-            var inst = Instantiate(splatter);
-            inst.transform.parent = view.transform.parent;
-            inst.transform.position = view.transform.position;
-            inst.SetLayerRecursively(LayerMask.NameToLayer("SpiritVessel"));
+            VfxService.Play("BloodSplatter", view.transform.position, view.transform.parent);
         }
     }
 }

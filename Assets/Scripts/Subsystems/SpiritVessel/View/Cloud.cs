@@ -65,5 +65,11 @@ namespace SpiritVessel.View
                 _containedSpirits.Remove(enemy.Id);
             }
         }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, _radius);
+        }
     }
 }
