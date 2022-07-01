@@ -10,6 +10,8 @@ namespace SpiritVessel.View
     {
         [SerializeField]
         Image _healthFill;
+        [SerializeField]
+        CanvasGroup _visibilityGroup;
 
         public SpiritHealthbars Healthbars { get; set; }
         public Character Character { get; set; }
@@ -30,6 +32,7 @@ namespace SpiritVessel.View
         {
             var model = Game.Model.GetModel<ISpiritVesselModel>().HitpointModels.GetItem(Character.Id);
             var percent = (float)model.Current / (float)model.Max;
+            _visibilityGroup.alpha = Mathf.Approximately(percent, 1) ? 0 : 1;
             _healthFill.fillAmount = percent;
         }
     }

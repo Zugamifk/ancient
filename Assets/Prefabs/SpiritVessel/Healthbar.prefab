@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8552474688257964307}
+  - component: {fileID: 5426065293548291837}
   m_Layer: 9
   m_Name: Bar
   m_TagString: Untagged
@@ -38,6 +39,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -6.5735016}
   m_SizeDelta: {x: 0, y: 13.1469}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &5426065293548291837
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8552474688257964306}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8552474689347301085
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,3 +254,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthFill: {fileID: 8552474689474199538}
+  _visibilityGroup: {fileID: 5426065293548291837}

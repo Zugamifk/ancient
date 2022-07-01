@@ -23,6 +23,9 @@ namespace SpiritVessel.View
 
         void DoLightningHit(Spirit spirit)
         {
+            GetComponent<Collider2D>().enabled = false;
+            transform.position = spirit.transform.position;
+
             var spiritVessel = Game.Model.GetModel<ISpiritVesselModel>();
             var lightning = spiritVessel.LightningSkill;
             _chainTargets.Clear();
@@ -69,6 +72,8 @@ namespace SpiritVessel.View
 
                 origin = spirit.transform.position;
             }
+
+            Debug.Break();
         }
 
         void HitSpirit(Spirit spirit)
