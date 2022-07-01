@@ -25,7 +25,11 @@ namespace SpiritVessel.Services
                     GainCriticalPotential(model);
                     break;
                 case Skill.ChainLightning:
+                    GainChainLightning(model);
+                    break;
                 case Skill.DoubleChain:
+                    GainDoubleChain(model);
+                    break;
                 case Skill.CollateralShock:
                 case Skill.HeavyBolt:
                 case Skill.LightningBlast:
@@ -53,8 +57,6 @@ namespace SpiritVessel.Services
             cloud.Position = 5 * Random.insideUnitCircle;
             cloud.Radius = 5;
             model.Clouds.AddItem(cloud);
-
-            model.Chains = 5;
             model.ChainRadius = 3;
         }
 
@@ -76,6 +78,11 @@ namespace SpiritVessel.Services
         void GainChainLightning(LightningSkillModel model)
         {
             model.Chains += 2;
+        }
+
+        void GainDoubleChain(LightningSkillModel model)
+        {
+            model.Chains += 3;
         }
     }
 }

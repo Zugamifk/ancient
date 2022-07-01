@@ -11,11 +11,10 @@ namespace SpiritVessel.View
     {
         static Collider2D[] _colliderBuffer = new Collider2D[16];
         static HashSet<Spirit> _chainTargets = new();
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
             var spirit = collision.gameObject.GetComponent<Spirit>();
-            if (spirit != null)
+            if (enabled && spirit != null)
             {
                 DoLightningHit(spirit);
             }
@@ -23,7 +22,8 @@ namespace SpiritVessel.View
 
         void DoLightningHit(Spirit spirit)
         {
-            GetComponent<Collider2D>().enabled = false;
+            enabled = false;
+            GetComponent<MapPositionable>().enabled = false;
             transform.position = spirit.transform.position;
 
             var spiritVessel = Game.Model.GetModel<ISpiritVesselModel>();
@@ -72,8 +72,6 @@ namespace SpiritVessel.View
 
                 origin = spirit.transform.position;
             }
-
-            Debug.Break();
         }
 
         void HitSpirit(Spirit spirit)
