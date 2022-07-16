@@ -33,7 +33,7 @@ namespace SpiritVessel.View
         void Update()
         {
             var model = Game.Model.GetModel<ISpiritVesselModel>().LightningSkill.Clouds.GetItem(_identifiable.Id);
-            Game.Do(new UpdateLightningSkillCloudCommand(_identifiable.Id));
+            Game.Do(new UpdateLightningSkillCloudCommand(_identifiable.Id, _containedSpirits));
 
             var radius = model.Radius;
             if (_radius != radius)

@@ -8,18 +8,20 @@ namespace SpiritVessel.Commands
 {
     public class DoLightningStrikeCommand : ICommand
     {
-        Guid _id;
+        Vector2 _position;
 
-        public DoLightningStrikeCommand(Guid id) => _id = id;
+        public DoLightningStrikeCommand(Vector2 position)
+        {
+            _position = position;
+        }
 
         public void Execute(GameModel model)
         {
             var lightning = Game.Model.GetModel<SpiritVesselModel>().LightningSkill;
-            var cloud = lightning.Clouds.GetItem(_id);
             var strike = new AttackModel()
             {
                 Key = "LightningStrike",
-                Position = cloud.Position + UnityEngine.Random.insideUnitCircle * cloud.Radius
+                Position = _position
             };
             Game.Model.GetModel<SpiritVesselModel>().Attacks.AddItem(strike);
         }
