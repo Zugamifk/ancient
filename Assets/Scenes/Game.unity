@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2526c4dbca7031e4b8f77e2d66dba67c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _disableLevelUp: 1
+  _disableLevelUp: 0
 --- !u!1 &1147201927
 GameObject:
   m_ObjectHideFlags: 0

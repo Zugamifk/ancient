@@ -51,6 +51,7 @@ namespace SpiritVessel.Services
                 case Skill.Cumulonimbus:
                 case Skill.Supercell:
                 case Skill.Tempest:
+                    break;
                 case Skill.LightningPentagram:
                     {
                         var srv = new LightningStrikeService();
