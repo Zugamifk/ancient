@@ -16,6 +16,11 @@ namespace Input
             _instance._mouseController.SetState(state);
         }
 
+        public static void SetKeyboardInputState(KeyboardInputState state)
+        {
+            _instance._keyboardController.SetState(state);
+        }
+
         private void Awake()
         {
             _instance = this;
