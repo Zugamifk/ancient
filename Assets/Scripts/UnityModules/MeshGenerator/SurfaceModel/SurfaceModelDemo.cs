@@ -10,6 +10,8 @@ namespace MeshGenerator
     {
         public float HalfEdgeDistance = .1f;
         public float HalfEdgeShorten = .1f;
+        public bool ShowEdgeLabels;
+
         public SurfaceModel Model;
 
         void OnEnable()
@@ -18,7 +20,9 @@ namespace MeshGenerator
             var builder = new SurfaceModelBuilder(Model);
             builder.AddPoint(Vector3.zero);
             builder.AddPoint(Vector3.up);
+            builder.AddPoint(Vector3.right);
             builder.ConnectPoints(0, 1);
+            builder.ConnectPoints(0, 2);
             Debug.Log("Generated");
         }
     }

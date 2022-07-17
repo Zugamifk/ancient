@@ -6,6 +6,7 @@ namespace MeshGenerator
 {
     public class HalfEdge
     {
+        public string Label;
         public HalfEdge Twin;
         public HalfEdge Next;
         public Vertex Vertex;
@@ -14,5 +15,10 @@ namespace MeshGenerator
 
         public Vertex From => Vertex;
         public Vertex To => Twin.From;
+
+        public override string ToString()
+        {
+            return $"{Label} -> {Next.Label} [Twin: {Twin.Label}]";
+        }
     }
 }

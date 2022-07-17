@@ -29,8 +29,11 @@ namespace MeshGenerator.Editor
             foreach (var e in model.Edges)
             {
                 var v1 = e.HalfEdge.Vertex;
-                var v2 = v1.HalfEdge.Twin.Vertex;
-
+                var v2 = e.HalfEdge.Twin.Vertex;
+                if (smd.ShowEdgeLabels)
+                {
+                    Handles.Label(Vector3.Lerp(v1.Position, v2.Position, .5f), e.ToString());
+                }
                 Handles.DrawLine(v1.Position, v2.Position);
             }
 
@@ -54,7 +57,7 @@ namespace MeshGenerator.Editor
                 var p3 = v2 + dir2 * smd.HalfEdgeShorten + n2 * smd.HalfEdgeDistance;
 
                 Handles.color = Color.red;
-                Handles.DrawLine(p2, p3);
+                HandleX.DrawArrow(p2, p3, fwd, .02f);
             }
         }
     }

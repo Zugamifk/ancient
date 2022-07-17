@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -8,6 +9,7 @@ namespace MeshGenerator.Tests
 {
     public class SurfaceModelTests
     {
+        #region New
         [Test]
         public void New_IsEmpty()
         {
@@ -18,7 +20,9 @@ namespace MeshGenerator.Tests
             Assert.That(model.HalfEdges, Is.Empty);
             Assert.That(model.Vertices, Is.Empty);
         }
+        #endregion
 
+        #region IsEmpty
         [Test]
         public void IsEmpty_TrueIfEmpty()
         {
@@ -35,7 +39,9 @@ namespace MeshGenerator.Tests
 
             Assert.That(model.IsEmpty, Is.False);
         }
+        #endregion
 
+        #region New SurfaceModelBuilder
         [Test]
         public void NewBuild_EmptyModel()
         {
@@ -43,7 +49,9 @@ namespace MeshGenerator.Tests
             var builder = new SurfaceModelBuilder(model);
             Assert.That(model.IsEmpty);
         }
+        #endregion
 
+        #region AddPoint()
         [Test]
         public void AddPoint_AddsVertex()
         {
@@ -54,7 +62,9 @@ namespace MeshGenerator.Tests
 
             Assert.That(model.Vertices.Count, Is.EqualTo(1));
         }
+        #endregion
 
+        #region ConnectPoints()
         [Test]
         public void ConnectPoints_CreatesEdge()
         {
@@ -185,5 +195,135 @@ namespace MeshGenerator.Tests
             Assert.That(h1.Next, Is.EqualTo(h2));
             Assert.That(h2.Next, Is.EqualTo(h1));
         }
+
+        [Test]
+        public void ConnectPoints_FirstIsFrom()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            var v1 = builder.AddPoint(Vector3.zero);
+            var v2 = builder.AddPoint(Vector3.up);
+            var e = builder.ConnectPoints(v1, v2);
+
+            Assert.That(e.HalfEdge.From, Is.EqualTo(v1));
+        }
+
+        [Test]
+        public void ConnectPoints_SecondIsTo()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            var v1 = builder.AddPoint(Vector3.zero);
+            var v2 = builder.AddPoint(Vector3.up);
+            var e = builder.ConnectPoints(v1, v2);
+
+            Assert.That(e.HalfEdge.To, Is.EqualTo(v2));
+        }
+
+        [Test]
+        public void ConnectPoints_ExistingEdge_ConnectsEdges()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            var v1 = builder.AddPoint(Vector3.zero);
+            var v2 = builder.AddPoint(Vector3.up);
+            var e1 = builder.ConnectPoints(v1, v2);
+
+            var v3 = builder.AddPoint(Vector3.up);
+            var e2 = builder.ConnectPoints(v2, v3);
+
+            Assert.That(e1.IsConnectedTo(e2));
+            Assert.That(e2.IsConnectedTo(e1));
+        }
+
+        [Test]
+        public void ConnectPoints_ExistingEdge_HalfEdgeNextConnected()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            var v1 = builder.AddPoint(Vector3.zero);
+            var v2 = builder.AddPoint(Vector3.up);
+            var e1 = builder.ConnectPoints(v1, v2);
+
+            var v3 = builder.AddPoint(Vector3.up);
+            var e2 = builder.ConnectPoints(v2, v3);
+
+            Assert.That(e1.HalfEdge.Next, Is.EqualTo(e2.HalfEdge));
+        }
+
+        [Test]
+        public void ConnectPoints_NewHalfEdge_ConnectedToOutside()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            var v1 = builder.AddPoint(Vector3.zero);
+            var v2 = builder.AddPoint(Vector3.up);
+            var e = builder.ConnectPoints(v1, v2);
+
+            Assert.That(e.HalfEdge.Face, Is.EqualTo(Face.Outside));
+            Assert.That(e.HalfEdge.Twin.Face, Is.EqualTo(Face.Outside));
+        }
+
+        [Test]
+        public void ConnectPoints_VertexEdges_ContainsNewEdge()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            var v1 = builder.AddPoint(Vector3.zero);
+            var v2 = builder.AddPoint(Vector3.up);
+            var e1 = builder.ConnectPoints(v1, v2);
+
+            var v3 = builder.AddPoint(Vector3.up);
+            var e2 = builder.ConnectPoints(v2, v3);
+
+            Assert.That(v2.Edges(), Contains.Item(e1));
+            Assert.That(v2.Edges(), Contains.Item(e2));
+        }
+        #endregion
+
+        #region Vertex.Edges
+        [Test]
+        public void Vertex_Edges_ReturnsConnectedEdges()
+        {
+            var v0 = new Vertex() { Label = "v0", Position = Vector3.zero };
+            var v1 = new Vertex() { Label = "v1", Position = Vector3.up };
+            var v2 = new Vertex() { Label = "v2", Position = Vector3.right };
+
+            var e1 = new Edge();
+            var h1 = new HalfEdge() { Label = "h1" };
+            v0.HalfEdge = h1;
+            e1.HalfEdge = h1;
+            h1.Edge = e1;
+            h1.Vertex = v0;
+            var h2 = new HalfEdge() { Label = "h2" };
+            h2.Edge = e1;
+            h1.Twin = h2;
+            h2.Twin = h1;
+            h1.Next = h2;
+            h2.Vertex = v1;
+            var e2 = new Edge();
+            var h3 = new HalfEdge() { Label = "h3" };
+            e2.HalfEdge = h3;
+            h3.Edge = e2;
+            h2.Next = h3;
+            h3.Vertex = v0;
+            var h4 = new HalfEdge() { Label = "h4" };
+            h4.Edge = e2;
+            h3.Twin = h4;
+            h4.Twin = h3;
+            h3.Next = h4;
+            h4.Next = h1;
+            h4.Vertex = v2;
+
+            Assert.That(v0.Edges().Contains(e1));
+            Assert.That(v0.Edges().Contains(e2));
+        }
+        #endregion
     }
 }
