@@ -10,7 +10,7 @@ namespace MeshGenerator
         [SerializeField]
         EPrimitiveMeshType _meshType;
         [SerializeField]
-        float _size = 1;
+        Transform _generatorTransform;
 
         public Mesh Generate()
         {
@@ -34,16 +34,16 @@ namespace MeshGenerator
             var m = new Mesh();
             m.name = "Cube";
 
-            var r = _size / 2;
             var v = new Vector3[]
             {
-                new Vector3(-r,r,-r), new Vector3(-r,r,r), new Vector3(r,r,r), new Vector3(r,r,-r),
-                new Vector3(-r,-r,-r), new Vector3(-r,-r,r), new Vector3(-r,r,r), new Vector3(-r,r,-r),
-                new Vector3(r,-r,r), new Vector3(r,r,r), new Vector3(-r,r,r), new Vector3(-r,-r,r),
-                new Vector3(r,-r,-r), new Vector3(r,r,-r), new Vector3(r,r,r), new Vector3(r,-r,r),
-                new Vector3(-r,-r,-r), new Vector3(-r,r,-r), new Vector3(r,r,-r), new Vector3(r,-r,-r),
-                new Vector3(-r,-r,-r), new Vector3(r,-r,-r), new Vector3(r,-r,r), new Vector3(-r,-r,r),
+                new Vector3(-.5f,.5f,-.5f), new Vector3(-.5f,.5f,.5f), new Vector3(.5f,.5f,.5f), new Vector3(.5f,.5f,-.5f),
+                new Vector3(-.5f,-.5f,-.5f), new Vector3(-.5f,-.5f,.5f), new Vector3(-.5f,.5f,.5f), new Vector3(-.5f,.5f,-.5f),
+                new Vector3(.5f,-.5f,.5f), new Vector3(.5f,.5f,.5f), new Vector3(-.5f,.5f,.5f), new Vector3(-.5f,-.5f,.5f),
+                new Vector3(.5f,-.5f,-.5f), new Vector3(.5f,.5f,-.5f), new Vector3(.5f,.5f,.5f), new Vector3(.5f,-.5f,.5f),
+                new Vector3(-.5f,-.5f,-.5f), new Vector3(-.5f,.5f,-.5f), new Vector3(.5f,.5f,-.5f), new Vector3(.5f,-.5f,-.5f),
+                new Vector3(-.5f,-.5f,-.5f), new Vector3(.5f,-.5f,-.5f), new Vector3(.5f,-.5f,.5f), new Vector3(-.5f,-.5f,.5f),
             };
+
             var n = new Vector3[]
             {
                 Vector3.up, Vector3.up, Vector3.up, Vector3.up,
@@ -53,6 +53,14 @@ namespace MeshGenerator
                 Vector3.back,Vector3.back,Vector3.back,Vector3.back,
                 Vector3.down,Vector3.down,Vector3.down,Vector3.down,
             };
+
+            var gm = transform.localToWorldMatrix.inverse * _generatorTransform.localToWorldMatrix;
+            for(int i=0;i<24;i++)
+            {
+                v[i] = (Vector3)(gm * v[i]) + _generatorTransform.localPosition;
+                n[i] = _generatorTransform.localRotation * n[i];
+            }
+
             var t = new int[]
             {
                 0, 1, 2, 0, 2, 3,
@@ -62,9 +70,11 @@ namespace MeshGenerator
                 16, 17, 18, 16, 18, 19,
                 20, 21, 22, 20, 22, 23
             };
+
             m.vertices = v;
             m.normals = n;
             m.triangles = t;
+
             return m;
         }
     }
