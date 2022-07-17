@@ -1,76 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using In = UnityEngine.Input;
 
-public class DeskInputState : MouseInputState
+namespace Input
 {
-    const float DRAG_THRESHOLD = 5;
-    Vector3? _dragStartPos;
-
-    public override MouseInputState UpdateState()
+    public class DeskInputState : MouseInputState
     {
-        if (!CameraController.TryGetCamera(Name.Camera.Desk, out CameraController cam) 
-            || !cam.RayCast(Input.mousePosition, out RaycastHit hit))
+        const float DRAG_THRESHOLD = 5;
+        Vector3? _dragStartPos;
+
+        public override MouseInputState UpdateState()
         {
+            if (!CameraController.TryGetCamera(Name.Camera.Desk, out CameraController cam)
+                || !cam.RayCast(In.mousePosition, out RaycastHit hit))
+            {
+                return this;
+            }
+
+            var target = hit.collider.gameObject;
+
+            var renderTex = target.GetComponent<RenderTextureRaycaster>();
+            if (renderTex != null)
+            {
+                return RayCastMap(renderTex, hit.textureCoord);
+            }
+
+            bool leftMouseButtonUp = In.GetMouseButtonUp(0);
+            bool rightMouseButtonUp = In.GetMouseButtonUp(1);
+            if (leftMouseButtonUp || rightMouseButtonUp)
+            {
+                _dragStartPos = null;
+
+                // selectable
+                var clickable = target.GetComponent<Clickable>();
+                if (clickable != null)
+                {
+                    clickable.Select(leftMouseButtonUp ? 0 : 1);
+                }
+            }
+
+            if (In.GetMouseButtonDown(0) || In.GetMouseButtonDown(1))
+            {
+                _dragStartPos = In.mousePosition;
+            }
+
+            if (_dragStartPos.HasValue && (In.GetMouseButton(0) || In.GetMouseButton(1)))
+            {
+                // desk draggables
+                var draggable = target.GetComponent<Draggable>();
+                var drag = (In.mousePosition - _dragStartPos.Value).magnitude;
+                if (draggable != null && drag >= DRAG_THRESHOLD)
+                {
+                    return new DeskDragInputState(draggable);
+                }
+            }
+
             return this;
         }
 
-        var target = hit.collider.gameObject;
-
-        var renderTex = target.GetComponent<RenderTextureRaycaster>();
-        if (renderTex != null)
+        MouseInputState RayCastMap(RenderTextureRaycaster raycaster, Vector2 position)
         {
-            return RayCastMap(renderTex, hit.textureCoord);
-        }
-
-        bool leftMouseButtonUp = Input.GetMouseButtonUp(0);
-        bool rightMouseButtonUp = Input.GetMouseButtonUp(1);
-        if (leftMouseButtonUp || rightMouseButtonUp)
-        {
-            _dragStartPos = null;
-
-            // selectable
-            var clickable = target.GetComponent<Clickable>();
-            if (clickable != null)
+            RaycastHit hit;
+            if (!raycaster.RayCast(position, out hit))
             {
-                clickable.Select(leftMouseButtonUp ? 0 : 1);
+                return this;
             }
-        }
 
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-        {
-            _dragStartPos = Input.mousePosition;
-        }
-
-        if (_dragStartPos.HasValue && ( Input.GetMouseButton(0) || Input.GetMouseButton(1)))
-        {
-            // desk draggables
-            var draggable = target.GetComponent<Draggable>();
-            var drag = (Input.mousePosition - _dragStartPos.Value).magnitude;
-            if (draggable != null && drag >= DRAG_THRESHOLD)
+            var target = hit.collider.gameObject;
+            var input = target.GetComponent<IMouseInputHandler>();
+            if (input != null)
             {
-                return new DeskDragInputState(draggable);
+                return input.GetInputState(this);
             }
-        }
 
-        return this;
-    }
-
-    MouseInputState RayCastMap(RenderTextureRaycaster raycaster, Vector2 position)
-    {
-        RaycastHit hit;
-        if (!raycaster.RayCast(position, out hit))
-        {
             return this;
         }
-
-        var target = hit.collider.gameObject;
-        var input = target.GetComponent<IMouseInputHandler>();
-        if (input != null)
-        {
-            return input.GetInputState(this);
-        }
-
-        return this;
     }
 }

@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class MouseController
+namespace Input
 {
-    MouseInputState _currentState;
-
-    public MouseController()
+    class MouseController
     {
-        _currentState = new DeskInputState();
-    }
+        MouseInputState _currentState;
 
-    public void Update()
-    {
-        _currentState = _currentState.UpdateState();
+        public MouseController()
+        {
+            _currentState = new DeskInputState();
+        }
+
+        public void Update()
+        {
+            _currentState = _currentState.UpdateState();
+        }
     }
 }

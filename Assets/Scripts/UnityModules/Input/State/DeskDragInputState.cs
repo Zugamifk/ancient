@@ -2,34 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-internal class DeskDragInputState : MouseInputState
+namespace Input
 {
-    Vector3 _lastDragPos;
-    Draggable _draggable;
-
-    public DeskDragInputState(Draggable target)
+    internal class DeskDragInputState : MouseInputState
     {
-        if (CameraController.TryGetCamera(Name.Camera.Desk, out CameraController cam))
-        {
-            _lastDragPos = cam.GetMouseWorldPosition();
-            _draggable = target;
-        }
-    }
+        Vector3 _lastDragPos;
+        Draggable _draggable;
 
-    public override MouseInputState UpdateState()
-    {
-        if (Input.GetMouseButton(0))
+        public DeskDragInputState(Draggable target)
         {
             if (CameraController.TryGetCamera(Name.Camera.Desk, out CameraController cam))
             {
-                var mousePos = cam.GetMouseWorldPosition();
-                _draggable.Root.Translate(mousePos - _lastDragPos);
-                _lastDragPos = mousePos;
+                _lastDragPos = cam.GetMouseWorldPosition();
+                _draggable = target;
             }
-            return this;
-        } else
+        }
+
+        public override MouseInputState UpdateState()
         {
-            return new DeskInputState();
+            if (UnityEngine.Input.GetMouseButton(0))
+            {
+                if (CameraController.TryGetCamera(Name.Camera.Desk, out CameraController cam))
+                {
+                    var mousePos = cam.GetMouseWorldPosition();
+                    _draggable.Root.Translate(mousePos - _lastDragPos);
+                    _lastDragPos = mousePos;
+                }
+                return this;
+            }
+            else
+            {
+                return new DeskInputState();
+            }
         }
     }
 }

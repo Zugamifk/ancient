@@ -2,18 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputController : MonoBehaviour
+namespace Input
 {
-    MouseController _mouseController;
-
-    void Start()
+    public class InputController : MonoBehaviour
     {
-        _mouseController = new MouseController();
-    }
+        MouseController _mouseController;
 
-    void Update()
-    {
-        _mouseController.Update();
+        static InputController _instance;
+
+        private void Awake()
+        {
+            _instance = this;
+        }
+
+        void Start()
+        {
+            _mouseController = new MouseController();
+        }
+
+        void FixedUpdate()
+        {
+            _mouseController.Update();
+        }
     }
 }
-

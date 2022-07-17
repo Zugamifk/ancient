@@ -3,27 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class MapInputHandler : MonoBehaviour, IMouseInputHandler
+namespace Input
 {
-    [SerializeField]
-    TileMapper _tileMapper;
-    [SerializeField]
-    GameObject[] _mapInputHandlerContainers;
-
-    List<IMapMouseInputHandler> _mapInputHandlers = new();
-
-    void Awake()
+    public class MapInputHandler : MonoBehaviour, IMouseInputHandler
     {
-        var handlers = _mapInputHandlerContainers.Select(c => c.GetComponent<IMapMouseInputHandler>());
-        _mapInputHandlers.AddRange(handlers);
-        foreach (var h in handlers)
+        [SerializeField]
+        TileMapper _tileMapper;
+        [SerializeField]
+        GameObject[] _mapInputHandlerContainers;
+
+        List<IMapMouseInputHandler> _mapInputHandlers = new();
+
+        void Awake()
         {
-            h.SetTileMapTransformer(_tileMapper);
+            var handlers = _mapInputHandlerContainers.Select(c => c.GetComponent<IMapMouseInputHandler>());
+            _mapInputHandlers.AddRange(handlers);
+            foreach (var h in handlers)
+            {
+                h.SetTileMapTransformer(_tileMapper);
+            }
         }
-    }
 
-    MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)
-    {
-        return new MapMouseInput(_tileMapper, _mapInputHandlers, _tileMapper.MapId);
+        MouseInputState IMouseInputHandler.GetInputState(MouseInputState state)
+        {
+            return new MapMouseInput(_tileMapper, _mapInputHandlers, _tileMapper.MapId);
+        }
     }
 }

@@ -1,0 +1,17 @@
+{
+    "name": "FPS",
+    "rootNamespace": "",
+    "references": [
+        "GUID:89a5e96a87dbd914a948be09bfb9d758",
+        "GUID:255f57cc76ea4ce4a8e074224a65831f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TowerDefense.Commands;
 using UnityEngine;
 using TowerDefense.ViewModel;
+using Input;
 
 namespace TowerDefense.Views
 {
@@ -12,11 +13,11 @@ namespace TowerDefense.Views
 
         public void HandleInput(Vector3 worldPosition)
         {
-            if (Input.GetMouseButtonUp(1))
+            if (UnityEngine.Input.GetMouseButtonUp(1))
             {
                 Game.Do(new StopPlacingTowerCommand());
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (UnityEngine.Input.GetMouseButtonUp(0))
             {
                 var tile = _tileMapTransformer.GetTileFromPosition(worldPosition);
                 Game.Do(new BuildTowerCommand(Game.Model.GetModel<ITowerDefense>().BuildingBeingPlaced, (Vector2Int)tile));

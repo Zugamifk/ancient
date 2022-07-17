@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IMouseInputHandler
+namespace Input
 {
-    public MouseInputState GetInputState(MouseInputState current);
+    public interface IMouseInputHandler
+    {
+        public MouseInputState GetInputState(MouseInputState current);
+    }
 }
