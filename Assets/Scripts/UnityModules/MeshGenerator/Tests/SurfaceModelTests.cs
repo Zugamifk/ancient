@@ -61,7 +61,11 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder.ConnectPoints(0,1).Build();
+            model = builder
+                .AddPoint(Vector3.zero)
+                .AddPoint(Vector3.up)
+                .ConnectPoints(0, 1)
+                .Build();
 
             Assert.That(model.Edges.Count, Is.EqualTo(1));
         }
@@ -72,7 +76,11 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder.ConnectPoints(0, 1).Build();
+            model = builder
+                .AddPoint(Vector3.zero)
+                .AddPoint(Vector3.up)
+                .ConnectPoints(0, 1)
+                .Build();
 
             var edge = model.Edges[0];
             var h1 = edge.HalfEdge;
@@ -91,7 +99,11 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder.ConnectPoints(0, 1).Build();
+            model = builder
+                .AddPoint(Vector3.zero)
+                .AddPoint(Vector3.up)
+                .ConnectPoints(0, 1)
+                .Build();
 
             var edge = model.Edges[0];
             var h1 = edge.HalfEdge;
@@ -107,7 +119,11 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder.ConnectPoints(0, 1).Build();
+            model = builder
+                .AddPoint(Vector3.zero)
+                .AddPoint(Vector3.up)
+                .ConnectPoints(0, 1)
+                .Build();
 
             var edge = model.Edges[0];
             var h1 = edge.HalfEdge;
@@ -115,6 +131,35 @@ namespace MeshGenerator.Tests
 
             Assert.That(h1.Twin, Is.EqualTo(h2));
             Assert.That(h2.Twin, Is.EqualTo(h1));
+        }
+
+        [Test]
+        public void ConnectPoints_AssignsHalfEdgeToOrphanVertex()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            model = builder
+                .AddPoint(Vector3.zero)
+                .AddPoint(Vector3.up)
+                .ConnectPoints(0, 1)
+                .Build();
+
+            var v1 = model.Vertices[0];
+            var v2 = model.Vertices[1];
+
+            Assert.That(v1.HalfEdge, Is.Not.Null);
+            Assert.That(v2.HalfEdge, Is.Not.Null);
+        }
+
+        [Test]
+        public void ConnectPoints_ThrowOutOfRangeException_IfNoPoints()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            Assert.That(()=> builder.ConnectPoints(0, 1), 
+                Throws.InstanceOf<System.ArgumentOutOfRangeException>());
         }
     }
 }
