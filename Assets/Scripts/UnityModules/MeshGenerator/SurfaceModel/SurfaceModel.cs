@@ -10,5 +10,7 @@ namespace MeshGenerator
         public List<HalfEdge> HalfEdges = new();
         public List<Edge> Edges = new();
         public List<Face> Faces = new();
+
+        public bool IsEmpty => Vertices.Count == 0 && HalfEdges.Count == 0 && Edges.Count == 0 && Faces.Count == 0;
     }
 }
