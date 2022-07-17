@@ -8,5 +8,6 @@ namespace FPS
     {
         public Vector2 Movement;
         public float MoveSpeed = 500;
+        public JumpModel Jump;
     }
 }

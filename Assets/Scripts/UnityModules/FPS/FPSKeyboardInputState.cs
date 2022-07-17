@@ -21,6 +21,11 @@ namespace FPS
                 x = UnityEngine.Input.GetAxis("Horizontal"),
                 y = UnityEngine.Input.GetAxis("Vertical"),
             };
+
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
+            {
+                _moveModel.Jump = new();
+            }
             return this;
         }
     }

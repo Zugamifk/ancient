@@ -16,6 +16,7 @@ namespace FPS
 
         LookModel _look = new();
         MovementModel _move = new();
+        JumpModel _currentJump;
 
         void Start()
         {
@@ -35,6 +36,13 @@ namespace FPS
             var tf = _moveBody.transform;
             var v = tf.forward * s.y + tf.right * s.x;
             v.y = y;
+
+            if (_currentJump != _move.Jump)
+            {
+                v.y = _move.Jump.Strength * Time.deltaTime;
+                _currentJump = _move.Jump;
+            }
+
             _moveBody.velocity = v;
         }
     }
