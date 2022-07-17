@@ -11,5 +11,8 @@ namespace MeshGenerator
         public Vertex Vertex;
         public Edge Edge;
         public Face Face;
+
+        public Vertex From => Vertex;
+        public Vertex To => Twin.From;
     }
 }

@@ -168,5 +168,22 @@ namespace MeshGenerator.Tests
             Assert.That(h1.Vertex, Is.Not.Null);
             Assert.That(h2.Vertex, Is.Not.Null);
         }
+
+        [Test]
+        public void ConnectPoints_OrphanPoints_NextIsTwin()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            builder.AddPoint(Vector3.zero);
+            builder.AddPoint(Vector3.up);
+            builder.ConnectPoints(0, 1);
+
+            var h1 = model.HalfEdges[0];
+            var h2 = model.HalfEdges[1];
+
+            Assert.That(h1.Next, Is.EqualTo(h2));
+            Assert.That(h2.Next, Is.EqualTo(h1));
+        }
     }
 }

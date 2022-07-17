@@ -43,9 +43,11 @@ namespace MeshGenerator
 
             h1.Edge = edge;
             h1.Twin = h2;
+            h1.Next = h2;
 
             h2.Edge = edge;
             h2.Twin = h1;
+            h2.Next = h1;
 
             return edge;
         }

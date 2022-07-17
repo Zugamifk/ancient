@@ -34,7 +34,6 @@ namespace MeshGenerator.Editor
                 Handles.DrawLine(v1.Position, v2.Position);
             }
 
-            Handles.color = Color.yellow;
             foreach (var h in model.HalfEdges)
             {
                 var v1 = h.Vertex.Position;
@@ -44,10 +43,18 @@ namespace MeshGenerator.Editor
 
                 var p1 = v1 + dir * smd.HalfEdgeShorten + n * smd.HalfEdgeDistance;
                 var p2 = v2 - dir * smd.HalfEdgeShorten + n * smd.HalfEdgeDistance;
+
+                Handles.color = Color.yellow;
                 Handles.DrawSolidDisc(p1, fwd, .01f);
                 Handles.DrawLine(p1, p2);
 
-                Handles.DrawWireArc(v2, fwd, Vector3.up, 90, smd.HalfEdgeShorten);
+                var v3 = h.Next.To.Position;
+                var dir2 = (v3 - v2).normalized;
+                var n2 = Vector3.Cross(dir2, fwd);
+                var p3 = v2 + dir2 * smd.HalfEdgeShorten + n2 * smd.HalfEdgeDistance;
+
+                Handles.color = Color.red;
+                Handles.DrawLine(p2, p3);
             }
         }
     }
