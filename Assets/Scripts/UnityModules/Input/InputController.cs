@@ -10,6 +10,11 @@ namespace Input
 
         static InputController _instance;
 
+        public static void SetMouseInputState(MouseInputState state)
+        {
+            _instance._mouseController.SetState(state);
+        }
+
         private void Awake()
         {
             _instance = this;

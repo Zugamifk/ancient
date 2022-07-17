@@ -17,5 +17,10 @@ namespace Input
         {
             _currentState = _currentState.UpdateState();
         }
+
+        public void SetState(MouseInputState state)
+        {
+            _currentState = state;
+        }
     }
 }
