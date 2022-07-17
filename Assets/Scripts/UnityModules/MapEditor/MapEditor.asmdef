@@ -1,0 +1,18 @@
+{
+    "name": "MapEditor",
+    "rootNamespace": "MapEditor",
+    "references": [
+        "GUID:d710e84ef331d4445b4fae0c014d8518"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
