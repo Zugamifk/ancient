@@ -7,6 +7,7 @@ namespace Input
     public class InputController : MonoBehaviour
     {
         MouseController _mouseController;
+        KeyboardController _keyboardController;
 
         static InputController _instance;
 
@@ -22,12 +23,14 @@ namespace Input
 
         void Start()
         {
-            _mouseController = new MouseController();
+            _mouseController = new();
+            _keyboardController = new();
         }
 
         void FixedUpdate()
         {
             _mouseController.Update();
+            _keyboardController.Update();
         }
     }
 }
