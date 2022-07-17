@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace FPS
 {
-    public class LookModel
+    public class MovementModel
     {
-        public Vector3 LookAngles;
-        public float LookSensitivity = 100;
+        public Vector2 Movement;
+        public float MoveSpeed = 500;
     }
 }

@@ -229,6 +229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lookRoot: {fileID: 255121175}
+  _moveRoot: {fileID: 1787072922}
+  _moveBody: {fileID: 1787072923}
 --- !u!4 &724327485
 Transform:
   m_ObjectHideFlags: 0
