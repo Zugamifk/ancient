@@ -1,6 +1,6 @@
 {
     "name": "MeshGeneratorEditor",
-    "rootNamespace": "MeshGeneratorEditor",
+    "rootNamespace": "MeshGenerator.Editor",
     "references": [
         "GUID:52167038694a37341923db5378a4126a"
     ],

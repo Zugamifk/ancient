@@ -50,7 +50,7 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder.AddPoint(Vector3.zero).Build();
+            builder.AddPoint(Vector3.zero);
 
             Assert.That(model.Vertices.Count, Is.EqualTo(1));
         }
@@ -61,11 +61,9 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder
-                .AddPoint(Vector3.zero)
-                .AddPoint(Vector3.up)
-                .ConnectPoints(0, 1)
-                .Build();
+            builder.AddPoint(Vector3.zero);
+            builder.AddPoint(Vector3.up);
+            builder.ConnectPoints(0, 1);
 
             Assert.That(model.Edges.Count, Is.EqualTo(1));
         }
@@ -76,11 +74,9 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder
-                .AddPoint(Vector3.zero)
-                .AddPoint(Vector3.up)
-                .ConnectPoints(0, 1)
-                .Build();
+            builder.AddPoint(Vector3.zero);
+            builder.AddPoint(Vector3.up);
+            builder.ConnectPoints(0, 1);
 
             var edge = model.Edges[0];
             var h1 = edge.HalfEdge;
@@ -99,11 +95,9 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder
-                .AddPoint(Vector3.zero)
-                .AddPoint(Vector3.up)
-                .ConnectPoints(0, 1)
-                .Build();
+            builder.AddPoint(Vector3.zero);
+            builder.AddPoint(Vector3.up);
+            builder.ConnectPoints(0, 1);
 
             var edge = model.Edges[0];
             var h1 = edge.HalfEdge;
@@ -119,11 +113,9 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder
-                .AddPoint(Vector3.zero)
-                .AddPoint(Vector3.up)
-                .ConnectPoints(0, 1)
-                .Build();
+            builder.AddPoint(Vector3.zero);
+            builder.AddPoint(Vector3.up);
+            builder.ConnectPoints(0, 1);
 
             var edge = model.Edges[0];
             var h1 = edge.HalfEdge;
@@ -139,11 +131,9 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder
-                .AddPoint(Vector3.zero)
-                .AddPoint(Vector3.up)
-                .ConnectPoints(0, 1)
-                .Build();
+            builder.AddPoint(Vector3.zero);
+            builder.AddPoint(Vector3.up);
+            builder.ConnectPoints(0, 1);
 
             var v1 = model.Vertices[0];
             var v2 = model.Vertices[1];
@@ -168,11 +158,9 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            model = builder
-                .AddPoint(Vector3.zero)
-                .AddPoint(Vector3.up)
-                .ConnectPoints(0, 1)
-                .Build();
+            builder.AddPoint(Vector3.zero);
+            builder.AddPoint(Vector3.up);
+            builder.ConnectPoints(0, 1);
 
             var h1 = model.HalfEdges[0];
             var h2 = model.HalfEdges[1];

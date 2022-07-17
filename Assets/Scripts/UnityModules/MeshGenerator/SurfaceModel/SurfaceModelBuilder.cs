@@ -11,19 +11,21 @@ namespace MeshGenerator
 
         public SurfaceModelBuilder(SurfaceModel model) => _model = model;
 
-        public SurfaceModelBuilder AddPoint(Vector3 point)
+        public Vertex AddPoint(Vector3 point)
         {
             var v = new Vertex();
             v.Position = point;
             _model.Vertices.Add(v);
-            return this;
+            return v;
         }
 
-        public SurfaceModelBuilder ConnectPoints(int i1, int i2)
+        public Edge ConnectPoints(int i1, int i2)
         {
-            var v1 = _model.Vertices[i1];
-            var v2 = _model.Vertices[i2];
+            return ConnectPoints(_model.Vertices[i1], _model.Vertices[i2]);
+        }
 
+        public Edge ConnectPoints(Vertex v1, Vertex v2)
+        {
             var edge = new Edge();
             _model.Edges.Add(edge);
 
@@ -45,9 +47,7 @@ namespace MeshGenerator
             h2.Edge = edge;
             h2.Twin = h1;
 
-            return this;
+            return edge;
         }
-
-        public SurfaceModel Build() => _model;
     }
 }
