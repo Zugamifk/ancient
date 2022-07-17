@@ -23,6 +23,9 @@ public class MapEditorWindow : EditorWindow
         VisualElement instance = visualTree.Instantiate();
         instance.styleSheets.Add(styleSheet);
 
+        var terrain = instance.Q<ObjectField>("Terrain");
+        terrain.objectType = typeof(Terrain);
+
         root.Add(instance);
     }
 }
