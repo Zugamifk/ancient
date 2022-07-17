@@ -29,9 +29,12 @@ namespace MeshGenerator
 
             var h1 = new HalfEdge();
             v1.HalfEdge = h1;
+            h1.Vertex = v1;
             _model.HalfEdges.Add(h1);
+
             var h2 = new HalfEdge();
             v2.HalfEdge = h2;
+            h2.Vertex = v2;
             _model.HalfEdges.Add(h2);
 
             edge.HalfEdge = h1;

@@ -161,5 +161,24 @@ namespace MeshGenerator.Tests
             Assert.That(()=> builder.ConnectPoints(0, 1), 
                 Throws.InstanceOf<System.ArgumentOutOfRangeException>());
         }
+
+        [Test]
+        public void ConnectPoints_AssignsVertexToHalfEdges()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            model = builder
+                .AddPoint(Vector3.zero)
+                .AddPoint(Vector3.up)
+                .ConnectPoints(0, 1)
+                .Build();
+
+            var h1 = model.HalfEdges[0];
+            var h2 = model.HalfEdges[1];
+
+            Assert.That(h1.Vertex, Is.Not.Null);
+            Assert.That(h2.Vertex, Is.Not.Null);
+        }
     }
 }
