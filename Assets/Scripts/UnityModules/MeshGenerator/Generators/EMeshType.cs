@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace MeshGenerator
 {
-    public enum EPrimitiveMeshType
+    public enum EMeshType
     {
-        Cube
+        Cube,
+        House
     }
 }

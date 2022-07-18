@@ -6,8 +6,6 @@ namespace MeshGenerator
 {
     public class MeshGeneratorContext
     {
-        public Vector3 Position;
-        public Quaternion Rotation;
-        public Vector3 Scale;
+        public Matrix4x4 Transform;
     }
 }

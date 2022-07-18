@@ -31,11 +31,10 @@ namespace MeshGenerator
                 Vector3.down,Vector3.down,Vector3.down,Vector3.down,
             };
 
-            var x = Matrix4x4.TRS(context.Position, context.Rotation, context.Scale);
             for (int i = 0; i < 24; i++)
             {
-                v[i] = x.MultiplyPoint3x4(v[i]);
-                n[i] = context.Rotation * n[i];
+                v[i] = context.Transform.MultiplyPoint3x4(v[i]);
+                n[i] = context.Transform.MultiplyVector(n[i]);
             }
 
             var t = new int[]

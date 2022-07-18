@@ -1,0 +1,125 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+using System.Reflection;
+using System;
+
+namespace MeshGenerator.Editor
+{
+    [CustomEditor(typeof(MeshPreviewer))]
+    public class MeshPreviewerEditor : UnityEditor.Editor
+    {
+        static Dictionary<System.Type, IMeshGeneratorEditor> _generatorToPreview;
+
+        IMeshGeneratorEditor _currentEditor;
+        IMeshGenerator _currentGenerator;
+        Transform _rootTransform;
+
+        void GetPreviews()
+        {
+            _generatorToPreview = new();
+            foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
+            {
+                var attr = type.GetCustomAttribute<MeshGeneratorEditorAttribute>();
+                if (attr != null)
+                {
+                    var previewer = (IMeshGeneratorEditor)Activator.CreateInstance(attr.EditorType);
+                    _generatorToPreview.Add(attr.GeneratorType, previewer);
+                }
+            }
+        }
+
+        public static void RegisterPreviewer<TGenerator, TPreview>()
+            where TGenerator : IMeshGenerator
+            where TPreview : IMeshGeneratorEditor, new()
+        {
+        }
+
+        private void Awake()
+        {
+            GetPreviews();
+            
+            var transformProp = serializedObject.FindProperty("_generatorTransform");
+            _rootTransform = (Transform)transformProp.objectReferenceValue;
+
+            var typeProp = serializedObject.FindProperty("_meshType");
+            UpdateEditor((EMeshType)typeProp.enumValueIndex);
+        }
+
+        public override void OnInspectorGUI()
+        {
+            var previewer = target as MeshPreviewer;
+
+            var typeProp = serializedObject.FindProperty("_meshType");
+            using (var changeCheck = new EditorGUI.ChangeCheckScope())
+            {
+                EditorGUILayout.PropertyField(typeProp);
+                if (changeCheck.changed)
+                {
+                    UpdateEditor((EMeshType)typeProp.enumValueIndex);
+                }
+            }
+
+            var transformProp = serializedObject.FindProperty("_generatorTransform");
+            using (var changeCheck = new EditorGUI.ChangeCheckScope())
+            {
+                EditorGUILayout.PropertyField(transformProp);
+                if (changeCheck.changed)
+                {
+                    _rootTransform = (Transform)transformProp.objectReferenceValue;
+                }
+            }
+
+            if (_currentEditor != null)
+            {
+                _currentEditor.DrawInspectorGUI();
+            }
+
+            if (GUILayout.Button("Generate Mesh"))
+            {
+                var mesh = Generate();
+                previewer.SetMesh(mesh);
+            }
+
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        void UpdateEditor(EMeshType type)
+        {
+            switch (type)
+            {
+                case EMeshType.Cube:
+                    _currentGenerator = new CubeMeshGenerator();
+                    break;
+                case EMeshType.House:
+                    _currentGenerator = new HouseMeshGenerator();
+                    break;
+                default:
+                    _currentGenerator = null;
+                    break;
+            }
+
+            _generatorToPreview.TryGetValue(_currentGenerator.GetType(), out _currentEditor);
+            if (_currentEditor != null)
+            {
+                _currentEditor.SetGenerator(_currentGenerator);
+            }
+        }
+
+        public Mesh Generate()
+        {
+            var context = new MeshGeneratorContext()
+            {
+                Transform = Matrix4x4.TRS(_rootTransform.localPosition, _rootTransform.localRotation, _rootTransform.localScale)
+            };
+            return _currentGenerator.Generate(context); ;
+        }
+
+        private void OnSceneGUI()
+        {
+            var previewer = target as MeshPreviewer;
+            _currentEditor?.DrawSceneGUI(_rootTransform);
+        }
+    }
+}

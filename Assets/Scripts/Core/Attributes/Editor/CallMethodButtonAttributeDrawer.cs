@@ -33,7 +33,6 @@ public class CallMethodButtonAttributeDrawer : PropertyDrawer
 
     void Call(SerializedProperty property)
     {
-        Debug.Log("Pressed");
         var obj = property.serializedObject;
         if (obj.targetObject is MonoBehaviour)
         {
