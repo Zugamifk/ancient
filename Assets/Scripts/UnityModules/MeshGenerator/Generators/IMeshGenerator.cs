@@ -6,6 +6,6 @@ namespace MeshGenerator
 {
     public interface IMeshGenerator
     {
-        Mesh Generate();
+        Mesh Generate(MeshGeneratorContext context);
     }
 }
