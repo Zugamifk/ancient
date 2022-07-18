@@ -101,6 +101,8 @@ namespace MeshGenerator
             } while (he != start);
             face.HalfEdge = startEdge;
 
+            _model.Faces.Add(face);
+
             return face;
         }
     }

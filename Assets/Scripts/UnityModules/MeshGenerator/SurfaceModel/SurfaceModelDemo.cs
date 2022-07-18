@@ -10,6 +10,7 @@ namespace MeshGenerator
     {
         public float HalfEdgeDistance = .1f;
         public float HalfEdgeShorten = .1f;
+        public float FaceInset = .25f;
         public bool ShowEdgeLabels;
         public bool ShowHalfEdgeLabels;
 

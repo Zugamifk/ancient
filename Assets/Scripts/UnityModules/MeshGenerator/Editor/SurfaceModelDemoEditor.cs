@@ -62,12 +62,20 @@ namespace MeshGenerator.Editor
 
                 Handles.color = Color.red;
                 HandleX.DrawArrow(p2, p3, fwd, .02f);
+            }
 
-                if (h.Face != Face.Outside)
+            foreach(var f in model.Faces)
+            {
+                var center = f.Centre();
+                Handles.color = Color.magenta;
+                foreach(var edge in f.HalfEdge.Loop())
                 {
-                    Handles.color = Color.magenta;
-                    var p4 = Vector3.Lerp(p1, p2, .5f);
-                    HandleX.DrawArrow(p4, h.Face.Centre(), fwd, 0.02f);
+                    var p0 = edge.Vertex.Position;
+                    var f0 = p0 + (center - p0).normalized * smd.FaceInset;
+                    var p1 = edge.Next.Vertex.Position;
+                    var f1 = p1 + (center - p1).normalized * smd.FaceInset;
+                    HandleX.DrawArrow(Vector3.Lerp(p0, p1, .5f), Vector3.Lerp(f0, f1, .5f), fwd, 0.02f);
+                    Handles.DrawLine(f0, f1);
                 }
             }
         }
