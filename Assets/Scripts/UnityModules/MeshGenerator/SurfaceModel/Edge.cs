@@ -6,6 +6,7 @@ namespace MeshGenerator
 {
     public class Edge
     {
+        public string Label;
         public HalfEdge HalfEdge;
 
         public bool IsConnectedTo(Edge other)
@@ -34,7 +35,7 @@ namespace MeshGenerator
 
         public override string ToString()
         {
-            return $"{HalfEdge.Vertex} -> {HalfEdge.Twin.Vertex}";
+            return $"{Label}: {HalfEdge.Vertex} -> {HalfEdge.Twin.Vertex}";
         }
     }
 }

@@ -11,6 +11,7 @@ namespace MeshGenerator
         public float HalfEdgeDistance = .1f;
         public float HalfEdgeShorten = .1f;
         public bool ShowEdgeLabels;
+        public bool ShowHalfEdgeLabels;
 
         public SurfaceModel Model;
 

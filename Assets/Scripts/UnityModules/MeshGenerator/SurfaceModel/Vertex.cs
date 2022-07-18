@@ -23,6 +23,21 @@ namespace MeshGenerator
             } while (he != start);
         }
 
+        public IEnumerable<HalfEdge> HalfEdges()
+        {
+            if (HalfEdge == null) yield break;
+
+            var start = HalfEdge;
+            var he = start;
+            do
+            {
+                yield return he;
+                yield return he.Twin;
+                he = he.Twin.Next;
+            } while (he != start);
+        }
+
+
         public override string ToString()
         {
             return $"{Label} {Position}";

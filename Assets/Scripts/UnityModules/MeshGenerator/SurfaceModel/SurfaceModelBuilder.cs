@@ -16,6 +16,7 @@ namespace MeshGenerator
         {
             var v = new Vertex();
             v.Position = point;
+            v.Label = $"V{_model.Vertices.Count}";
             _model.Vertices.Add(v);
             return v;
         }
@@ -28,16 +29,17 @@ namespace MeshGenerator
         public Edge ConnectPoints(Vertex v1, Vertex v2)
         {
             var edge = new Edge();
+            edge.Label = $"E{_model.Edges.Count}";
             _model.Edges.Add(edge);
 
             var h1 = new HalfEdge();
-            v1.HalfEdge = h1;
+            h1.Label = $"H{_model.HalfEdges.Count}";
             h1.Vertex = v1;
             h1.Face = Face.Outside;
             _model.HalfEdges.Add(h1);
 
             var h2 = new HalfEdge();
-            v2.HalfEdge = h2;
+            h2.Label = $"H{_model.HalfEdges.Count}";
             h2.Vertex = v2;
             h2.Face = Face.Outside;
             _model.HalfEdges.Add(h2);
@@ -52,19 +54,32 @@ namespace MeshGenerator
             h2.Twin = h1;
             h2.Next = h1;
 
-            //var from = v1.Edges().FirstOrDefault(e => e.HalfEdge.Face == h1.Face);
-            //if (from != null)
-            //{
-            //    from.HalfEdge.Next = h1;
-            //    h2.Next = from.HalfEdge.Twin;
-            //}
+            var from = v1.HalfEdges().FirstOrDefault(he=>he.Face == h1.Face && he.Vertex!=v1);
+            if (from != null)
+            {
+                from.Next = h1;
+            }
 
-            //var to = v2.Edges().FirstOrDefault(e => e.HalfEdge.Face == h2.Face);
-            //if (to != null)
-            //{
-            //    h1.Next = to.HalfEdge;
-            //    to.HalfEdge.Twin.Next = h2;
-            //}
+            from = v2.HalfEdges().FirstOrDefault(he => he.Face == h2.Face && he.Vertex != v2);
+            if (from != null)
+            {
+                from.Next = h2;
+            }
+
+            var to = v1.HalfEdges().FirstOrDefault(he => he.Face == h1.Face && he.Vertex == v1);
+            if (to != null)
+            {
+                h2.Next = to;
+            }
+
+            to = v2.HalfEdges().FirstOrDefault(he => he.Face == h2.Face && he.Vertex == v2);
+            if (to != null)
+            {
+                h1.Next = to;
+            }
+
+            v1.HalfEdge = h1;
+            v2.HalfEdge = h2;
 
             return edge;
         }

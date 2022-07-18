@@ -48,8 +48,12 @@ namespace MeshGenerator.Editor
                 var p2 = v2 - dir * smd.HalfEdgeShorten + n * smd.HalfEdgeDistance;
 
                 Handles.color = Color.yellow;
-                Handles.DrawSolidDisc(p1, fwd, .01f);
-                Handles.DrawLine(p1, p2);
+                HandleX.DrawArrow(p1, p2, fwd, .02f);
+
+                if (smd.ShowHalfEdgeLabels)
+                {
+                    Handles.Label(Vector3.Lerp(p1, p2, .25f), h.ToString());
+                }
 
                 var v3 = h.Next.To.Position;
                 var dir2 = (v3 - v2).normalized;
