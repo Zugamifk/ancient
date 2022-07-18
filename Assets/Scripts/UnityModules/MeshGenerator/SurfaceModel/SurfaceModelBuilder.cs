@@ -83,5 +83,15 @@ namespace MeshGenerator
 
             return edge;
         }
+
+        public Face CreateFace(HalfEdge startEdge)
+        {
+            if(startEdge.Next.Edge == startEdge.Edge)
+            {
+                throw new InvalidOperationException($"Error creating face! Half edge loops onto same edge!");
+            }
+
+            return null;
+        }
     }
 }

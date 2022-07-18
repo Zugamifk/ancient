@@ -325,5 +325,20 @@ namespace MeshGenerator.Tests
             Assert.That(v0.Edges().Contains(e2));
         }
         #endregion
+
+        #region CreateFace()
+        [Test]
+        public void CreateFace_DisconnectedEdge_ThrowInvalidOperationException()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            var v1 = builder.AddPoint(Vector3.zero);
+            var v2 = builder.AddPoint(Vector3.up);
+            var e = builder.ConnectPoints(v1, v2);
+
+            Assert.Throws<System.InvalidOperationException>(() => builder.CreateFace(e.HalfEdge));
+        }
+        #endregion
     }
 }
