@@ -1021,7 +1021,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HalfEdgeDistance: 0.05
-  HalfEdgeShorten: 0.1
+  HalfEdgeShorten: 0.22
+  ShowEdgeLabels: 0
+  ShowHalfEdgeLabels: 0
 --- !u!4 &2113669304
 Transform:
   m_ObjectHideFlags: 0
