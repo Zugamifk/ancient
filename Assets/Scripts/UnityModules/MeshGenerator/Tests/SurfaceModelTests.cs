@@ -285,6 +285,39 @@ namespace MeshGenerator.Tests
             Assert.That(v2.Edges(), Contains.Item(e1));
             Assert.That(v2.Edges(), Contains.Item(e2));
         }
+
+        [Test]
+        public void ConnectPoints_CloseLoop_CreatesEdgeLoop()
+        {
+            var model = new SurfaceModel();
+            var builder = new SurfaceModelBuilder(model);
+
+            var v1 = builder.AddPoint(Vector3.zero);
+            var v2 = builder.AddPoint(Vector3.up);
+            var v3 = builder.AddPoint(Vector3.right);
+
+            var e = builder.ConnectPoints(v1, v2);
+            builder.ConnectPoints(v2, v3);
+            builder.ConnectPoints(v3, v1);
+
+            var start = e.HalfEdge;
+            var next = start;
+            HashSet<HalfEdge> visited = new();
+            var looped = false;
+            do
+            {
+                visited.Add(next);
+                next = next.Next;
+
+                if (next == start)
+                {
+                    looped = true;
+                    break;
+                }
+            } while (!visited.Contains(next));
+
+            Assert.That(looped, Is.True);
+        }
         #endregion
 
         #region Vertex.Edges
@@ -338,6 +371,12 @@ namespace MeshGenerator.Tests
             var e = builder.ConnectPoints(v1, v2);
 
             Assert.Throws<System.InvalidOperationException>(() => builder.CreateFace(e.HalfEdge));
+        }
+
+        [Test]
+        public void CreateFace_AllEdgesShareFace()
+        {
+
         }
         #endregion
     }

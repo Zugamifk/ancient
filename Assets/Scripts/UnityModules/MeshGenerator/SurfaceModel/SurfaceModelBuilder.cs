@@ -91,7 +91,17 @@ namespace MeshGenerator
                 throw new InvalidOperationException($"Error creating face! Half edge loops onto same edge!");
             }
 
-            return null;
+            var start = startEdge;
+            var he = start;
+            var face = new Face();
+            do
+            {
+                he.Face = face;
+                he = he.Next;
+            } while (he != start);
+            face.HalfEdge = startEdge;
+
+            return face;
         }
     }
 }

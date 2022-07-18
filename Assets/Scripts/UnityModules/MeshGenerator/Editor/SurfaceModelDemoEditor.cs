@@ -62,6 +62,13 @@ namespace MeshGenerator.Editor
 
                 Handles.color = Color.red;
                 HandleX.DrawArrow(p2, p3, fwd, .02f);
+
+                if (h.Face != Face.Outside)
+                {
+                    Handles.color = Color.magenta;
+                    var p4 = Vector3.Lerp(p1, p2, .5f);
+                    HandleX.DrawArrow(p4, h.Face.Centre(), fwd, 0.02f);
+                }
             }
         }
     }
