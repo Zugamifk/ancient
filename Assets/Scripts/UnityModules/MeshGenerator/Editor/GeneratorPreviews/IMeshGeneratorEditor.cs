@@ -6,7 +6,7 @@ namespace MeshGenerator.Editor
 {
     public interface IMeshGeneratorEditor
     {
-        void SetGenerator(IMeshGenerator generator);
+        void SetGenerator(IGeometryGenerator generator);
         void DrawSceneGUI(Transform rootTransform);
         void DrawInspectorGUI();
     }

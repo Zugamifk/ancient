@@ -5,7 +5,7 @@ using UnityEditor;
 
 namespace MeshGenerator.Editor
 {
-    [MeshGeneratorEditor(typeof(CubeMeshGeneratorEditor), typeof(CubeMeshGenerator))]
+    [MeshGeneratorEditor(typeof(CubeMeshGeneratorEditor), typeof(CubeGenerator))]
     public class CubeMeshGeneratorEditor : IMeshGeneratorEditor
     {
         public void DrawInspectorGUI()
@@ -19,7 +19,7 @@ namespace MeshGenerator.Editor
             Handles.DrawWireCube(Vector3.zero, Vector3.one);
         }
 
-        public void SetGenerator(IMeshGenerator generator)
+        public void SetGenerator(IGeometryGenerator generator)
         {
         }
     }

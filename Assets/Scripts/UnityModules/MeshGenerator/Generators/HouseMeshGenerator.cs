@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace MeshGenerator
 {
-    public class HouseMeshGenerator : IMeshGenerator
+    public class HouseGenerator : IGeometryGenerator
     {
         public float Rotation;
 
         public Vector2 FloorDimensions;
         public float FloorThickness;
 
-        CubeMeshGenerator _cubeGenerator = new();
+        CubeGenerator _cubeGenerator = new();
 
-        public Mesh Generate(MeshGeneratorContext context)
+        public void Generate(MeshBuilder builder, Matrix4x4 matrix)
         {
-            return null;
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace MeshGenerator
         [SerializeField]
         Transform _generatorTransform;
 
-        public IMeshGenerator CurrentGenerator { get; private set; }
+        public IGeometryGenerator CurrentGenerator { get; private set; }
 
         public void SetMesh(Mesh mesh)
         {

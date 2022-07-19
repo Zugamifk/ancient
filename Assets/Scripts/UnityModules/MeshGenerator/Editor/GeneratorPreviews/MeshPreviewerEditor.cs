@@ -13,7 +13,7 @@ namespace MeshGenerator.Editor
         static Dictionary<System.Type, IMeshGeneratorEditor> _generatorToPreview;
 
         IMeshGeneratorEditor _currentEditor;
-        IMeshGenerator _currentGenerator;
+        IGeometryGenerator _currentGenerator;
         Transform _rootTransform;
 
         void GetPreviews()
@@ -31,7 +31,7 @@ namespace MeshGenerator.Editor
         }
 
         public static void RegisterPreviewer<TGenerator, TPreview>()
-            where TGenerator : IMeshGenerator
+            where TGenerator : IGeometryGenerator
             where TPreview : IMeshGeneratorEditor, new()
         {
         }
@@ -95,10 +95,10 @@ namespace MeshGenerator.Editor
             switch (type)
             {
                 case EMeshType.Cube:
-                    _currentGenerator = new CubeMeshGenerator();
+                    _currentGenerator = new CubeGenerator();
                     break;
                 case EMeshType.House:
-                    _currentGenerator = new HouseMeshGenerator();
+                    _currentGenerator = new HouseGenerator();
                     break;
                 default:
                     _currentGenerator = null;
@@ -118,7 +118,9 @@ namespace MeshGenerator.Editor
             {
                 Transform = Matrix4x4.TRS(_rootTransform.localPosition, _rootTransform.localRotation, _rootTransform.localScale)
             };
-            return _currentGenerator.Generate(context); ;
+            var builder = new MeshBuilder();
+            builder.Generate(_currentGenerator, context.Transform);
+            return builder.Build(context);
         }
 
         private void OnSceneGUI()

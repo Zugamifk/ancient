@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mesh: {fileID: 0}
-  _meshType: 1
+  _meshType: 0
   _generatorTransform: {fileID: 5635425713617448700}
 --- !u!23 &5635425713556543679
 MeshRenderer:

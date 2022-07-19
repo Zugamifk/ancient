@@ -5,10 +5,10 @@ using UnityEditor;
 
 namespace MeshGenerator.Editor
 {
-    [MeshGeneratorEditor(typeof(HouseMeshGeneratorEditor), typeof(HouseMeshGenerator))]
+    [MeshGeneratorEditor(typeof(HouseMeshGeneratorEditor), typeof(HouseGenerator))]
     public class HouseMeshGeneratorEditor : IMeshGeneratorEditor
     {
-        HouseMeshGenerator _generator;
+        HouseGenerator _generator;
         public void DrawInspectorGUI()
         {
             _generator.Rotation = EditorGUILayout.FloatField("Rotation", _generator.Rotation);
@@ -26,9 +26,9 @@ namespace MeshGenerator.Editor
             Handles.DrawWireCube(Vector3.zero, Vector3.one);
         }
 
-        public void SetGenerator(IMeshGenerator generator)
+        public void SetGenerator(IGeometryGenerator generator)
         {
-            _generator = (HouseMeshGenerator)generator;
+            _generator = (HouseGenerator)generator;
         }
     }
 }
