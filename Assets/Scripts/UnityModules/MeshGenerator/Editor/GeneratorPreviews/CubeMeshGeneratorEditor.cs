@@ -14,6 +14,7 @@ namespace MeshGenerator.Editor
 
         public void DrawSceneGUI(Transform rootTransform)
         {
+            Handles.color = Color.green;
             Handles.matrix = rootTransform.localToWorldMatrix;
             Handles.DrawWireCube(Vector3.zero, Vector3.one);
         }
