@@ -15,6 +15,7 @@ namespace MeshGenerator
 
         public Mesh Generate(MeshGeneratorContext context)
         {
+            return null;
         }
     }
 }

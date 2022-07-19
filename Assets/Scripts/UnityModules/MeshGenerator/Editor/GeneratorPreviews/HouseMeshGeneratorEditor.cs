@@ -5,6 +5,7 @@ using UnityEditor;
 
 namespace MeshGenerator.Editor
 {
+    [MeshGeneratorEditor(typeof(HouseMeshGeneratorEditor), typeof(HouseMeshGenerator))]
     public class HouseMeshGeneratorEditor : IMeshGeneratorEditor
     {
         HouseMeshGenerator _generator;
@@ -17,6 +18,12 @@ namespace MeshGenerator.Editor
 
         public void DrawSceneGUI(Transform rootTransform)
         {
+            Handles.matrix = rootTransform.localToWorldMatrix 
+                * Matrix4x4.TRS(
+                    new Vector3(0, -_generator.FloorThickness/2,0), 
+                    Quaternion.AngleAxis(_generator.Rotation, Vector3.up), 
+                    new Vector3(_generator.FloorDimensions.x, _generator.FloorThickness, _generator.FloorDimensions.y));
+            Handles.DrawWireCube(Vector3.zero, Vector3.one);
         }
 
         public void SetGenerator(IMeshGenerator generator)

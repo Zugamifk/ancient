@@ -49,6 +49,11 @@ namespace MeshGenerator.Editor
 
         public override void OnInspectorGUI()
         {
+            if(_generatorToPreview==null)
+            {
+                GetPreviews();
+            }
+
             var previewer = target as MeshPreviewer;
 
             var typeProp = serializedObject.FindProperty("_meshType");
