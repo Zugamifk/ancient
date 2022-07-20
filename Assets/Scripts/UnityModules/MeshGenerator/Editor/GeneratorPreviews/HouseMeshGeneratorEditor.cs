@@ -20,9 +20,14 @@ namespace MeshGenerator.Editor
             d.Height = EditorGUILayout.FloatField("Height", d.Height);
             d.RoofPeak = EditorGUILayout.FloatField("Roof Peak", d.RoofPeak);
             d.EavesLength = EditorGUILayout.FloatField("Eaves Length", d.EavesLength);
-            d.DoorPosition = EditorGUILayout.Slider("Door Position", d.DoorPosition , 0, 1);
-            d.DoorWidth = EditorGUILayout.FloatField("Door Width", d.DoorWidth);
-            d.DoorHeight = EditorGUILayout.FloatField("Door Height", d.DoorHeight);
+            for(int i = 0; i < 4; i++)
+            {
+                var w = d.Walls[i];
+                w.DoorPosition = EditorGUILayout.Slider("Door Position", w.DoorPosition, 0, 1);
+                w.DoorWidth = EditorGUILayout.FloatField("Door Width", w.DoorWidth);
+                w.DoorHeight = EditorGUILayout.FloatField("Door Height", w.DoorHeight);
+            }
+            
         }
 
         public void DrawSceneGUI(Transform rootTransform)
@@ -88,15 +93,23 @@ namespace MeshGenerator.Editor
             Handles.DrawLine(rp1, rp2);
             Handles.DrawLine(rp3, rp0);
 
-            var dd = (p3 - p0).normalized;
-            var d0 = Vector3.Lerp(p0, p3-dd*d.DoorWidth, d.DoorPosition);
-            var d1 = d0 + new Vector3(0, d.DoorHeight, 0);
-            var d2 = d1 + dd * d.DoorWidth;
-            var d3 = d0 + dd * d.DoorWidth;
+            void DrawDoor(HouseGenerator.GeometryData.WallData wall, Vector3 p0, Vector3 p1)
+            {
+                var dd = (p1 - p0).normalized;
+                var d0 = Vector3.Lerp(p0, p1 - dd * wall.DoorWidth, wall.DoorPosition);
+                var d1 = d0 + new Vector3(0, wall.DoorHeight, 0);
+                var d2 = d1 + dd * wall.DoorWidth;
+                var d3 = d0 + dd * wall.DoorWidth;
 
-            Handles.DrawLine(d0, d1);
-            Handles.DrawLine(d1, d2);
-            Handles.DrawLine(d2, d3);
+                Handles.DrawLine(d0, d1);
+                Handles.DrawLine(d1, d2);
+                Handles.DrawLine(d2, d3);
+            }
+
+            DrawDoor(d.Walls[0], p0, p1);
+            DrawDoor(d.Walls[1], p1, p2);
+            DrawDoor(d.Walls[2], p2, p3);
+            DrawDoor(d.Walls[3], p3, p0);
         }
 
         public void SetGenerator(IGeometryGenerator generator)

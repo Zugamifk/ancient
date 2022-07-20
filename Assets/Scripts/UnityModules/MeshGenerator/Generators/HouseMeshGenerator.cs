@@ -19,13 +19,24 @@ namespace MeshGenerator
             public float RoofPeak = 2;
             public float EavesLength = 1;
 
-            public float DoorPosition = .5f;
-            public float DoorWidth = 1;
-            public float DoorHeight = 2;
+            [System.Serializable]
+            public class WallData
+            {
+                public float DoorPosition = .5f;
+                public float DoorWidth = 1;
+                public float DoorHeight = 2;
+            }
+            public WallData[] Walls;
 
             public static GeometryData Instance;
             private void OnEnable()
             {
+                Walls = new GeometryData.WallData[4];
+                for (int i = 0; i < 4; i++)
+                {
+                    Walls[i] = new();
+                }
+
                 Instance = this;
             }
         }
