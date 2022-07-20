@@ -10,7 +10,7 @@ namespace MeshGenerator.Editor
     [CustomEditor(typeof(MeshPreviewer))]
     public class MeshPreviewerEditor : UnityEditor.Editor
     {
-        static Dictionary<System.Type, IMeshGeneratorEditor> _generatorToPreview;
+        static Dictionary<Type, IMeshGeneratorEditor> _generatorToPreview;
 
         IMeshGeneratorEditor _currentEditor;
         IGeometryGenerator _currentGenerator;
@@ -36,7 +36,7 @@ namespace MeshGenerator.Editor
         {
         }
 
-        private void Awake()
+        private void OnEnable()
         {
             GetPreviews();
             
@@ -78,7 +78,15 @@ namespace MeshGenerator.Editor
 
             if (_currentEditor != null)
             {
-                _currentEditor.DrawInspectorGUI();
+                using (var cc = new EditorGUI.ChangeCheckScope())
+                {
+                    _currentEditor.DrawInspectorGUI();
+
+                    if (cc.changed)
+                    {
+                        SceneView.RepaintAll();
+                    }
+                }
             }
 
             if (GUILayout.Button("Generate Mesh"))

@@ -12,17 +12,11 @@ namespace MeshGenerator.Editor
         public void DrawInspectorGUI()
         {
             var d = _generator.Data;
-            using (var cc = new EditorGUI.ChangeCheckScope())
-            {
-                d.Rotation = EditorGUILayout.FloatField("Rotation", d.Rotation);
-                d.FloorDimensions = EditorGUILayout.Vector2Field("Floor Dimensions", d.FloorDimensions);
-                d.FloorThickness = EditorGUILayout.FloatField("Floor Thickness", d.FloorThickness);
-                d.Height = EditorGUILayout.FloatField("Height", d.Height);
-                if (cc.changed)
-                {
-                    SceneView.RepaintAll();
-                }
-            }
+
+            d.Rotation = EditorGUILayout.FloatField("Rotation", d.Rotation);
+            d.FloorDimensions = EditorGUILayout.Vector2Field("Floor Dimensions", d.FloorDimensions);
+            d.FloorThickness = EditorGUILayout.FloatField("Floor Thickness", d.FloorThickness);
+            d.Height = EditorGUILayout.FloatField("Height", d.Height);
         }
 
         public void DrawSceneGUI(Transform rootTransform)
