@@ -20,6 +20,9 @@ namespace MeshGenerator.Editor
             d.Height = EditorGUILayout.FloatField("Height", d.Height);
             d.RoofPeak = EditorGUILayout.FloatField("Roof Peak", d.RoofPeak);
             d.EavesLength = EditorGUILayout.FloatField("Eaves Length", d.EavesLength);
+            d.DoorPosition = EditorGUILayout.Slider("Door Position", d.DoorPosition , 0, 1);
+            d.DoorWidth = EditorGUILayout.FloatField("Door Width", d.DoorWidth);
+            d.DoorHeight = EditorGUILayout.FloatField("Door Height", d.DoorHeight);
         }
 
         public void DrawSceneGUI(Transform rootTransform)
@@ -84,6 +87,16 @@ namespace MeshGenerator.Editor
             Handles.DrawLine(rp3, r1);
             Handles.DrawLine(rp1, rp2);
             Handles.DrawLine(rp3, rp0);
+
+            var dd = (p3 - p0).normalized;
+            var d0 = Vector3.Lerp(p0, p3-dd*d.DoorWidth, d.DoorPosition);
+            var d1 = d0 + new Vector3(0, d.DoorHeight, 0);
+            var d2 = d1 + dd * d.DoorWidth;
+            var d3 = d0 + dd * d.DoorWidth;
+
+            Handles.DrawLine(d0, d1);
+            Handles.DrawLine(d1, d2);
+            Handles.DrawLine(d2, d3);
         }
 
         public void SetGenerator(IGeometryGenerator generator)

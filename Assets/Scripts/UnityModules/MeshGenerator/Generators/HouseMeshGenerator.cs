@@ -17,7 +17,11 @@ namespace MeshGenerator
             public float Height = 3;
 
             public float RoofPeak = 2;
-            public float EavesLength = 1;   
+            public float EavesLength = 1;
+
+            public float DoorPosition = .5f;
+            public float DoorWidth = 1;
+            public float DoorHeight = 2;
 
             public static GeometryData Instance;
             private void OnEnable()
