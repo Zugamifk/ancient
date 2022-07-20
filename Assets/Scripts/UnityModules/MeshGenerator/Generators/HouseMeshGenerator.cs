@@ -13,6 +13,8 @@ namespace MeshGenerator
             public Vector2 FloorDimensions;
             public float FloorThickness;
 
+            public float Height = 3;
+
             public static GeometryData Instance;
             private void OnEnable()
             {
