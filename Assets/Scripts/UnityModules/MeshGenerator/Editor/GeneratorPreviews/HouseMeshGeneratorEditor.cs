@@ -11,18 +11,20 @@ namespace MeshGenerator.Editor
         HouseGenerator _generator;
         public void DrawInspectorGUI()
         {
-            _generator.Rotation = EditorGUILayout.FloatField("Rotation", _generator.Rotation);
-            _generator.FloorDimensions = EditorGUILayout.Vector2Field("Floor Dimensions", _generator.FloorDimensions);
-            _generator.FloorThickness = EditorGUILayout.FloatField("Floor Thickness", _generator.FloorThickness);
+            var d = _generator.Data;
+            d.Rotation = EditorGUILayout.FloatField("Rotation", d.Rotation);
+            d.FloorDimensions = EditorGUILayout.Vector2Field("Floor Dimensions", d.FloorDimensions);
+            d.FloorThickness = EditorGUILayout.FloatField("Floor Thickness", d.FloorThickness);
         }
 
         public void DrawSceneGUI(Transform rootTransform)
         {
+            var d = _generator.Data;
             Handles.matrix = rootTransform.localToWorldMatrix 
                 * Matrix4x4.TRS(
-                    new Vector3(0, -_generator.FloorThickness/2,0), 
-                    Quaternion.AngleAxis(_generator.Rotation, Vector3.up), 
-                    new Vector3(_generator.FloorDimensions.x, _generator.FloorThickness, _generator.FloorDimensions.y));
+                    new Vector3(0, -d.FloorThickness/2,0), 
+                    Quaternion.AngleAxis(d.Rotation, Vector3.up), 
+                    new Vector3(d.FloorDimensions.x, d.FloorThickness, d.FloorDimensions.y));
             Handles.DrawWireCube(Vector3.zero, Vector3.one);
         }
 
