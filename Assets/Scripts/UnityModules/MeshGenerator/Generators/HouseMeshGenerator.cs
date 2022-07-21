@@ -12,20 +12,35 @@ namespace MeshGenerator
 
             public Vector2 FloorDimensions;
 
-            public float WallInset = 1;
+            public float BaseExtents = 1;
             public float Height = 3;
 
             public float RoofPeak = 2;
             public float EavesLength = 1;
 
             [System.Serializable]
+            public class DoorData
+            {
+                public float Position = .5f;
+                public Vector2 Dimensions = Vector2.one;
+                public int Wall = 0;
+            }
+
+            [System.Serializable]
+            public class WindowData
+            {
+                public float Position;
+                public Vector2 Dimensions = Vector2.one;
+            }
+
+            [SerializeField]
             public class WallData
             {
-                public float DoorPosition = .5f;
-                public float DoorWidth = 1;
-                public float DoorHeight = 2;
+                public List<WindowData> Windows = new();
             }
             public WallData[] Walls;
+
+            public DoorData Door;
 
             public static GeometryData Instance;
             private void OnEnable()
