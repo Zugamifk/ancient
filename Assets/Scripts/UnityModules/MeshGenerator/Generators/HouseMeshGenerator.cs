@@ -11,7 +11,6 @@ namespace MeshGenerator
             public float Rotation;
 
             public Vector2 FloorDimensions;
-            public float FloorThickness;
 
             public float WallInset = 1;
             public float Height = 3;
@@ -40,8 +39,6 @@ namespace MeshGenerator
                 Instance = this;
             }
         }
-
-        CubeGenerator _cubeGenerator = new();
 
         public GeometryData Data => _data;
 

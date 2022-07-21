@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MeshGenerator.Wireframe
 {
-    public class Wireframe
+    public class Frame
     {
         public List<IPoint> Points = new();
         public List<Edge> Edges = new();
