@@ -17,6 +17,7 @@ namespace MeshGenerator
 
             public float RoofPeak = 2;
             public float EavesLength = 1;
+            public float WindowHeight = 1;
 
             [System.Serializable]
             public class DoorData
@@ -33,22 +34,24 @@ namespace MeshGenerator
                 public Vector2 Dimensions = Vector2.one;
             }
 
-            [SerializeField]
+            [System.Serializable]
             public class WallData
             {
                 public List<WindowData> Windows = new();
             }
-            public WallData[] Walls;
+            public List<WallData> Walls = new();
 
             public DoorData Door;
 
             public static GeometryData Instance;
             private void OnEnable()
             {
-                Walls = new GeometryData.WallData[4];
-                for (int i = 0; i < 4; i++)
+                if (Walls.Count != 4)
                 {
-                    Walls[i] = new();
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Walls.Add(new());
+                    }
                 }
 
                 Instance = this;
@@ -70,7 +73,7 @@ namespace MeshGenerator
 
         public void Generate(MeshBuilder builder, Matrix4x4 matrix)
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Generating Mesh");
         }
     }
 }

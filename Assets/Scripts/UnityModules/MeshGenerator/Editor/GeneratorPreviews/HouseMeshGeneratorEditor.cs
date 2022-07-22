@@ -18,6 +18,8 @@ namespace MeshGenerator.Editor
         {
             _wireframe = new();
             var d = _generator.Data;
+            
+            // base
             float fx() => d.FloorDimensions.x / 2 + d.BaseExtents;
             float fy() => d.FloorDimensions.y / 2 + d.BaseExtents;
 
@@ -26,12 +28,12 @@ namespace MeshGenerator.Editor
             var b2 = new DynamicPoint(() => new Vector3(fx(), 0, fy()));
             var b3 = new DynamicPoint(() => new Vector3(fx(), 0, -fy()));
 
-            // base
             _wireframe.Connect(b0, b1);
             _wireframe.Connect(b1, b2);
             _wireframe.Connect(b2, b3);
             _wireframe.Connect(b3, b0);
 
+            // walls
             var h = new Vector3(0, d.Height, 0);
             float bx() => d.FloorDimensions.x / 2;
             float by() => d.FloorDimensions.y / 2;
@@ -65,6 +67,7 @@ namespace MeshGenerator.Editor
             _wireframe.Connect(w8, w9);
             _wireframe.Connect(w9, w4);
 
+            // roof
             var rd = (w2.Position - w1.Position).normalized;
 
             var r0 = new DynamicPoint(() => w4.Position - rd * d.EavesLength);
@@ -82,11 +85,33 @@ namespace MeshGenerator.Editor
             _wireframe.Connect(r5, r0);
             _wireframe.Connect(r1, r4);
 
+            // windows
             for (int i = 0; i < 4; i++)
             {
-                
+                var w = d.Walls[i];
+                var wp0 = _wallCorners[i];
+                var wp1 = _wallCorners[(i + 1) % 4];
+                Func<Vector3> wd = () =>
+                {
+                    return (wp1.Position - wp0.Position).normalized;
+                };
+
+                for (int j=0;j<w.Windows.Count;j++)
+                {
+                    var window = w.Windows[j];
+                    var ww0 = new DynamicPoint(() => Vector3.Lerp(wp1.Position - wd() * window.Dimensions.x, wp0.Position, window.Position) + Vector3.up * d.WindowHeight);
+                    var ww1 = new DynamicPoint(() => ww0.Position + Vector3.up * window.Dimensions.y);
+                    var ww2 = new DynamicPoint(() => ww0.Position + Vector3.up * window.Dimensions.y + wd() * window.Dimensions.x);
+                    var ww3 = new DynamicPoint(() => ww0.Position + wd() * window.Dimensions.x);
+
+                    _wireframe.Connect(ww0, ww1);
+                    _wireframe.Connect(ww1, ww2);
+                    _wireframe.Connect(ww2, ww3);
+                    _wireframe.Connect(ww3, ww0);
+                }
             }
 
+            // door
             Func<Vector3> dir = () =>
             {
                 var di = d.Door.Wall;
@@ -108,24 +133,72 @@ namespace MeshGenerator.Editor
             _wireframe.Connect(d0, d1);
             _wireframe.Connect(d1, d2);
             _wireframe.Connect(d2, d3);
-
-            Debug.Log("Generated");
         }
 
         public void DrawInspectorGUI()
         {
             var d = _generator.Data;
 
+            bool rebuildWireframe = false;
+
+            EditorGUI.BeginChangeCheck();
+
+            EditorGUILayout.LabelField("General", EditorStyles.boldLabel);
             d.Rotation = EditorGUILayout.FloatField("Rotation", d.Rotation);
             d.FloorDimensions = EditorGUILayout.Vector2Field("Floor Dimensions", d.FloorDimensions);
             d.BaseExtents = EditorGUILayout.FloatField("Wall Inset", d.BaseExtents);
             d.Height = EditorGUILayout.FloatField("Height", d.Height);
+            d.WindowHeight = EditorGUILayout.FloatField("Window Height", d.WindowHeight);
             d.RoofPeak = EditorGUILayout.FloatField("Roof Peak", d.RoofPeak);
             d.EavesLength = EditorGUILayout.FloatField("Eaves Length", d.EavesLength);
-            
+
+            EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField("Walls", EditorStyles.boldLabel);
+
+            for (int i = 0; i < 4; i++)
+            {
+                EditorGUILayout.LabelField("Wall "+i, EditorStyles.boldLabel);
+                var wall = d.Walls[i];
+                var windowCount = wall.Windows.Count;
+                EditorGUILayout.LabelField("Windows", EditorStyles.boldLabel);
+                int newWindowCount = EditorGUILayout.IntField("Count", windowCount);
+                if (windowCount != newWindowCount)
+                {
+                    if (windowCount > newWindowCount)
+                    {
+                        wall.Windows.RemoveRange(newWindowCount, windowCount - newWindowCount);
+                    } else
+                    {
+                        for(int j=windowCount;j<newWindowCount;j++)
+                        {
+                            wall.Windows.Add(new HouseGenerator.GeometryData.WindowData());
+                        }
+                    }
+                    rebuildWireframe = true;
+                }
+                for (int j=0;j<wall.Windows.Count;j++)
+                {
+                    EditorGUILayout.LabelField("Window "+j, EditorStyles.boldLabel);
+                    var window = wall.Windows[j];
+                    window.Dimensions = EditorGUILayout.Vector2Field("Dimensions", window.Dimensions);
+                    window.Position = EditorGUILayout.Slider("Position", window.Position, 0, 1);
+                }
+                EditorGUILayout.Space(5);
+            }
+
             d.Door.Dimensions = EditorGUILayout.Vector2Field("Door Dimensions", d.Door.Dimensions);
             d.Door.Position = EditorGUILayout.Slider("Door Position", d.Door.Position, 0, 1);
             d.Door.Wall = EditorGUILayout.IntSlider("Door Wall", d.Door.Wall, 0, 3);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                EditorUtility.SetDirty(d);
+            }
+
+            if (rebuildWireframe)
+            {
+                BuildWireframe();
+            }
         }
 
         public void DrawSceneGUI(Transform rootTransform)
