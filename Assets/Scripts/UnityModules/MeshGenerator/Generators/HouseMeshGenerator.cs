@@ -62,6 +62,9 @@ namespace MeshGenerator
 
         // wireframe points
         List<IPoint> _basePoints = new();
+        List<List<IPoint>> _wallPoints = new();
+        List<IPoint> _roofPoints = new();
+        List<IPoint> _atticWallPoints = new();
 
         public GeometryData Data => _data;
         public Frame Wireframe => _wireframe;
@@ -73,7 +76,7 @@ namespace MeshGenerator
 
         static HouseGenerator()
         {
-            if(_data==null)
+            if (_data == null)
             {
                 ScriptableObject.CreateInstance<GeometryData>();
                 _data.hideFlags = HideFlags.HideAndDontSave;
@@ -82,7 +85,18 @@ namespace MeshGenerator
 
         public void Generate(MeshBuilder builder, Matrix4x4 matrix)
         {
+            //base
             builder.AddQuad(_basePoints[0].Position, _basePoints[1].Position, _basePoints[2].Position, _basePoints[3].Position);
+
+            //walls
+            builder.AddTriangle(_atticWallPoints[0].Position, _atticWallPoints[1].Position, _atticWallPoints[2].Position);
+            builder.AddTriangle(_atticWallPoints[3].Position, _atticWallPoints[4].Position, _atticWallPoints[5].Position);
+
+            //roof
+            builder.AddQuad(_roofPoints[0].Position, _roofPoints[1].Position, _roofPoints[4].Position, _roofPoints[5].Position);
+            builder.AddQuad(_roofPoints[2].Position, _roofPoints[1].Position, _roofPoints[4].Position, _roofPoints[3].Position);
+            builder.AddQuad(_roofPoints[0].Position, _roofPoints[5].Position, _roofPoints[4].Position, _roofPoints[1].Position);
+            builder.AddQuad(_roofPoints[2].Position, _roofPoints[3].Position, _roofPoints[4].Position, _roofPoints[1].Position);
         }
 
         public void BuildWireframe()
@@ -94,6 +108,7 @@ namespace MeshGenerator
             float fx() => d.FloorDimensions.x / 2 + d.BaseExtents;
             float fy() => d.FloorDimensions.y / 2 + d.BaseExtents;
 
+            _basePoints.Clear();
             _basePoints.Add(new DynamicPoint(() => new Vector3(-fx(), 0, -fy())));
             _basePoints.Add(new DynamicPoint(() => new Vector3(-fx(), 0, fy())));
             _basePoints.Add(new DynamicPoint(() => new Vector3(fx(), 0, fy())));
@@ -138,15 +153,25 @@ namespace MeshGenerator
             _wireframe.Connect(w8, w9);
             _wireframe.Connect(w9, w4);
 
-            // roof
-            var rd = (w2.Position - w1.Position).normalized;
+            _atticWallPoints = new() { w5, w4, w6, w8, w7, w9 };
 
-            var r0 = new DynamicPoint(() => w4.Position - rd * d.EavesLength);
-            var r1 = new DynamicPoint(() => w5.Position - rd * d.EavesLength);
-            var r2 = new DynamicPoint(() => w6.Position - rd * d.EavesLength);
-            var r3 = new DynamicPoint(() => w7.Position + rd * d.EavesLength);
-            var r4 = new DynamicPoint(() => w8.Position + rd * d.EavesLength);
-            var r5 = new DynamicPoint(() => w9.Position + rd * d.EavesLength);
+            var wall0 = new List<IPoint>() { w0, w1, w6, w5, w4 };
+            var wall1 = new List<IPoint>() { w1, w2, w7, w6 };
+            var wall2 = new List<IPoint>() { w2, w3, w9, w8, w7 };
+            var wall3 = new List<IPoint>() { w3, w0, w4, w9 };
+            _wallPoints = new List<List<IPoint>>() { wall0, wall1, wall2, wall3 };
+
+            // roof
+            Vector3 rd() => (w2.Position - w1.Position).normalized;
+            Vector3 rdl() => (w4.Position - w5.Position).normalized;
+            Vector3 rdr() => (w6.Position - w5.Position).normalized;
+
+            var r0 = new DynamicPoint(() => w4.Position - rd() * d.EavesLength + rdl() * d.EavesLength);
+            var r1 = new DynamicPoint(() => w5.Position - rd() * d.EavesLength);
+            var r2 = new DynamicPoint(() => w6.Position - rd() * d.EavesLength + rdr() * d.EavesLength);
+            var r3 = new DynamicPoint(() => w7.Position + rd() * d.EavesLength + rdr() * d.EavesLength);
+            var r4 = new DynamicPoint(() => w8.Position + rd() * d.EavesLength);
+            var r5 = new DynamicPoint(() => w9.Position + rd() * d.EavesLength + rdl() * d.EavesLength);
 
             _wireframe.Connect(r0, r1);
             _wireframe.Connect(r1, r2);
@@ -155,6 +180,8 @@ namespace MeshGenerator
             _wireframe.Connect(r4, r5);
             _wireframe.Connect(r5, r0);
             _wireframe.Connect(r1, r4);
+
+            _roofPoints = new() { r0, r1, r2, r3, r4, r5 };
 
             // windows
             for (int i = 0; i < 4; i++)
