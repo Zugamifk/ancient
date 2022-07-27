@@ -25,27 +25,34 @@ namespace MeshGenerator
         {
             var face = new Face();
 
-            //for (int i = 0; i < points.Length; i++)
-            //{
-            //    var he = CreateHalfEdge(points[i], points[i % points.Length]);
-            //    he.Vertex = points[i];
-            //    he.Face = face;
-
-            //    points[i].HalfEdge = he;
-
-            //    if (i > 0)
-            //    {
-            //        var last = points[i - 1].HalfEdge;
-            //        last.Next = he;
-            //    }
-            //}
-            //points[points.Length - 1].HalfEdge.Next = points[0].HalfEdge;
-
-            //face.HalfEdge = points[0].HalfEdge;
+            for (int i = 0; i < points.Length; i++)
+            {
+                var p0 = points[(i - 1 + points.Length) % points.Length];
+                var p1 = points[i];
+                var p2 = points[(i + 1) % points.Length];
+                var h0 = p0.HalfEdges().FirstOrDefault(h => h.To == p1);
+                var h1 = p1.HalfEdges().FirstOrDefault(h => h.To == p2);
+                if(h0.Next!=h1)
+                {
+                    SetNext(h0, h1);
+                }
+                h0.Face = face;
+                face.HalfEdge = h0;
+            }
 
             _model.Faces.Add(face);
 
             return face;
+        }
+
+        void SetNext(HalfEdge h1, HalfEdge h2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Edge ConnectPoints(int a, int b)
+        {
+            return ConnectPoints(_model.Vertices[a], _model.Vertices[b]);
         }
 
         public Edge ConnectPoints(Vertex v1, Vertex v2)

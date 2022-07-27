@@ -60,9 +60,15 @@ namespace MeshGenerator
             }
         }
 
+        class WallSectionPointData
+        {
+            public List<IPoint> BoundPoints = new();
+            public List<IPoint> Intervals = new();
+        }
+
         // wireframe points
         List<IPoint> _basePoints = new();
-        List<List<IPoint>> _wallPoints = new();
+        List<WallSectionPointData> _walls = new();
         List<IPoint> _roofPoints = new();
         List<IPoint> _atticWallPoints = new();
 
@@ -155,11 +161,7 @@ namespace MeshGenerator
 
             _atticWallPoints = new() { w5, w4, w6, w8, w7, w9 };
 
-            var wall0 = new List<IPoint>() { w0, w1, w6, w5, w4 };
-            var wall1 = new List<IPoint>() { w1, w2, w7, w6 };
-            var wall2 = new List<IPoint>() { w2, w3, w9, w8, w7 };
-            var wall3 = new List<IPoint>() { w3, w0, w4, w9 };
-            _wallPoints = new List<List<IPoint>>() { wall0, wall1, wall2, wall3 };
+            
 
             // roof
             Vector3 rd() => (w2.Position - w1.Position).normalized;

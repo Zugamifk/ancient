@@ -28,13 +28,13 @@ namespace MeshGenerator
             builder.ConnectPoints(v1, v2);
             builder.ConnectPoints(v3, v2);
             builder.ConnectPoints(v0, v3);
-            //builder.CreateFace(v0, v1, v2, v3);
+            builder.CreateFace(v0, v1, v2, v3);
             var v4 = builder.AddPoint(new Vector3(0, 2, 0));
             var v5 = builder.AddPoint(new Vector3(1, 2, 0));
             var e2 = builder.ConnectPoints(v1, v4);
             builder.ConnectPoints(v4, v5);
             builder.ConnectPoints(v5, v2);
-            //builder.CreateFace(e2.HalfEdge);
+            builder.CreateFace(v1, v4, v5, v2);
         }
     }
 }
