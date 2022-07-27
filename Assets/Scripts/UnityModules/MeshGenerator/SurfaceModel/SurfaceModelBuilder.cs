@@ -21,60 +21,52 @@ namespace MeshGenerator
             return v;
         }
 
-        public Edge ConnectPoints(int i1, int i2)
+        public Face CreateFace(params Vertex[] points)
         {
-            return ConnectPoints(_model.Vertices[i1], _model.Vertices[i2]);
+            var face = new Face();
+
+            //for (int i = 0; i < points.Length; i++)
+            //{
+            //    var he = CreateHalfEdge(points[i], points[i % points.Length]);
+            //    he.Vertex = points[i];
+            //    he.Face = face;
+
+            //    points[i].HalfEdge = he;
+
+            //    if (i > 0)
+            //    {
+            //        var last = points[i - 1].HalfEdge;
+            //        last.Next = he;
+            //    }
+            //}
+            //points[points.Length - 1].HalfEdge.Next = points[0].HalfEdge;
+
+            //face.HalfEdge = points[0].HalfEdge;
+
+            _model.Faces.Add(face);
+
+            return face;
         }
 
         public Edge ConnectPoints(Vertex v1, Vertex v2)
         {
-            var edge = new Edge();
-            edge.Label = $"E{_model.Edges.Count}";
-            _model.Edges.Add(edge);
+            var h1 = CreateHalfEdge(v1);
+            var h2 = CreateHalfEdge(v2);
+            var edge = CreateEdge(h1, h2);
 
-            var h1 = new HalfEdge();
-            h1.Label = $"H{_model.HalfEdges.Count}";
-            h1.Vertex = v1;
-            h1.Face = Face.Outside;
-            _model.HalfEdges.Add(h1);
-
-            var h2 = new HalfEdge();
-            h2.Label = $"H{_model.HalfEdges.Count}";
-            h2.Vertex = v2;
-            h2.Face = Face.Outside;
-            _model.HalfEdges.Add(h2);
-
-            edge.HalfEdge = h1;
-
-            h1.Edge = edge;
-            h1.Twin = h2;
-            h1.Next = h2;
-
-            h2.Edge = edge;
-            h2.Twin = h1;
-            h2.Next = h1;
-
-            var from = v1.HalfEdges().FirstOrDefault(he=>he.Face == h1.Face && he.Vertex!=v1);
+            var from = v1.HalfEdges().FirstOrDefault(he => he.Face == h1.Face && he.Vertex != v1);
             if (from != null)
             {
+                var to = from.Next;
                 from.Next = h1;
+                h2.Next = to;
             }
 
             from = v2.HalfEdges().FirstOrDefault(he => he.Face == h2.Face && he.Vertex != v2);
             if (from != null)
             {
+                var to = from.Next;
                 from.Next = h2;
-            }
-
-            var to = v1.HalfEdges().FirstOrDefault(he => he.Face == h1.Face && he.Vertex == v1);
-            if (to != null)
-            {
-                h2.Next = to;
-            }
-
-            to = v2.HalfEdges().FirstOrDefault(he => he.Face == h2.Face && he.Vertex == v2);
-            if (to != null)
-            {
                 h1.Next = to;
             }
 
@@ -84,26 +76,31 @@ namespace MeshGenerator
             return edge;
         }
 
-        public Face CreateFace(HalfEdge startEdge)
+        HalfEdge CreateHalfEdge(Vertex vertex)
         {
-            if(startEdge.Next.Edge == startEdge.Edge)
-            {
-                throw new InvalidOperationException($"Error creating face! Half edge loops onto same edge!");
-            }
+            var h = new HalfEdge();
+            h.Label = $"H{_model.HalfEdges.Count}";
+            h.Vertex = vertex;
+            h.Face = Face.Outside;
+            _model.HalfEdges.Add(h);
+            return h;
+        }
 
-            var start = startEdge;
-            var he = start;
-            var face = new Face();
-            do
-            {
-                he.Face = face;
-                he = he.Next;
-            } while (he != start);
-            face.HalfEdge = startEdge;
+        Edge CreateEdge(HalfEdge h1, HalfEdge h2)
+        {
+            var edge = new Edge();
+            edge.Label = $"E{_model.Edges.Count}";
+            edge.HalfEdge = h1;
+            _model.Edges.Add(edge);
 
-            _model.Faces.Add(face);
+            h1.Edge = edge;
+            h1.Twin = h2;
+            h1.Next = h2;
 
-            return face;
+            h2.Edge = edge;
+            h2.Twin = h1;
+            h2.Next = h1;
+            return edge;
         }
     }
 }

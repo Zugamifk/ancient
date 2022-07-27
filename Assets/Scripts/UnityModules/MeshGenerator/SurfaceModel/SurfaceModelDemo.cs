@@ -20,20 +20,20 @@ namespace MeshGenerator
         {
             Model = new();
             var builder = new SurfaceModelBuilder(Model);
-            builder.AddPoint(Vector3.zero);
-            builder.AddPoint(Vector3.up);
-            builder.AddPoint(new Vector3(1, 1, 0));
-            builder.AddPoint(Vector3.right);
-            var e1 = builder.ConnectPoints(0, 1);
-            builder.ConnectPoints(1, 2);
-            builder.ConnectPoints(3, 2);
-            builder.ConnectPoints(0, 3);
-            builder.CreateFace(e1.HalfEdge);
-            builder.AddPoint(new Vector3(0, 2, 0));
-            builder.AddPoint(new Vector3(1, 2, 0));
-            var e2 = builder.ConnectPoints(1, 4);
-            builder.ConnectPoints(4, 5);
-            builder.ConnectPoints(5, 2);
+            var v0 = builder.AddPoint(Vector3.zero);
+            var v1 = builder.AddPoint(Vector3.up);
+            var v2 = builder.AddPoint(new Vector3(1, 1, 0));
+            var v3 = builder.AddPoint(Vector3.right);
+            var e1 = builder.ConnectPoints(v0, v1);
+            builder.ConnectPoints(v1, v2);
+            builder.ConnectPoints(v3, v2);
+            builder.ConnectPoints(v0, v3);
+            //builder.CreateFace(v0, v1, v2, v3);
+            var v4 = builder.AddPoint(new Vector3(0, 2, 0));
+            var v5 = builder.AddPoint(new Vector3(1, 2, 0));
+            var e2 = builder.ConnectPoints(v1, v4);
+            builder.ConnectPoints(v4, v5);
+            builder.ConnectPoints(v5, v2);
             //builder.CreateFace(e2.HalfEdge);
         }
     }
