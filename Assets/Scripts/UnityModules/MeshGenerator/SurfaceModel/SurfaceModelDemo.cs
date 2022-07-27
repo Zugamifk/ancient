@@ -35,6 +35,14 @@ namespace MeshGenerator
             builder.ConnectPoints(v4, v5);
             builder.ConnectPoints(v5, v2);
             builder.CreateFace(v1, v4, v5, v2);
+            var v6 = builder.AddPoint(new Vector3(2, 0, 0));
+            var v7 = builder.AddPoint(new Vector3(2, 1, 0));
+            var v8 = builder.AddPoint(new Vector3(2, 2, 0));
+            builder.ConnectPoints(v3, v6);
+            builder.ConnectPoints(v2, v7);
+            builder.ConnectPoints(v5, v8);
+            builder.ConnectPoints(v6, v7);
+            builder.ConnectPoints(v7, v8);
         }
     }
 }
