@@ -108,6 +108,9 @@ namespace MeshGenerator.Editor
                 case EMeshType.House:
                     _currentGenerator = new HouseGenerator();
                     break;
+                case EMeshType.Surface:
+                    _currentGenerator = new SurfaceModelMeshGenerator(new());
+                    break;
                 default:
                     _currentGenerator = null;
                     break;

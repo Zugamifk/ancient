@@ -203,7 +203,7 @@ namespace MeshGenerator.Tests
             var v2 = builder.AddPoint(Vector3.up);
             var e = builder.ConnectPoints(v1, v2);
 
-            Assert.That(e.HalfEdge.From, Is.EqualTo(v1));
+            Assert.That(e.HalfEdge.StartVertex, Is.EqualTo(v1));
         }
 
         [Test]
@@ -216,7 +216,7 @@ namespace MeshGenerator.Tests
             var v2 = builder.AddPoint(Vector3.up);
             var e = builder.ConnectPoints(v1, v2);
 
-            Assert.That(e.HalfEdge.To, Is.EqualTo(v2));
+            Assert.That(e.HalfEdge.EndVertex, Is.EqualTo(v2));
         }
 
         [Test]

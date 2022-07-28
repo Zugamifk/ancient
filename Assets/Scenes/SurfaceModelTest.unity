@@ -152,11 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effd3bc5bf6d92d4bb6f4be6394aab2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HalfEdgeDistance: 0.04
-  HalfEdgeShorten: 0.19
+  HalfEdgeDistance: 0.07
+  HalfEdgeShorten: 0.34
   FaceInset: 0.1
   ShowEdgeLabels: 0
-  ShowHalfEdgeLabels: 0
+  ShowHalfEdgeLabels: 1
 --- !u!4 &1624380895
 Transform:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 1624380893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 543.2582, y: 115.04048, z: 529.5292}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

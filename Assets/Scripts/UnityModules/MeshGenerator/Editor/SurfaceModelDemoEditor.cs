@@ -55,7 +55,7 @@ namespace MeshGenerator.Editor
                     Handles.Label(Vector3.Lerp(p1, p2, .25f), h.ToString());
                 }
 
-                var v3 = h.Next.To.Position;
+                var v3 = h.Next.EndVertex.Position;
                 var dir2 = (v3 - v2).normalized;
                 var n2 = Vector3.Cross(dir2, fwd);
                 var p3 = v2 + dir2 * smd.HalfEdgeShorten + n2 * smd.HalfEdgeDistance;

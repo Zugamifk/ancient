@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -21,6 +19,11 @@ namespace MeshGenerator
             return v;
         }
 
+        public Face CreateFace(params int[] indices)
+        {
+            return CreateFace(indices.Select(i => _model.Vertices[i]).ToArray());
+        }
+
         public Face CreateFace(params Vertex[] points)
         {
             var face = new Face();
@@ -30,9 +33,9 @@ namespace MeshGenerator
                 var p0 = points[(i - 1 + points.Length) % points.Length];
                 var p1 = points[i];
                 var p2 = points[(i + 1) % points.Length];
-                var h0 = p0.HalfEdges().FirstOrDefault(h => h.To == p1);
-                var h1 = p1.HalfEdges().FirstOrDefault(h => h.To == p2);
-                if(h0.Next!=h1)
+                var h0 = GetHalfEdge(p0, p1);
+                var h1 = GetHalfEdge(p1, p2);
+                if (h0.Next!=h1)
                 {
                     SetNext(h0, h1);
                 }
@@ -45,9 +48,22 @@ namespace MeshGenerator
             return face;
         }
 
+        HalfEdge GetHalfEdge(Vertex from, Vertex to)
+        {
+            var  h = from.HalfEdges().FirstOrDefault(h => h.EndVertex == to);
+            if(h == null)
+            {
+                h = ConnectPoints(from, to).HalfEdge;
+            }
+            return h;
+        }
+
         void SetNext(HalfEdge h1, HalfEdge h2)
         {
-            throw new NotImplementedException();
+            var prev = h2.Previous;
+            var next = h1.Next;
+            h1.Next = h2;
+            prev.Next = next;
         }
 
         public Edge ConnectPoints(int a, int b)

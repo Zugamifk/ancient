@@ -33,7 +33,7 @@ namespace MeshGenerator
             builder.AddQuad(p0, p4, p7, p3);
             builder.AddQuad(p0, p1, p5, p4);
             builder.AddQuad(p1, p2, p6, p5);
-            builder.AddQuad(p3, p7, p5, p1);
+            builder.AddQuad(p3, p7, p6, p2);
             builder.AddQuad(p4, p5, p6, p7);
         }
     }

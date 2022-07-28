@@ -7,6 +7,7 @@ namespace MeshGenerator
     public enum EMeshType
     {
         Cube,
-        House
+        House,
+        Surface
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace MeshGenerator
@@ -13,8 +14,9 @@ namespace MeshGenerator
         public Edge Edge;
         public Face Face;
 
-        public Vertex From => Vertex;
-        public Vertex To => Twin.From;
+        public HalfEdge Previous => Vertex.HalfEdges().First(he => he.Next == this);
+        public Vertex StartVertex => Vertex;
+        public Vertex EndVertex => Twin.StartVertex;
 
         static HashSet<HalfEdge> _visited = new();
         public IEnumerable<HalfEdge> Loop()
