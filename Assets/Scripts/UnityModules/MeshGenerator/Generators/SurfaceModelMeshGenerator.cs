@@ -18,6 +18,8 @@ namespace MeshGenerator
             cb.Generate(b, Matrix4x4.identity);
             var m = b.Build(new());
             var smb = new MeshToSurfaceModelBuilder();
+            var bevel = new BevelOperation();
+            bevel.BevelEdges(.2f, model.Edges[0]);
             _model = smb.ConvertMesh(m);
         }
 
