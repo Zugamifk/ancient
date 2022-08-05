@@ -23,6 +23,10 @@ namespace MeshGenerator.Editor
             foreach (var v in model.Vertices)
             {
                 Handles.DrawSolidDisc(v.Position, fwd, .1f);
+                if (smd.ShowVertexLabels)
+                {
+                    Handles.Label(v.Position, v.Label);
+                }
             }
 
             Handles.color = Color.green;

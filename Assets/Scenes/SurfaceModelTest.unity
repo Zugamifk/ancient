@@ -155,8 +155,9 @@ MonoBehaviour:
   HalfEdgeDistance: 0.07
   HalfEdgeShorten: 0.34
   FaceInset: 0.1
-  ShowEdgeLabels: 0
-  ShowHalfEdgeLabels: 1
+  ShowVertexLabels: 0
+  ShowEdgeLabels: 1
+  ShowHalfEdgeLabels: 0
 --- !u!4 &1624380895
 Transform:
   m_ObjectHideFlags: 0

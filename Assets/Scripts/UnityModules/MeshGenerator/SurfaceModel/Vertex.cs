@@ -16,11 +16,12 @@ namespace MeshGenerator
 
             var start = HalfEdge;
             var he = start;
+            int max = 100;
             do
             {
                 yield return he.Edge;
                 he = he.Twin.Next;
-            } while (he != start);
+            } while (max-- > 0 && he != start);
         }
 
         public IEnumerable<HalfEdge> HalfEdges()
@@ -29,12 +30,13 @@ namespace MeshGenerator
 
             var start = HalfEdge;
             var he = start;
+            int max = 100;
             do
             {
                 yield return he;
                 yield return he.Twin;
                 he = he.Twin.Next;
-            } while (he != start);
+            } while (max-- > 0 && he != start);
         }
 
 

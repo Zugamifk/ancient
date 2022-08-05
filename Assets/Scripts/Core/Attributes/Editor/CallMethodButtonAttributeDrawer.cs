@@ -20,12 +20,17 @@ public class CallMethodButtonAttributeDrawer : PropertyDrawer
         var rect = position;
         rect.height = 16;
 
-        GUI.enabled = false;
-        EditorGUI.PropertyField(rect, property);
-        GUI.enabled = true;
+        using (var cc = new EditorGUI.ChangeCheckScope())
+        {
+            EditorGUI.PropertyField(rect, property, label);
+            if(cc.changed)
+            {
+                property.serializedObject.ApplyModifiedProperties();
+            }
+        }
 
         rect.y += 20;
-        if (GUI.Button(rect, "Generate Mesh"))
+        if (GUI.Button(rect, button.Label))
         {
             Call(property);
         }
@@ -40,7 +45,7 @@ public class CallMethodButtonAttributeDrawer : PropertyDrawer
             MethodInfo info = type.GetMethod(button.MethodName, BindingFlags.NonPublic | BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public);
             if (info != null)
             {
-                fieldInfo.SetValue(obj.targetObject, info.Invoke(obj.targetObject, null));
+                info.Invoke(obj.targetObject, null);
             }
             else
             {

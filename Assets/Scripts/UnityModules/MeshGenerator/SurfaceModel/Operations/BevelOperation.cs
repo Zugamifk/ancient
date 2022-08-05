@@ -14,6 +14,9 @@ namespace MeshGenerator
 
         Dictionary<Vertex, SplitInfo> _splitVertexLookup = new();
 
+        SurfaceModelBuilder _builder;
+
+        public BevelOperation(SurfaceModelBuilder builder) => _builder = builder;
 
         public void BevelEdges(float amount, params Edge[] edges)
         {
@@ -32,7 +35,7 @@ namespace MeshGenerator
 
         void SplitEdge(Edge edge)
         {
-
+            _builder.RemoveEdge(edge);
         }
 
         void ExplodeVertex(Vertex vertex)

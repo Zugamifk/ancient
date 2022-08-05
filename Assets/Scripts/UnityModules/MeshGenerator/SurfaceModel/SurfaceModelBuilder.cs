@@ -73,6 +73,7 @@ namespace MeshGenerator
 
         public Edge ConnectPoints(Vertex v1, Vertex v2)
         {
+            Debug.Log($"Connect {v1} to {v2}");
             var h1 = CreateHalfEdge(v1);
             var h2 = CreateHalfEdge(v2);
             var edge = CreateEdge(h1, h2);
@@ -124,6 +125,29 @@ namespace MeshGenerator
             h2.Twin = h1;
             h2.Next = h1;
             return edge;
+        }
+
+        public void RemoveEdge(Edge edge)
+        {
+            var left = edge.HalfEdge;
+            var right = left.Twin;
+
+            var fl = left.Face;
+            var fr = right.Face;
+            foreach(var he in right.Loop())
+            {
+                he.Face = fl;
+            }
+            _model.Faces.Remove(fr);
+
+            var lp = left.Previous;
+            var rp = right.Previous;
+            lp.Next = right.Next;
+            rp.Next = left.Next;
+
+            _model.Edges.Remove(edge);
+            _model.HalfEdges.Remove(left);
+            _model.HalfEdges.Remove(right);
         }
     }
 }
