@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MeshGenerator.Editor
+namespace MeshGenerator
 {
     public class ProcessStepper
     {
         int _currentStepIndex = 0;
         List<IStep> _steps = new();
+
+        public SurfaceModelBuilder Builder;
 
         public void AddStep(IStep step)
         {
@@ -18,7 +20,7 @@ namespace MeshGenerator.Editor
         {
             if (_currentStepIndex < _steps.Count)
             {
-                _steps[_currentStepIndex].Do();
+                _steps[_currentStepIndex].Do(Builder);
                 _currentStepIndex++;
             }
         }
@@ -28,7 +30,7 @@ namespace MeshGenerator.Editor
             if(_currentStepIndex > 0)
             {
                 _currentStepIndex--;
-                _steps[_currentStepIndex].Undo();
+                _steps[_currentStepIndex].Undo(Builder);
             }
         }
     }

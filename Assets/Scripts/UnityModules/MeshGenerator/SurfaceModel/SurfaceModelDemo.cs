@@ -8,7 +8,6 @@ namespace MeshGenerator
     [ExecuteInEditMode]
     public class SurfaceModelDemo : MonoBehaviour
     {
-        [CallMethodButton("StepDemoBuild", "Step")]
         [SerializeField]
         public float HalfEdgeDistance = .1f;
         public float HalfEdgeShorten = .1f;
@@ -17,28 +16,17 @@ namespace MeshGenerator
         public bool ShowEdgeLabels;
         public bool ShowHalfEdgeLabels;
 
-        public SurfaceModel Model;
-
+        public SurfaceModel Model = new();
         void OnEnable()
         {
-            Problem();
+            //Problem();
             //CubeFromMesh();
 
-            var va = new SurfaceModelValidator();
-            va.Validate(Model);
+            //var va = new SurfaceModelValidator();
+            //va.Validate(Model);
 
             //var bevel = new BevelOperation(new(Model));
             //bevel.BevelEdges(.2f, Model.Edges[0], Model.Edges[1]);
-        }
-
-        IEnumerator<SurfaceModel> _modelEnum;
-        void StepDemoBuild()
-        {
-            if (_modelEnum.MoveNext())
-            {
-                Model = _modelEnum.Current;
-                SceneView.RepaintAll();
-            }
         }
 
         void CubeFromMesh()
@@ -49,22 +37,21 @@ namespace MeshGenerator
             var m = b.Build(new());
             var smb = new MeshToSurfaceModelBuilder();
             Model = smb.ConvertMesh(m);
-            _modelEnum = smb.ConvertMeshEnumerable(m).GetEnumerator();
         }
 
         void Problem()
         {
             Model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(Model);
-            var v0 = builder.AddPoint(Vector3.zero);
-            var v1 = builder.AddPoint(Vector3.up);
-            var v2 = builder.AddPoint(new Vector3(1, 1, 0));
-            var v3 = builder.AddPoint(Vector3.right);
-            var v4 = builder.AddPoint(Vector3.right * 2);
-            builder.CreateFace(v0, v1, v2);
-            //builder.ConnectPoints(v0, v3);
-            //builder.CreateFace(2, 4, 3);
-            builder.CreateFace(0, 2, 3);
+            //var v0 = builder.AddPoint(Vector3.zero);
+            //var v1 = builder.AddPoint(Vector3.up);
+            //var v2 = builder.AddPoint(new Vector3(1, 1, 0));
+            //var v3 = builder.AddPoint(Vector3.right);
+            //var v4 = builder.AddPoint(Vector3.right * 2);
+            //builder.CreateFace(v0, v1, v2);
+            ////builder.ConnectPoints(v0, v3);
+            ////builder.CreateFace(2, 4, 3);
+            //builder.CreateFace(0, 2, 3);
         }
 
         void TwoByTwo()

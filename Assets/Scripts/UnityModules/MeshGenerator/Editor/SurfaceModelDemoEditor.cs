@@ -8,6 +8,31 @@ namespace MeshGenerator.Editor
     [CustomEditor(typeof(SurfaceModelDemo))]
     public class SurfaceModelDemoEditor : UnityEditor.Editor
     {
+        ProcessStepper _stepper = new();
+
+        private void OnEnable()
+        {
+            _stepper.Builder = new((target as SurfaceModelDemo).Model);
+            _stepper.AddStep(new AddVertexStep(Vector3.zero));
+            _stepper.AddStep(new AddVertexStep(Vector3.up));
+        }
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            if (GUILayout.Button("Forward"))
+            {
+                _stepper.StepForward();
+                SceneView.RepaintAll();
+            }
+
+            if (GUILayout.Button("Back"))
+            {
+                _stepper.StepBack();
+                SceneView.RepaintAll();
+            }
+        }
+
         void OnSceneGUI()
         {
             var smd = (SurfaceModelDemo)target;

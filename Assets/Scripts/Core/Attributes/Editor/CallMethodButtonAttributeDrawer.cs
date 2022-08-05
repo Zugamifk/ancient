@@ -12,7 +12,7 @@ public class CallMethodButtonAttributeDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        return 36;
+        return base.GetPropertyHeight(property, label) + 20;
     }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
