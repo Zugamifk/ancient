@@ -61,10 +61,10 @@ namespace MeshGenerator
             var v2 = builder.AddPoint(new Vector3(1, 1, 0));
             var v3 = builder.AddPoint(Vector3.right);
             var v4 = builder.AddPoint(Vector3.right * 2);
-            builder.ConnectPoints(v0, v3);
             builder.CreateFace(v0, v1, v2);
-            builder.CreateFace(2, 4, 3);
-            //builder.CreateFace(0, 2, 3);
+            //builder.ConnectPoints(v0, v3);
+            //builder.CreateFace(2, 4, 3);
+            builder.CreateFace(0, 2, 3);
         }
 
         void TwoByTwo()

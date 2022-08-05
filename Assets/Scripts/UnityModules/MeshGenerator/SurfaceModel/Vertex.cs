@@ -39,6 +39,33 @@ namespace MeshGenerator
             } while (max-- > 0 && he != start);
         }
 
+        public IEnumerable<HalfEdge> ExitingHalfEdges()
+        {
+            if (HalfEdge == null) yield break;
+
+            var start = HalfEdge;
+            var he = start;
+            int max = 100;
+            do
+            {
+                yield return he;
+                he = he.Twin.Next;
+            } while (max-- > 0 && he != start);
+        }
+
+        public IEnumerable<HalfEdge> EnteringHalfEdges()
+        {
+            if (HalfEdge == null) yield break;
+
+            var start = HalfEdge.Twin;
+            var he = start;
+            int max = 100;
+            do
+            {
+                yield return he;
+                he = he.Twin.Next;
+            } while (max-- > 0 && he != start);
+        }
 
         public override string ToString()
         {

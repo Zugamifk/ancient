@@ -78,20 +78,28 @@ namespace MeshGenerator
             var h2 = CreateHalfEdge(v2);
             var edge = CreateEdge(h1, h2);
 
-            var from = v1.HalfEdges().FirstOrDefault(he => he.Face == h1.Face && he.Vertex != v1);
+            var from = v1.EnteringHalfEdges().FirstOrDefault(he => he.Face == h1.Face);
             if (from != null)
             {
                 var to = from.Next;
                 from.Next = h1;
                 h2.Next = to;
+            } else
+            {
+                Debug.LogWarning($"No half eadge leading to {h1}!");
             }
 
-            from = v2.HalfEdges().FirstOrDefault(he => he.Face == h2.Face && he.Vertex != v2);
+            from = v2.EnteringHalfEdges().FirstOrDefault(he => he.Face == h2.Face);
             if (from != null)
             {
-                var to = from.Next;
+                var v2next = from.Next;
+                var v1next = h1.Next;
                 from.Next = h2;
-                h1.Next = to;
+                h1.Next = v2next;
+            }
+            else
+            {
+                Debug.LogWarning($"No half eadge leading to {h2}!");
             }
 
             v1.HalfEdge = h1;
