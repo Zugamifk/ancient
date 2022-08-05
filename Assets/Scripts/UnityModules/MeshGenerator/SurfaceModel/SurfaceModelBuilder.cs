@@ -19,6 +19,11 @@ namespace MeshGenerator
             return v;
         }
 
+        public void RemovePoint(Vertex v)
+        {
+            _model.Vertices.Remove(v);
+        }
+
         public Face CreateFace(params int[] indices)
         {
             return CreateFace(indices.Select(i => _model.Vertices[i]).ToArray());
