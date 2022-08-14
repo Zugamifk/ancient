@@ -118,7 +118,13 @@ namespace MeshGenerator
             return edge;
         }
 
-        internal HalfEdge CreateHalfEdge(Vertex vertex)
+        public void CreateHalfEdge(int index)
+        {
+            var vertex = _model.Vertices[index];
+            CreateHalfEdge(vertex);
+        }
+
+        HalfEdge CreateHalfEdge(Vertex vertex)
         {
             var h = new HalfEdge();
             h.Label = $"H{_model.HalfEdges.Count}";

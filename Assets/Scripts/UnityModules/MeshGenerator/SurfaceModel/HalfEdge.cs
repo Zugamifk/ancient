@@ -41,7 +41,7 @@ namespace MeshGenerator
 
         public override string ToString()
         {
-            return $"{Label} -> {Next.Label} [Twin: {Twin.Label}]";
+            return $"{Label} -> {Next?.Label} [Twin: {Twin?.Label}]";
         }
     }
 }

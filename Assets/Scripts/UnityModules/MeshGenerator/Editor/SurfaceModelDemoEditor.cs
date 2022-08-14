@@ -14,6 +14,7 @@ namespace MeshGenerator.Editor
         {
             _stepper.Builder = new((target as SurfaceModelDemo).Model);
             _stepper.AddStep(new AddVertexStep(new Vector3(0, 0, 0)));
+            _stepper.AddStep(new CreateHalfEdgeStep(0));
             _stepper.AddStep(new AddVertexStep(new Vector3(0, 1, 0)));
             _stepper.AddStep(new ConnectVerticesStep(0, 1));
             _stepper.AddStep(new AddVertexStep(new Vector3(1,1,0)));
@@ -88,7 +89,7 @@ namespace MeshGenerator.Editor
             foreach (var h in model.HalfEdges)
             {
                 var v1 = h.Vertex.Position;
-                var v2 = h.Twin.Vertex.Position;
+                var v2 = h.Twin?.Vertex.Position ?? Vector3.up;
                 var dir = (v2 - v1).normalized;
                 var n = Vector3.Cross(dir, fwd);
 
@@ -103,13 +104,16 @@ namespace MeshGenerator.Editor
                     Handles.Label(Vector3.Lerp(p1, p2, .25f), h.ToString());
                 }
 
-                var v3 = h.Next.EndVertex.Position;
-                var dir2 = (v3 - v2).normalized;
-                var n2 = Vector3.Cross(dir2, fwd);
-                var p3 = v2 + dir2 * smd.HalfEdgeShorten + n2 * smd.HalfEdgeDistance;
+                if (h.Next != null)
+                {
+                    var v3 = h.Next.EndVertex.Position;
+                    var dir2 = (v3 - v2).normalized;
+                    var n2 = Vector3.Cross(dir2, fwd);
+                    var p3 = v2 + dir2 * smd.HalfEdgeShorten + n2 * smd.HalfEdgeDistance;
 
-                Handles.color = Color.red;
-                HandleX.DrawArrow(p2, p3, fwd, .02f);
+                    Handles.color = Color.red;
+                    HandleX.DrawArrow(p2, p3, fwd, .02f);
+                }
             }
 
             foreach(var f in model.Faces)

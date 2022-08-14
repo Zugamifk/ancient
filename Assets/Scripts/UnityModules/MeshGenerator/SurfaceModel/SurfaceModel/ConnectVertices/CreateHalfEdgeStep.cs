@@ -6,9 +6,15 @@ namespace MeshGenerator
 {
     public class CreateHalfEdgeStep : ISubStep
     {
+        int _index;
+        public CreateHalfEdgeStep(int index)
+        {
+            _index = index;
+        }
+
         public void Do(SurfaceModelBuilder builder)
         {
-            throw new System.NotImplementedException();
+            builder.CreateHalfEdge(_index);
         }
 
         public void Undo(SurfaceModelBuilder builder)
