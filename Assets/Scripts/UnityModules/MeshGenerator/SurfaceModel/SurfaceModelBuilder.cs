@@ -118,12 +118,6 @@ namespace MeshGenerator
             return edge;
         }
 
-        public void CreateHalfEdge(int index)
-        {
-            var vertex = _model.Vertices[index];
-            CreateHalfEdge(vertex);
-        }
-
         HalfEdge CreateHalfEdge(Vertex vertex)
         {
             var h = new HalfEdge();
@@ -173,5 +167,18 @@ namespace MeshGenerator
             _model.HalfEdges.Remove(left);
             _model.HalfEdges.Remove(right);
         }
+
+        #region debug
+        public HalfEdge CreateHalfEdge(int index)
+        {
+            var vertex = _model.Vertices[index];
+            return CreateHalfEdge(vertex);
+        }
+
+        public void RemoveHalfEdge(HalfEdge h)
+        {
+            _model.HalfEdges.Remove(h);
+        }
+        #endregion
     }
 }
