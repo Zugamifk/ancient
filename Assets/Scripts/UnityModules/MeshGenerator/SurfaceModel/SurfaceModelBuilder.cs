@@ -58,7 +58,7 @@ namespace MeshGenerator
             var  h = from.HalfEdges().FirstOrDefault(h => h.EndVertex == to);
             if(h == null)
             {
-                h = ConnectPoints(from, to).HalfEdge;
+                h = CreateEdge(from, to).HalfEdge;
             }
             return h;
         }
@@ -71,12 +71,12 @@ namespace MeshGenerator
             prev.Next = next;
         }
 
-        public Edge ConnectPoints(int a, int b)
+        public Edge CreateEdge(int a, int b)
         {
-            return ConnectPoints(_model.Vertices[a], _model.Vertices[b]);
+            return CreateEdge(_model.Vertices[a], _model.Vertices[b]);
         }
 
-        public Edge ConnectPoints(Vertex v1, Vertex v2)
+        public Edge CreateEdge(Vertex v1, Vertex v2)
         {
             Debug.Log($"Connect {v1} to {v2}");
             var h1 = CreateHalfEdge(v1);

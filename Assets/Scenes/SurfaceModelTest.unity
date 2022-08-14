@@ -152,12 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effd3bc5bf6d92d4bb6f4be6394aab2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HalfEdgeDistance: 0.07
-  HalfEdgeShorten: 0.34
+  HalfEdgeDistance: 0.1
+  HalfEdgeShorten: 0.28
   FaceInset: 0.1
-  ShowVertexLabels: 0
-  ShowEdgeLabels: 1
-  ShowHalfEdgeLabels: 0
+  ShowVertexLabels: 1
+  ShowEdgeLabels: 0
+  ShowHalfEdgeLabels: 1
 --- !u!4 &1624380895
 Transform:
   m_ObjectHideFlags: 0

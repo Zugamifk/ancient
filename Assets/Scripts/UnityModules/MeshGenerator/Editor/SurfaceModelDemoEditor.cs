@@ -15,6 +15,10 @@ namespace MeshGenerator.Editor
             _stepper.Builder = new((target as SurfaceModelDemo).Model);
             _stepper.AddStep(new AddVertexStep(Vector3.zero));
             _stepper.AddStep(new AddVertexStep(Vector3.up));
+            _stepper.AddStep(new ConnectVerticesStep(0, 1));
+            _stepper.AddStep(new AddVertexStep(new Vector3(1,1,0)));
+            _stepper.AddStep(new ConnectVerticesStep(1, 2));
+            _stepper.AddStep(new ConnectVerticesStep(0, 2));
         }
 
         public override void OnInspectorGUI()
