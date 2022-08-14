@@ -10,6 +10,11 @@ namespace MeshGenerator
 
         public SurfaceModelBuilder(SurfaceModel model) => _model = model;
 
+        public void Clear()
+        {
+            _model.Clear();
+        }
+
         public Vertex AddPoint(Vector3 point)
         {
             var v = new Vertex();

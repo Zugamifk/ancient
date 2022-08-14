@@ -10,6 +10,7 @@ namespace MeshGenerator
         List<IStep> _steps = new();
 
         public SurfaceModelBuilder Builder;
+        public int CurrentStep => _currentStepIndex;
 
         public void AddStep(IStep step)
         {
@@ -32,6 +33,12 @@ namespace MeshGenerator
                 _currentStepIndex--;
                 _steps[_currentStepIndex].Undo(Builder);
             }
+        }
+
+        public void Reset()
+        {
+            _currentStepIndex = 0;
+            Builder.Clear();
         }
     }
 }

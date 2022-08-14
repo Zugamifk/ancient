@@ -12,5 +12,13 @@ namespace MeshGenerator
         public List<Face> Faces = new();
 
         public bool IsEmpty => Vertices.Count == 0 && HalfEdges.Count == 0 && Edges.Count == 0 && Faces.Count == 0;
+
+        public void Clear()
+        {
+            Vertices.Clear();
+            HalfEdges.Clear();
+            Edges.Clear();
+            Faces.Clear();
+        }
     }
 }

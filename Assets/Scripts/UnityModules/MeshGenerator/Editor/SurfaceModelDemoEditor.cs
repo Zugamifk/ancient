@@ -13,26 +13,41 @@ namespace MeshGenerator.Editor
         private void OnEnable()
         {
             _stepper.Builder = new((target as SurfaceModelDemo).Model);
-            _stepper.AddStep(new AddVertexStep(Vector3.zero));
-            _stepper.AddStep(new AddVertexStep(Vector3.up));
+            _stepper.AddStep(new AddVertexStep(new Vector3(0, 0, 0)));
+            _stepper.AddStep(new AddVertexStep(new Vector3(0, 1, 0)));
             _stepper.AddStep(new ConnectVerticesStep(0, 1));
             _stepper.AddStep(new AddVertexStep(new Vector3(1,1,0)));
             _stepper.AddStep(new ConnectVerticesStep(1, 2));
             _stepper.AddStep(new ConnectVerticesStep(0, 2));
+            _stepper.AddStep(new AddFaceStep(0, 1, 2));
+            _stepper.AddStep(new AddVertexStep(new Vector3(1, 0, 0)));
+            _stepper.AddStep(new ConnectVerticesStep(0, 3));
+            _stepper.AddStep(new ConnectVerticesStep(3, 2));
         }
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            if (GUILayout.Button("Forward"))
-            {
-                _stepper.StepForward();
-                SceneView.RepaintAll();
+
+            using (new EditorGUILayout.HorizontalScope()) {
+                if (GUILayout.Button("<<"))
+                {
+                    _stepper.StepBack();
+                    SceneView.RepaintAll();
+                }
+
+                GUILayout.Label($"Step {_stepper.CurrentStep}");
+
+                if (GUILayout.Button(">>"))
+                {
+                    _stepper.StepForward();
+                    SceneView.RepaintAll();
+                }
             }
 
-            if (GUILayout.Button("Back"))
+            if(GUILayout.Button("Clear"))
             {
-                _stepper.StepBack();
+                _stepper.Reset();
                 SceneView.RepaintAll();
             }
         }
