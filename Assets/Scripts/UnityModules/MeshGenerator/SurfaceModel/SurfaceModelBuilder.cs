@@ -146,33 +146,38 @@ namespace MeshGenerator
             return edge;
         }
 
-        public void RemoveEdge(Edge edge)
+        public void DisconnectVertices(Vertex v0, Vertex v1)
         {
+            var edge = v0.HalfEdges().FirstOrDefault(he => he.Twin.Vertex == v1).Edge;
             var left = edge.HalfEdge;
             var right = left.Twin;
 
             var fl = left.Face;
             var fr = right.Face;
-            foreach(var he in right.Loop())
+            foreach (var he in right.Loop())
             {
                 he.Face = fl;
             }
             _model.Faces.Remove(fr);
 
-            var lp = left.Previous;
-            if (lp != null)
-            {
-                lp.Next = right.Next;
-            }
-            var rp = right.Previous;
-            if (rp != null)
-            {
-                rp.Next = left.Next;
-            }
-
-            _model.Edges.Remove(edge);
+            DisconnectVertices(v0, v1);
             _model.HalfEdges.Remove(left);
             _model.HalfEdges.Remove(right);
+        }
+
+        public void RemoveEdge(Edge edge)
+        {
+            var left = edge.HalfEdge;
+            var right = left.Twin;
+            left.Next = null;
+            left.Twin = null;
+            left.Edge = null;
+
+            right.Next = null;
+            right.Twin = null;
+            right.Edge = null;
+
+            _model.Edges.Remove(edge);
         }
 
         #region debug
