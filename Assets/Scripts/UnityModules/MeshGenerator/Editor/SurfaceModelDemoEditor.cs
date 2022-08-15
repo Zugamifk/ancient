@@ -15,16 +15,16 @@ namespace MeshGenerator.Editor
             _stepper.Builder = new((target as SurfaceModelDemo).Model);
             _stepper.AddStep(new AddVertexStep(new Vector3(0, 0, 0)));
             _stepper.AddStep(new AddVertexStep(new Vector3(0, 1, 0)));
-            _stepper.AddSteps(ConnectVerticesStep.InSubsteps(0, 1));
-
             _stepper.AddStep(new ConnectVerticesStep(0, 1));
             _stepper.AddStep(new AddVertexStep(new Vector3(1,1,0)));
             _stepper.AddStep(new ConnectVerticesStep(1, 2));
-            _stepper.AddStep(new ConnectVerticesStep(0, 2));
-            _stepper.AddStep(new AddFaceStep(0, 1, 2));
-            _stepper.AddStep(new AddVertexStep(new Vector3(1, 0, 0)));
-            _stepper.AddStep(new ConnectVerticesStep(0, 3));
-            _stepper.AddStep(new ConnectVerticesStep(3, 2));
+            _stepper.AddSteps(ConnectVerticesStep.InSubsteps(0, 2));
+
+            //_stepper.AddStep(new ConnectVerticesStep(0, 2));
+            //_stepper.AddStep(new AddFaceStep(0, 1, 2));
+            //_stepper.AddStep(new AddVertexStep(new Vector3(1, 0, 0)));
+            //_stepper.AddStep(new ConnectVerticesStep(0, 3));
+            //_stepper.AddStep(new ConnectVerticesStep(3, 2));
         }
 
         public override void OnInspectorGUI()
@@ -69,6 +69,15 @@ namespace MeshGenerator.Editor
             foreach (var v in model.Vertices)
             {
                 Handles.DrawSolidDisc(v.Position, fwd, .1f);
+                if(v.HalfEdge!=null)
+                {
+                    var v1 = v.Position;
+                    var v2 = v.HalfEdge.Twin?.Vertex.Position ?? v1 + Vector3.up;
+                    var dir = (v2 - v1).normalized;
+                    var n = Vector3.Cross(dir, fwd);
+                    var hepos = v.Position + dir * smd.HalfEdgeShorten + n * smd.HalfEdgeDistance;
+                    HandleX.DrawArrow(v.Position, hepos, fwd, .02f);
+                }
                 if (smd.ShowVertexLabels)
                 {
                     Handles.Label(v.Position, v.Label);
