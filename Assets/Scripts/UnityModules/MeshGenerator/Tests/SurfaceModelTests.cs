@@ -73,7 +73,7 @@ namespace MeshGenerator.Tests
 
             var v0 = builder.AddPoint(Vector3.zero);
             var v1 = builder.AddPoint(Vector3.up);
-            builder.CreateEdge(v0, v1);
+            builder.ConnectVertices(v0, v1);
 
             Assert.That(model.Edges.Count, Is.EqualTo(1));
         }
@@ -86,7 +86,7 @@ namespace MeshGenerator.Tests
 
             var v0 = builder.AddPoint(Vector3.zero);
             var v1 = builder.AddPoint(Vector3.up);
-            builder.CreateEdge(v0, v1);
+            builder.ConnectVertices(v0, v1);
 
             var edge = model.Edges[0];
             var h1 = edge.HalfEdge;
@@ -107,7 +107,7 @@ namespace MeshGenerator.Tests
 
             var v0 = builder.AddPoint(Vector3.zero);
             var v1 = builder.AddPoint(Vector3.up);
-            builder.CreateEdge(v0, v1);
+            builder.ConnectVertices(v0, v1);
 
             var edge = model.Edges[0];
             var h1 = edge.HalfEdge;
@@ -125,7 +125,7 @@ namespace MeshGenerator.Tests
 
             var v0 = builder.AddPoint(Vector3.zero);
             var v1 = builder.AddPoint(Vector3.up);
-            builder.CreateEdge(v0, v1);
+            builder.ConnectVertices(v0, v1);
 
             var edge = model.Edges[0];
             var h1 = edge.HalfEdge;
@@ -143,7 +143,7 @@ namespace MeshGenerator.Tests
 
             var v0 = builder.AddPoint(Vector3.zero);
             var v1 = builder.AddPoint(Vector3.up);
-            builder.CreateEdge(v0, v1);
+            builder.ConnectVertices(v0, v1);
 
             Assert.That(v0.HalfEdge, Is.Not.Null);
             Assert.That(v1.HalfEdge, Is.Not.Null);
@@ -155,7 +155,7 @@ namespace MeshGenerator.Tests
             var model = new SurfaceModel();
             var builder = new SurfaceModelBuilder(model);
 
-            Assert.That(()=> builder.CreateEdge(0, 1), 
+            Assert.That(()=> builder.ConnectVertices(0, 1), 
                 Throws.InstanceOf<System.ArgumentOutOfRangeException>());
         }
 
@@ -167,7 +167,7 @@ namespace MeshGenerator.Tests
 
             var v0 = builder.AddPoint(Vector3.zero);
             var v1 = builder.AddPoint(Vector3.up);
-            builder.CreateEdge(v0, v1);
+            builder.ConnectVertices(v0, v1);
 
             var h1 = model.HalfEdges[0];
             var h2 = model.HalfEdges[1];
@@ -184,7 +184,7 @@ namespace MeshGenerator.Tests
 
             var v0 = builder.AddPoint(Vector3.zero);
             var v1 = builder.AddPoint(Vector3.up);
-            builder.CreateEdge(v0, v1);
+            builder.ConnectVertices(v0, v1);
 
             var h1 = model.HalfEdges[0];
             var h2 = model.HalfEdges[1];
@@ -201,7 +201,7 @@ namespace MeshGenerator.Tests
 
             var v1 = builder.AddPoint(Vector3.zero);
             var v2 = builder.AddPoint(Vector3.up);
-            var e = builder.CreateEdge(v1, v2);
+            var e = builder.ConnectVertices(v1, v2);
 
             Assert.That(e.HalfEdge.StartVertex, Is.EqualTo(v1));
         }
@@ -214,7 +214,7 @@ namespace MeshGenerator.Tests
 
             var v1 = builder.AddPoint(Vector3.zero);
             var v2 = builder.AddPoint(Vector3.up);
-            var e = builder.CreateEdge(v1, v2);
+            var e = builder.ConnectVertices(v1, v2);
 
             Assert.That(e.HalfEdge.EndVertex, Is.EqualTo(v2));
         }
@@ -227,10 +227,10 @@ namespace MeshGenerator.Tests
 
             var v1 = builder.AddPoint(Vector3.zero);
             var v2 = builder.AddPoint(Vector3.up);
-            var e1 = builder.CreateEdge(v1, v2);
+            var e1 = builder.ConnectVertices(v1, v2);
 
             var v3 = builder.AddPoint(Vector3.up);
-            var e2 = builder.CreateEdge(v2, v3);
+            var e2 = builder.ConnectVertices(v2, v3);
 
             Assert.That(e1.IsConnectedTo(e2));
             Assert.That(e2.IsConnectedTo(e1));
@@ -244,10 +244,10 @@ namespace MeshGenerator.Tests
 
             var v1 = builder.AddPoint(Vector3.zero);
             var v2 = builder.AddPoint(Vector3.up);
-            var e1 = builder.CreateEdge(v1, v2);
+            var e1 = builder.ConnectVertices(v1, v2);
 
             var v3 = builder.AddPoint(Vector3.up);
-            var e2 = builder.CreateEdge(v2, v3);
+            var e2 = builder.ConnectVertices(v2, v3);
 
             Assert.That(e1.HalfEdge.Next, Is.EqualTo(e2.HalfEdge));
         }
@@ -260,7 +260,7 @@ namespace MeshGenerator.Tests
 
             var v1 = builder.AddPoint(Vector3.zero);
             var v2 = builder.AddPoint(Vector3.up);
-            var e = builder.CreateEdge(v1, v2);
+            var e = builder.ConnectVertices(v1, v2);
 
             Assert.That(e.HalfEdge.Face, Is.EqualTo(Face.Outside));
             Assert.That(e.HalfEdge.Twin.Face, Is.EqualTo(Face.Outside));
@@ -274,10 +274,10 @@ namespace MeshGenerator.Tests
 
             var v1 = builder.AddPoint(Vector3.zero);
             var v2 = builder.AddPoint(Vector3.up);
-            var e1 = builder.CreateEdge(v1, v2);
+            var e1 = builder.ConnectVertices(v1, v2);
 
             var v3 = builder.AddPoint(Vector3.up);
-            var e2 = builder.CreateEdge(v2, v3);
+            var e2 = builder.ConnectVertices(v2, v3);
 
             Assert.That(v2.Edges(), Contains.Item(e1));
             Assert.That(v2.Edges(), Contains.Item(e2));
@@ -293,9 +293,9 @@ namespace MeshGenerator.Tests
             var v2 = builder.AddPoint(Vector3.up);
             var v3 = builder.AddPoint(Vector3.right);
 
-            var e = builder.CreateEdge(v1, v2);
-            builder.CreateEdge(v2, v3);
-            builder.CreateEdge(v3, v1);
+            var e = builder.ConnectVertices(v1, v2);
+            builder.ConnectVertices(v2, v3);
+            builder.ConnectVertices(v3, v1);
 
             var start = e.HalfEdge;
             var next = start;
@@ -365,7 +365,7 @@ namespace MeshGenerator.Tests
 
             var v1 = builder.AddPoint(Vector3.zero);
             var v2 = builder.AddPoint(Vector3.up);
-            var e = builder.CreateEdge(v1, v2);
+            var e = builder.ConnectVertices(v1, v2);
 
             //Assert.Throws<System.InvalidOperationException>(() => builder.CreateFace(e.HalfEdge));
         }

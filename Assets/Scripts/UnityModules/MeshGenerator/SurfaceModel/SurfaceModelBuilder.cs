@@ -9,6 +9,7 @@ namespace MeshGenerator
         SurfaceModel _model;
 
         public SurfaceModelBuilder(SurfaceModel model) => _model = model;
+        internal SurfaceModel Model => _model;
 
         public void Clear()
         {
@@ -63,7 +64,7 @@ namespace MeshGenerator
             var  h = from.HalfEdges().FirstOrDefault(h => h.EndVertex == to);
             if(h == null)
             {
-                h = CreateEdge(from, to).HalfEdge;
+                h = ConnectVertices(from, to).HalfEdge;
             }
             return h;
         }
@@ -76,12 +77,12 @@ namespace MeshGenerator
             prev.Next = next;
         }
 
-        public Edge CreateEdge(int a, int b)
+        public Edge ConnectVertices(int a, int b)
         {
-            return CreateEdge(_model.Vertices[a], _model.Vertices[b]);
+            return ConnectVertices(_model.Vertices[a], _model.Vertices[b]);
         }
 
-        public Edge CreateEdge(Vertex v1, Vertex v2)
+        public Edge ConnectVertices(Vertex v1, Vertex v2)
         {
             Debug.Log($"Connect {v1} to {v2}");
             var h1 = CreateHalfEdge(v1);
@@ -128,7 +129,7 @@ namespace MeshGenerator
             return h;
         }
 
-        Edge CreateEdge(HalfEdge h1, HalfEdge h2)
+        public Edge CreateEdge(HalfEdge h1, HalfEdge h2)
         {
             var edge = new Edge();
             edge.Label = $"E{_model.Edges.Count}";
@@ -159,9 +160,15 @@ namespace MeshGenerator
             _model.Faces.Remove(fr);
 
             var lp = left.Previous;
+            if (lp != null)
+            {
+                lp.Next = right.Next;
+            }
             var rp = right.Previous;
-            lp.Next = right.Next;
-            rp.Next = left.Next;
+            if (rp != null)
+            {
+                rp.Next = left.Next;
+            }
 
             _model.Edges.Remove(edge);
             _model.HalfEdges.Remove(left);

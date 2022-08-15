@@ -14,7 +14,7 @@ namespace MeshGenerator
         public Edge Edge;
         public Face Face;
 
-        public HalfEdge Previous => Vertex.HalfEdges().First(he => he.Next == this);
+        public HalfEdge Previous => Vertex.HalfEdges().FirstOrDefault(he => he.Next == this);
         public Vertex StartVertex => Vertex;
         public Vertex EndVertex => Twin.StartVertex;
 

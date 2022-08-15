@@ -17,6 +17,14 @@ namespace MeshGenerator
             _steps.Add(step);
         }
 
+        public void AddSteps(IEnumerable<IStep> steps)
+        {
+            foreach(var s in steps)
+            {
+                AddStep(s);
+            }
+        }
+
         public void StepForward()
         {
             if (_currentStepIndex < _steps.Count)

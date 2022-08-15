@@ -14,8 +14,9 @@ namespace MeshGenerator.Editor
         {
             _stepper.Builder = new((target as SurfaceModelDemo).Model);
             _stepper.AddStep(new AddVertexStep(new Vector3(0, 0, 0)));
-            _stepper.AddStep(new CreateHalfEdgeStep(0));
             _stepper.AddStep(new AddVertexStep(new Vector3(0, 1, 0)));
+            _stepper.AddSteps(ConnectVerticesStep.InSubsteps(0, 1));
+
             _stepper.AddStep(new ConnectVerticesStep(0, 1));
             _stepper.AddStep(new AddVertexStep(new Vector3(1,1,0)));
             _stepper.AddStep(new ConnectVerticesStep(1, 2));
@@ -89,7 +90,7 @@ namespace MeshGenerator.Editor
             foreach (var h in model.HalfEdges)
             {
                 var v1 = h.Vertex.Position;
-                var v2 = h.Twin?.Vertex.Position ?? Vector3.up;
+                var v2 = h.Twin?.Vertex.Position ?? v1 + Vector3.up;
                 var dir = (v2 - v1).normalized;
                 var n = Vector3.Cross(dir, fwd);
 
