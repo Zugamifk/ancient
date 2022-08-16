@@ -13,6 +13,8 @@ namespace MeshGenerator
             int _index;
             HalfEdge _halfEdge;
             public HalfEdge HalfEdge => _halfEdge;
+            public int Index => _index;
+            public string Label => $"Create HalfEdge On Vertex {_index}";
             public CreateHalfEdgeStep(int index)
             {
                 _index = index;
@@ -38,6 +40,8 @@ namespace MeshGenerator
                 _h1 = h1;
             }
 
+            public string Label => $"Create Edge from {_h0.Index} to {_h1.Index}";
+
             public void Do(SurfaceModelBuilder builder)
             {
                 _edge = builder.CreateEdge(_h0.HalfEdge, _h1.HalfEdge);
@@ -57,6 +61,8 @@ namespace MeshGenerator
                 _h0 = h0;
                 _h1 = h1;
             }
+
+            public string Label => $"Update HalfEdge connections from {_h0.Index} to {_h1.Index}";
 
             public void Do(SurfaceModelBuilder builder)
             {
@@ -96,6 +102,9 @@ namespace MeshGenerator
                 _step = step;
 
             }
+
+            public string Label => $"Set HalfEdge for vertex {_index} to {_step.HalfEdge}";
+
             public void Do(SurfaceModelBuilder builder)
             {
                 builder.Model.Vertices[_index].HalfEdge = _step.HalfEdge;
@@ -108,6 +117,8 @@ namespace MeshGenerator
         }
 
         int _i0, _i1;
+
+        public string Label => $"Connect vertices {_i0} and {_i1}";
 
         public static IEnumerable<IStep> InSubsteps(int i0, int i1)
         {

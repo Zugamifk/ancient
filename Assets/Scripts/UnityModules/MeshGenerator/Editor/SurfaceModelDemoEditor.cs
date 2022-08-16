@@ -18,18 +18,19 @@ namespace MeshGenerator.Editor
             _stepper.AddStep(new ConnectVerticesStep(0, 1));
             _stepper.AddStep(new AddVertexStep(new Vector3(1,1,0)));
             _stepper.AddStep(new ConnectVerticesStep(1, 2));
-            //_stepper.AddSteps(ConnectVerticesStep.InSubsteps(0, 2));
-
             _stepper.AddStep(new ConnectVerticesStep(0, 2));
             _stepper.AddStep(new AddFaceStep(0, 1, 2));
             _stepper.AddStep(new AddVertexStep(new Vector3(1, 0, 0)));
-            _stepper.AddStep(new ConnectVerticesStep(0, 3));
+            _stepper.AddSteps(ConnectVerticesStep.InSubsteps(0, 3));
+            //_stepper.AddStep(new ConnectVerticesStep(0, 3));
             _stepper.AddStep(new ConnectVerticesStep(3, 2));
         }
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
+
+            GUILayout.Label("Next: "+_stepper.CurrentStepLabel);
 
             using (new EditorGUILayout.HorizontalScope()) {
                 if (GUILayout.Button("<<"))

@@ -11,7 +11,7 @@ namespace MeshGenerator
 
         public SurfaceModelBuilder Builder;
         public int CurrentStep => _currentStepIndex;
-
+        public string CurrentStepLabel => _currentStepIndex > 0 && _currentStepIndex < _steps.Count ? _steps[_currentStepIndex].Label : "-";
         public void AddStep(IStep step)
         {
             _steps.Add(step);
@@ -19,7 +19,7 @@ namespace MeshGenerator
 
         public void AddSteps(IEnumerable<IStep> steps)
         {
-            foreach(var s in steps)
+            foreach (var s in steps)
             {
                 AddStep(s);
             }
@@ -36,7 +36,7 @@ namespace MeshGenerator
 
         public void StepBack()
         {
-            if(_currentStepIndex > 0)
+            if (_currentStepIndex > 0)
             {
                 _currentStepIndex--;
                 _steps[_currentStepIndex].Undo(Builder);

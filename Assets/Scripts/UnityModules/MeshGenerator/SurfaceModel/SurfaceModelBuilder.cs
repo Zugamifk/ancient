@@ -59,6 +59,15 @@ namespace MeshGenerator
             return face;
         }
 
+        public void RemoveFace(Face face)
+        {
+            foreach(var he in face.HalfEdge.Loop())
+            {
+                he.Face = Face.Outside;
+            }
+            _model.Faces.Remove(face);
+        }
+
         HalfEdge GetHalfEdge(Vertex from, Vertex to)
         {
             var h = from.HalfEdges().FirstOrDefault(h => h.EndVertex == to);
@@ -181,30 +190,6 @@ namespace MeshGenerator
             {
                 rf.Next = left.Next;
             }
-            //var from = v1.EnteringHalfEdges().FirstOrDefault(he => he.Face == h1.Face);
-            //if (from != null)
-            //{
-            //    var to = from.Next;
-            //    from.Next = h1;
-            //    h2.Next = to;
-            //}
-            //else
-            //{
-            //    Debug.LogWarning($"No half eadge leading to {h1}!");
-            //}
-
-            //from = v2.EnteringHalfEdges().FirstOrDefault(he => he.Face == h2.Face);
-            //if (from != null)
-            //{
-            //    var v2next = from.Next;
-            //    var v1next = h1.Next;
-            //    from.Next = h2;
-            //    h1.Next = v2next;
-            //}
-            //else
-            //{
-            //    Debug.LogWarning($"No half eadge leading to {h2}!");
-            //}
 
             RemoveEdge(edge);
             _model.HalfEdges.Remove(left);

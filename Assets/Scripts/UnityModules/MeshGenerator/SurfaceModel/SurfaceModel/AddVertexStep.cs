@@ -10,6 +10,9 @@ namespace MeshGenerator
         Vertex _vertex;
 
         public AddVertexStep(Vector3 point) => _point = point;
+
+        public string Label => $"Add vertex at {_point}";
+
         public void Do(SurfaceModelBuilder builder)
         {
             _vertex = builder.AddPoint(_point);
