@@ -116,7 +116,7 @@ namespace MeshGenerator.Editor
 
                 if (h.Next != null)
                 {
-                    var v3 = h.Next.EndVertex.Position;
+                    var v3 = h.Next?.EndVertex?.Position ?? Vector3.zero;
                     var dir2 = (v3 - v2).normalized;
                     var n2 = Vector3.Cross(dir2, fwd);
                     var p3 = v2 + dir2 * smd.HalfEdgeShorten + n2 * smd.HalfEdgeDistance;

@@ -108,7 +108,6 @@ namespace MeshGenerator
         }
 
         int _i0, _i1;
-        Edge _edge;
 
         public static IEnumerable<IStep> InSubsteps(int i0, int i1)
         {
@@ -131,12 +130,12 @@ namespace MeshGenerator
 
         public void Do(SurfaceModelBuilder builder)
         {
-            _edge = builder.ConnectVertices(_i0, _i1);
+            builder.ConnectVertices(_i0, _i1);
         }
 
         public void Undo(SurfaceModelBuilder builder)
         {
-            builder.RemoveEdge(_edge);
+            builder.DisconnectVertices(_i0, _i1);
         }
     }
 }

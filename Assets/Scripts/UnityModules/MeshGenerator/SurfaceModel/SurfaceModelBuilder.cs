@@ -46,7 +46,7 @@ namespace MeshGenerator
                 var p2 = points[(i + 1) % points.Length];
                 var h0 = GetHalfEdge(p0, p1);
                 var h1 = GetHalfEdge(p1, p2);
-                if (h0.Next!=h1)
+                if (h0.Next != h1)
                 {
                     SetNext(h0, h1);
                 }
@@ -61,8 +61,8 @@ namespace MeshGenerator
 
         HalfEdge GetHalfEdge(Vertex from, Vertex to)
         {
-            var  h = from.HalfEdges().FirstOrDefault(h => h.EndVertex == to);
-            if(h == null)
+            var h = from.HalfEdges().FirstOrDefault(h => h.EndVertex == to);
+            if (h == null)
             {
                 h = ConnectVertices(from, to).HalfEdge;
             }
@@ -95,7 +95,8 @@ namespace MeshGenerator
                 var to = from.Next;
                 from.Next = h1;
                 h2.Next = to;
-            } else
+            }
+            else
             {
                 Debug.LogWarning($"No half eadge leading to {h1}!");
             }
@@ -146,6 +147,11 @@ namespace MeshGenerator
             return edge;
         }
 
+        public void DisconnectVertices(int i0, int i1)
+        {
+            DisconnectVertices(_model.Vertices[i0], _model.Vertices[i1]);
+        }
+
         public void DisconnectVertices(Vertex v0, Vertex v1)
         {
             var edge = v0.HalfEdges().FirstOrDefault(he => he.Twin.Vertex == v1).Edge;
@@ -160,7 +166,47 @@ namespace MeshGenerator
             }
             _model.Faces.Remove(fr);
 
-            DisconnectVertices(v0, v1);
+            var newv0edge = v0.HalfEdge.Twin.Next;
+            var newv1edge = v1.HalfEdge.Twin.Next;
+            v0.HalfEdge = newv0edge != v0.HalfEdge ? newv0edge : null;
+            v1.HalfEdge = newv1edge != v1.HalfEdge ? newv1edge : null;
+
+            var lf = left.Previous;
+            var rf = right.Previous;
+            if (lf != null)
+            {
+                lf.Next = right.Next;
+            }
+            if (rf != null)
+            {
+                rf.Next = left.Next;
+            }
+            //var from = v1.EnteringHalfEdges().FirstOrDefault(he => he.Face == h1.Face);
+            //if (from != null)
+            //{
+            //    var to = from.Next;
+            //    from.Next = h1;
+            //    h2.Next = to;
+            //}
+            //else
+            //{
+            //    Debug.LogWarning($"No half eadge leading to {h1}!");
+            //}
+
+            //from = v2.EnteringHalfEdges().FirstOrDefault(he => he.Face == h2.Face);
+            //if (from != null)
+            //{
+            //    var v2next = from.Next;
+            //    var v1next = h1.Next;
+            //    from.Next = h2;
+            //    h1.Next = v2next;
+            //}
+            //else
+            //{
+            //    Debug.LogWarning($"No half eadge leading to {h2}!");
+            //}
+
+            RemoveEdge(edge);
             _model.HalfEdges.Remove(left);
             _model.HalfEdges.Remove(right);
         }

@@ -16,7 +16,7 @@ namespace MeshGenerator
 
         public HalfEdge Previous => Vertex.HalfEdges().FirstOrDefault(he => he.Next == this);
         public Vertex StartVertex => Vertex;
-        public Vertex EndVertex => Twin.StartVertex;
+        public Vertex EndVertex => Twin?.StartVertex;
 
         static HashSet<HalfEdge> _visited = new();
         public IEnumerable<HalfEdge> Loop()
