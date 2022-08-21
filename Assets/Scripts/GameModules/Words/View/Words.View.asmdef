@@ -1,0 +1,17 @@
+{
+   "name": "Words.View",
+   "rootNamespace": "Words.View",
+   "references": [
+       "GUID:2f3bdbbc90cc8864c965efb143a15d16",
+       "GUID:32066ae450e47dc498e4028b3048c1ee"
+   ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,16 @@
+{
+   "name": "Words.Model",
+   "rootNamespace": "Words.Model",
+   "references": [
+       "GUID:32066ae450e47dc498e4028b3048c1ee"
+   ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

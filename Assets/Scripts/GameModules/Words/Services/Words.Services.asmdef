@@ -1,0 +1,18 @@
+{
+   "name": "Words.Services",
+   "rootNamespace": "Words.Services",
+   "references": [
+       "GUID:4c33eed9e02055049a1705ee3ab73518",
+       "GUID:fa678fee22c8f4e4e98fdabfe6808d25",
+       "GUID:32066ae450e47dc498e4028b3048c1ee"
+   ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
