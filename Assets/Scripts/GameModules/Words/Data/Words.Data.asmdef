@@ -1,9 +1,10 @@
 {
-   "name": "Words.Data",
-   "rootNamespace": "Words.Data",
-   "references": [
-       "GUID:32066ae450e47dc498e4028b3048c1ee"
-   ],
+    "name": "Words.Data",
+    "rootNamespace": "Words.Data",
+    "references": [
+        "GUID:32066ae450e47dc498e4028b3048c1ee",
+        "GUID:d2dbe21ee0e45dd4d9458d4fe5bec48f"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

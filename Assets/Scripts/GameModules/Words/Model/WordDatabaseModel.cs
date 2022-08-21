@@ -9,6 +9,6 @@ namespace Words.Model
     {
         public Dictionary<string, WordModel> Words = new();
 
-        IWordModel IWordDatabaseModel.GetWordModel(string word) => Words[word];
+        public IWordModel GetWordModel(string word) => Words[word];
     }
 }
