@@ -7,7 +7,7 @@ namespace Words.Data
     public class WordInfo : ScriptableObject
     {
         [SerializeField] string _word;
-        [SerializeField] string _definition;
+        [SerializeField, TextArea] string _definition;
 
         public string Word => _word;
         public string Definition => _definition;
