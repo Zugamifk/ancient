@@ -7,7 +7,7 @@ using Words.ViewModel;
 
 namespace Words.Services
 {
-    public class DictionaryService : MonoBehaviour
+    public class DictionaryService
     {
         static WordDatabaseModel _wordDatabase;
 

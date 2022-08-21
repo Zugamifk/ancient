@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Triangle
   m_EditorClassIdentifier: 
   _word: Triangle
-  _definition: 
+  _definition: A shape with three sides

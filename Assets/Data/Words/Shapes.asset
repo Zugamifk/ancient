@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Shapes
   m_EditorClassIdentifier: 
   _category: Shapes
-  _words: []
+  _words:
+  - {fileID: 11400000, guid: 4e57ed62359c39c40b4281ece083a91d, type: 2}
+  - {fileID: 11400000, guid: 2e4145028d8da4b4885e3e173ae2557f, type: 2}
+  - {fileID: 11400000, guid: 43c42d32d0f75cc4083c9e6356adaae5, type: 2}
   _containedLists: []

@@ -1,11 +1,12 @@
 {
-   "name": "Words.Test",
-   "rootNamespace": "Words.Test",
-   "references": [
-       "GUID:2f3bdbbc90cc8864c965efb143a15d16",
-       "GUID:e9a4925bdc403ef47a7097bb4a8b6cab",
-       "GUID:32066ae450e47dc498e4028b3048c1ee"
-   ],
+    "name": "Words.Test",
+    "rootNamespace": "Words.Test",
+    "references": [
+        "GUID:2f3bdbbc90cc8864c965efb143a15d16",
+        "GUID:e9a4925bdc403ef47a7097bb4a8b6cab",
+        "GUID:32066ae450e47dc498e4028b3048c1ee",
+        "GUID:dc684a38113236b489d44ffdfac0bbe0"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

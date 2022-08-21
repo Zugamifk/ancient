@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Square
   m_EditorClassIdentifier: 
   _word: Square
-  _definition: 
+  _definition: A shape with four sides
