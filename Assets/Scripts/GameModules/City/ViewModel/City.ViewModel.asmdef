@@ -3,7 +3,6 @@
     "rootNamespace": "City.ViewModel",
     "references": [
         "GUID:f1eacd49830892c4e9c9d11bbf989cc6",
-        "GUID:044ded5732690344981aa88d03f38f2e",
         "GUID:69560c3be3d56564da3ecb875d90f45b"
     ],
     "includePlatforms": [],
