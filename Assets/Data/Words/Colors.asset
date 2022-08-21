@@ -15,4 +15,6 @@ MonoBehaviour:
   _category: Colors
   _words:
   - {fileID: 11400000, guid: add3a811761a78e43a9c5795b104600c, type: 2}
+  - {fileID: 11400000, guid: 9d02303927224804e9f39dc0c230b4a0, type: 2}
+  - {fileID: 11400000, guid: 3d815257ceeb4214cab9826ba2f6307f, type: 2}
   _containedLists: []

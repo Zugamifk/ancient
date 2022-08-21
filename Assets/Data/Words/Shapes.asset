@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 953a28a69395c3245b82c0c97994d356, type: 3}
-  m_Name: Red
+  m_Script: {fileID: 11500000, guid: 82afd15c4e96214469f4056126e90ab9, type: 3}
+  m_Name: Shapes
   m_EditorClassIdentifier: 
-  _word: Red
-  _definition: The color
+  _category: Shapes
+  _words: []
+  _containedLists: []
