@@ -40,11 +40,22 @@ namespace Words.View
             while(_selectablesToSpawn.Count>0)
             {
                 var data = _selectablesToSpawn.Dequeue();
-                var selectable = Instantiate(_selecatbleWordTemplate);
-                selectable.transform.SetParent(transform.parent);
-                selectable.SetCorners(data.p0, data.p1, data.p2, data.p3);
-                _wordToSelectable.Add(data.word, selectable);
+                SpawnSelectableWord(data);
             }
+        }
+
+        void SpawnSelectableWord(SelectableData data)
+        {
+            var selectable = Instantiate(_selecatbleWordTemplate);
+            var rt = selectable.GetComponent<RectTransform>();
+            rt.SetParent(transform.parent);
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            rt.sizeDelta = Vector2.zero;
+            rt.anchoredPosition = Vector3.zero;
+            selectable.SetCorners(data.p0, data.p1, data.p2, data.p3);
+            selectable.gameObject.SetActive(true);
+            _wordToSelectable.Add(data.word, selectable);
         }
 
         void OnTextChanged(Object obj)
