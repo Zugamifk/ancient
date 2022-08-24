@@ -73,7 +73,7 @@ namespace Words.View
 
         void CreateWordSelectable(string word, Vector3[] verts, int startIndex, int length)
         {
-            float minX=0, maxX = 0, minY = 0, maxY = 0;
+            float minX=float.MaxValue, maxX = float.MinValue, minY = float.MaxValue, maxY = float.MinValue;
             for(int i=startIndex;i<startIndex+length;i++)
             {
                 var v = verts[i];

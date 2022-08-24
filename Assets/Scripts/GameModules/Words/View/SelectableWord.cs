@@ -16,6 +16,18 @@ namespace Words.View
             _corners[1] = p1;
             _corners[2] = p2;
             _corners[3] = p3;
+            SetVerticesDirty();
+        }
+
+        protected override void OnPopulateMesh(VertexHelper vh)
+        {
+            vh.Clear();
+            vh.AddVert(_corners[0], Color.white, new Vector2(0, 0));
+            vh.AddVert(_corners[1], Color.white, new Vector2(0, 1));
+            vh.AddVert(_corners[2], Color.white, new Vector2(1, 1));
+            vh.AddVert(_corners[3], Color.white, new Vector2(1, 0));
+            vh.AddTriangle(0, 1, 2);
+            vh.AddTriangle(0, 2, 3);
         }
 
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
