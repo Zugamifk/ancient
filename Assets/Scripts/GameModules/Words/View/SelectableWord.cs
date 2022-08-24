@@ -21,11 +21,12 @@ namespace Words.View
 
         protected override void OnPopulateMesh(VertexHelper vh)
         {
+            var color = new Color(0, 0, 0, 0);
             vh.Clear();
-            vh.AddVert(_corners[0], Color.white, new Vector2(0, 0));
-            vh.AddVert(_corners[1], Color.white, new Vector2(0, 1));
-            vh.AddVert(_corners[2], Color.white, new Vector2(1, 1));
-            vh.AddVert(_corners[3], Color.white, new Vector2(1, 0));
+            vh.AddVert(_corners[0], color, new Vector2(0, 0));
+            vh.AddVert(_corners[1], color, new Vector2(0, 1));
+            vh.AddVert(_corners[2], color, new Vector2(1, 1));
+            vh.AddVert(_corners[3], color, new Vector2(1, 0));
             vh.AddTriangle(0, 1, 2);
             vh.AddTriangle(0, 2, 3);
         }

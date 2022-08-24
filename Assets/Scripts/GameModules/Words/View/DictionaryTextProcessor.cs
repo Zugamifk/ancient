@@ -69,7 +69,11 @@ namespace Words.View
         void ProcessText()
         {
             var text = _tmp.text;
-            var verts = _tmp.mesh.vertices;
+            var mesh = _tmp.mesh;
+            
+            if (mesh == null) return;
+
+            var verts = mesh.vertices;
             var words = text.Split(" ");
             int i = 0;
             foreach(var w in words)
