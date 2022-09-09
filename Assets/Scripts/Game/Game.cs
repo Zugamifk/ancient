@@ -29,11 +29,6 @@ public class Game : MonoBehaviour
         InitializeTimeModel();
     }
 
-    private void Start()
-    {
-        SceneManager.LoadScene("Desk", LoadSceneMode.Additive);
-    }
-
     private void Update()
     {
         UpdateTimeModel();
