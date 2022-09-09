@@ -9,6 +9,7 @@ namespace Words.View
     public class SelectableWord : Graphic, IPointerClickHandler
     {
         Vector3[] _corners = new Vector3[4];
+        string _word;
 
         public void SetCorners(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
         {
@@ -17,6 +18,12 @@ namespace Words.View
             _corners[2] = p2;
             _corners[3] = p3;
             SetVerticesDirty();
+        }
+
+        public void SetWord(string word)
+        {
+            _word = word;
+            Debug.Log("Word is " + _word);
         }
 
         protected override void OnPopulateMesh(VertexHelper vh)
@@ -33,7 +40,10 @@ namespace Words.View
 
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("clicked");
+            Debug.Log("clicked "+_word, this);
+            WordTooltip.SetWord(_word);
+            WordTooltip.UpdatePosition(eventData.position);
+            WordTooltip.SetShowing(true);
         }
 
         private void OnDrawGizmos()

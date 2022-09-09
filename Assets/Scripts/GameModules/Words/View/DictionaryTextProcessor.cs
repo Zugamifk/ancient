@@ -54,6 +54,7 @@ namespace Words.View
             rt.sizeDelta = Vector2.zero;
             rt.anchoredPosition = Vector3.zero;
             selectable.SetCorners(data.p0, data.p1, data.p2, data.p3);
+            selectable.SetWord(data.word);
             selectable.gameObject.SetActive(true);
             _wordToSelectable.Add(data.word, selectable);
         }
