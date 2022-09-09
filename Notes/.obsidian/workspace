@@ -1,0 +1,136 @@
+{
+  "main": {
+    "id": "8a048364311e0af4",
+    "type": "split",
+    "children": [
+      {
+        "id": "0ad8bd4fc8efc976",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "World.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1163b71b6dc6d30c",
+    "type": "split",
+    "children": [
+      {
+        "id": "2b744540d489f578",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5f2bf179de956b94",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "a3482d74abbd4a60",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f1e53de09a56568b",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e48dc17778eb320c",
+    "type": "split",
+    "children": [
+      {
+        "id": "d7bbe5ce66376107",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f6378035c82d8ae0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "World.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "e06ff3187c1eb74a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "World.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "38282ed0d4ff337a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "103a974c3693209d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "World.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "0ad8bd4fc8efc976",
+  "lastOpenFiles": [
+    "SpiritVessel Letters.md",
+    "World.md"
+  ]
+}
