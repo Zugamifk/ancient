@@ -1,0 +1,18 @@
+{
+   "name": "PortalDefense.Services",
+   "rootNamespace": "PortalDefense.Services",
+   "references": [
+       "GUID:85f7cb443a7b3ea40a613bca9cd9d944",
+       "GUID:6ca6f7413bce81e4ab78c7025af075fe",
+       "GUID:5cae6f6300bac274c9e6420595c1b9e7"
+   ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

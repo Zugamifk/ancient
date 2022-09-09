@@ -1,0 +1,13 @@
+{
+   "name": "PortalDefense.ViewModel",
+   "rootNamespace": "PortalDefense.ViewModel",
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
