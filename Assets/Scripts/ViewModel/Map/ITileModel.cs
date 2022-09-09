@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITileModel
+namespace ViewModel
 {
-    string Type { get; }
-    int MoveCost { get; }
+    public interface ITileModel
+    {
+        string Type { get; }
+        int MoveCost { get; }
+    }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using TowerDefense.Data;
 using TowerDefense.Models;
 using TowerDefense.ViewModel;
+using Model;
 
 namespace TowerDefense.Commands
 {

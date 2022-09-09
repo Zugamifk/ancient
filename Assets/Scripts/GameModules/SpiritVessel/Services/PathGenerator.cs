@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Map.Services;
 using System;
+using Model;
 
 namespace SpiritVessel.Services
 {

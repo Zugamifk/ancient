@@ -3,6 +3,7 @@ using Map.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Model;
 
 namespace City.Commands
 {

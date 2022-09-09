@@ -1,6 +1,9 @@
 {
-   "name": "PortalDefense.ViewModel",
-   "rootNamespace": "PortalDefense.ViewModel",
+    "name": "PortalDefense.ViewModel",
+    "rootNamespace": "PortalDefense.ViewModel",
+    "references": [
+        "GUID:69560c3be3d56564da3ecb875d90f45b"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

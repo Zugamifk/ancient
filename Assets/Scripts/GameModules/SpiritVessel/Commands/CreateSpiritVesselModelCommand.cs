@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SpiritVessel.Data;
+using Model;
 
 namespace SpiritVessel.Commands
 {

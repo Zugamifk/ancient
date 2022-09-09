@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Model;
 
 public class LoadMapDataCommand : ICommand
 {
@@ -32,7 +33,7 @@ public class LoadMapDataCommand : ICommand
         }
         map.Grid.Dimenions = dimensions;
     }
-
+        
     MapTileModel GetTileModel(TileSet tileSet, string type)
     {
         var tileData = tileSet.GetTypeData(type);

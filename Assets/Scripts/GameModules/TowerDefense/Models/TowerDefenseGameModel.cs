@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TowerDefense.ViewModel;
+using Model;
+using ViewModel;
 
 namespace TowerDefense.Models
 {

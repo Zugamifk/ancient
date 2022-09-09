@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SpiritVessel.ViewModel;
+using ViewModel;
+using Model;
 
 namespace SpiritVessel.Model
 {

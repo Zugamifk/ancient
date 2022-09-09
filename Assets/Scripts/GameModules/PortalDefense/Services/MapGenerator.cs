@@ -1,21 +1,24 @@
+using PortalDefense.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace PortalDefense.Services
 {
-    public class MapGeneratorService : MonoBehaviour
+    public class MapGenerator
     {
-        // Start is called before the first frame update
-        void Start()
+        public void GenerateMap(MapModel model)
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            for(int x = -25; x <= 25;x++)
+            {
+                for (int y = -25; y <= 25; y++)
+                {
+                    model.TileMap[new Vector2Int(x, y)] = new TileModel()
+                    {
+                        Height = 0
+                    };
+                }
+            }
         }
     }
 }

@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IMapModel : IIdentifiable, IKeyHolder
+namespace ViewModel
 {
-    IGridModel Grid { get; }
-    ISet<Guid> CharacterIds { get; }
+    public interface IMapModel : IIdentifiable, IKeyHolder
+    {
+        IGridModel Grid { get; }
+        ISet<Guid> CharacterIds { get; }
+    }
 }

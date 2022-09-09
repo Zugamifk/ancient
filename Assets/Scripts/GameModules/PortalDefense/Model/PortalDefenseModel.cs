@@ -5,7 +5,7 @@ using PortalDefense.ViewModel;
 
 namespace PortalDefense.Model
 {
-    public class PortalDefenseModel : IPortalDefenseModel
+    public class PortalDefenseModel : IPortalDefenseModel, IRegisteredModel
     {
         public MapModel Map { get; set; }
 

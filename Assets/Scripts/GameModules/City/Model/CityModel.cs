@@ -2,6 +2,8 @@ using City.ViewModel;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ViewModel;
+using Model;
 
 namespace City.Model
 {

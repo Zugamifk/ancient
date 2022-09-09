@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TowerDefense.Models;
 using System.Linq;
+using Model;
 
 namespace TowerDefense.Behaviours
 {

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Map.Services;
+using Model;
 
 public class SetTileCommand : ICommand
 {

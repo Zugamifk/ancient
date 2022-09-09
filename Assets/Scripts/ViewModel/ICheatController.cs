@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICheatController
+namespace ViewModel
 {
-    IGameModel GameModel { get; }
-    void SetTile(int x, int y, string type);
+    public interface ICheatController
+    {
+        IGameModel GameModel { get; }
+        void SetTile(int x, int y, string type);
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SpiritVessel.ViewModel;
 using SpiritVessel.Model;
+using Model;
 
 namespace SpiritVessel.Commands
 {

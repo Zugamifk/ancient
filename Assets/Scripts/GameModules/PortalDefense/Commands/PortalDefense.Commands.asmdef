@@ -1,12 +1,15 @@
 {
-   "name": "PortalDefense.Commands",
-   "rootNamespace": "PortalDefense.Commands",
-   "references": [
-       "GUID:85f7cb443a7b3ea40a613bca9cd9d944",
-       "GUID:6ca6f7413bce81e4ab78c7025af075fe",
-       "GUID:5cae6f6300bac274c9e6420595c1b9e7",
-       "GUID:60d697d6d68e06344a35397c8c092a57"
-   ],
+    "name": "PortalDefense.Commands",
+    "rootNamespace": "PortalDefense.Commands",
+    "references": [
+        "GUID:85f7cb443a7b3ea40a613bca9cd9d944",
+        "GUID:6ca6f7413bce81e4ab78c7025af075fe",
+        "GUID:5cae6f6300bac274c9e6420595c1b9e7",
+        "GUID:60d697d6d68e06344a35397c8c092a57",
+        "GUID:5de6134c1c064b04dabbf980177af609",
+        "GUID:eb0fbfe5148c2b84d8e9d35051e16c98",
+        "GUID:69560c3be3d56564da3ecb875d90f45b"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

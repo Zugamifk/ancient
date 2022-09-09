@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ViewModel;
 
-public class MapTileModel : ITileModel
+namespace Model
 {
-    public string Type;
-    public int MoveCost;
+    public class MapTileModel : ITileModel
+    {
+        public string Type;
+        public int MoveCost;
 
-    #region IMapTileModel
-    string ITileModel.Type => Type;
-    int ITileModel.MoveCost => MoveCost;
-    #endregion
+        #region IMapTileModel
+        string ITileModel.Type => Type;
+        int ITileModel.MoveCost => MoveCost;
+        #endregion
+    }
 }
