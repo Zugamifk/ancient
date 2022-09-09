@@ -4,18 +4,8 @@ using UnityEngine;
 
 namespace PortalDefense.Services
 {
-    public class MapMeshGenerator : MonoBehaviour
+    public class MapMeshGenerator
     {
-        // Start is called before the first frame update
-        void Start()
-        {
         
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

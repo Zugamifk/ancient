@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PortalDefense.ViewModel
 {
-    public interface IMapModel
+    public interface IMapModel : IIdentifiable
     {
         ITileModel GetTile(Vector2Int position);
     }

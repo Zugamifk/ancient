@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PortalDefense.ViewModel
 {
-    public interface IPortalDefenseModel
+    public interface IPortalDefenseModel : IRegisteredModel
     {
         IMapModel Map { get; }
     }
