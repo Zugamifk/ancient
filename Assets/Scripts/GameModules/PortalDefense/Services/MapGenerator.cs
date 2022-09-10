@@ -44,6 +44,7 @@ namespace PortalDefense.Services
             GenerateTilePaths(model);
 
             model.TileMap[end.Position].Structure = new EndPortalModel();
+            model.TileMap[start.Position].Structure = new EnemySpawnModel();
         }
 
         void GenerateTilePaths(MapModel model)
