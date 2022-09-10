@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 using System;
+using System.Linq;
 
 namespace MeshGenerator.Editor
 {
@@ -11,7 +12,10 @@ namespace MeshGenerator.Editor
     public class MeshPreviewerEditor : UnityEditor.Editor
     {
         static Dictionary<Type, IMeshGeneratorEditor> _generatorToPreview;
+        static Dictionary<string, IGeometryGenerator> _keyToGenerator;
 
+        int _selectedGeneratorOption;
+        string[] _generatorOptions;
         IMeshGeneratorEditor _currentEditor;
         IGeometryGenerator _currentGenerator;
         Transform _rootTransform;
@@ -19,21 +23,29 @@ namespace MeshGenerator.Editor
         void GetPreviews()
         {
             _generatorToPreview = new();
-            foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
+            var types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes());
+            foreach (var type in types)
             {
                 var attr = type.GetCustomAttribute<MeshGeneratorEditorAttribute>();
                 if (attr != null)
                 {
-                    var previewer = (IMeshGeneratorEditor)Activator.CreateInstance(attr.EditorType);
+                    var previewer = (IMeshGeneratorEditor)Activator.CreateInstance(type);
                     _generatorToPreview.Add(attr.GeneratorType, previewer);
                 }
             }
-        }
 
-        public static void RegisterPreviewer<TGenerator, TPreview>()
-            where TGenerator : IGeometryGenerator
-            where TPreview : IMeshGeneratorEditor, new()
-        {
+            _keyToGenerator = new();
+            foreach (var type in types)
+            {
+                var attr = type.GetCustomAttribute<MeshGeneratorAttribute>();
+                if (attr != null)
+                {
+                    var generator = (IGeometryGenerator)Activator.CreateInstance(type);
+                    _keyToGenerator.Add(attr.Key, generator);
+                    Debug.Log(attr.Key);
+                }
+            }
+            _generatorOptions = _keyToGenerator.Keys.ToArray();
         }
 
         private void OnEnable()
@@ -44,7 +56,7 @@ namespace MeshGenerator.Editor
             _rootTransform = (Transform)transformProp.objectReferenceValue;
 
             var typeProp = serializedObject.FindProperty("_meshType");
-            UpdateEditor((EMeshType)typeProp.enumValueIndex);
+            UpdateEditor(typeProp.stringValue);
         }
 
         public override void OnInspectorGUI()
@@ -59,10 +71,18 @@ namespace MeshGenerator.Editor
             var typeProp = serializedObject.FindProperty("_meshType");
             using (var changeCheck = new EditorGUI.ChangeCheckScope())
             {
-                EditorGUILayout.PropertyField(typeProp);
+                var selected = EditorGUILayout.Popup("Mesh Type", Array.IndexOf(_generatorOptions, typeProp.stringValue), _generatorOptions);
+                if(_selectedGeneratorOption!=selected)
+                {
+                    _selectedGeneratorOption = selected;
+                    if (_selectedGeneratorOption >= 0 &&_selectedGeneratorOption < _generatorOptions.Length)
+                    {
+                        typeProp.stringValue = _generatorOptions[_selectedGeneratorOption];
+                    }
+                }
                 if (changeCheck.changed)
                 {
-                    UpdateEditor((EMeshType)typeProp.enumValueIndex);
+                    UpdateEditor(typeProp.stringValue);
                 }
             }
 
@@ -98,28 +118,17 @@ namespace MeshGenerator.Editor
             serializedObject.ApplyModifiedProperties();
         }
 
-        void UpdateEditor(EMeshType type)
+        void UpdateEditor(string type)
         {
-            switch (type)
-            {
-                case EMeshType.Cube:
-                    _currentGenerator = new CubeGenerator();
-                    break;
-                case EMeshType.House:
-                    _currentGenerator = new HouseGenerator();
-                    break;
-                case EMeshType.Surface:
-                    _currentGenerator = new SurfaceModelMeshGenerator(new());
-                    break;
-                default:
-                    _currentGenerator = null;
-                    break;
-            }
+            _keyToGenerator.TryGetValue(type, out _currentGenerator);
 
-            _generatorToPreview.TryGetValue(_currentGenerator.GetType(), out _currentEditor);
-            if (_currentEditor != null)
+            if (_currentGenerator != null)
             {
-                _currentEditor.SetGenerator(_currentGenerator);
+                _generatorToPreview.TryGetValue(_currentGenerator.GetType(), out _currentEditor);
+                if (_currentEditor != null)
+                {
+                    _currentEditor.SetGenerator(_currentGenerator);
+                }
             }
         }
 

@@ -7,7 +7,7 @@ using System;
 
 namespace MeshGenerator.Editor
 {
-    [MeshGeneratorEditor(typeof(HouseMeshGeneratorEditor), typeof(HouseGenerator))]
+    [MeshGeneratorEditor(typeof(HouseGenerator))]
     public class HouseMeshGeneratorEditor : IMeshGeneratorEditor
     {
         HouseGenerator _generator;

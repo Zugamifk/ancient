@@ -8,7 +8,7 @@ namespace MeshGenerator
         [SerializeField]
         Mesh _mesh;
         [SerializeField]
-        EMeshType _meshType;
+        string _meshType;
         [SerializeField]
         Transform _generatorTransform;
 

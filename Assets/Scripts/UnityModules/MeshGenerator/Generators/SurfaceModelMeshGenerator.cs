@@ -5,13 +5,14 @@ using UnityEngine;
 
 namespace MeshGenerator
 {
+    [MeshGenerator("Surface Model")]
     public class SurfaceModelMeshGenerator : IGeometryGenerator
     {
         SurfaceModel _model;
 
         public SurfaceModel Model => Model;
 
-        public SurfaceModelMeshGenerator(SurfaceModel model)
+        public SurfaceModelMeshGenerator()
         {
             var cb = new CubeGenerator();
             var b = new MeshBuilder();

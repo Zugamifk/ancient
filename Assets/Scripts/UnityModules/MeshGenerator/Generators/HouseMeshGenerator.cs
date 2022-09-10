@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace MeshGenerator
 {
+    [MeshGenerator("House")]
     public class HouseGenerator : IGeometryGenerator
     {
         public class GeometryData : ScriptableObject

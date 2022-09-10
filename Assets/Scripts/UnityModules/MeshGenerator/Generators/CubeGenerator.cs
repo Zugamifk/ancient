@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MeshGenerator
 {
+    [MeshGenerator("Cube")]
     public class CubeGenerator : IGeometryGenerator
     {
         static readonly Vector3[] _points = new[]
