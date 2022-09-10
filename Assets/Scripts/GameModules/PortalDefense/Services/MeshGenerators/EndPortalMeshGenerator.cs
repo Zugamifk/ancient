@@ -39,7 +39,18 @@ namespace PortalDefense.Services
 
         public void BuildWireframe()
         {
+            _wireframe = new();
 
+            var b = .5f;
+            var b0 = new Point(-b, 0, -b);
+            var b1 = new Point(-b, 0, b);
+            var b2 = new Point(b, 0, b);
+            var b3 = new Point(b, 0, -b);
+
+            _wireframe.Connect(b0, b1);
+            _wireframe.Connect(b1, b2);
+            _wireframe.Connect(b2, b3);
+            _wireframe.Connect(b3, b0);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MeshGenerator.Editor;
 using MeshGenerator;
+using UnityEditor;
 
 namespace PortalDefense.Services.Editor
 {
@@ -17,6 +18,7 @@ namespace PortalDefense.Services.Editor
 
         public void DrawSceneGUI(Transform rootTransform)
         {
+            WireframeDrawer.Draw(_generator.Wireframe);
         }
 
         public void SetGenerator(IGeometryGenerator generator)
