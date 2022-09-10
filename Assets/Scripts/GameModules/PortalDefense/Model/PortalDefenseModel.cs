@@ -8,6 +8,7 @@ namespace PortalDefense.Model
     public class PortalDefenseModel : IPortalDefenseModel
     {
         public MapModel Map { get; set; } = new();
+        public IdentifiableCollection<EnemyModel> SpawnedEnemies = new();
 
         IMapModel IPortalDefenseModel.Map => Map;
     }
