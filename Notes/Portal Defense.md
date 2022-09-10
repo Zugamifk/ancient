@@ -12,7 +12,7 @@ There are different Damage types.
 * Piercing: If it hits heavy armor, destroys the layer under the heavy armor
 * Area: destroys up to a maximum number of pieces of armor on the same layer
 Armour comes in layers and types. A layer of armor has a number of pieces that are removed to show the damage status.
-Damage Types:
+Armor Types:
 * Normal: damaged by any type.
 * Heavy: can only be damaged by heavy damage
 
