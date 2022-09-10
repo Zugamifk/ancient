@@ -5,7 +5,7 @@ using PortalDefense.ViewModel;
 using PortalDefense.Services;
 namespace PortalDefense.View
 {
-    public class PortalGameTile : MonoBehaviour
+    public class PortalDefenseTile : MonoBehaviour
     {
         [SerializeField]
         MeshFilter _meshFilter;

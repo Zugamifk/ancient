@@ -1,0 +1,20 @@
+{
+    "name": "PortalDefense.Services.Editor",
+    "rootNamespace": "PortalDefense.Services.Editor",
+    "references": [
+        "GUID:60d697d6d68e06344a35397c8c092a57",
+        "GUID:cfb48cb44154bc241b4b357e601094f3",
+        "GUID:52167038694a37341923db5378a4126a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

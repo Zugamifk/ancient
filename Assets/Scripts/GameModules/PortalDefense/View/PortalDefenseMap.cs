@@ -8,7 +8,7 @@ using PortalDefense.Services;
 
 namespace PortalDefense.View
 {
-    public class PortalGameMap : MonoBehaviour
+    public class PortalDefenseMap : MonoBehaviour
     {
         class DefaultEdgeTile : ViewModel.ITileModel
         {
@@ -18,7 +18,7 @@ namespace PortalDefense.View
         }
 
         [SerializeField]
-        PortalGameTile _tilePrefab;
+        PortalDefenseTile _tilePrefab;
 
         Guid _mapGuid;
 
