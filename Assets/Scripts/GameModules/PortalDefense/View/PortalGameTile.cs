@@ -12,13 +12,13 @@ namespace PortalDefense.View
         [SerializeField]
         BoxCollider _collider;
 
-        public void SetTile(ITileModel tile)
+        public void SetTile(ITileModel tile, MapMeshGenerator.TileContext context)
         {
             var meshGen = new MapMeshGenerator();
-            var mesh = meshGen.GenerateTileMesh(tile);
+            var mesh = meshGen.GenerateTileMesh(tile, context);
             _meshFilter.mesh = mesh;
 
-            _collider.center = new Vector3(0, tile.Height / 2, 0);
+            _collider.center = new Vector3(0, tile.Height / 2f, 0);
             _collider.size = new Vector3(1, tile.Height, 1);
         }
     }

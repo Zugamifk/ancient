@@ -7,6 +7,7 @@ namespace PortalDefense.Model
 {
     public class TileModel : ITileModel
     {
+        public bool HasPath { get; set; }
         public int Height { get; set; }
     }
 }

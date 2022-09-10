@@ -6,6 +6,7 @@ namespace PortalDefense.ViewModel
 {
     public interface ITileModel
     {
+        bool HasPath { get; }
         int Height { get; }
     }
 }
