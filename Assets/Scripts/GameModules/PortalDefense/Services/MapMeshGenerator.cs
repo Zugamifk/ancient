@@ -13,14 +13,15 @@ namespace PortalDefense.Services
         {
             _builder.SetColor(new Color(.25f, .75f, .25f, 1));
 
-            var p0 = new Vector3(0, 0, 0);
-            var p1 = new Vector3(0, 0, 1);
-            var p2 = new Vector3(1, 0, 1);
-            var p3 = new Vector3(1, 0, 0);
-            var p4 = new Vector3(0, 1, 0);
-            var p5 = new Vector3(0, 1, 1);
-            var p6 = new Vector3(1, 1, 1);
-            var p7 = new Vector3(1, 1, 0);
+            var h = tile.Height;
+            var p0 = new Vector3(-.5f, 0, -.5f);
+            var p1 = new Vector3(-.5f, 0, .5f);
+            var p2 = new Vector3(.5f, 0, .5f);
+            var p3 = new Vector3(.5f, 0, -.5f);
+            var p4 = new Vector3(-.5f, h, -.5f);
+            var p5 = new Vector3(-.5f, h, .5f);
+            var p6 = new Vector3(.5f, h, .5f);
+            var p7 = new Vector3(.5f, h, -.5f);
 
             _builder.AddQuad(p0, p3, p2, p1);
             _builder.AddQuad(p0, p4, p7, p3);
