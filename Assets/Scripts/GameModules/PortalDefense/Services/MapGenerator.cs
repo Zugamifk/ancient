@@ -18,7 +18,7 @@ namespace PortalDefense.Services
 
         void FillEmptyMap(MapModel model)
         {
-            var data = DataService.GetData<PortalGameData>();
+            var data = DataService.GetData<PortalDefenseData>();
             var w = data.Dimensions.x;
             var h = data.Dimensions.y;
             for (int x = -w / 2; x <= w / 2; x++)

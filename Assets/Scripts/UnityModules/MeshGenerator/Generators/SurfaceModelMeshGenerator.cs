@@ -14,12 +14,12 @@ namespace MeshGenerator
 
         public SurfaceModelMeshGenerator()
         {
-            var cb = new CubeGenerator();
-            var b = new MeshBuilder();
-            cb.Generate(b);
-            var m = b.Build();
-            var smb = new MeshToSurfaceModelBuilder();
-            _model = smb.ConvertMesh(m);
+            //var cb = new CubeGenerator();
+            //var b = new MeshBuilder();
+            //cb.Generate(b);
+            //var m = b.Build();
+            //var smb = new MeshToSurfaceModelBuilder();
+            //_model = smb.ConvertMesh(m);
         }
 
         public void Generate(MeshBuilder builder)

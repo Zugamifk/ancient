@@ -6,6 +6,12 @@ namespace PortalDefense.View
 {
     public class PortalDefenseEndPortal : MonoBehaviour
     {
-        
+        [SerializeField]
+        MeshFilter _meshFilter;
+
+        private void Start()
+        {
+            
+        }
     }
 }

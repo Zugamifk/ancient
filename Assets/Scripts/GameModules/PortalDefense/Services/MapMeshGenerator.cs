@@ -20,7 +20,7 @@ namespace PortalDefense.Services
         MeshBuilder _builder = new();
         public Mesh GenerateTileMesh(ITileModel tile, TileContext context)
         {
-            var data = DataService.GetData<PortalGameData>();
+            var data = DataService.GetData<PortalDefenseData>();
             var grassColor = data.GrassColor;
             _builder.SetColor(grassColor);
             

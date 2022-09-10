@@ -3,40 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using MeshGenerator;
 using MeshGenerator.Wireframe;
+using PortalDefense.Data;
 
 namespace PortalDefense.Services
 {
     [MeshGenerator("End Portal")]
     public class EndPortalMeshGenerator : IGeometryGenerator
     {
-        public class GeometryData : ScriptableObject
+        static EndPortalMeshGeneratorData _data;
+        public EndPortalMeshGeneratorData Data
         {
-            public float Height = 2;
-            public float ColumnSpacing = .5f;
-            public float ColumnSize = .1f;
-            public float RoofThickness = 0.05f;
-
-            public static GeometryData Instance;
-            private void OnEnable()
+            get
             {
-                Instance = this;
+                if (_data == null)
+                {
+                    _data = DataService.GetData<PortalDefenseMeshGeneratorDataCollection>().EndPortal;
+                }
+                return _data;
             }
         }
 
-        public GeometryData Data => _data;
         public Frame Wireframe => _wireframe;
 
-        static GeometryData _data => GeometryData.Instance;
         Frame _wireframe;
-
-        static EndPortalMeshGenerator()
-        {
-            if (_data == null)
-            {
-                ScriptableObject.CreateInstance<GeometryData>();
-                _data.hideFlags = HideFlags.HideAndDontSave;
-            }
-        }
 
         public void Generate(MeshBuilder builder)
         {
@@ -59,10 +48,10 @@ namespace PortalDefense.Services
             }
 
             builder.SetColor(new Color(.75f, .75f, .75f, 1));
-            AddColumn(-_data.ColumnSpacing, -_data.ColumnSpacing);
-            AddColumn(_data.ColumnSpacing, -_data.ColumnSpacing);
-            AddColumn(_data.ColumnSpacing, _data.ColumnSpacing);
-            AddColumn(-_data.ColumnSpacing, _data.ColumnSpacing);
+            AddColumn(-Data.ColumnSpacing, -Data.ColumnSpacing);
+            AddColumn(Data.ColumnSpacing, -Data.ColumnSpacing);
+            AddColumn(Data.ColumnSpacing, Data.ColumnSpacing);
+            AddColumn(-Data.ColumnSpacing, Data.ColumnSpacing);
 
             void AddRoofStep(float w, float h)
             {
@@ -85,7 +74,7 @@ namespace PortalDefense.Services
             }
 
             AddRoofStep(.5f, 0);
-            AddRoofStep(.4f, _data.RoofThickness);
+            AddRoofStep(.4f, Data.RoofThickness);
         }
 
         public void BuildWireframe()
@@ -105,14 +94,14 @@ namespace PortalDefense.Services
             _wireframe.Connect(b3, b0);
 
             // columns
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(-_data.ColumnSpacing, 0, -_data.ColumnSpacing)), () => _data.Height, () => _data.ColumnSize);
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(-_data.ColumnSpacing, 0, _data.ColumnSpacing)), () => _data.Height, () => _data.ColumnSize);
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(_data.ColumnSpacing, 0, _data.ColumnSpacing)), () => _data.Height, () => _data.ColumnSize);
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(_data.ColumnSpacing, 0, -_data.ColumnSpacing)), () => _data.Height, () => _data.ColumnSize);
+            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(-Data.ColumnSpacing, 0, -Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
+            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(-Data.ColumnSpacing, 0, Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
+            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(Data.ColumnSpacing, 0, Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
+            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(Data.ColumnSpacing, 0, -Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
 
             // roof
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(0, _data.Height, 0)), () => _data.RoofThickness, () => .5f);
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(0, _data.Height + _data.RoofThickness, 0)), () => _data.RoofThickness, () => .4f);
+            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(0, Data.Height, 0)), () => Data.RoofThickness, () => .5f);
+            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(0, Data.Height + Data.RoofThickness, 0)), () => Data.RoofThickness, () => .4f);
         }
     }
 }

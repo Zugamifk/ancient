@@ -42,7 +42,6 @@ namespace MeshGenerator.Editor
                 {
                     var generator = (IGeometryGenerator)Activator.CreateInstance(type);
                     _keyToGenerator.Add(attr.Key, generator);
-                    Debug.Log(attr.Key);
                 }
             }
             _generatorOptions = _keyToGenerator.Keys.ToArray();

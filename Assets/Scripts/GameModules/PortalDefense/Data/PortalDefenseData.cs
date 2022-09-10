@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PortalDefense.Data
 {
-    public class PortalGameData : ScriptableObject, IRegisteredData
+    public class PortalDefenseData : ScriptableObject, IRegisteredData
     {
         public Color GrassColor;
         public Color PathColor;
