@@ -6,6 +6,6 @@ namespace MeshGenerator
 {
     public interface IGeometryGenerator
     {
-        void Generate(MeshBuilder builder, Matrix4x4 matrix);
+        void Generate(MeshBuilder builder);
     }
 }

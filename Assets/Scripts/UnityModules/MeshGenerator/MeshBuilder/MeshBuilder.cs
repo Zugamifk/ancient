@@ -9,6 +9,26 @@ namespace MeshGenerator
         MeshData _data = new();
         Color _currentColor;
 
+        Stack<Matrix4x4> _matrixStack = new();
+        Matrix4x4 _matrix;
+
+        public MeshBuilder()
+        {
+            _matrix = Matrix4x4.identity;
+        }
+
+        public void PushMatrix(Matrix4x4 matrix)
+        {
+            _matrixStack.Push(matrix);
+            _matrix *= matrix;
+        }
+
+        public void PopMatrix()
+        {
+            var matrix = _matrixStack.Pop();
+            _matrix *= matrix.inverse;
+        }
+
         public void SetColor(Color color)
         {
             _currentColor = color;
@@ -16,6 +36,8 @@ namespace MeshGenerator
 
         public void AddPoint(Vector3 position, Vector3 normal = default)
         {
+            position = _matrix.MultiplyPoint3x4(position);
+            normal = _matrix.MultiplyVector(normal);
             _data.Vertices.Add(position);
             _data.Normals.Add(normal);
             _data.Colors.Add(_currentColor);
@@ -69,12 +91,12 @@ namespace MeshGenerator
             }
         }
 
-        public void Generate(IGeometryGenerator generator, Matrix4x4 matrix)
+        public void Generate(IGeometryGenerator generator)
         {
-            generator.Generate(this, matrix);
+            generator.Generate(this);
         }
 
-        public Mesh Build(MeshGeneratorContext context)
+        public Mesh Build()
         {
             return new Mesh()
             {

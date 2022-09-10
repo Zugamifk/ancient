@@ -9,7 +9,7 @@ namespace PortalDefense.View
     {
         private void Start()
         {
-            Game.Do(new GenerateMapCommand());
+            Game.Do(new InitializePortalGameCommand());
         }
     }
 }

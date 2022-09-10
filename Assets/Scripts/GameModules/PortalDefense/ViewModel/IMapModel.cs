@@ -6,6 +6,7 @@ namespace PortalDefense.ViewModel
 {
     public interface IMapModel : IIdentifiable
     {
+        BoundsInt Bounds { get; }
         ITileModel GetTile(Vector2Int position);
     }
 }

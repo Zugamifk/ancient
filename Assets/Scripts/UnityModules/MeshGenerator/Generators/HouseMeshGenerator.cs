@@ -89,7 +89,7 @@ namespace MeshGenerator
             }
         }
 
-        public void Generate(MeshBuilder builder, Matrix4x4 matrix)
+        public void Generate(MeshBuilder builder)
         {
             //base
             builder.AddQuad(_basePoints[0].Position, _basePoints[1].Position, _basePoints[2].Position, _basePoints[3].Position);

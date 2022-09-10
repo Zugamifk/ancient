@@ -15,13 +15,13 @@ namespace MeshGenerator
         {
             var cb = new CubeGenerator();
             var b = new MeshBuilder();
-            cb.Generate(b, Matrix4x4.identity);
-            var m = b.Build(new());
+            cb.Generate(b);
+            var m = b.Build();
             var smb = new MeshToSurfaceModelBuilder();
             _model = smb.ConvertMesh(m);
         }
 
-        public void Generate(MeshBuilder builder, Matrix4x4 matrix)
+        public void Generate(MeshBuilder builder)
         {
             foreach(var f in _model.Faces)
             {

@@ -7,7 +7,7 @@ namespace PortalDefense.Model
 {
     public class PortalDefenseModel : IPortalDefenseModel
     {
-        public MapModel Map { get; set; }
+        public MapModel Map { get; set; } = new();
 
         IMapModel IPortalDefenseModel.Map => Map;
     }

@@ -19,6 +19,8 @@ namespace PortalDefense.Services
                     };
                 }
             }
+
+            model.Bounds = new BoundsInt(-25, -25, 0, 50, 50, 1);
         }
     }
 }

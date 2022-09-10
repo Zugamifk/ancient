@@ -125,13 +125,10 @@ namespace MeshGenerator.Editor
 
         public Mesh Generate()
         {
-            var context = new MeshGeneratorContext()
-            {
-                Transform = Matrix4x4.TRS(_rootTransform.localPosition, _rootTransform.localRotation, _rootTransform.localScale)
-            };
             var builder = new MeshBuilder();
-            builder.Generate(_currentGenerator, context.Transform);
-            return builder.Build(context);
+            builder.PushMatrix(Matrix4x4.TRS(_rootTransform.localPosition, _rootTransform.localRotation, _rootTransform.localScale));
+            builder.Generate(_currentGenerator);
+            return builder.Build();
         }
 
         private void OnSceneGUI()

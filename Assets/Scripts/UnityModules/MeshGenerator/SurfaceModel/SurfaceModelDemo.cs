@@ -33,8 +33,8 @@ namespace MeshGenerator
         {
             var cb = new CubeGenerator();
             var b = new MeshBuilder();
-            cb.Generate(b, Matrix4x4.identity);
-            var m = b.Build(new());
+            cb.Generate(b);
+            var m = b.Build();
             var smb = new MeshToSurfaceModelBuilder();
             Model = smb.ConvertMesh(m);
         }
