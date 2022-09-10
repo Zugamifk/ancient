@@ -21,6 +21,7 @@ namespace PortalDefense.Services.Editor
             d.Height = EditorGUILayout.FloatField("Height", d.Height);
             d.ColumnSize = EditorGUILayout.FloatField("Column Size", d.ColumnSize);
             d.ColumnSpacing = EditorGUILayout.FloatField("Column Spacing", d.ColumnSpacing);
+            d.RoofThickness = EditorGUILayout.FloatField("Roof Thickness", d.RoofThickness);
 
             if (EditorGUI.EndChangeCheck())
             {

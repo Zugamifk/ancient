@@ -33,5 +33,32 @@ namespace MeshGenerator.Wireframe
                 rot *= step;
             }
         }
+
+        public void SquareColumn(IPoint baseCentre, Func<float> height, Func<float> size)
+        {
+            var p0 = new DynamicPoint(() => baseCentre.Position + new Vector3(-size(), 0, -size()));
+            var p1 = new DynamicPoint(() => baseCentre.Position + new Vector3(-size(), 0, size()));
+            var p2 = new DynamicPoint(() => baseCentre.Position + new Vector3(size(), 0, size()));
+            var p3 = new DynamicPoint(() => baseCentre.Position + new Vector3(size(), 0, -size()));
+            var p4 = new DynamicPoint(() => baseCentre.Position + new Vector3(-size(), height(), -size()));
+            var p5 = new DynamicPoint(() => baseCentre.Position + new Vector3(-size(), height(), size()));
+            var p6 = new DynamicPoint(() => baseCentre.Position + new Vector3(size(), height(), size()));
+            var p7 = new DynamicPoint(() => baseCentre.Position + new Vector3(size(), height(), -size()));
+
+            Connect(p0, p1);
+            Connect(p1, p2);
+            Connect(p2, p3);
+            Connect(p3, p0);
+
+            Connect(p0, p4);
+            Connect(p1, p5);
+            Connect(p2, p6);
+            Connect(p3, p7);
+
+            Connect(p4, p5);
+            Connect(p5, p6);
+            Connect(p6, p7);
+            Connect(p7, p4);
+        }
     }
 }
