@@ -15,3 +15,4 @@ MonoBehaviour:
   GrassColor: {r: 0.22543657, g: 0.49056602, b: 0.2244571, a: 1}
   PathColor: {r: 0.8396226, g: 0.7641234, b: 0.6930847, a: 1}
   RoadWidth: 0.3
+  Dimensions: {x: 50, y: 50}

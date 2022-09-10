@@ -63,6 +63,7 @@ namespace PortalDefense.View
                     else top = DefaultEdgeTile.Instance;
 
                     var tile = Instantiate(_tilePrefab);
+                    tile.name = $"Tile ({x}, {y})";
                     tile.transform.parent = transform;
                     tile.transform.position = new Vector3(x, 0, y);
 

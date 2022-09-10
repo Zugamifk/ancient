@@ -9,5 +9,6 @@ namespace PortalDefense.Data
         public Color GrassColor;
         public Color PathColor;
         public float RoadWidth;
+        public Vector2Int Dimensions;
     }
 }
