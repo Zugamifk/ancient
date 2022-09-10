@@ -40,6 +40,52 @@ namespace PortalDefense.Services
 
         public void Generate(MeshBuilder builder)
         {
+            void AddColumn(float x, float y)
+            {
+                var b = new Vector3(x, 0, y);
+                var p0 = b + new Vector3(-_data.ColumnSize, 0, -_data.ColumnSize);
+                var p1 = b + new Vector3(-_data.ColumnSize, 0, _data.ColumnSize);
+                var p2 = b + new Vector3(_data.ColumnSize, 0, _data.ColumnSize);
+                var p3 = b + new Vector3(_data.ColumnSize, 0, -_data.ColumnSize);
+                var p4 = p0 + new Vector3(0, _data.Height, 0);
+                var p5 = p1 + new Vector3(0, _data.Height, 0);
+                var p6 = p2 + new Vector3(0, _data.Height, 0);
+                var p7 = p3 + new Vector3(0, _data.Height, 0);
+
+                builder.AddQuad(p0, p1, p5, p4);
+                builder.AddQuad(p1, p2, p6, p5);
+                builder.AddQuad(p2, p3, p7, p6);
+                builder.AddQuad(p3, p0, p4, p7);
+            }
+
+            builder.SetColor(new Color(.75f, .75f, .75f, 1));
+            AddColumn(-_data.ColumnSpacing, -_data.ColumnSpacing);
+            AddColumn(_data.ColumnSpacing, -_data.ColumnSpacing);
+            AddColumn(_data.ColumnSpacing, _data.ColumnSpacing);
+            AddColumn(-_data.ColumnSpacing, _data.ColumnSpacing);
+
+            void AddRoofStep(float w, float h)
+            {
+                var b = new Vector3(0, _data.Height+h, 0);
+                var p0 = b + new Vector3(-w, 0, -w);
+                var p1 = b + new Vector3(-w, 0, w);
+                var p2 = b + new Vector3(w, 0, w);
+                var p3 = b + new Vector3(w, 0, -w);
+                var p4 = p0 + new Vector3(0, _data.RoofThickness, 0);
+                var p5 = p1 + new Vector3(0, _data.RoofThickness, 0);
+                var p6 = p2 + new Vector3(0, _data.RoofThickness, 0);
+                var p7 = p3 + new Vector3(0, _data.RoofThickness, 0);
+
+                builder.AddQuad(p3, p2, p1, p0);
+                builder.AddQuad(p0, p1, p5, p4);
+                builder.AddQuad(p1, p2, p6, p5);
+                builder.AddQuad(p2, p3, p7, p6);
+                builder.AddQuad(p3, p0, p4, p7);
+                builder.AddQuad(p4, p5, p6, p7);
+            }
+
+            AddRoofStep(.5f, 0);
+            AddRoofStep(.4f, _data.RoofThickness);
         }
 
         public void BuildWireframe()
