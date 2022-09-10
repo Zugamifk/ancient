@@ -34,7 +34,7 @@ namespace MeshGenerator
             var cb = new CubeGenerator();
             var b = new MeshBuilder();
             cb.Generate(b);
-            var m = b.Build();
+            var m = b.BuildMesh();
             var smb = new MeshToSurfaceModelBuilder();
             Model = smb.ConvertMesh(m);
         }

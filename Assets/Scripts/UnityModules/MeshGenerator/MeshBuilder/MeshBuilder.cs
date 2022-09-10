@@ -96,7 +96,7 @@ namespace MeshGenerator
             generator.Generate(this);
         }
 
-        public Mesh Build()
+        public Mesh BuildMesh()
         {
             return new Mesh()
             {

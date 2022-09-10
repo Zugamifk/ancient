@@ -114,6 +114,11 @@ namespace MeshGenerator.Editor
                 previewer.SetMesh(mesh);
             }
 
+            if(GUILayout.Button("Clear"))
+            {
+                previewer.Clear();
+            }
+
             serializedObject.ApplyModifiedProperties();
         }
 
@@ -136,7 +141,7 @@ namespace MeshGenerator.Editor
             var builder = new MeshBuilder();
             builder.PushMatrix(Matrix4x4.TRS(_rootTransform.localPosition, _rootTransform.localRotation, _rootTransform.localScale));
             builder.Generate(_currentGenerator);
-            return builder.Build();
+            return builder.BuildMesh();
         }
 
         private void OnSceneGUI()

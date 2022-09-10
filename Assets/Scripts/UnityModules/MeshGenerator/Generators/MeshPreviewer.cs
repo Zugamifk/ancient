@@ -20,5 +20,12 @@ namespace MeshGenerator
             mf.mesh = mesh;
             _mesh = mesh;
         }
+
+        public void Clear()
+        {
+            _mesh = null;
+            var mf = GetComponent<MeshFilter>();
+            mf.mesh = null;
+        }
     }
 }

@@ -79,7 +79,7 @@ namespace PortalDefense.Services
 
             _builder.SetColor(tile.HasPath && context.BottomNeighbour.HasPath ? roadColor : grassColor);
             _builder.AddQuad(p74r3, p74r0, r0, r3);
-            return _builder.Build();
+            return _builder.BuildMesh();
         }
     }
 }
