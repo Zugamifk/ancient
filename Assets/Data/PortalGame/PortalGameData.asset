@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bde4d0a3ab42922419d86f9872f044b1, type: 3}
-  m_Name: PortalGameDataReferences
+  m_Script: {fileID: 11500000, guid: 8930f02916d281a46a613612a65649d6, type: 3}
+  m_Name: PortalGameData
   m_EditorClassIdentifier: 
-  _references:
-  - {fileID: 11400000, guid: c79ff2ff096a72d49b1335e62d9ec4bd, type: 2}
+  GrassColor: {r: 0.22543657, g: 0.49056602, b: 0.2244571, a: 1}
+  PathColor: {r: 0.8396226, g: 0.7641234, b: 0.6930847, a: 1}
+  RoadWidth: 0.3

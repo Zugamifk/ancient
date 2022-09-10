@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PortalDefense.ViewModel;
 using MeshGenerator;
+using PortalDefense.Data;
 
 namespace PortalDefense.Services
 {
@@ -19,7 +20,8 @@ namespace PortalDefense.Services
         MeshBuilder _builder = new();
         public Mesh GenerateTileMesh(ITileModel tile, TileContext context)
         {
-            var grassColor = new Color(.25f, .75f, .25f, 1);
+            var data = DataService.GetData<PortalGameData>();
+            var grassColor = data.GrassColor;
             _builder.SetColor(grassColor);
             
             var w = .5f;
@@ -42,7 +44,7 @@ namespace PortalDefense.Services
             _builder.AddQuad(p3, p7, p6, p2);
 
             // top, with road slices
-            var r = .3f;
+            var r = w * data.RoadWidth;
             var r0 = new Vector3(-r, h, -r);
             var r1 = new Vector3(-r, h, r);
             var r2 = new Vector3(r, h, r);
@@ -62,7 +64,7 @@ namespace PortalDefense.Services
             _builder.AddQuad(p6, p67r2, r2, p56r2);
             _builder.AddQuad(p7, p74r3, r3, p67r3);
 
-            var roadColor = new Color(.75f, .75f, .5f, 1);
+            var roadColor = data.PathColor;
             _builder.SetColor(tile.HasPath ? roadColor : grassColor);
             _builder.AddQuad(r0, r1, r2, r3);
 
