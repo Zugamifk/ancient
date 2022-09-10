@@ -8,6 +8,8 @@ namespace PortalDefense.Data
     {
         public float Fatness;
         public float Height;
+        public float HeadSize;
+        public float HeadHeight;
         public Color BodyColor;
         public Color SkinColor;
     }

@@ -47,6 +47,25 @@ namespace PortalDefense.Services
             builder.AddQuad(p2, p3, p7, p6);
             builder.AddQuad(p3, p0, p4, p7);
             builder.AddQuad(p4, p5, p6, p7);
+
+            var hs = Data.HeadSize;
+            p0 = new Vector3(-hs, h, -hs);
+            p1 = new Vector3(-hs, h, hs);
+            p2 = new Vector3(hs, h, hs);
+            p3 = new Vector3(hs, h, -hs);
+            var hh = Data.HeadHeight;
+            p4 = p0 + new Vector3(0, hh, 0);
+            p5 = p1 + new Vector3(0, hh, 0);
+            p6 = p2 + new Vector3(0, hh, 0);
+            p7 = p3 + new Vector3(0, hh, 0);
+
+            builder.SetColor(Data.SkinColor);
+            builder.AddQuad(p3, p2, p1, p0);
+            builder.AddQuad(p0, p1, p5, p4);
+            builder.AddQuad(p1, p2, p6, p5);
+            builder.AddQuad(p2, p3, p7, p6);
+            builder.AddQuad(p3, p0, p4, p7);
+            builder.AddQuad(p4, p5, p6, p7);
         }
 
         public void BuildWireframe()
@@ -54,6 +73,7 @@ namespace PortalDefense.Services
             _wireframe = new();
 
             _wireframe.SquareColumn(new Point(), () => Data.Height, () => Data.Fatness);
+            _wireframe.SquareColumn(new DynamicPoint(()=>new Vector3(0,Data.Height,0)), () => Data.HeadHeight, () => Data.HeadSize);
         }
     }
 }
