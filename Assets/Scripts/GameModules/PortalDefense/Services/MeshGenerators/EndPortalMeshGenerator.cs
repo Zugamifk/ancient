@@ -11,6 +11,10 @@ namespace PortalDefense.Services
     {
         public class GeometryData : ScriptableObject
         {
+            public float Height = 2;
+            public float ColumnSpacing = .5f;
+            public float ColumnSize = .1f;
+
             public static GeometryData Instance;
             private void OnEnable()
             {
@@ -47,10 +51,21 @@ namespace PortalDefense.Services
             var b2 = new Point(b, 0, b);
             var b3 = new Point(b, 0, -b);
 
+            // base
             _wireframe.Connect(b0, b1);
             _wireframe.Connect(b1, b2);
             _wireframe.Connect(b2, b3);
             _wireframe.Connect(b3, b0);
+
+            // columns
+            _wireframe.Prism(new DynamicPoint(() => new Vector3(-_data.ColumnSpacing, 0, -_data.ColumnSpacing)), () => _data.Height, 4, () => _data.ColumnSize, Vector3.up);
+            _wireframe.Prism(new DynamicPoint(() => new Vector3(-_data.ColumnSpacing, 0, _data.ColumnSpacing)), () => _data.Height, 4, () => _data.ColumnSize, Vector3.up);
+            _wireframe.Prism(new DynamicPoint(() => new Vector3(_data.ColumnSpacing, 0, _data.ColumnSpacing)), () => _data.Height, 4, () => _data.ColumnSize, Vector3.up);
+            _wireframe.Prism(new DynamicPoint(() => new Vector3(_data.ColumnSpacing, 0, -_data.ColumnSpacing)), () => _data.Height, 4, () => _data.ColumnSize, Vector3.up);
+
+            // roof
+            _wireframe.Prism(new DynamicPoint(() => new Vector3(0, _data.Height, 0)), () => .05f, 4, () => .7f, Vector3.up);
+            _wireframe.Prism(new DynamicPoint(() => new Vector3(0, _data.Height + .05f, 0)), () => .05f, 4, () => .5f, Vector3.up);
         }
     }
 }
