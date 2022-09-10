@@ -7,5 +7,6 @@ namespace PortalDefense.Data
     public class PortalDefenseMeshGeneratorDataCollection : ScriptableObject, IRegisteredData
     {
         public EndPortalMeshGeneratorData EndPortal;
+        public EnemyMeshGeneratorData Enemy;
     }
 }
