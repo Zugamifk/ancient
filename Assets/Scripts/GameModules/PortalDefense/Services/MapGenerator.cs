@@ -8,8 +8,6 @@ namespace PortalDefense.Services
 {
     public class MapGenerator
     {
-        public Vector2Int Start, End;
-
         public void GenerateMap(MapModel model)
         {
             FillEmptyMap(model);
@@ -38,16 +36,35 @@ namespace PortalDefense.Services
 
         void GeneratePath(MapModel model)
         {
-            int xd = (int)Mathf.Sign(End.x - Start.x);
-            int yd = (int)Mathf.Sign(End.y - Start.y);
-            for (int x = Start.x; x != End.x + xd; x += xd)
+            var end = new PathNodeModel() { Position = new Vector2Int() };
+            var start = new PathNodeModel() { Position = new Vector2Int(0, 10), Next = end };
+            model.Paths.StartNode = start;
+            model.Paths.EndNode = end;
+
+            GenerateTilePaths(model);
+
+            model.TileMap[end.Position].Structure = new EndPortalModel();
+        }
+
+        void GenerateTilePaths(MapModel model)
+        {
+            for (var start = model.Paths.StartNode; start != model.Paths.EndNode; start = start.Next)
             {
-                for (int y = Start.y; y != End.y + yd; y += yd)
+                GenerateNodePath(model, start.Position, start.Next.Position);
+            }
+        }
+
+        void GenerateNodePath(MapModel model, Vector2Int start, Vector2Int end)
+        {
+            int xd = (int)Mathf.Sign(end.x - start.x);
+            int yd = (int)Mathf.Sign(end.y - start.y);
+            for (int x = start.x; x != end.x + xd; x += xd)
+            {
+                for (int y = start.y; y != end.y + yd; y += yd)
                 {
                     model.TileMap[new Vector2Int(x, y)].HasPath = true;
                 }
             }
-            model.TileMap[Vector2Int.zero].Structure = new EndPortalModel();
         }
     }
 }

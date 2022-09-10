@@ -12,8 +12,6 @@ namespace PortalDefense.Commands
         public void Execute(GameModel model)
         {
             var generator = new MapGenerator();
-            generator.Start = Vector2Int.zero;
-            generator.End = new Vector2Int(0, 10);
             var portalGame = model.GetModel<PortalDefenseModel>();
             generator.GenerateMap(portalGame.Map);
         }
