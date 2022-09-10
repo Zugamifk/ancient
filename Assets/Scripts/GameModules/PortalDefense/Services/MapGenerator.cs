@@ -47,6 +47,7 @@ namespace PortalDefense.Services
                     model.TileMap[new Vector2Int(x, y)].HasPath = true;
                 }
             }
+            model.TileMap[Vector2Int.zero].Structure = new EndPortalModel();
         }
     }
 }

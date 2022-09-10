@@ -3,7 +3,8 @@
     "rootNamespace": "PortalDefense.Data",
     "references": [
         "GUID:5cae6f6300bac274c9e6420595c1b9e7",
-        "GUID:d2dbe21ee0e45dd4d9458d4fe5bec48f"
+        "GUID:d2dbe21ee0e45dd4d9458d4fe5bec48f",
+        "GUID:f1eacd49830892c4e9c9d11bbf989cc6"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

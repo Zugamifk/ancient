@@ -14,6 +14,9 @@ namespace PortalDefense.View
         {
             public bool HasPath => false;
             public int Height => 1;
+
+            public ITileStructure Structure => null;
+
             public static readonly DefaultEdgeTile Instance = new();
         }
 
