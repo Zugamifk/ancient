@@ -9,7 +9,10 @@ namespace PortalDefense.Model
     {
         public MapModel Map { get; set; } = new();
         public IdentifiableCollection<EnemyModel> SpawnedEnemies = new();
-
+        public IdentifiableCollection<EnemySpawnModel> Spawns = new();
+        public WaveModel CurrentWave { get; set; }
         IMapModel IPortalDefenseModel.Map => Map;
+
+        IWaveModel IPortalDefenseModel.CurrentWave => CurrentWave;
     }
 }

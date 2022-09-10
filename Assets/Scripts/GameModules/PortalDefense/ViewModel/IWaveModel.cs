@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace PortalDefense.ViewModel
 {
-    public interface IEnemySpawnModel : ITileStructure, IIdentifiable
+    public interface IWaveModel
     {
-        IEnumerable<Guid> SpawnQueue { get; }
+        
     }
 }

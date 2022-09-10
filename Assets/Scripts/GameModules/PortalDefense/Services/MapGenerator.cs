@@ -8,9 +8,9 @@ namespace PortalDefense.Services
 {
     public class MapGenerator
     {
-        public void GenerateMap(MapModel model)
+        public void GenerateMap(PortalDefenseModel model)
         {
-            FillEmptyMap(model);
+            FillEmptyMap(model.Map);
             GeneratePath(model);
         }
 
@@ -34,17 +34,20 @@ namespace PortalDefense.Services
             model.Bounds = new BoundsInt(-w / 2, -h / 2, 0, w, h, 1);
         }
 
-        void GeneratePath(MapModel model)
+        void GeneratePath(PortalDefenseModel model)
         {
             var end = new PathNodeModel() { Position = new Vector2Int() };
             var start = new PathNodeModel() { Position = new Vector2Int(0, 10), Next = end };
-            model.Paths.StartNode = start;
-            model.Paths.EndNode = end;
+            var map = model.Map;
+            map.Paths.StartNode = start;
+            map.Paths.EndNode = end;
 
-            GenerateTilePaths(model);
+            GenerateTilePaths(map);
 
-            model.TileMap[end.Position].Structure = new EndPortalModel();
-            model.TileMap[start.Position].Structure = new EnemySpawnModel();
+            map.TileMap[end.Position].Structure = new EndPortalModel();
+            var spawn = new EnemySpawnModel();
+            model.Spawns.AddItem(spawn);
+            map.TileMap[start.Position].Structure = spawn;
         }
 
         void GenerateTilePaths(MapModel model)

@@ -8,7 +8,8 @@ namespace PortalDefense.Model
 {
     public class EnemySpawnModel : IEnemySpawnModel
     {
-        public string Key => "EndPortal";
+        public Guid Id { get; } = Guid.NewGuid();
+        public string Key => "EnemySpawn";
 
         public List<Guid> SpawnQueue = new();
         IEnumerable<Guid> IEnemySpawnModel.SpawnQueue => SpawnQueue;

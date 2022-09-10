@@ -13,7 +13,7 @@ namespace PortalDefense.Commands
         {
             var generator = new MapGenerator();
             var portalGame = model.GetModel<PortalDefenseModel>();
-            generator.GenerateMap(portalGame.Map);
+            generator.GenerateMap(portalGame);
         }
     }
 }

@@ -7,5 +7,6 @@ namespace PortalDefense.ViewModel
     public interface IPortalDefenseModel : IRegisteredModel
     {
         IMapModel Map { get; }
+        IWaveModel CurrentWave { get; }
     }
 }

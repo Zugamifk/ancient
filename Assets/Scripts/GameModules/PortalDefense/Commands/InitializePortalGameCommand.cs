@@ -11,6 +11,7 @@ namespace PortalDefense.Commands
         protected override void OnCreatedModel(GameModel game, PortalDefenseModel model)
         {
             Game.Do(new GenerateMapCommand());
+            Game.Do(new StartWaveCommand());
         }
     }
 }
