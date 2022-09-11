@@ -42,7 +42,7 @@ namespace PortalDefense.View
             }
 
             var position = enemy.Position;
-            position.y = PortalDefenseGame.Instance.Map.GetTile(new Vector2Int((int)position.x, (int)position.z)).SurfaceY;
+            position.y = PortalDefenseGame.Instance.Map.GetTile(new Vector2Int((int)(position.x+.5f), (int)(position.z+.5f))).SurfaceY;
             transform.position = position;
             Game.Do(new UpdateEnemyMovementCommand(_identifiable.Id));
         }

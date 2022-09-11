@@ -26,7 +26,7 @@ namespace PortalDefense.Services
                     model.TileMap[new Vector2Int(x, y)] = new TileModel()
                     {
                         HasPath = false,
-                        Height = 1
+                        Height = Random.Range(1, 3)
                     };
                 }
             }
