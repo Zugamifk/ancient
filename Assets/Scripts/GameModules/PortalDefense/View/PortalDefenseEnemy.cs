@@ -16,6 +16,8 @@ namespace PortalDefense.View
 
         Identifiable _identifiable;
 
+        public Guid Id => _identifiable.Id;
+
         private void Awake()
         {
             _identifiable = GetComponent<Identifiable>();
@@ -33,6 +35,12 @@ namespace PortalDefense.View
         private void Update()
         {
             var enemy = Game.Model.GetModel<IPortalDefenseModel>().SpawnedEnemies.GetItem(_identifiable.Id);
+            if(enemy == null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
             var position = enemy.Position;
             position.y = PortalDefenseGame.Instance.Map.GetTile(new Vector2Int((int)position.x, (int)position.z)).SurfaceY;
             transform.position = position;

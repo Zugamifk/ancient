@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 9121797453326702781}
   - component: {fileID: 9121797453326702782}
   - component: {fileID: 7265379240216887891}
+  - component: {fileID: 5666411568829362737}
   m_Layer: 0
   m_Name: EndPortal
   m_TagString: Untagged
@@ -91,6 +92,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a026304af239046a2c06c7bd7fed06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &5666411568829362737
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9121797453326702780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9121797453914887758
 GameObject:
   m_ObjectHideFlags: 0
