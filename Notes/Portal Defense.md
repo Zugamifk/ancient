@@ -5,11 +5,13 @@ Enemies are spawning at the evil kingdom, and moving to the portal shrine. You h
 Each wave is represented as a day, with the lighting (do the lighting).
 As enemies are killed, the day progresses to show wave progress.
 Each morning, before the day starts, pick 3 out of 5-7 cards to play that morning.
+
 Morning actions are:
 * Gain Resources gained from last day.
 * Cast Spells available.
 * Use building ablities.
 * Spawn day enemies.
+
 During day, as it plays out:
 * Defenders attack enemies
 * Enemies die and give xp rewards
