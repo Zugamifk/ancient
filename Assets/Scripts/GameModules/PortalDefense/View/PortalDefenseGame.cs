@@ -9,7 +9,10 @@ namespace PortalDefense.View
     {
         [SerializeField]
         Transform _spawnedRoot;
+        [SerializeField]
+        PortalDefenseMap _map;
 
+        public PortalDefenseMap Map => _map;
         public Transform SpawnRoot => _spawnedRoot;
 
         public static PortalDefenseGame Instance { get; private set; }

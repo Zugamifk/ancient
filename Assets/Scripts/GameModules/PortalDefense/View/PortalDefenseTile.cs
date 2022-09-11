@@ -16,6 +16,8 @@ namespace PortalDefense.View
 
         GameObject _currentStructure;
 
+        public float SurfaceY { get; private set; }
+
         public void SetTile(ITileModel tile, MapMeshGenerator.TileContext context)
         {
             UpdateTileGeometry(tile, context);
@@ -27,6 +29,8 @@ namespace PortalDefense.View
 
         void UpdateTileGeometry(ITileModel tile, MapMeshGenerator.TileContext context)
         {
+            SurfaceY = tile.Height;
+
             var meshGen = new MapMeshGenerator();
             var mesh = meshGen.GenerateTileMesh(tile, context);
             _meshFilter.mesh = mesh;

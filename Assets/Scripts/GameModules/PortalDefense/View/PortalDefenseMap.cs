@@ -25,6 +25,10 @@ namespace PortalDefense.View
 
         Guid _mapGuid;
 
+        Dictionary<Vector2Int, PortalDefenseTile> _positionToTile = new();
+
+        public PortalDefenseTile GetTile(Vector2Int position) => _positionToTile[position];
+
         private void Update()
         {
             var portalGame = Game.Model.GetModel<IPortalDefenseModel>();
@@ -78,6 +82,7 @@ namespace PortalDefense.View
                         BottomNeighbour = bottom
                     };
                     tile.SetTile(map.GetTile(new Vector2Int(x, y)), context);
+                    _positionToTile[new Vector2Int(x, y)] = tile;
                 }
             }
 

@@ -24,7 +24,8 @@ namespace PortalDefense.Commands
             {
                 var spawn = spawns.ElementAt(Random.Range(0, spawns.Count()));
                 var enemy = new EnemyModel();
-                enemy.Movement.CurrentNode = spawn.PathNode;
+                enemy.Movement.CurrentNode = spawn.PathNode.Next;
+                enemy.Movement.CurrentPosition = spawn.PathNode.WorldPosition;
                 pdm.SpawnedEnemies.AddItem(enemy);
                 spawn.SpawnQueue.Add(enemy.Id);
             }

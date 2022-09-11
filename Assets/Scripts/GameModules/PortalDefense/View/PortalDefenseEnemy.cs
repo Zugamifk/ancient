@@ -33,7 +33,9 @@ namespace PortalDefense.View
         private void Update()
         {
             var enemy = Game.Model.GetModel<IPortalDefenseModel>().SpawnedEnemies.GetItem(_identifiable.Id);
-            transform.position = enemy.Position;
+            var position = enemy.Position;
+            position.y = PortalDefenseGame.Instance.Map.GetTile(new Vector2Int((int)position.x, (int)position.z)).SurfaceY;
+            transform.position = position;
             Game.Do(new UpdateEnemyMovementCommand(_identifiable.Id));
         }
     }
