@@ -14,5 +14,9 @@ namespace PortalDefense.Model
         IMapModel IPortalDefenseModel.Map => Map;
 
         IWaveModel IPortalDefenseModel.CurrentWave => CurrentWave;
+
+        IIdentifiableLookup<IEnemySpawnModel> IPortalDefenseModel.Spawns => Spawns;
+
+        IIdentifiableLookup<IEnemyModel> IPortalDefenseModel.SpawnedEnemies => SpawnedEnemies;
     }
 }
