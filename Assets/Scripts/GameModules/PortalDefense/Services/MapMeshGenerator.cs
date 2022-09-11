@@ -25,7 +25,7 @@ namespace PortalDefense.Services
             _builder.SetColor(grassColor);
             
             var w = .5f;
-            var h = tile.Height;
+            var h = tile.Height*data.TileStepHeight;
 
             // edges and bottom
             var p0 = new Vector3(-w, 0, -w);

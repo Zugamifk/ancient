@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using PortalDefense.ViewModel;
 using PortalDefense.Services;
+using PortalDefense.Data;
+
 namespace PortalDefense.View
 {
     public class PortalDefenseTile : MonoBehaviour
@@ -29,15 +31,16 @@ namespace PortalDefense.View
 
         void UpdateTileGeometry(ITileModel tile, MapMeshGenerator.TileContext context)
         {
-            SurfaceY = tile.Height;
+            var data = DataService.GetData<PortalDefenseData>();
+            SurfaceY = tile.Height * data.TileStepHeight;
 
             var meshGen = new MapMeshGenerator();
             var mesh = meshGen.GenerateTileMesh(tile, context);
             _meshFilter.mesh = mesh;
 
-            _collider.center = new Vector3(0, tile.Height / 2f, 0);
-            _collider.size = new Vector3(1, tile.Height, 1);
-            _structureRoot.localPosition = new Vector3(0, tile.Height, 0);
+            _collider.center = new Vector3(0, SurfaceY / 2f, 0);
+            _collider.size = new Vector3(1, SurfaceY, 1);
+            _structureRoot.localPosition = new Vector3(0, SurfaceY, 0);
         }
 
         void UpdateTileStructure(ITileModel tile)

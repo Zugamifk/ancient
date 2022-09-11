@@ -10,5 +10,6 @@ namespace PortalDefense.Data
         public Color PathColor;
         public float RoadWidth;
         public Vector2Int Dimensions;
+        public float TileStepHeight = .4f;
     }
 }
