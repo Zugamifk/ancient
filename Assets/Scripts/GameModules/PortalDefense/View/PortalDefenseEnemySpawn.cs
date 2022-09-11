@@ -34,8 +34,8 @@ namespace PortalDefense.View
             enemyPrefab.transform.SetParent(PortalDefenseGame.Instance.SpawnRoot);
             enemyPrefab.transform.position = _spawnPosition.position;
 
-            var enemyComp = enemyPrefab.GetComponent<PortalDefenseEnemy>();
-            enemyComp.SetEnemy(enemy.Id);
+            var identifiable = enemyPrefab.GetComponent<Identifiable>();
+            identifiable.Id = enemy.Id;
         }
     }
 }

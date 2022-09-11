@@ -46,6 +46,7 @@ namespace PortalDefense.Services
 
             map.TileMap[end.Position].Structure = new EndPortalModel();
             var spawn = new EnemySpawnModel();
+            spawn.PathNode = start;
             model.Spawns.AddItem(spawn);
             map.TileMap[start.Position].Structure = spawn;
         }

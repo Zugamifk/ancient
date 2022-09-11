@@ -12,6 +12,7 @@ namespace PortalDefense.Model
         public string Key => "EnemySpawn";
 
         public List<Guid> SpawnQueue = new();
+        public PathNodeModel PathNode { get; set; }
         IEnumerable<Guid> IEnemySpawnModel.SpawnQueue => SpawnQueue;
 
     }

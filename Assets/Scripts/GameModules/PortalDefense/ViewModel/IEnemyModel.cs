@@ -6,6 +6,6 @@ namespace PortalDefense.ViewModel
 {
     public interface IEnemyModel : IIdentifiable, IKeyHolder
     {
-        
+        Vector3 Position { get; }
     }
 }

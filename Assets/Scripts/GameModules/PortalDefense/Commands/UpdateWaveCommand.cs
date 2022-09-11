@@ -24,9 +24,9 @@ namespace PortalDefense.Commands
             {
                 var spawn = spawns.ElementAt(Random.Range(0, spawns.Count()));
                 var enemy = new EnemyModel();
+                enemy.Movement.CurrentNode = spawn.PathNode;
                 pdm.SpawnedEnemies.AddItem(enemy);
                 spawn.SpawnQueue.Add(enemy.Id);
-                Debug.Log("Spawned " + enemy.Id);
             }
         }
     }

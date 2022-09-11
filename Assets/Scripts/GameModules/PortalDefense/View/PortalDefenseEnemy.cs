@@ -4,6 +4,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PortalDefense.Commands;
+using PortalDefense.ViewModel;
 
 namespace PortalDefense.View
 {
@@ -11,8 +13,13 @@ namespace PortalDefense.View
     {
         [SerializeField]
         MeshFilter _meshFilter;
-        [SerializeField]
-        Transform _viewRoot;
+
+        Identifiable _identifiable;
+
+        private void Awake()
+        {
+            _identifiable = GetComponent<Identifiable>();
+        }
 
         private void Start()
         {
@@ -23,9 +30,11 @@ namespace PortalDefense.View
             _meshFilter.mesh = mesh;
         }
 
-        public void SetEnemy(Guid id)
+        private void Update()
         {
-
+            var enemy = Game.Model.GetModel<IPortalDefenseModel>().SpawnedEnemies.GetItem(_identifiable.Id);
+            transform.position = enemy.Position;
+            Game.Do(new UpdateEnemyMovementCommand(_identifiable.Id));
         }
     }
 }
