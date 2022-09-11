@@ -27,7 +27,7 @@ namespace PortalDefense.View
 
         void SpawnEnemy(IEnemyModel enemy)
         {
-
+            Debug.Log(enemy.Id);
         }
     }
 }
