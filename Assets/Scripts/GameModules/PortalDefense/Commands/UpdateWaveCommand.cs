@@ -15,6 +15,11 @@ namespace PortalDefense.Commands
             var pdm = model.GetModel<PortalDefenseModel>();
             var wave = pdm.CurrentWave;
             var spawns = pdm.Spawns.AllItems;
+            foreach(var s in spawns)
+            {
+                s.SpawnQueue.Clear();
+            }
+
             for (wave.WaveCounter += dt * (wave.SpawnsPerMinute / 60); wave.WaveCounter > 1 && wave.EnemiesRemaining > 0; wave.WaveCounter--, wave.EnemiesRemaining--)
             {
                 var spawn = spawns.ElementAt(Random.Range(0, spawns.Count()));

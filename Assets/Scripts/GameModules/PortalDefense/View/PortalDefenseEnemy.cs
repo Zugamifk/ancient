@@ -1,5 +1,6 @@
 using MeshGenerator;
 using PortalDefense.Services;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,11 @@ namespace PortalDefense.View
             gen.Generate(builder);
             var mesh = builder.BuildMesh();
             _meshFilter.mesh = mesh;
+        }
+
+        public void SetEnemy(Guid id)
+        {
+
         }
     }
 }

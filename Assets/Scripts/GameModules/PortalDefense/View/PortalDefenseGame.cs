@@ -7,6 +7,18 @@ namespace PortalDefense.View
 {
     public class PortalDefenseGame : MonoBehaviour
     {
+        [SerializeField]
+        Transform _spawnedRoot;
+
+        public Transform SpawnRoot => _spawnedRoot;
+
+        public static PortalDefenseGame Instance { get; private set; }
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private void Start()
         {
             Game.Do(new InitializePortalGameCommand());

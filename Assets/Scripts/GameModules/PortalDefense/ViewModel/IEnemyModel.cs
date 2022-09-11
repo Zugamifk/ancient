@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PortalDefense.ViewModel
 {
-    public interface IEnemyModel : IIdentifiable
+    public interface IEnemyModel : IIdentifiable, IKeyHolder
     {
         
     }

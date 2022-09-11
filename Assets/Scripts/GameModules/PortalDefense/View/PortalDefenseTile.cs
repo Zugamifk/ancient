@@ -46,6 +46,10 @@ namespace PortalDefense.View
             var structure = Prefabs.GetInstance(tile.Structure);
             structure.transform.SetParent(_structureRoot);
             structure.transform.localPosition = Vector3.zero;
+
+            var id = structure.GetComponent<Identifiable>();
+            id.Id = tile.Structure.Id;
+
             _currentStructure = structure;
         }
     }

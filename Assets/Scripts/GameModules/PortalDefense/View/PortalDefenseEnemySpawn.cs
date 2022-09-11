@@ -3,22 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PortalDefense.ViewModel;
+using PortalDefense.Data;
 
 namespace PortalDefense.View
 {
     public class PortalDefenseEnemySpawn : MonoBehaviour
     {
-        Guid _id;
+        [SerializeField] Transform _spawnPosition;
 
-        public void Initialize(Guid id)
+        Identifiable _identifiable;
+
+        private void Awake()
         {
-            _id = id;
+            _identifiable = GetComponent<Identifiable>();
         }
 
         private void Update()
         {
             var pdm = Game.Model.GetModel<IPortalDefenseModel>();
-            foreach(var e in pdm.Spawns.GetItem(_id).SpawnQueue)
+            foreach(var e in pdm.Spawns.GetItem(_identifiable.Id).SpawnQueue)
             {
                 var enemy = pdm.SpawnedEnemies.GetItem(e);
                 SpawnEnemy(enemy);
@@ -27,7 +30,12 @@ namespace PortalDefense.View
 
         void SpawnEnemy(IEnemyModel enemy)
         {
-            Debug.Log(enemy.Id);
+            var enemyPrefab = Prefabs.GetInstance(enemy);
+            enemyPrefab.transform.SetParent(PortalDefenseGame.Instance.SpawnRoot);
+            enemyPrefab.transform.position = _spawnPosition.position;
+
+            var enemyComp = enemyPrefab.GetComponent<PortalDefenseEnemy>();
+            enemyComp.SetEnemy(enemy.Id);
         }
     }
 }
