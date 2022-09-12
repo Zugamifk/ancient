@@ -8,26 +8,9 @@ using PortalDefense.Data;
 namespace PortalDefense.Services
 {
     [MeshGenerator("Enemy")]
-    public class EnemyMeshGenerator : IGeometryGenerator
+    public class EnemyMeshGenerator : MeshGeneratorWithWireFrame<EnemyMeshGeneratorData>
     {
-        static EnemyMeshGeneratorData _data;
-        public EnemyMeshGeneratorData Data
-        {
-            get
-            {
-                if (_data == null)
-                {
-                    _data = DataService.GetData<PortalDefenseMeshGeneratorDataCollection>().Enemy;
-                }
-                return _data;
-            }
-        }
-
-        public Frame Wireframe => _wireframe;
-
-        Frame _wireframe;
-
-        public void Generate(MeshBuilder builder)
+        public override void Generate(MeshBuilder builder)
         {
             var f = Data.Fatness;
             var p0 = new Vector3(-f, 0, -f);
@@ -68,12 +51,14 @@ namespace PortalDefense.Services
             builder.AddQuad(p4, p5, p6, p7);
         }
 
-        public void BuildWireframe()
+        public override void BuildWireframe()
         {
-            _wireframe = new();
+            Wireframe = new();
 
-            _wireframe.SquareColumn(new Point(), () => Data.Height, () => Data.Fatness);
-            _wireframe.SquareColumn(new DynamicPoint(()=>new Vector3(0,Data.Height,0)), () => Data.HeadHeight, () => Data.HeadSize);
+            Wireframe.SquareColumn(new Point(), () => Data.Height, () => Data.Fatness);
+            Wireframe.SquareColumn(new DynamicPoint(()=>new Vector3(0,Data.Height,0)), () => Data.HeadHeight, () => Data.HeadSize);
         }
+
+        protected override EnemyMeshGeneratorData LoadData() => DataService.GetData<PortalDefenseMeshGeneratorDataCollection>().Enemy;
     }
 }

@@ -8,38 +8,21 @@ using PortalDefense.Data;
 namespace PortalDefense.Services
 {
     [MeshGenerator("End Portal")]
-    public class EndPortalMeshGenerator : IGeometryGenerator
+    public class EndPortalMeshGenerator : MeshGeneratorWithWireFrame<EndPortalMeshGeneratorData>
     {
-        static EndPortalMeshGeneratorData _data;
-        public EndPortalMeshGeneratorData Data
-        {
-            get
-            {
-                if (_data == null)
-                {
-                    _data = DataService.GetData<PortalDefenseMeshGeneratorDataCollection>().EndPortal;
-                }
-                return _data;
-            }
-        }
-
-        public Frame Wireframe => _wireframe;
-
-        Frame _wireframe;
-
-        public void Generate(MeshBuilder builder)
+        public override void Generate(MeshBuilder builder)
         {
             void AddColumn(float x, float y)
             {
                 var b = new Vector3(x, 0, y);
-                var p0 = b + new Vector3(-_data.ColumnSize, 0, -_data.ColumnSize);
-                var p1 = b + new Vector3(-_data.ColumnSize, 0, _data.ColumnSize);
-                var p2 = b + new Vector3(_data.ColumnSize, 0, _data.ColumnSize);
-                var p3 = b + new Vector3(_data.ColumnSize, 0, -_data.ColumnSize);
-                var p4 = p0 + new Vector3(0, _data.Height, 0);
-                var p5 = p1 + new Vector3(0, _data.Height, 0);
-                var p6 = p2 + new Vector3(0, _data.Height, 0);
-                var p7 = p3 + new Vector3(0, _data.Height, 0);
+                var p0 = b + new Vector3(-Data.ColumnSize, 0, -Data.ColumnSize);
+                var p1 = b + new Vector3(-Data.ColumnSize, 0, Data.ColumnSize);
+                var p2 = b + new Vector3(Data.ColumnSize, 0, Data.ColumnSize);
+                var p3 = b + new Vector3(Data.ColumnSize, 0, -Data.ColumnSize);
+                var p4 = p0 + new Vector3(0, Data.Height, 0);
+                var p5 = p1 + new Vector3(0, Data.Height, 0);
+                var p6 = p2 + new Vector3(0, Data.Height, 0);
+                var p7 = p3 + new Vector3(0, Data.Height, 0);
 
                 builder.AddQuad(p0, p1, p5, p4);
                 builder.AddQuad(p1, p2, p6, p5);
@@ -55,15 +38,15 @@ namespace PortalDefense.Services
 
             void AddRoofStep(float w, float h)
             {
-                var b = new Vector3(0, _data.Height+h, 0);
+                var b = new Vector3(0, Data.Height+h, 0);
                 var p0 = b + new Vector3(-w, 0, -w);
                 var p1 = b + new Vector3(-w, 0, w);
                 var p2 = b + new Vector3(w, 0, w);
                 var p3 = b + new Vector3(w, 0, -w);
-                var p4 = p0 + new Vector3(0, _data.RoofThickness, 0);
-                var p5 = p1 + new Vector3(0, _data.RoofThickness, 0);
-                var p6 = p2 + new Vector3(0, _data.RoofThickness, 0);
-                var p7 = p3 + new Vector3(0, _data.RoofThickness, 0);
+                var p4 = p0 + new Vector3(0, Data.RoofThickness, 0);
+                var p5 = p1 + new Vector3(0, Data.RoofThickness, 0);
+                var p6 = p2 + new Vector3(0, Data.RoofThickness, 0);
+                var p7 = p3 + new Vector3(0, Data.RoofThickness, 0);
 
                 builder.AddQuad(p3, p2, p1, p0);
                 builder.AddQuad(p0, p1, p5, p4);
@@ -77,9 +60,9 @@ namespace PortalDefense.Services
             AddRoofStep(.4f, Data.RoofThickness);
         }
 
-        public void BuildWireframe()
+        public override void BuildWireframe()
         {
-            _wireframe = new();
+            Wireframe = new();
 
             var b = .5f;
             var b0 = new Point(-b, 0, -b);
@@ -88,20 +71,22 @@ namespace PortalDefense.Services
             var b3 = new Point(b, 0, -b);
 
             // base
-            _wireframe.Connect(b0, b1);
-            _wireframe.Connect(b1, b2);
-            _wireframe.Connect(b2, b3);
-            _wireframe.Connect(b3, b0);
+            Wireframe.Connect(b0, b1);
+            Wireframe.Connect(b1, b2);
+            Wireframe.Connect(b2, b3);
+            Wireframe.Connect(b3, b0);
 
             // columns
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(-Data.ColumnSpacing, 0, -Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(-Data.ColumnSpacing, 0, Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(Data.ColumnSpacing, 0, Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(Data.ColumnSpacing, 0, -Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
+            Wireframe.SquareColumn(new DynamicPoint(() => new Vector3(-Data.ColumnSpacing, 0, -Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
+            Wireframe.SquareColumn(new DynamicPoint(() => new Vector3(-Data.ColumnSpacing, 0, Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
+            Wireframe.SquareColumn(new DynamicPoint(() => new Vector3(Data.ColumnSpacing, 0, Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
+            Wireframe.SquareColumn(new DynamicPoint(() => new Vector3(Data.ColumnSpacing, 0, -Data.ColumnSpacing)), () => Data.Height, () => Data.ColumnSize);
 
             // roof
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(0, Data.Height, 0)), () => Data.RoofThickness, () => .5f);
-            _wireframe.SquareColumn(new DynamicPoint(() => new Vector3(0, Data.Height + Data.RoofThickness, 0)), () => Data.RoofThickness, () => .4f);
+            Wireframe.SquareColumn(new DynamicPoint(() => new Vector3(0, Data.Height, 0)), () => Data.RoofThickness, () => .5f);
+            Wireframe.SquareColumn(new DynamicPoint(() => new Vector3(0, Data.Height + Data.RoofThickness, 0)), () => Data.RoofThickness, () => .4f);
         }
+
+        protected override EndPortalMeshGeneratorData LoadData() => DataService.GetData<PortalDefenseMeshGeneratorDataCollection>().EndPortal;
     }
 }
