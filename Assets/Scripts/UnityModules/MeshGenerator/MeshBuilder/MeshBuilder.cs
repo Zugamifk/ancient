@@ -74,17 +74,22 @@ namespace MeshGenerator
 
         public void AddPolygon(params Vector3[] points)
         {
-            if(points.Length < 3)
+            AddPolygon(points);
+        }
+
+        public void AddPolygon(IList<Vector3> points)
+        {
+            if (points.Count < 3)
             {
-                throw new System.ArgumentException("Must have at least 3 points!! Poitns: " + points.Length);
+                throw new System.ArgumentException("Must have at least 3 points!! Poitns: " + points.Count);
             }
 
             var n = Vector3.Cross(points[1] - points[0], points[2] - points[0]).normalized;
             var ti = _data.Vertices.Count;
-            for (int i=0;i<points.Length;i++)
+            for (int i = 0; i < points.Count; i++)
             {
                 AddPoint(points[i], n);
-                if(i > 1)
+                if (i > 1)
                 {
                     AddTriangle(ti, ti + i - 1, ti + i);
                 }

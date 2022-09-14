@@ -14,6 +14,11 @@ namespace MeshGenerator.Editor
             {
                 Handles.DrawLine(e.A.Position, e.B.Position);
             }
+
+            foreach(var r in frame.Rings)
+            {
+                Handles.DrawWireDisc(r.Center.Position, r.Normal, r.Radius);
+            }
         }
     }
 }

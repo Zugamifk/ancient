@@ -9,6 +9,7 @@ namespace MeshGenerator.Wireframe
     {
         public List<IPoint> Points = new();
         public List<Edge> Edges = new();
+        public List<Ring> Rings = new();
 
         public void Connect(IPoint a, IPoint b)
         {
