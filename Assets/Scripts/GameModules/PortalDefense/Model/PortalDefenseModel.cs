@@ -11,7 +11,7 @@ namespace PortalDefense.Model
         public IdentifiableCollection<EnemyModel> SpawnedEnemies = new();
         public IdentifiableCollection<EnemySpawnModel> Spawns = new();
         public WaveModel CurrentWave { get; set; }
-        public CameraModel Camera = new() { Height = 15 };
+        public CameraModel Camera = new() { Height = 15, MoveSpeed = 5, RotateSpeed = 45 };
         
         IMapModel IPortalDefenseModel.Map => Map;
         IWaveModel IPortalDefenseModel.CurrentWave => CurrentWave;

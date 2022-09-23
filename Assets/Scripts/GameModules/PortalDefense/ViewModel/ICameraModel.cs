@@ -9,5 +9,7 @@ namespace PortalDefense.ViewModel
         Vector2 Position { get; }
         float Height { get; }
         float Angle { get; }
+        float MoveSpeed { get; }
+        float RotateSpeed { get; }
     }
 }
