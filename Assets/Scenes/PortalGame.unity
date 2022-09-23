@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 414648904761180255, guid: 715557736c211e74c8107cff258931d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 414648904761180255, guid: 715557736c211e74c8107cff258931d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 992395414180679215, guid: 715557736c211e74c8107cff258931d0, type: 3}
       propertyPath: m_Name
       value: CameraController
@@ -144,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657403781196127833, guid: 715557736c211e74c8107cff258931d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 14.7
       objectReference: {fileID: 0}
     - target: {fileID: 2657403781196127833, guid: 715557736c211e74c8107cff258931d0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -178,6 +186,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2998380744391807920, guid: 715557736c211e74c8107cff258931d0, type: 3}
+      propertyPath: _root
+      value: 
+      objectReference: {fileID: 1393920659}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 715557736c211e74c8107cff258931d0, type: 3}
 --- !u!1 &175834532
@@ -529,6 +541,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1393920659 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2657403781196127833, guid: 715557736c211e74c8107cff258931d0, type: 3}
+  m_PrefabInstance: {fileID: 166757754}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2055646319
 GameObject:
   m_ObjectHideFlags: 0

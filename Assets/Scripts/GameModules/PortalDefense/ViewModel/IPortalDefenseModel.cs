@@ -10,5 +10,6 @@ namespace PortalDefense.ViewModel
         IWaveModel CurrentWave { get; }
         IIdentifiableLookup<IEnemyModel> SpawnedEnemies { get; }
         IIdentifiableLookup<IEnemySpawnModel> Spawns { get; }
+        ICameraModel Camera { get; }
     }
 }
