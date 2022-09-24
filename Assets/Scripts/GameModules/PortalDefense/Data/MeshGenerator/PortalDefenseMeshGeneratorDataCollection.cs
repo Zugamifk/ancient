@@ -9,5 +9,6 @@ namespace PortalDefense.Data
         public EndPortalMeshGeneratorData EndPortal;
         public EnemyMeshGeneratorData Enemy;
         public ArrowTowerMeshGeneratorData ArrowTower;
+        public CardFrameMeshGeneratorData CardFrame;
     }
 }

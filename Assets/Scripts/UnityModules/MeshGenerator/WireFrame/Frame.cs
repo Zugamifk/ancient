@@ -16,6 +16,20 @@ namespace MeshGenerator.Wireframe
             Edges.Add(new Edge() { A = a, B = b });
         }
 
+        public void Connect(params IPoint[] points)
+        {
+            for(int i=1;i<points.Length;i++)
+            {
+                Connect(points[i - 1], points[i]);
+            }
+        }
+
+        public void ConnectLoop(params IPoint[] points)
+        {
+            Connect(points);
+            Connect(points[0], points[points.Length - 1]);
+        }
+
         public void Prism(IPoint baseCentre, Func<float> height, int sides, Func<float> radius, Vector3 direction)
         {
             var rot = Quaternion.identity;
