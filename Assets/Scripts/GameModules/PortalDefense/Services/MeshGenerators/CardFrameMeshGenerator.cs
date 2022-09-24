@@ -33,7 +33,7 @@ namespace PortalDefense.Services
             Wireframe.ConnectLoop(b0, b1, b2, b3);
 
             Func<float> dw = () => Data.DividerWidth / 2;
-            Func<float> d = ()=>Mathf.Lerp(dw(), Data.BaseDimensions.y-dw(), Data.DividerPosition);
+            Func<float> d = () => Mathf.Lerp(dw(), Data.BaseDimensions.y - dw(), Data.DividerPosition);
             var d0 = new DynamicPoint(() => p0.Position + new Vector3(0, d() - dw(), 0));
             var d1 = new DynamicPoint(() => p3.Position + new Vector3(0, d() - dw(), 0));
             Wireframe.Connect(d0, d1);
@@ -61,10 +61,8 @@ namespace PortalDefense.Services
             var b2 = new Vector3(bw, bh, 0);
             var b3 = new Vector3(bw, -bh, 0);
 
-            builder.AddQuad(p0, b0, b1, p1);
-            builder.AddQuad(p1, b1, b2, p2);
-            builder.AddQuad(p2, b2, b3, p3);
-            builder.AddQuad(p3, b3, b0, p0);
+            var f = new Vector3(0, 0, .5f);
+            builder.AddCubic(p0 + f, b0 + f, b1 + f, p1 + f, p0, b0, b1, p1);
         }
 
         protected override CardFrameMeshGeneratorData LoadData() => DataService.GetData<PortalDefenseMeshGeneratorDataCollection>().CardFrame;

@@ -9,7 +9,7 @@ using PortalDefense.ViewModel;
 
 namespace PortalDefense.View
 {
-    public class PortalDefenseEnemy : MonoBehaviour
+    public class PortalDefenseEnemy : PortalDefenseMeshGeneratorUser
     {
         [SerializeField]
         MeshFilter _meshFilter;
@@ -25,11 +25,7 @@ namespace PortalDefense.View
 
         private void Start()
         {
-            var gen = new EnemyMeshGenerator();
-            var builder = new MeshBuilder();
-            gen.Generate(builder);
-            var mesh = builder.BuildMesh();
-            _meshFilter.mesh = mesh;
+            AssignMesh<EnemyMeshGenerator>(_meshFilter);   
         }
 
         private void Update()

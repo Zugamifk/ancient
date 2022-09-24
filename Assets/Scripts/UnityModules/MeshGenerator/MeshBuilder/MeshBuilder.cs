@@ -72,6 +72,16 @@ namespace MeshGenerator
             AddTriangle(i, i + 2, i + 3);
         }
 
+        public void AddCubic(Vector3 p000, Vector3 p001, Vector3 p101, Vector3 p100, Vector3 p010, Vector3 p011, Vector3 p111, Vector3 p110)
+        {
+            AddQuad(p000, p100, p101, p001);
+            AddQuad(p000, p010, p110, p100);
+            AddQuad(p000, p001, p011, p010);
+            AddQuad(p001, p101, p111, p011);
+            AddQuad(p101, p100, p110, p111);
+            AddQuad(p010, p011, p111, p110);
+        }
+
         public void AddPolygon(params Vector3[] points)
         {
             AddPolygon(points);
